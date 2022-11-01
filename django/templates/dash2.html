@@ -1,0 +1,8 @@
+<!-- templates/dash2.html -->
+{% extends 'base_generic.html' %}
+
+{% block title %}Dash Page{% endblock %}
+{%load plotly_dash%}
+{% block content %}
+{% plotly_app_bootstrap name="DashPlot2" aspect="21by9" %}
+{% endblock %}

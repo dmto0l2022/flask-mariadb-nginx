@@ -1,0 +1,18 @@
+# Use root/example as user/password credentials
+# docker build -t mysql_ag:0.1 .
+# docker run --detach --name=mysql_ag --publish 3306:3306 mysql_ag:0.1
+version: '3.1'
+
+services:
+
+  db:
+    build: .
+    image: mysql_ag
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    #environment:
+    #  MYSQL_ROOT_PASSWORD: example
+    ports:
+      - 3306:3306
+
+

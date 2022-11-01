@@ -1,0 +1,78 @@
+version: '3'
+
+services:
+  jupyterhub:
+    build:
+      context: ./jupyterhub
+      dockerfile: Dockerfile
+      args:
+        buildno: 1
+
+    image: jupyterhub_dockerfile
+    container_name: jupyterhub_dockerfile
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - jupyterhub_data:/srv/jupyterhub/env/share/jupyterhub
+      - jupyterhub_notebooks:/srv/jupyterhub/notebooks
+    ports:
+      #- 8000:8000
+      - "8000"
+      - "5051" ## dash1
+      - "5052" ## home
+    environment:
+      #- DOCKER_JUPYTER_CONTAINER=jupyterlab_img
+      - DOCKER_NETWORK_NAME=jupyterhub
+      #- HUB_IP=jupyterhub
+      #- HOST
+    restart: on-failure
+    networks:
+      - u-online
+
+  nginx:
+    container_name: 'nginx-service'
+    build:
+        context: ./nginx
+        dockerfile: Dockerfile
+
+    ports:
+      - "80:80"
+      #- "443:443"
+    volumes:
+      - ./nginx/config:/config
+      #- /etc/letsencrypt:/etc/letsencrypt:ro
+      #- /tmp/acme_challenge:/tmp/acme_challenge
+    #networks:
+    #  - app
+    depends_on:
+      - jupyterhub
+    restart: always
+    networks:
+      - u-online
+
+  db:
+    build:
+        context: ./mysql
+        dockerfile: Dockerfile
+        args:
+          buildno: 1
+    image: mysql_ag
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    #environment:
+    #  MYSQL_ROOT_PASSWORD: example
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - u-online
+
+volumes:
+  mysql-data:
+  jupyterhub_data:
+  jupyterhub_notebooks:
+
+#Docker Networks
+networks:
+  u-online:
+    driver: bridge

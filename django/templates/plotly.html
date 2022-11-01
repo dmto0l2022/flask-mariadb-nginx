@@ -1,0 +1,19 @@
+<!-- djangotemplates/example/templates/index.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Plotly Test</title>
+
+
+</head>
+<body>
+ 
+<div id='viz1'>
+    {{ target_plot|safe }}
+</div>
+
+  <a href="{% url 'home' %}">Go Home</a>
+  <a href="{% url 'about' %}">About This Site</a>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!-- djangotemplates/example/templates/index.html-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome Home</title>
+  {%load plotly_dash%}
+
+</head>
+<body>
+ 
+  <div id='viz1'>
+    {{ target_plot|safe }}
+</div>
+
+<div id='viz2'>
+ 
+  {% plotly_app_bootstrap name="SimpleExample" aspect="21by9" %}
+</div>
+
+  <a href="{% url 'home' %}">Go Home</a>
+  <a href="{% url 'about' %}">About This Site</a>
+</body>
+</html>
+

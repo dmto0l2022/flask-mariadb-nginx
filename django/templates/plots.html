@@ -1,0 +1,14 @@
+<!-- templates/home.html -->
+{% extends 'base_generic.html' %}
+
+{% block title %}Plots{% endblock %}
+
+{% block content %}
+
+{% load plotly_dash %}
+
+{% plotly_app_bootstrap name="SimpleExample" %}
+
+{% endblock %}
+
+ 
