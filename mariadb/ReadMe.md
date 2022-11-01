@@ -1,4 +1,11 @@
 
+# Source of Database
+
+https://dev.mysql.com/doc/index-other.html
+
+
+# Dockerfile Notes
+
 https://mariadb.com/kb/en/creating-a-custom-docker-image/
 
 
