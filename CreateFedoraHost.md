@@ -2,6 +2,10 @@
 
 make sure port forwarding is enabled
 
+## Command Line
+
+gcloud compute instances create fedora-vm-1 --project=proj-dmtools-1 --zone=europe-west2-c --machine-type=e2-medium --network-interface=address=35.214.101.196,network-tier=STANDARD,subnet=default --can-ip-forward --maintenance-policy=MIGRATE --provisioning-model=STANDARD --service-account=1002786492798-compute@developer.gserviceaccount.com --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append --tags=http-server,https-server --create-disk=auto-delete=yes,boot=yes,device-name=fedora-vm-1,image=projects/fedora-cloud/global/images/fedora-cloud-base-gcp-36-20220506-n-0-x86-64,mode=rw,size=10,type=projects/proj-dmtools-1/zones/europe-west2-c/diskTypes/pd-balanced --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --reservation-affinity=any
+
 # Update VM and install dependencies
 
 ## install nano
