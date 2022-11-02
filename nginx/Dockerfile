@@ -1,2 +1,2 @@
 FROM nginx:latest
-COPY conf /etc/nginx/conf.d/default.conf
+COPY justflask_conf /etc/nginx/conf.d/default.conf
