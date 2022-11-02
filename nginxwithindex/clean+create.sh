@@ -1,7 +1,7 @@
 podman pod stop frontend
 podman pod rm frontend
 podman rmi -a
-cd /home/andrew_gaitskell/project/flask-mariadb-nginx/flask
+cd /home/andrew_gaitskell/project/flask-mariadb-nginx/flask_withpath
 podman build -t my-flask-1 .
 cd /home/andrew_gaitskell/project/flask-mariadb-nginx/nginxwithindex
 podman build -t my-nginxwithindex-1 .
