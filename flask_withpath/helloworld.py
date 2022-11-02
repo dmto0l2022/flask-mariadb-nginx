@@ -17,6 +17,7 @@
 
 from flask import Flask
 app = Flask(__name__)
+app.config['APPLICATION_ROOT'] = '/flask1'
 ##CORS(app) #Prevents CORS errors 
 @app.route(‘/’)
 def index():
