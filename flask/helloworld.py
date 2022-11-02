@@ -9,6 +9,7 @@ class Greeting (Resource):
         return 'Hello World!'
 
 api.add_resource(Greeting, '/') # Route_1
+api.add_resource(Greeting, '/flask1') # Route_1
 
 if __name__ == '__main__':
     app.run('0.0.0.0','5000')
