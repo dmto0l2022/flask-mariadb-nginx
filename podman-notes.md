@@ -16,10 +16,3 @@ https://docs.podman.io/en/latest/markdown/podman-rm.1.html
 
    podman rmi -af
    
-# Build Compose
-
-## Build
-    podman-compose build
-
-## Run
-    podman-compose up
