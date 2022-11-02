@@ -1,6 +1,6 @@
 # Introduction
 
-This shows how to create a flask app using podman
+This shows how to create a flask app using podman with an index page
 
 # test with simple hello world flask app
 
@@ -42,13 +42,13 @@ podman build -t my-flask-1 .
 
 cd ..
 
-cd nginx
+cd nginxwithindex
 
-podman build -t my-nginx-1 .
+podman build -t my-nginxwithindex-1 .
 
 ## create pod
 
-podman run -dt --pod new:frontend -p 8080:80 localhost/my-nginx-1:latest
+podman run -dt --pod new:frontend -p 8080:80 localhost/my-nginxwithindex-1:latest
 
 ## add image to pod
 
