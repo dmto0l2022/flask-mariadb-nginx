@@ -8,35 +8,42 @@ gcloud compute instances create fedora-vm-1 --project=proj-dmtools-1 --zone=euro
 
 # Update VM and install dependencies
 
+## Upgrade/Update
+
+    sudo su
+    yum update
+
 ## install nano
 
-yum install nano
+    yum install nano
 
 ## podman
 
-    sudo yum module enable -y container-tools:rhel8
-    sudo yum module install -y container-tools:rhel8
+    yum -y install podman
+
+    ?sudo yum module enable -y container-tools:rhel8
+    ?sudo yum module install -y container-tools:rhel8
     
-    yum install podman-plugins
+    ?yum install podman-plugins
 
 ## install dependencies
 
-    yum install wget yum-utils make gcc openssl-devel bzip2-devel libffi-devel zlib-devel 
+    ?yum install wget yum-utils make gcc openssl-devel bzip2-devel libffi-devel zlib-devel 
 
     yum install git
     
-    yum install sqlite-devel
+    ?yum install sqlite-devel
 
 
 # Establish SSH to Host
 
-rhel 8
+## Run on local computer
 
-ssh-keygen -t rsa -f ~/.ssh/key202204220954 -C andrew_gaitskell -b 2048
+ssh-keygen -t rsa -f ~/.ssh/key202211020852 -C andrew_gaitskell -b 2048
 
 cd ~/.ssh
 
-cat key202204220954.pub
+cat key202211020852.pub
 
 copy output and paste into VM ssh keys
 
@@ -46,34 +53,30 @@ connect to vm
 
 ssh-keygen -f "/home/andrewcgaitskell/.ssh/known_hosts" -R "35.214.57.82"
 
-ssh -i ~/.ssh/key202204261126 andrew_gaitskell@35.214.57.82
+ssh -i ~/.ssh/key202211020852 andrew_gaitskell@35.214.101.196
 
-# Check Python Versions
+## Check Python Versions
 
+    python --version
 
-upgrade python
+    >> Python 3.10.7
 
-wget https://www.python.org/ftp/python/3.10.4/Python-3.10.4.tgz 
+## Create Project Folder
 
-tar xzf Python-3.10.4.tgz 
+    do not su
 
-cd Python-3.10.4
+    mkdir project
 
-./configure --with-system-ffi --with-computed-gotos --enable-loadable-sqlite-extensions
+## create env
 
-./configure --enable-optimizations
+    python -m venv env
 
-make -j ${nproc} 
-make altinstall
-
-create env
-
-/usr/local/bin/python3.10 -m venv env
-
-upgrade pip
-
-/home/andrew_gaitskell/Python-3.10.4/env/bin/python3.10 -m pip install --upgrade pip
-
-enable env
+## enable env
 
     source env/bin/activate
+    
+## upgrade pip
+
+   pip --version
+   
+   pip install --upgrade pip
