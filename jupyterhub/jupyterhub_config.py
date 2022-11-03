@@ -8,7 +8,7 @@ c.LocalAuthenticator.create_system_users = True
 
 #c.JupyterHub.bind_url = 'http://0.0.0.0:8000/'
 
-c.JupyterHub.bind_url = 'http://0.0.0.0:8000/
+c.JupyterHub.bind_url = 'http://0.0.0.0:8000/'
 
 #c.JupyterHub.bind_url = 'http://localhost:8000/dev' #### for dev path
 
@@ -89,10 +89,10 @@ c.Authenticator.allowed_users = {'jupyterhub'}
 
 
 # we need the hub to listen on all ips when it is in a container
-#### c.JupyterHub.hub_ip = '0.0.0.0'
+c.JupyterHub.hub_ip = '0.0.0.0' ####
 # the hostname/ip that should be used to connect to the hub
 # this is usually the hub container's name
-c.JupyterHub.hub_connect_ip = 'localhost'
+#### c.JupyterHub.hub_connect_ip = 'localhost'
 
 
 ## Docker spawner
