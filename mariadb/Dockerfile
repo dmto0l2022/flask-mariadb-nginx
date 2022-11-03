@@ -22,10 +22,10 @@ ENV MYSQL_PASSWORD=pythonuser
 #&& unzip '/var/www/html/type.zip' -d /var/www/html/wp-content/themes/ && rm 
 #/var/www/html/type.zip || true;
 
-COPY world.zip /var/www/html/world.zip
-RUN unzip '/var/www/html/type.zip'
+COPY world-db.zip /var/www/html/world-db.zip
+RUN unzip /var/www/html/world-db.zip -d /docker-entrypoint-initdb.d
+RUN rm /var/www/html/world-db.zip
 
 COPY init.sql /docker-entrypoint-initdb.d/init.sql
-ADD 20211104_dmtools_backup.sql /docker-entrypoint-initdb.d
+#ADD 20211104_dmtools_backup.sql /docker-entrypoint-initdb.d
 
-EXPOSE 3306
