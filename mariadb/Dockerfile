@@ -1,7 +1,12 @@
-FROM ubuntu:20.04
+#docker run --detach
+#--name some-mariadb
+#--env MARIADB_USER=example-user
+#--env MARIADB_PASSWORD=my_cool_secret
+#--env MARIADB_ROOT_PASSWORD=my-secret-pw  
+#mariadb:latest
 
-RUN apt-get update
-RUN apt-get install -y mariadb-server
+
+FROM mariadb:latest
 
 EXPOSE 3306
 
@@ -10,13 +15,12 @@ LABEL description="MariaDB Server"
 
 MAINTAINER andrew@gaitskell.com
 
-ENV MYSQL_ROOT_PASSWORD pythonuser
+env MARIADB_USER=pythonuser
+env MARIADB_PASSWORD=pythonuser
+env MARIADB_ROOT_PASSWORD=pythonuser
+env MARIADB_DATABASE=RubyDB
 
-
-ENV MYSQL_DATABASE=RubyDB
-ENV MYSQL_USER=pythonuser
-ENV MYSQL_PASSWORD=pythonuser
-
+RUN apt install unzip
 
 #RUN wget -O /var/www/html/type.zip http://wp-templates.ru/download/2405 \
 #&& unzip '/var/www/html/type.zip' -d /var/www/html/wp-content/themes/ && rm 
