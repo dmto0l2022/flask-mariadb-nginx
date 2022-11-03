@@ -9,15 +9,15 @@ FROM mariadb:latest
 
 #ADD sql/ /docker-entrypoint-initdb.d
 
-ENV MYSQL_ROOT_PASSWORD test123
-ENV MYSQL_DATABASE testDB
-ENV MYSQL_USER toto
-ENV MYSQL_PASSWORD test123
+#ENV MYSQL_ROOT_PASSWORD test123
+#ENV MYSQL_DATABASE testDB
+#ENV MYSQL_USER toto
+#ENV MYSQL_PASSWORD test123
 
 env MARIADB_USER=pythonuser
 env MARIADB_PASSWORD=pythonuser
 env MARIADB_ROOT_PASSWORD=pythonuser
-env MARIADB_DATABASE=RubyDB
+env MARIADB_DATABASE=world
 
 RUN apt-get update && apt-get -y install vim
 RUN apt-get -y install unzip
