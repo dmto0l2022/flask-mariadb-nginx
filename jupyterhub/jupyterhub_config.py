@@ -8,7 +8,10 @@ c.LocalAuthenticator.create_system_users = True
 
 #c.JupyterHub.bind_url = 'http://0.0.0.0:8000/'
 
-c.JupyterHub.bind_url = 'http://localhost:8000/dev'
+c.JupyterHub.bind_url = 'http://0.0.0.0:8000/
+
+#c.JupyterHub.bind_url = 'http://localhost:8000/dev' #### for dev path
+
 #c.JupyterHub.hub_ip = 'jupyterhub'
 #c.JupyterHub.hub_port = 8000
 
