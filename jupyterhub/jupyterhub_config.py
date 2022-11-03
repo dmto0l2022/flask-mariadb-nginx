@@ -30,7 +30,7 @@ c.SudoSpawner.sudospawner_path = '/srv/jupyterhub/env/bin/sudospawner'
 
 #c.JupyterHub.spawner_class = 'podmancli'
 
-c.Spawner.default_url = '/tree/home/'
+c.Spawner.default_url = '/tree/'
 
 c.Spawner.notebook_dir='/srv/jupyterhub/notebooks'
 
