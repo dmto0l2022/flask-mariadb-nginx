@@ -1,5 +1,6 @@
 FROM nginx:latest
-COPY server_default.conf /etc/nginx/conf.d/default.conf
+#COPY server_default.conf /etc/nginx/conf.d/default.conf
+COPY default.conf /etc/nginx/conf.d/default.conf
 COPY dmtools.info.conf /etc/nginx/conf.d/dmtools.info.conf
 COPY index.html /usr/share/nginx/html/index.html
 
