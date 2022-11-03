@@ -76,5 +76,5 @@ WORKDIR /srv/jupyterhub
 RUN jupyterhub --generate-config
 
 COPY . .
-#EXPOSE 8000
+EXPOSE 8000
 CMD . /srv/jupyterhub/env/bin/activate && exec jupyterhub
