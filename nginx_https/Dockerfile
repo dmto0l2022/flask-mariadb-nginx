@@ -6,7 +6,7 @@ RUN mkdir /var/www/html
 
 #COPY nginx.conf /etc/nginx/conf.d
 COPY locs.conf /etc/nginx/conf.d
-COPY index.html /var/www/html
+COPY index1.html /var/www/html/index.html
 
 #COPY server_default.conf /etc/nginx/conf.d/default.conf
 #COPY default.conf /etc/nginx/conf.d/default.conf
