@@ -23,7 +23,10 @@ RUN apt-get update && apt-get -y install vim
 RUN apt-get -y install unzip
 
 COPY world-db.zip /var/www/html/world-db.zip
-RUN unzip /var/www/html/world-db.zip -d /docker-entrypoint-initdb.d
+RUN unzip -j /var/www/html/world-db.zip -d /docker-entrypoint-initdb.d
+
+#unzip -j /path/to/file.zip -d other_folder
+
 RUN rm /var/www/html/world-db.zip
 
 COPY init.sql /docker-entrypoint-initdb.d/init.sql
