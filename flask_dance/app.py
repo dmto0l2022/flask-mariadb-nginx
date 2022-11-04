@@ -1,6 +1,9 @@
 ## https://github.com/singingwolfboy/flask-dance-github/blob/main/github.py
 
-'''
+from dotenv import load_dotenv
+
+load_dotenv()  # take environment variables from .env.
+
 import os
 from flask import Flask, redirect, url_for
 from flask_dance.contrib.github import make_github_blueprint, github
@@ -20,8 +23,8 @@ def index():
     resp = github.get("/user")
     assert resp.ok
     return "You are @{login} on GitHub".format(login=resp.json()["login"])
- '''
 
+'''
 
 from flask import Flask, redirect, url_for
 from flask_dance.contrib.github import make_github_blueprint, github
@@ -41,6 +44,7 @@ def index():
     resp = github.get("/user")
     assert resp.ok
     return "You are @{login} on GitHub".format(login=resp.json()["login"])
+'''
 
 if __name__ == '__main__':
     app.run('0.0.0.0','5000')
