@@ -8,7 +8,7 @@ BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 
 FLASK_DEBUG = environ.get("FLASK_DEBUG")
-SECRET_KEY = environ.get("SECRET_KEY")
+FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY")
 GITHUB_OAUTH_CLIENT_ID = environ.get("GITHUB_OAUTH_CLIENT_ID")
 GITHUB_OAUTH_CLIENT_SECRET = environ.get("GITHUB_OAUTH_CLIENT_SECRET")
 
@@ -20,11 +20,11 @@ from flask_dance.contrib.github import make_github_blueprint, github
 app = Flask(__name__)
 #app.secret_key = SECRET_KEY
 app.config['SESSION_TYPE'] = 'filesystem'
-#app.config["SECRET_KEY"] = SECRET_KEY
-app.config.update(
-    TESTING=True,
-    SECRET_KEY=b'_5#y2L"F4Q8z\n\xec]/'
-)
+app.config["SECRET_KEY"] = FLASK_SECRET_KEY
+#app.config.update(
+#    TESTING=True,
+#    SECRET_KEY=b'_5#y2L"F4Q8z\n\xec]/'
+#)
 
 
 app.config["GITHUB_OAUTH_CLIENT_ID"] = GITHUB_OAUTH_CLIENT_ID
