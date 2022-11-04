@@ -13,7 +13,8 @@ GITHUB_OAUTH_CLIENT_ID = environ.get("GITHUB_OAUTH_CLIENT_ID")
 GITHUB_OAUTH_CLIENT_SECRET = environ.get("GITHUB_OAUTH_CLIENT_SECRET")
 
 import os
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, session
+
 from flask_dance.contrib.github import make_github_blueprint, github
 
 app = Flask(__name__)
