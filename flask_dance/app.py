@@ -18,7 +18,7 @@ from flask import Flask, redirect, url_for, session
 from flask_dance.contrib.github import make_github_blueprint, github
 
 app = Flask(__name__)
-##app.secret_key = SECRET_KEY
+app.secret_key = SECRET_KEY
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config["SECRET_KEY"] = SECRET_KEY
 app.config["GITHUB_OAUTH_CLIENT_ID"] = GITHUB_OAUTH_CLIENT_ID
