@@ -1,17 +1,25 @@
 ## https://github.com/singingwolfboy/flask-dance-github/blob/main/github.py
 
+from os import environ, path
+
 from dotenv import load_dotenv
 
-load_dotenv()  # take environment variables from .env.
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+
+FLASK_ENV = environ.get("FLASK_ENV")
+SECRET_KEY = environ.get("SECRET_KEY")
+GITHUB_OAUTH_CLIENT_ID = environ.get("GITHUB_OAUTH_CLIENT_ID")
+GITHUB_OAUTH_CLIENT_SECRET = environ.get("GITHUB_OAUTH_CLIENT_SECRET")
 
 import os
 from flask import Flask, redirect, url_for
 from flask_dance.contrib.github import make_github_blueprint, github
 
 app = Flask(__name__)
-app.secret_key = os.environ.get("FLASK_SECRET_KEY", "supersekrit")
-app.config["GITHUB_OAUTH_CLIENT_ID"] = os.environ.get("GITHUB_OAUTH_CLIENT_ID")
-app.config["GITHUB_OAUTH_CLIENT_SECRET"] = os.environ.get("GITHUB_OAUTH_CLIENT_SECRET")
+app.secret_key = SECRET_KEY
+app.config["GITHUB_OAUTH_CLIENT_ID"] = GITHUB_OAUTH_CLIENT_ID
+app.config["GITHUB_OAUTH_CLIENT_SECRET"] = GITHUB_OAUTH_CLIENT_SECRET
 github_bp = make_github_blueprint()
 app.register_blueprint(github_bp, url_prefix="/login")
 
