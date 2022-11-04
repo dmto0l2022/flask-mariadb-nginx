@@ -4,7 +4,7 @@ ADD .env /
 RUN pip install flask
 RUN pip install flask_restful
 RUN pip install Flask-Dance[sqla]
-RUN pip install dotenv
+RUN pip install python-dotenv
 
 EXPOSE 5000
 CMD [ "python", "./app.py"]
