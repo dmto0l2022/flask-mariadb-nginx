@@ -2,7 +2,7 @@ FROM python:3
 
 RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
 
-RUN RUN apt-get update && apt-get install -y mariadb-client libmariadb3
+RUN apt-get update && apt-get install -y mariadb-client libmariadb3
 
 ADD minimal_app.py /
 ADD .env /
