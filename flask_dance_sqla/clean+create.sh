@@ -31,6 +31,10 @@ podman run --detach \
 
 cd /home/andrew_gaitskell/project/flask-mariadb-nginx/flask_dance_sqla
 podman build -t my-flaskdancesqla-1 .
-podman run -dt --pod frontend localhost/my-flaskdancesqla-1:latest
+
+podman run -dt \
+--pod frontend \
+--name flaskdancesqla1 \
+localhost/my-flaskdancesqla-1:latest
 
 podman pod start frontend
