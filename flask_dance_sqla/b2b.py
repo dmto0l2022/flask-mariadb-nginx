@@ -8,7 +8,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 #engine_string = "mariadb+mariadbconnector://pythonuser:pythonuser@localhost:3306/world"
 
-engine_string = "mariadb+mariadbconnector://pythonuser:pythonuser@localhost:3306/world"
+engine_string = "mariadb+mariadbconnector://pythonuser:pythonuser@127.0.0.1:3306/world"
 
 #engine = create_engine("mysql+pymysql://sylvain:passwd@localhost/db",
 #                       connect_args= dict(host='localhost', port=3306))
@@ -17,7 +17,9 @@ engine_string = "mariadb+mariadbconnector://pythonuser:pythonuser@localhost:3306
 
 #app.config['SQLALCHEMY_DATABASE_URI'] = ''mysql://dayenu:secret.word@localhost/dayenu?unix_socket=/usr/local/mysql5/mysqld.sock
 
-engine_string = "mariadb+mariadbconnector://pythonuser:pythonuser@localhost/world?unix_socket=/run/mysqld/mysqld.sock"
+#engine_string = "mariadb+mariadbconnector://pythonuser:pythonuser@localhost/world?unix_socket=/run/mysqld/mysqld.sock"
+
+#127.0.0.1
 
 engine = create_engine(engine_string)
 
