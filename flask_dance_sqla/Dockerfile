@@ -5,6 +5,7 @@ RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
 RUN apt-get update && apt-get install -y mariadb-client libmariadb3
 
 ADD minimal_app.py /
+ADD app.py /
 ADD .env /
 RUN pip install flask
 RUN pip install flask_restful
@@ -15,4 +16,4 @@ RUN pip install mariadb
 
 
 EXPOSE 5000
-CMD [ "python", "./minimal_app.py"]
+CMD [ "python", "./app.py"]
