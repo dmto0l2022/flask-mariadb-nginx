@@ -21,6 +21,7 @@ podman run --detach \
 -e MARIADB_DATABASE="world" \
 -e MARIADB_USER="pythonuser" \
 -e MARIADB_PASSWORD="pythonuser" \
+-e MARIADB_ROOT_HOST="localhost" \
 --name=mariadb1 mariadb
 
 ##podman run -dt --pod new:frontend -p 3306:3306 -e MARIADB_ROOT_PASSWORD=Password123! mariadb/server:10.4
