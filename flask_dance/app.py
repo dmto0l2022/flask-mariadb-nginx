@@ -13,6 +13,7 @@ GITHUB_OAUTH_CLIENT_ID = environ.get("GITHUB_OAUTH_CLIENT_ID")
 GITHUB_OAUTH_CLIENT_SECRET = environ.get("GITHUB_OAUTH_CLIENT_SECRET")
 
 ## to allow http use
+## https://stackoverflow.com/questions/27785375/testing-flask-oauthlib-locally-without-https
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 
 from flask import Flask, redirect, url_for, session
