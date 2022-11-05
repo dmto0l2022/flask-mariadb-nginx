@@ -1,6 +1,6 @@
 FROM python:3
 
-RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
+RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
 RUN apt-get update
 
 RUN apt-get install mariadb-client libmariadb3
