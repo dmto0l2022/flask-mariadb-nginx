@@ -38,7 +38,6 @@ podman build -t my-flaskdancesqla-1 .
 
 podman run -dt \
 --pod frontend \
---name flaskdancesqla1 \
 localhost/my-flaskdancesqla-1:latest
 
 podman pod start frontend
