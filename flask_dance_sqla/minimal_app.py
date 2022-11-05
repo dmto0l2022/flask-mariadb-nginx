@@ -24,9 +24,25 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
+
+##engine = sqlalchemy.create_engine("mariadb+mariadbconnector://app_user:Password123!@127.0.0.1:3306/company")
+
+MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
+MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
+MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
+
+MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + MARIADB_PASSWORD + "@127.0.0.1:3306/" + MARIADB_DATABASE
+
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@localhost/db_name'
+
+app.config['SQLALCHEMY_DATABASE_URI']
+
 db = SQLAlchemy(app)
+
+
+##app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+##db = SQLAlchemy(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
