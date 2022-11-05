@@ -9,13 +9,18 @@ podman pod create \
 --name frontend \
 --publish 3306:3306
 
+#env MARIADB_USER=pythonuser
+#env MARIADB_PASSWORD=pythonuser
+#env MARIADB_ROOT_PASSWORD=pythonuser
+#env MARIADB_DATABASE=world
+
 podman run --detach \
 --pod frontend \
 --restart=always \
--e MARIADB_ROOT_PASSWORD="badpassword0" \
--e MARIADB_DATABASE="wp_db" \
--e MYSQL_USER="tux" \
--e MYSQL_PASSWORD="badpassword1" \
+-e MARIADB_ROOT_PASSWORD="pythonuser" \
+-e MARIADB_DATABASE="world" \
+-e MARIADB_USER="pythonuser" \
+-e MARIADB_PASSWORD="pythonuser" \
 --name=mariadb1 mariadb
 
 ##podman run -dt --pod new:frontend -p 3306:3306 -e MARIADB_ROOT_PASSWORD=Password123! mariadb/server:10.4
