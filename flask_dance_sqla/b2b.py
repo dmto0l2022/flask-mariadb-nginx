@@ -21,8 +21,6 @@ engine_string = "mariadb+mariadbconnector://pythonuser:pythonuser@localhost/worl
 
 engine = create_engine(engine_string)
 
-db = SQLAlchemy(app)
-
 Base = declarative_base()
 
 class Employee(Base):
