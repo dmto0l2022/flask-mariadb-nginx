@@ -1,4 +1,4 @@
-from myapp import app, db
+from minimal_app import app, db
 
 # Set up models
 with app.app_context():
