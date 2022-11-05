@@ -10,6 +10,17 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 
 ####  https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/
 
+#FLASK_DEBUG = environ.get("FLASK_DEBUG")
+#FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY")
+#GITHUB_OAUTH_CLIENT_ID = environ.get("GITHUB_OAUTH_CLIENT_ID")
+#GITHUB_OAUTH_CLIENT_SECRET = environ.get("GITHUB_OAUTH_CLIENT_SECRET")
+
+#app.config['SESSION_TYPE'] = 'filesystem'
+#app.config["SECRET_KEY"] = FLASK_SECRET_KEY
+#app.config.update(
+#    TESTING=True,
+
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
