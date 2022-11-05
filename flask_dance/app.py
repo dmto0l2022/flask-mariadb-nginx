@@ -12,6 +12,9 @@ FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY")
 GITHUB_OAUTH_CLIENT_ID = environ.get("GITHUB_OAUTH_CLIENT_ID")
 GITHUB_OAUTH_CLIENT_SECRET = environ.get("GITHUB_OAUTH_CLIENT_SECRET")
 
+## to allow http use
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+
 import os
 from flask import Flask, redirect, url_for, session
 
