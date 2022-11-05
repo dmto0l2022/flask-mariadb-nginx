@@ -13,7 +13,15 @@ engine_string = "mariadb+mariadbconnector://pythonuser:pythonuser@localhost:3306
 #engine = create_engine("mysql+pymysql://sylvain:passwd@localhost/db",
 #                       connect_args= dict(host='localhost', port=3306))
 
-engine = create_engine(engine_string, connect_args= dict(host='localhost', port=3306))
+#engine = create_engine(engine_string, connect_args= dict(host='localhost', port=3306))
+
+#app.config['SQLALCHEMY_DATABASE_URI'] = ''mysql://dayenu:secret.word@localhost/dayenu?unix_socket=/usr/local/mysql5/mysqld.sock
+
+engine_string = "mariadb+mariadbconnector://pythonuser:pythonuser@localhost/world?unix_socket=/run/mysqld/mysqld.sock"
+
+engine = create_engine(engine_string)
+
+db = SQLAlchemy(app)
 
 Base = declarative_base()
 
