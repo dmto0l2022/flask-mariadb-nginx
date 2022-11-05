@@ -1,5 +1,5 @@
 ## https://github.com/singingwolfboy/flask-dance-github/blob/main/github.py
-
+import os
 from os import environ, path
 
 from dotenv import load_dotenv
@@ -15,7 +15,6 @@ GITHUB_OAUTH_CLIENT_SECRET = environ.get("GITHUB_OAUTH_CLIENT_SECRET")
 ## to allow http use
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 
-import os
 from flask import Flask, redirect, url_for, session
 
 from flask_dance.contrib.github import make_github_blueprint, github
