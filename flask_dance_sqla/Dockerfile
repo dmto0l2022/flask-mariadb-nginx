@@ -16,6 +16,8 @@ RUN pip install Flask-Dance[sqla]
 RUN pip install python-dotenv
 RUN pip install mariadb
 
+RUN touch /var/run/mysqld/mysqld.sock
+RUN touch /var/run/mysqld/mysqld.pid
 
 EXPOSE 5000
 CMD [ "python", "./b2b.py"]
