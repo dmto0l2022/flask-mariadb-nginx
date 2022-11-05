@@ -36,8 +36,9 @@ localhost/my-mariadb-1:latest
 cd /home/andrew_gaitskell/project/flask-mariadb-nginx/flask_dance_sqla
 podman build -t my-flaskdancesqla-1 .
 
-podman run -dt \
+podman run \
 --pod frontend \
+--name=flaskdancesqla1 \
 localhost/my-flaskdancesqla-1:latest
 
 podman pod start frontend
