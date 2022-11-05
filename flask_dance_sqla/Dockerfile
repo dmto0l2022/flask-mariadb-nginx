@@ -9,6 +9,7 @@ ADD app.py /
 ADD b2b.py /
 ADD .env /
 RUN pip install flask
+RUN pip install SQLAlchemy
 RUN pip install flask_restful
 RUN pip install flask_sqlalchemy
 RUN pip install Flask-Dance[sqla]
