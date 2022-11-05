@@ -1,9 +1,9 @@
 FROM python:3
 
 RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
-RUN apt-get update
 
-RUN apt-get install mariadb-client libmariadb3
+RUN RUN apt-get update && apt-get install -y mariadb-client libmariadb3
+
 ADD minimal_app.py /
 ADD .env /
 RUN pip install flask
