@@ -1,4 +1,14 @@
-## https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/
+##
+
+import os
+from os import environ, path
+
+from dotenv import load_dotenv
+
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+
+####  https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
