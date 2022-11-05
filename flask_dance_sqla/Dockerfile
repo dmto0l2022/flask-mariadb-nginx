@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y mariadb-client libmariadb3
 
 ADD minimal_app.py /
 ADD app.py /
+ADD b2b.py /
 ADD .env /
 RUN pip install flask
 RUN pip install flask_restful
@@ -16,4 +17,4 @@ RUN pip install mariadb
 
 
 EXPOSE 5000
-CMD [ "python", "./app.py"]
+CMD [ "python", "./b2b.py"]
