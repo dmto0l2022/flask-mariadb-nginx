@@ -33,5 +33,6 @@ class Employee(Base):
  
 Base.metadata.create_all(engine)
 
+print(engine.table_names())
 
 print("finished")
