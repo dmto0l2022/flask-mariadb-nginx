@@ -1,7 +1,6 @@
 FROM python:3
 
-RUN apt-get install gcc
-
+RUN apt-get install mariadb-client libmariadb3
 ADD minimal_app.py /
 ADD .env /
 RUN pip install flask
