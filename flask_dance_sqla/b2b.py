@@ -6,7 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 #"mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + MARIADB_PASSWORD + "@localhost:3306/" + MARIADB_DATABASE
 
-engine_string = "mariadb+mariadbconnector://root:pythonuser@localhost:3306/world"
+engine_string = "mariadb+mariadbconnector://pythonuser:pythonuser@localhost:3306/mysql"
 
 
 #engine = create_engine("mysql+pymysql://sylvain:passwd@localhost/db",
