@@ -42,4 +42,5 @@ app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
 
 db = SQLAlchemy(app)
 
+## /run/mysqld/mysqld.sock ## maria db container
 
