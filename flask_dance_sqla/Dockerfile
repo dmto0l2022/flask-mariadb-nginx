@@ -1,7 +1,6 @@
 FROM python:3
 
 RUN apt-get install gcc
-RUN apt-get install python3-dev
 
 ADD minimal_app.py /
 ADD .env /
