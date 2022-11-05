@@ -6,6 +6,7 @@ RUN pip install flask_restful
 RUN pip install flask_sqlalchemy
 RUN pip install Flask-Dance[sqla]
 RUN pip install python-dotenv
+RUN pip install mariadb
 
 EXPOSE 5000
 CMD [ "python", "./minimal_app.py"]
