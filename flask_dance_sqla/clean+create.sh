@@ -29,8 +29,9 @@ podman pod create \
 cd /home/andrew_gaitskell/project/flask-mariadb-nginx/mariadb
 podman build -t my-mariadb-1:latest .
 podman run -dt \
---pod frontend localhost/my-mariadb-1:latest \
---name=mariadb1 mariadb
+--pod frontend \
+--name=mariadb1 \
+localhost/my-mariadb-1:latest
 
 cd /home/andrew_gaitskell/project/flask-mariadb-nginx/flask_dance_sqla
 podman build -t my-flaskdancesqla-1 .
