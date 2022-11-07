@@ -14,8 +14,5 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 
 
 class Config(object):
-    #SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
-    MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
-    MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
-    MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
+    FLASK_SECRET_KEY = environ.get('FLASK_SECRET_KEY')
 
