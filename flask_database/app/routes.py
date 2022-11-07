@@ -8,4 +8,4 @@ def index():
 @app.route('/user')
 def user():
     user = {'username': 'Andy'}
-    return render_template('basic.html', title='Basic', user=user)
+    return render_template('user.html', title='Basic', user=user)
