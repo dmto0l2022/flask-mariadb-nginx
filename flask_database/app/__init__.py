@@ -12,6 +12,6 @@ BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 
 app = Flask(__name__)
-app.config['FLASK_SECRET'] = "a"
+app.config['SECRET_KEY'] = environ.get('FLASK_SECRET_KEY')
 
 from app import routes
