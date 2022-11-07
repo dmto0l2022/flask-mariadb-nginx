@@ -6,6 +6,6 @@ def index():
     return "Hello, World!"
 
 @app.route('/user')
-def index():
+def user():
     user = {'username': 'Andy'}
     return render_template('basic.html', title='Basic', user=user)
