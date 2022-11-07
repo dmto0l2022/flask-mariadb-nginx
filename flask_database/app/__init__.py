@@ -9,7 +9,7 @@ from os import environ, path
 from dotenv import load_dotenv
 
 BASE_DIR = path.abspath(path.dirname(__file__))
-load_dotenv(path.join(BASE_DIR, "app/.env"))
+load_dotenv(path.join(BASE_DIR, ".env"))
 
 app = Flask(__name__)
 print('key from file: ')
