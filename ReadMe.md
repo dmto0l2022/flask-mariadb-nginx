@@ -2,7 +2,7 @@
 
 This shows how to create a flask app using podman
 
-# test with django app
+# test with flask app
 
 ## empty podman world
 
