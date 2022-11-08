@@ -5,6 +5,6 @@ server {
     #    proxy_pass   http://localhost:5000/;
     #}
     location / {
-        proxy_pass   http://localhost:5000/;
+        proxy_pass http://fedora-vm-1.europe-west2-c.c.proj-dmtools-1.internal:5000/;
     }
 }
