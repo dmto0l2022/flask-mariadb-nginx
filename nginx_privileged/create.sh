@@ -11,8 +11,8 @@ cd /opt/dmtools/code/flask-mariadb-nginx/nginx_privileged
 podman build -t my-nginx_priv-1 .
 
 podman run -detach \
---pod = pod-frontend \
---name = nginx_priv-1 \
+--pod pod-frontend \
+--name nginx_priv-1 \
 localhost/my-nginx_priv-1:latest
 
 
