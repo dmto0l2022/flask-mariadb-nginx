@@ -4,7 +4,7 @@ podman pod rm pod-backend
 podman pod create \
 --name pod-backend \
 --infra-name infra-backend \
---publish 5000:5000
+--publish 5000
 
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_nopath
 
