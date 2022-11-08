@@ -5,6 +5,6 @@ server {
     #    proxy_pass   http://localhost:5000/;
     #}
     location / {
-        proxy_pass   http://flask-1:5000/;
+        proxy_pass   http://infra-backend:5000/;
     }
 }
