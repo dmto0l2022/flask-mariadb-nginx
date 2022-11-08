@@ -3,7 +3,7 @@ podman pod rm pod-frontend
 podman rmi -a
 
 podman pod create \
---name = pod-frontend \
+--name pod-frontend \
 --publish 8080:80
 
 cd /opt/dmtools/code/flask-mariadb-nginx/nginx_privileged
