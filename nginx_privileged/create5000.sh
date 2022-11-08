@@ -15,7 +15,6 @@ podman build -t my-flask-1 .
 podman run -detach \
 --name flask-1 \
 --pod pod-backend \
---publish 5000:5000 \
 --network bridge \
 localhost/my-flask-1:latest
 
