@@ -8,6 +8,8 @@
 
 https://docs.podman.io/en/latest/markdown/podman-rm.1.html
 
+https://devopscube.com/podman-tutorial-beginners/
+
 ## All containers - force whether running or not
 
     podman rm -af
