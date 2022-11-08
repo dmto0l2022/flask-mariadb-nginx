@@ -1,5 +1,5 @@
-#podman pod stop pod-backend
-#podman pod rm pod-backend
+podman pod stop pod-backend
+podman pod rm pod-backend
 
 podman pod create \
 --name pod-backend \
