@@ -3,7 +3,8 @@ podman pod rm frontend
 podman rmi -a
 
 podman pod create \
---name frontend \
+--name = pod-frontend \
+--infra-name = infra-frontend \
 --publish 8080:80
 
 cd /opt/dmtools/code/flask-mariadb-nginx/nginx_privileged
@@ -11,7 +12,7 @@ cd /opt/dmtools/code/flask-mariadb-nginx/nginx_privileged
 podman build -t my-nginx_priv-1 .
 
 podman run -detach \
---pod frontend \
+--pod pod-frontend \
 --name=nginx_priv-1 \
 localhost/my-nginx_priv-1:latest
 
