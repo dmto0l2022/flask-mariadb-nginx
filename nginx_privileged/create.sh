@@ -1,5 +1,5 @@
-podman pod stop frontend
-podman pod rm frontend
+podman pod stop pod-frontend
+podman pod rm pod-frontend
 podman rmi -a
 
 podman pod create \
