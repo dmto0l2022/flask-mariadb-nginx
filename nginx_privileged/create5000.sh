@@ -1,20 +1,22 @@
-podman pod stop pod-backend
-podman pod rm pod-backend
+#podman pod stop pod-backend
+#podman pod rm pod-backend
 
-podman pod create \
---name pod-backend \
---infra \
---infra-name infra-backend \
---publish 5000:5000 \
---network bridge
+#podman pod create \
+#--name pod-backend \
+#--infra \
+#--infra-name infra-backend \
+#--publish 5000:5000 \
+#--network bridge
 
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_nopath
 
 podman build -t my-flask-1 .
 
 podman run -detach \
---pod pod-backend \
+#--pod pod-backend \
 --name flask-1 \
+--publish 5000:5000 \
+--network bridge
 localhost/my-flask-1:latest
 
 cd /opt/dmtools/code/flask-mariadb-nginx/nginx_privileged
