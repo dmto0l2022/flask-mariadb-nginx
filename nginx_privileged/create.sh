@@ -1,20 +1,19 @@
 podman pod stop pod-frontend
 podman pod rm pod-frontend
-podman rmi -a
 
-#podman pod create \
-#--name pod-frontend \
-#--infra-name infra-frontend \
-#--publish 8080:80
+podman pod create \
+--name pod-frontend \
+--infra-name infra-frontend \
+--network bridge \
+--publish 8080:80
 
 cd /opt/dmtools/code/flask-mariadb-nginx/nginx_privileged
 
 podman build -t my-nginx_priv-1 .
 
 podman run -detach \
+--pod pod-frontend \
 --name nginx_priv-1 \
---publish 8080:80 \
---network bridge \
 localhost/my-nginx_priv-1:latest
 
 
