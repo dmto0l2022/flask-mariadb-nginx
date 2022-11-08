@@ -1,9 +1,19 @@
 podman pod stop frontend
 podman pod rm frontend
 podman rmi -a
+
+podman pod create \
+--name frontend \
+--publish 8080:80
+
 cd /opt/dmtools/code/flask-mariadb-nginx/nginx_privileged
+
 podman build -t my-nginx_priv-1 .
-podman run -detach --pod new:frontend -p 8080:80 localhost/my-nginx_priv-1:latest
+
+podman run -detach \
+--pod frontend \
+--name=nginx_priv-1 \
+localhost/my-nginx_priv-1:latest
 
 
 #podman run --detach \
