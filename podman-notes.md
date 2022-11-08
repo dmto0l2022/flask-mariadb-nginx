@@ -2,6 +2,10 @@
 
 https://opensource.com/article/22/1/run-containers-without-sudo-podman
 
+## switching user
+
+su agaitske --login
+
 # Enable Virtual Env
 
   cd /home/andrew_gaitskell
