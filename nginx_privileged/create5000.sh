@@ -9,7 +9,7 @@ podman pod create \
 --name pod-backend \
 --infra \
 --infra-name infra-backend \
---publish 5000:5000 \
+--publish 5001:5001 \
 --network=bridge
 
 cd /opt/dmtools/code/flask-mariadb-nginx/flask5000
