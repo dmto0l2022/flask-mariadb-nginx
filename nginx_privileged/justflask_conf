@@ -1,10 +1,15 @@
+upstream hello_flask {
+    server infra-backend:5000;
+}
+
+
 server {
     listen       80;
     server_name  localhost;
     #location /app/ {
-    #    proxy_pass   http://localhost:5000/;
+    #    proxy_pass   http://hello_flask:5000/;
     #}
     location / {
-        proxy_pass http://10.154.0.18:5000/;
+        proxy_pass http://hello_flask:5000/;
     }
 }
