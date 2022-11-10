@@ -1,4 +1,5 @@
 from flask import Flask
+import mariadb
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
@@ -19,7 +20,17 @@ print(environ.get('FLASK_SECRET_KEY'))
 
 app.config['SECRET_KEY'] = environ.get('FLASK_SECRET_KEY')
 
+MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
+MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
+MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
+
+MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + MARIADB_PASSWORD + "@localhost:3306/" + MARIADB_DATABASE
+
+app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 from app import routes, models
+
+print("finished")
