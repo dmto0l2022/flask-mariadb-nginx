@@ -10,6 +10,7 @@ RUN pip install flask-wtf
 RUN pip install flask-sqlalchemy
 RUN pip install flask-migrate
 RUN pip install mariadb
+RUN pip install Flask-Dance[sqla]
 RUN flask db init
 RUN flask db migrate -m "users table"
 RUN flask db upgrade
