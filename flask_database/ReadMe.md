@@ -1,5 +1,9 @@
 # Reference & Thanks
 
+## todo tomorrow
+
+https://stackoverflow.com/questions/55223186/how-to-run-flask-migrate-in-docker
+
 ## book mark
 
 https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
