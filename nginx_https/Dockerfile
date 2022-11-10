@@ -18,8 +18,8 @@ COPY index1.html /var/www/html/index.html
 #COPY privkey.pem /etc/letsencrypt/live/dev1.dmtools.info/privkey.pem
 #COPY options-ssl-nginx.conf /etc/letsencrypt/options-ssl-nginx.conf
 
-VOLUME:
-  /etc/letsencrypt/live/dev1.dmtools.info/fullchain.pem
-  /etc/letsencrypt/live/dev1.dmtools.info/privkey.pem
+#VOLUME:
+#  /etc/letsencrypt/live/dev1.dmtools.info/fullchain.pem
+#  /etc/letsencrypt/live/dev1.dmtools.info/privkey.pem
 
 
