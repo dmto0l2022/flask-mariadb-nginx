@@ -9,6 +9,7 @@ RUN pip install flask_restful
 RUN pip install flask-wtf
 RUN pip install flask-sqlalchemy
 RUN pip install flask-migrate
+RUN flask db init
 # EXPOSE 5000
 ##CMD [ "python", "./app_simple.py"]
 CMD [ "python", "./myapp.py"]
