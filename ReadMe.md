@@ -6,25 +6,33 @@ This shows how to create a flask app using podman
 
 ## empty podman world
 
+### list all podman processes
+
+    lsns
+
+### major reset
+
+    podman system reset
+
 ### stop pod
 
-podman pod stop frontend
+    podman pod stop frontend
 
 ### remove pod
 
-podman pod rm frontend
+    podman pod rm frontend
 
 ### list all images
 
-podman images
+    podman images
 
 ### remove all images
 
-podman rmi -a
+    podman rmi -a
 
 ## list all containers
 
-podman ps -a
+    podman ps -a
 
 # Introduction
 
