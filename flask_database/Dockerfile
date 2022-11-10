@@ -7,6 +7,6 @@ RUN pip install python-dotenv
 RUN pip install flask
 RUN pip install flask_restful
 RUN pip install flask-wtf
-EXPOSE 5000
+# EXPOSE 5000
 ##CMD [ "python", "./app_simple.py"]
 CMD [ "python", "./myapp.py"]
