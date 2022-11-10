@@ -9,6 +9,7 @@ RUN pip install flask_restful
 RUN pip install flask-wtf
 RUN pip install flask-sqlalchemy
 RUN pip install flask-migrate
+RUN pip install mariadb
 RUN flask db init
 RUN flask db migrate -m "users table"
 RUN flask db upgrade
