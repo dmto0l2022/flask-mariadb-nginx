@@ -3,6 +3,10 @@
     cd /opt/dmtools/code/flask-mariadb-nginx/
 
     git pull
+    
+## clear all podman remnants in non root user
+    
+     podman system reset
 
 ## exit from non root user
 
@@ -14,7 +18,7 @@
 
 # as root
 
-## clear all podman remnants
+## clear all podman remnants in root
 
     podman system reset
 
