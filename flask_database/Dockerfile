@@ -10,6 +10,8 @@ RUN pip install flask-wtf
 RUN pip install flask-sqlalchemy
 RUN pip install flask-migrate
 RUN flask db init
+RUN flask db migrate -m "users table"
+RUN flask db upgrade
 # EXPOSE 5000
 ##CMD [ "python", "./app_simple.py"]
 CMD [ "python", "./myapp.py"]
