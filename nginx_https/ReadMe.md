@@ -6,11 +6,11 @@
 
 ## exit from non root user
 
-  exit
+    exit
 
 ## enter sudo
 
-sudo su
+    sudo su
 
 # as root
 
@@ -26,7 +26,9 @@ sudo su
 
 # switch to non root user
 
-  source create5000.sh
+    su agaitske --login
+    
+    source create5000.sh
   
   
 
