@@ -5,7 +5,8 @@ RUN mkdir /var/www
 RUN mkdir /var/www/html
 
 #COPY nginx.conf /etc/nginx/conf.d
-COPY simple80.conf /etc/nginx/conf.d
+#COPY simple80.conf /etc/nginx/conf.d
+COPY locs.conf /etc/nginx/conf.d
 COPY index1.html /var/www/html/index.html
 
 #COPY server_default.conf /etc/nginx/conf.d/default.conf
@@ -18,8 +19,8 @@ COPY index1.html /var/www/html/index.html
 #COPY privkey.pem /etc/letsencrypt/live/dev1.dmtools.info/privkey.pem
 #COPY options-ssl-nginx.conf /etc/letsencrypt/options-ssl-nginx.conf
 
-#VOLUME:
-#  /etc/letsencrypt/live/dev1.dmtools.info/fullchain.pem
-#  /etc/letsencrypt/live/dev1.dmtools.info/privkey.pem
+VOLUME:
+  /etc/letsencrypt/live/dev1.dmtools.info/fullchain.pem
+  /etc/letsencrypt/live/dev1.dmtools.info/privkey.pem
 
 
