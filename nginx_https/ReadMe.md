@@ -1,4 +1,4 @@
-# as agaitske
+# as non root user
 
     cd /opt/dmtools/code/flask-mariadb-nginx/
 
