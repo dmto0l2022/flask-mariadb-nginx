@@ -9,6 +9,12 @@ podman pod create \
 --network bridge \
 --publish 8080:80
 
+podman pod create \
+--name pod-database \
+--infra-name infra-backend \
+--network bridge \
+--publish 3306:3306
+
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_database
 podman build -t my-flaskdatabase-1 .
 cd /opt/dmtools/code/flask-mariadb-nginx/nginx
