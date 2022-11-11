@@ -21,4 +21,5 @@ RUN pip install Flask-Dance[sqla]
 # EXPOSE 5000
 ##CMD [ "python", "./app_simple.py"]
 #CMD [ "python", "./myapp.py"]
+RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["./entry-point.sh"]
