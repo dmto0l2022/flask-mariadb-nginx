@@ -29,7 +29,7 @@ localhost/my-nginx-1:latest
 
 podman run -dt \
 --name mariadb_backend-1 \
---pod pod-backend \
+--pod pod-database \
 localhost/my-mariadb-1:latest
 
 podman run -dt \
