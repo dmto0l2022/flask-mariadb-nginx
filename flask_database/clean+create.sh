@@ -4,14 +4,14 @@ podman rmi -a
 
 
 podman pod create \
---name pod-backend \
---infra-name infra-backend \
+--name pod-app-backend \
+--infra-name infra-app-backend \
 --network bridge \
 --publish 8080:80
 
 podman pod create \
---name pod-database \
---infra-name infra-backend \
+--name pod-data-backend \
+--infra-name infra-data-backend \
 --network bridge \
 --publish 3306:3306
 
@@ -24,17 +24,17 @@ podman build -t my-mariadb-1 .
 
 podman run -dt \
 --name nginx_backend-1 \
---pod pod-backend \
+--pod pod-app-backend \
 localhost/my-nginx-1:latest
 
 podman run -dt \
 --name mariadb_backend-1 \
---pod pod-database \
+--pod pod-data-backend \
 localhost/my-mariadb-1:latest
 
 podman run -dt \
 --name flaskapp_backend-1 \
---pod pod-backend \
+--pod pod-app-backend \
 localhost/my-flaskdatabase-1:latest
 
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_database
