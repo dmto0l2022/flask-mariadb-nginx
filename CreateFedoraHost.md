@@ -36,9 +36,12 @@ gcloud compute instances create fedora-vm-1 --project=proj-dmtools-1 --zone=euro
 
 ## Python on Server
     
-    
     sudo su
-
+    
+    ##yum install python-devel    # for python2.x installs
+    
+    yum install python3-devel   # for python3.x installs
+    
     yum install gcc
 
     yum install -y mariadb-server
