@@ -34,6 +34,14 @@ gcloud compute instances create fedora-vm-1 --project=proj-dmtools-1 --zone=euro
     
     ?yum install sqlite-devel
 
+## Python on Server
+    
+    sudo su
+
+    yum install -y mariadb-server
+    
+    yum install mariadb-connector-c-devel
+
 
 # Establish SSH to Host
 
