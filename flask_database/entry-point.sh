@@ -1,4 +1,4 @@
 flask db init
 flask db migrate
 flask db upgrade
-python myapp.py
+python ./myapp.py
