@@ -22,13 +22,13 @@ podman run -dt \
 localhost/my-nginx-1:latest
 
 podman run -dt \
---name flaskapp_backend-1 \
---pod pod-backend \
-localhost/my-flaskdatabase-1:latest
-
-podman run -dt \
 --name mariadb_backend-1 \
 --pod pod-backend \
 localhost/my-mariadb-1:latest
+
+podman run -dt \
+--name flaskapp_backend-1 \
+--pod pod-backend \
+localhost/my-flaskdatabase-1:latest
 
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_database
