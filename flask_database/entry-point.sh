@@ -1,3 +1,4 @@
-python db migrate
-python db upgrade
+flask db init
+flask db migrate
+flask db upgrade
 python myapp.py
