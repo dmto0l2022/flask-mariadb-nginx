@@ -14,12 +14,14 @@ from dotenv import load_dotenv
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 
-db = SQLAlchemy()
 
-def create_app():
+
+def init_app():
     """Construct the core application."""
     app = Flask(__name__, instance_relative_config=False)
-
+    
+    db = SQLAlchemy()
+    
     db.init_app(app)
     
     print('key from file: ')
@@ -41,7 +43,7 @@ def create_app():
 
     app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
 
-    db = SQLAlchemy(app)
+    #db = SQLAlchemy(app)
 
     db.Model.metadata.reflect(db.engine)
 
