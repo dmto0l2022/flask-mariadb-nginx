@@ -44,13 +44,12 @@ def create_app():
     #db = SQLAlchemy(app)
 
     db.init_app(app)
-    
-    db.Model.metadata.reflect(db.engine)
 
     migrate = Migrate(app, db)
 
     with app.app_context():
         from . import routes, models  # Import routes
+        db.Model.metadata.reflect(db.engine)
         db.create_all()  # Create sql tables for our data models
 
         return app
