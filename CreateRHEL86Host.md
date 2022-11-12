@@ -26,6 +26,13 @@ gcloud compute instances create fedora-vm-1 --project=proj-dmtools-1 --zone=euro
     
     mysql_install_db
     
+    systemctl start mariadb.service
+    
+    systemctl status mariadb.service
+    
+    mysql_secure_installation
+    
+    
 ## Install MariaDB Connector/C
 
     yum install MariaDB-shared MariaDB-devel
