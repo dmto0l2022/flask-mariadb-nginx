@@ -21,9 +21,7 @@ def init_app():
     app = Flask(__name__, instance_relative_config=False)
     
     db = SQLAlchemy()
-    
-    db.init_app(app)
-    
+        
     print('key from file: ')
     print(environ.get('FLASK_SECRET_KEY'))
 
@@ -45,6 +43,8 @@ def init_app():
 
     #db = SQLAlchemy(app)
 
+    db.init_app(app)
+    
     db.Model.metadata.reflect(db.engine)
 
     migrate = Migrate(app, db)
