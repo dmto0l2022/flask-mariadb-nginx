@@ -89,13 +89,25 @@ make sure port forwarding is enabled
     cd Python-3.10.8 
     ./configure --with-system-ffi --with-computed-gotos --enable-loadable-sqlite-extensions 
 
-    make -j ${nproc} 
+    ./configure --enable-optimizations
+
+    make -j ${nproc} ## this takes a VERY LONG TIME!
+    
     make altinstall
 
     rm Python-3.10.8.tgz
 
     python3.10 --version
 
+
+## Testing Python3.10 and Pip
+
+python3.10 -V  
+pip3.10 -V  
+
+## Create env
+
+/usr/local/bin/python3.10 -m venv env
 
 ## Python on Server
     
