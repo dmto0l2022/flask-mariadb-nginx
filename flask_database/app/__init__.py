@@ -35,8 +35,13 @@ MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + MARIADB_P
 app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
 
 db = SQLAlchemy(app)
+
+db.Model.metadata.reflect(db.engine)
+
 migrate = Migrate(app, db)
 
 from app import routes, models
+
+
 
 print("finished")
