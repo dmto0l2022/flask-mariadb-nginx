@@ -12,8 +12,8 @@ ALTER USER 'pythonuser'@'%' IDENTIFIED BY 'pythonuser';
 
 ##ALTER USER 'pythonuser'@'%' IDENTIFIED BY PASSWORD 'pythonuser';
 
-## create user pythonuser@'%' identified by 'pythonuser';
+## create user pythonuser@'%' identified by 'pythonuser'; ## used this when logged into MariaDB Server
 
-##GRANT ALL PRIVILEGES ON *.* TO pythonuser@'%' WITH GRANT OPTION;
+##GRANT ALL PRIVILEGES ON *.* TO pythonuser@'%' WITH GRANT OPTION; ## used this when logged into MariaDB Server
 
-GRANT ALL PRIVILEGES ON *.* TO 'pythonuser'@'%' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'pythonuser'@'%' WITH GRANT OPTION; ## This is required when using Dockerfile
