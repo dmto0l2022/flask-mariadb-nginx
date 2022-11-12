@@ -25,23 +25,35 @@ make sure port forwarding is enabled
     ./mariadb_repo_setup
 
     yum install perl-DBI libaio libsepol lsof boost-program-options
+    
+    yum install rsync
+    yum install libpmem
+    yum install socat
+    
     yum install --repo="mariadb-main" MariaDB-server
     
-    mysql_install_db
+    ## mysql_install_db - no need to run this?
     
     systemctl start mariadb.service
     
     systemctl status mariadb.service
     
-    mysql_secure_installation
+    ## mysql_secure_installation - wrong for newer versions
+    
+    mariadb-secure-installation
     
     
 ## Install MariaDB Connector/C
     
     I could not install this in Fedora to fell back to RHEL
 
-    yum install MariaDB-shared MariaDB-devel
+    ## yum install MariaDB-shared MariaDB-devel ## shared already installed
+    
+    yum install MariaDB-devel
 
+## Check what is installed now
+
+    yum list installed
 
 ## install nano
 
