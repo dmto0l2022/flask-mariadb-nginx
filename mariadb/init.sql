@@ -4,7 +4,7 @@ CREATE DATABASE dmtools;
 
 GRANT ALL PRIVILEGES ON *.* TO 'pythonuser'@'localhost' WITH GRANT OPTION;
 
-##ALTER USER 'pythonuser'@'%' IDENTIFIED BY 'pythonuser';
+ALTER USER 'pythonuser'@'%' IDENTIFIED BY 'pythonuser';
 
 ##ALTER USER 'pythonuser'@'%' IDENTIFIED WITH mysql_native_password BY 'pythonuser';
 
@@ -12,7 +12,8 @@ GRANT ALL PRIVILEGES ON *.* TO 'pythonuser'@'localhost' WITH GRANT OPTION;
 
 ##ALTER USER 'pythonuser'@'%' IDENTIFIED BY PASSWORD 'pythonuser';
 
-create user pythonuser@'%' identified by 'pythonuser';
+## create user pythonuser@'%' identified by 'pythonuser';
 
-GRANT ALL PRIVILEGES ON *.* TO pythonuser@'%' WITH GRANT OPTION;
+##GRANT ALL PRIVILEGES ON *.* TO pythonuser@'%' WITH GRANT OPTION;
 
+GRANT ALL PRIVILEGES ON *.* TO 'pythonuser'@'%' WITH GRANT OPTION;
