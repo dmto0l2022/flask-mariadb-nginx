@@ -97,13 +97,16 @@ make sure port forwarding is enabled
 
     rm Python-3.10.8.tgz
 
-    python3.10 --version
+    /usr/local/bin/python3.10 --version
+    
+    pip install --upgrade pip
+
 
 
 ## Testing Python3.10 and Pip
 
-python3.10 -V  
-pip3.10 -V  
+/usr/local/bin/python3.10 --version
+/usr/local/bin/pip3.10 --version  
 
 ## Create env
 
@@ -144,21 +147,16 @@ ssh-keygen -f "/home/andrewcgaitskell/.ssh/known_hosts" -R "35.214.57.82"
 
 ssh -i ~/.ssh/key202211020852 andrew_gaitskell@35.214.101.196
 
-## Check Python Versions
-
-    python --version
-
-    >> Python 3.10.7
-
 ## Create Project Folder
 
     do not su
 
-    mkdir project
+    mkdir projects
+    cd projects
 
 ## create env
 
-    python -m venv env
+    /usr/local/bin/python3.10 -m venv env -m venv env
 
 ## enable env
 
