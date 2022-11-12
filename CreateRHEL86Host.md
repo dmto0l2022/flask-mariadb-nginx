@@ -78,6 +78,8 @@ make sure port forwarding is enabled
 
 ## Upgrade Python to 3.10
 
+    Thank you to : https://tecadmin.net/how-to-install-python-3-10-on-centos-rhel-8-fedora/
+
     yum install yum-utils make openssl-devel bzip2-devel libffi-devel zlib-devel
 
     wget https://www.python.org/ftp/python/3.10.8/Python-3.10.8.tgz 
