@@ -76,6 +76,25 @@ make sure port forwarding is enabled
     
     ?yum install sqlite-devel
 
+## Upgrade Python to 3.10
+
+    yum install yum-utils make openssl-devel bzip2-devel libffi-devel zlib-devel
+
+    wget https://www.python.org/ftp/python/3.10.8/Python-3.10.8.tgz 
+
+    tar xzf Python-3.10.8.tgz 
+
+    cd Python-3.10.8 
+    ./configure --with-system-ffi --with-computed-gotos --enable-loadable-sqlite-extensions 
+
+    make -j ${nproc} 
+    make altinstall
+
+    rm Python-3.10.8.tgz
+
+    python3.10 --version
+
+
 ## Python on Server
     
     sudo su
