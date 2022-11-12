@@ -13,6 +13,24 @@ gcloud compute instances create fedora-vm-1 --project=proj-dmtools-1 --zone=euro
     sudo su
     yum update
 
+## Maria DB
+
+    yum install wget
+
+    wget https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
+    chmod +x mariadb_repo_setup
+    ./mariadb_repo_setup
+
+    yum install perl-DBI libaio libsepol lsof boost-program-options
+    yum install --repo="mariadb-main" MariaDB-server
+    
+    mysql_install_db
+    
+## Install MariaDB Connector/C
+
+    yum install MariaDB-shared MariaDB-devel
+
+
 ## install nano
 
     yum install nano
@@ -44,9 +62,9 @@ gcloud compute instances create fedora-vm-1 --project=proj-dmtools-1 --zone=euro
     
     yum install gcc
 
-    yum install -y mariadb-server
+    #yum install -y mariadb-server
     
-    yum install mariadb-connector-c-devel
+    #yum install mariadb-connector-c-devel
 
 
 # Establish SSH to Host
