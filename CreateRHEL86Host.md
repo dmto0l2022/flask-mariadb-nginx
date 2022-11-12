@@ -167,3 +167,19 @@ ssh -i ~/.ssh/key202211020852 andrew_gaitskell@35.214.101.196
    pip --version
    
    pip install --upgrade pip
+   
+# Group Shared Folder
+
+    sudo su
+    cd /opt
+    mkdir tools
+    groupadd add tools
+    chown root:tools /opt/tools
+    chmod 2775 /opt/tools
+    useradd myuser
+    usermod -a -G tools myuser
+
+# set user password and add to group
+
+    passwd myuser
+    usermod -aG tools myuser
