@@ -37,6 +37,8 @@ make sure port forwarding is enabled
     
     
 ## Install MariaDB Connector/C
+    
+    I could not install this in Fedora to fell back to RHEL
 
     yum install MariaDB-shared MariaDB-devel
 
