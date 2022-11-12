@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y mariadb-server galera-4 mariadb-client 
 ADD entry-point.sh /
 ADD app_simple.py /
 ADD myapp.py /
+ADD wsgi.py /
 ADD /app/*.* /app/
 ADD /app/templates/*.* /app/templates/
 RUN pip install python-dotenv
