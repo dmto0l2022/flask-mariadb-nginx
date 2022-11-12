@@ -14,33 +14,48 @@ from dotenv import load_dotenv
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 
-app = Flask(__name__)
-print('key from file: ')
-print(environ.get('FLASK_SECRET_KEY'))
 
-app.config['SECRET_KEY'] = environ.get('FLASK_SECRET_KEY')
+def create_app():
+    """Construct the core application."""
+    app = Flask(__name__, instance_relative_config=False)
 
-MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
-MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
-MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
-MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
-##MARIADB_CONTAINER = "mariadb_backend-1"
+    db.init_app(app)
+    
+    print('key from file: ')
+    print(environ.get('FLASK_SECRET_KEY'))
 
-#MARIADB_CONTAINER = "10.154.0.18"
-#MARIADB_CONTAINER = "10.154.0.20" ## internal IP address of the VM server
-#MARIADB_CONTAINER = "localhost"
+    app.config['SECRET_KEY'] = environ.get('FLASK_SECRET_KEY')
 
-MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/" + MARIADB_DATABASE
+    MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
+    MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
+    MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
+    MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
+    ##MARIADB_CONTAINER = "mariadb_backend-1"
 
-app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
+    #MARIADB_CONTAINER = "10.154.0.18"
+    #MARIADB_CONTAINER = "10.154.0.20" ## internal IP address of the VM server
+    #MARIADB_CONTAINER = "localhost"
 
-db = SQLAlchemy(app)
+    MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/" + MARIADB_DATABASE
 
-db.Model.metadata.reflect(db.engine)
+    app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
 
-migrate = Migrate(app, db)
+    db = SQLAlchemy(app)
 
-from app import routes, models
+    db.Model.metadata.reflect(db.engine)
+
+    migrate = Migrate(app, db)
+
+    with app.app_context():
+        from . import routes, models  # Import routes
+        db.create_all()  # Create sql tables for our data models
+
+        return app
+
+
+
+
+##from app import routes, models
 
 
 
