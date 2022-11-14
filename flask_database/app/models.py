@@ -1,7 +1,7 @@
 import datetime as dt
 from flask import current_app as app
 #from app import login
-login = app.extensions.login
+#login = app.extensions.login
 #from app import db
 db = app.extensions['sqlalchemy'].db
 
@@ -82,9 +82,6 @@ class Countrylanguage(Base):
 
     country = relationship('Country')
     
-@login.user_loader
-def load_user(id):
-    return User.query.get(int(id))
     
 '''    
 class city(db.Model):
