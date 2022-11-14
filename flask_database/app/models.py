@@ -17,10 +17,14 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 metadata = Base.metadata
 
+#@login_manager.user_loader
+#def load_user(user_id):
+#    return User.query.get(user_id)
+
 #@login_manager.load_user
 @login.user_loader
 def load_user(user):
-    return User.get(user)
+    return User.query.get(user)
 
 class User(UserMixin , db.Model):
     id = db.Column(db.Integer, primary_key=True)
