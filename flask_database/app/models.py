@@ -1,6 +1,7 @@
 import datetime as dt
 from flask import current_app as app
-from app import login
+#from app import login
+login = app.extensions.login
 #from app import db
 db = app.extensions['sqlalchemy'].db
 
