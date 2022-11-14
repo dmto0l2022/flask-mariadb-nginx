@@ -20,8 +20,39 @@ class city(db.Model):
 
     def __repr__(self):
         return '<Name {}>'.format(self.Name)
-    
+
+class country(db.Model):
+    Code = db.Column(db.String(3), primary_key=True)
+    Name = db.Column(db.String(35), index=True, unique=True)
+    Continent = db.Column(db.String(20), index=True, unique=False)
+    Region = db.Column(db.String(20), index=True, unique=False)
+    Population = db.Column(db.Integer, index=True, unique=False)
+
+    def __repr__(self):
+        return '<Name {}>'.format(self.Name)    
 '''
+-- world.country definition
+
+CREATE TABLE `country` (
+  `Code` char(3) NOT NULL DEFAULT '',
+  `Name` char(52) NOT NULL DEFAULT '',
+  `Continent` enum('Asia','Europe','North America','Africa','Oceania','Antarctica','South America') NOT NULL DEFAULT 'Asia',
+  `Region` char(26) NOT NULL DEFAULT '',
+  `SurfaceArea` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `IndepYear` smallint(6) DEFAULT NULL,
+  `Population` int(11) NOT NULL DEFAULT 0,
+  `LifeExpectancy` decimal(3,1) DEFAULT NULL,
+  `GNP` decimal(10,2) DEFAULT NULL,
+  `GNPOld` decimal(10,2) DEFAULT NULL,
+  `LocalName` char(45) NOT NULL DEFAULT '',
+  `GovernmentForm` char(45) NOT NULL DEFAULT '',
+  `HeadOfState` char(60) DEFAULT NULL,
+  `Capital` int(11) DEFAULT NULL,
+  `Code2` char(2) NOT NULL DEFAULT '',
+  PRIMARY KEY (`Code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 CREATE TABLE `city` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Name` char(35) NOT NULL DEFAULT '',
