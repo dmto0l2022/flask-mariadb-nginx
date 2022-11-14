@@ -8,7 +8,7 @@
 
 ## todo tomorrow
 
-https://stackoverflow.com/questions/55223186/how-to-run-flask-migrate-in-docker
+https://pypi.org/project/Flask-Dance/
 
 ## book mark
 
