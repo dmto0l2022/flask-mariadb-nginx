@@ -10,6 +10,20 @@ https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
 
 https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
 
+## generate model
+
+            https://stackoverflow.com/questions/51416482/flask-application-unable-to-run-because-of-keyerror
+
+            hostname -I
+
+             10.154.0.24
+
+            pip install sqlacodegen
+            pip install flask-sqlacodegen
+
+
+            sqlacodegen  mariadb+mariadbconnector://user:password@10.154.0.24:3306/world > mymodel.py
+
 # other workings
 
             import os
