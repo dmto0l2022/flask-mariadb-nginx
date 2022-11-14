@@ -17,7 +17,7 @@ class city(db.Model):
     CountryCode = db.Column(db.String(3), index=True, unique=True)
     District = db.Column(db.String(20), index=True, unique=False)
     Population = db.Column(db.Integer, index=True, unique=False)
-)
+
     def __repr__(self):
         return '<Name {}>'.format(self.Name)
     
