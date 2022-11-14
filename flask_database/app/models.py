@@ -2,6 +2,9 @@ from flask import current_app as app
 #from app import db
 db = app.extensions['sqlalchemy'].db
 
+with app.app_context():
+    db.reflect()
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
@@ -22,21 +25,22 @@ CREATE TABLE `city` (
   CONSTRAINT `city_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `country` (`Code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4080 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 '''
-    
+## db.Model.metadata.tables['city']
+
 class city(db.Model):
-    __table__ = db.Model.metadata.tables['city']
+    __table__ = db.metadatas["world"].tables["city"]
 
     def __repr__(self):
         return '<City {}>'.format(self.Name)
 
 class country(db.Model):
-    __table__ = db.Model.metadata.tables['country']
+    __table__ = db.metadatas["world"].tables["country"]
 
     def __repr__(self):
         return '<Name {}>'.format(self.Name)
     
 class country(db.Model):
-    __table__ = db.Model.metadata.tables['countrylanguage']
+    __table__ = db.metadatas["world"].tables["countrylanguage"]
 
     def __repr__(self):
         return '<Language {}>'.format(self.Language)
