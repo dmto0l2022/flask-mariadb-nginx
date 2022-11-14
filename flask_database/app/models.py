@@ -21,24 +21,24 @@ CREATE TABLE `city` (
   KEY `CountryCode` (`CountryCode`),
   CONSTRAINT `city_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `country` (`Code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4080 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
+'''
     
 class city(db.Model):
     __table__ = db.Model.metadata.tables['city']
 
     def __repr__(self):
-        return '<User {}>'.format(self.Name)
+        return '<City {}>'.format(self.Name)
 
 class country(db.Model):
     __table__ = db.Model.metadata.tables['country']
 
     def __repr__(self):
-        return '<User {}>'.format(self.Name)
+        return '<Name {}>'.format(self.Name)
     
 class country(db.Model):
     __table__ = db.Model.metadata.tables['countrylanguage']
 
     def __repr__(self):
-        return '<User {}>'.format(self.Language)
- '''
+        return '<Language {}>'.format(self.Language)
+ 
 
