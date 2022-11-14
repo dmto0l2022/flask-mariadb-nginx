@@ -52,11 +52,11 @@ def create_app():
         db.Model.metadata.reflect(db.engine)
         db.create_all()  # Create sql tables for our data models
 
-        from app.models import User, Post
+        #from app.models import User, Post
         #app.app_context().push()
-        u = User(username='john', email='john@example.com')
-        db.session.add(u)
-        db.session.commit()
+        #u = User(username='john', email='john@example.com')
+        #db.session.add(u)
+        #db.session.commit()
         return app
 
 
