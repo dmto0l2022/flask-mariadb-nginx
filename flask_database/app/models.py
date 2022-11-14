@@ -22,9 +22,12 @@ metadata = Base.metadata
 #    return User.query.get(user_id)
 
 #@login_manager.load_user
+
+## https://stackoverflow.com/questions/51209763/attributeerror-type-object-user-has-no-attribute-get
+
 @login.user_loader
 def load_user(user):
-    return User.query.get(user)
+    return User.query.get(user) ## added .query.
 
 class User(UserMixin , db.Model):
     id = db.Column(db.Integer, primary_key=True)
