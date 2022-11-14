@@ -1,3 +1,7 @@
+# cross reference : nb os is PIP
+
+https://certbot.eff.org/instructions?ws=nginx&os=pip
+
 # create env
 
     cd opt
