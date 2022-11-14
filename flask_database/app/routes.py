@@ -11,6 +11,8 @@ from app.models import User
 
 from app.forms import LoginForm
 
+from app.forms import RegistrationForm
+
 @app.route('/')
 def hello():
     return "Hello, World!"
