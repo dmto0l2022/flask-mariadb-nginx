@@ -1,3 +1,9 @@
+# RHEL notes
+
+## to allow access to html folder
+
+      setenforce Permissive
+
 # Reference & Thanks
 
 ## todo tomorrow
