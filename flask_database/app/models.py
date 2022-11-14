@@ -1,10 +1,12 @@
 import datetime as dt
 from flask import current_app as app
+#from app import login
 #from app import db
 db = app.extensions['sqlalchemy'].db
 
 from werkzeug.security import generate_password_hash, check_password_hash
 
+from flask_login import UserMixin
 
 from sqlalchemy import CHAR, Column, DECIMAL, Enum, ForeignKey, text, DateTime
 from sqlalchemy.dialects.mysql import INTEGER, SMALLINT
@@ -14,7 +16,7 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 metadata = Base.metadata
 
-class User(db.Model):
+class User(UserMixin , db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
@@ -79,7 +81,10 @@ class Countrylanguage(Base):
 
     country = relationship('Country')
     
-
+@app.login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+    
 '''    
 class city(db.Model):
     ID = db.Column(db.Integer, primary_key=True)
