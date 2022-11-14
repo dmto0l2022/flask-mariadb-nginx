@@ -47,9 +47,11 @@ def create_app():
 
     login = LoginManager(app)
     
+    login.login_view = 'login'
+    
     db.init_app(app)
 
-    migrate = Migrate(app, db)
+    migrate = Migrate(app, db, login)
 
     with app.app_context():
         from . import routes, models  # Import routes
