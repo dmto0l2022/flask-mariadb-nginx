@@ -2,9 +2,6 @@ from flask import current_app as app
 #from app import db
 db = app.extensions['sqlalchemy'].db
 
-with app.app_context():
-    db.reflect()
-
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
@@ -13,6 +10,17 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
+    
+class city(db.Model):
+    ID = db.Column(db.Integer, primary_key=True)
+    Name = db.Column(db.String(35), index=True, unique=True)
+    CountryCode = db.Column(db.String(3), index=True, unique=True)
+    District = db.Column(db.String(20), index=True, unique=False)
+    Population = db.Column(db.Integer, index=True, unique=False)
+)
+    def __repr__(self):
+        return '<Name {}>'.format(self.Name)
+    
 '''
 CREATE TABLE `city` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -24,7 +32,7 @@ CREATE TABLE `city` (
   KEY `CountryCode` (`CountryCode`),
   CONSTRAINT `city_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `country` (`Code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4080 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-'''
+
 ## db.Model.metadata.tables['city']
 
 class city(db.Model):
@@ -45,4 +53,4 @@ class country(db.Model):
     def __repr__(self):
         return '<Language {}>'.format(self.Language)
  
-
+'''
