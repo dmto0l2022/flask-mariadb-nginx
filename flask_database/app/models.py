@@ -1,6 +1,6 @@
 import datetime as dt
 from flask import current_app as app
-#from app import login
+from app import login_manager
 #login = app.extensions.login
 #from app import db
 db = app.extensions['sqlalchemy'].db
@@ -16,6 +16,11 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 metadata = Base.metadata
+
+#@login_manager.load_user
+@login_manager.user_loader
+def load_user(user):
+    return User.get(user)
 
 class User(UserMixin , db.Model):
     id = db.Column(db.Integer, primary_key=True)
