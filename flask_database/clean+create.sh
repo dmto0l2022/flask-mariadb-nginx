@@ -5,7 +5,8 @@ podman pod create \
 --name pod-app-backend \
 --infra-name infra-app-backend \
 --network bridge \
---publish 8080:80
+--publish 5001:5001
+##--publish 8080:80
 
 # podman pod create \
 # --name pod-data-backend \
