@@ -25,7 +25,7 @@ class PrefixMiddleware(object):
             return self.app(environ, start_response)
         else:
             start_response('404', [('Content-Type', 'text/plain')])
-            return ["This url does not belong to the app.".encode()
+            return ["This url does not belong to the app.".encode()]
 
 app = Flask(__name__)
 
