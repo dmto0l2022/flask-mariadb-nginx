@@ -80,11 +80,13 @@ def create_app():
     
     
     with app.app_context():
-        app.config["APPLICATION_ROOT"] = "/app"
+        #app.config["APPLICATION_ROOT"] = "/app"
+        #SCRIPT_NAME
+        app.config["SCRIPT_NAME"] = "/app"
         from . import routes, models, oauth  # Import routes, models and oauth helper
         #from models import db, login_manager
         #from oauth import github_blueprint
-        app.register_blueprint(oauth.github_blueprint, url_prefix="/login")
+        app.register_blueprint(oauth.github_blueprint, url_prefix="/app/login")
         db.Model.metadata.reflect(db.engine)
         
         db.create_all()  # Create sql tables for our data models
