@@ -22,7 +22,7 @@ from app.forms import RegistrationForm
 #    return "Hello, World!"
 
 @app.route("/")
-def index():
+def gitlogin():
     if not github.authorized:
         return redirect(url_for("github.login"))
     resp = github.get("/user")
