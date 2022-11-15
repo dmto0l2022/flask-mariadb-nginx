@@ -3,7 +3,7 @@
 import os
 
 from flask_login import current_user, login_user
-from flask_dance.consumer import oauth_authorized
+from flask_dance.consumer import oauth_authorized, oauth_error
 from flask_dance.contrib.github import github, make_github_blueprint
 from flask_dance.consumer.storage.sqla import SQLAlchemyStorage
 from sqlalchemy.orm.exc import NoResultFound
