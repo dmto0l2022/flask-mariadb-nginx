@@ -45,7 +45,7 @@ def create_app():
     #            client_secret=GITHUB_OAUTH_CLIENT_SECRET,
     #            )
     
-    #app.register_blueprint(github_blueprint, url_prefix="/app/login")
+    #app.register_blueprint(github_blueprint, url_prefix="/login")
     ##gh
     
     MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
@@ -82,11 +82,11 @@ def create_app():
     with app.app_context():
         #app.config["APPLICATION_ROOT"] = "/app"
         #SCRIPT_NAME
-        app.config["SCRIPT_NAME"] = "/app"
+        #app.config["SCRIPT_NAME"] = "/app"
         from . import routes, models, oauth  # Import routes, models and oauth helper
         #from models import db, login_manager
         #from oauth import github_blueprint
-        app.register_blueprint(oauth.github_blueprint, url_prefix="/app/login")
+        app.register_blueprint(oauth.github_blueprint, url_prefix="/github_login")
         db.Model.metadata.reflect(db.engine)
         
         db.create_all()  # Create sql tables for our data models
