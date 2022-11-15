@@ -33,11 +33,11 @@ def create_app():
     app.config['SECRET_KEY'] = environ.get('FLASK_SECRET_KEY')
     ##gh
     GITHUB_OAUTH_CLIENT_ID = environ.get("GITHUB_OAUTH_CLIENT_ID")
-    GITHUB_SECRET = environ.get("GITHUB_SECRET")
+    GITHUB_OAUTH_CLIENT_SECRET = environ.get("GITHUB_OAUTH_CLIENT_SECRET")
     
     blueprint = make_github_blueprint(
-                client_id=GITHUB_KEY,
-                client_secret=GITHUB_SECRET,
+                client_id=GITHUB_OAUTH_CLIENT_ID,
+                client_secret=GITHUB_OAUTH_CLIENT_SECRET,
                 )
     
     app.register_blueprint(blueprint, url_prefix="/login")
