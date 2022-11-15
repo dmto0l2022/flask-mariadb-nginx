@@ -81,6 +81,8 @@ def create_app():
     
     with app.app_context():
         from . import routes, models, oauth  # Import routes, models and oauth helper
+        #from models import db, login_manager
+        from oauth import github_blueprint
         app.register_blueprint(github_blueprint, url_prefix="/login")
         db.Model.metadata.reflect(db.engine)
         
