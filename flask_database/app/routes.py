@@ -3,6 +3,8 @@ from flask import render_template, flash, redirect, url_for
 ##from app import app
 from flask import current_app as app
 
+from flask_dance.contrib.github import make_github_blueprint, github
+
 login = app.login_manager
 #from app import db
 db = app.extensions['sqlalchemy'].db
