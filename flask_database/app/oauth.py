@@ -22,6 +22,9 @@ github_blueprint = make_github_blueprint(
     ),
 )
 
+# setup SQLAlchemy backend
+blueprint.backend = SQLAlchemyStorage(OAuth, db.session, user=current_user)
+
 
 def github_logged_in(blueprint, token):
     if not token:
