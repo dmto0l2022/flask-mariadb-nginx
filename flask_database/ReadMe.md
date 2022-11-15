@@ -1,5 +1,11 @@
 # RHEL notes
 
+## flask needs to know it is behind a proxy
+
+https://flask.palletsprojects.com/en/latest/deploying/proxy_fix/
+
+https://flask.palletsprojects.com/en/latest/deploying/nginx/
+
 ## to allow access to html folder
 
       setenforce Permissive
