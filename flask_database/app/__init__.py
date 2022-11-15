@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 #gh
 from flask_dance.contrib.github import make_github_blueprint, github
 ##from flask_dance.consumer.backend.sqla import OAuthConsumerMixin, SQLAlchemyBackend
-from flask_dance.consumer.storage.sqla import OAuthConsumerMixin, SQLAlchemyBackend
+from flask_dance.consumer.storage.sqla import OAuthConsumerMixin, SQLAlchemyStorage
 from flask_dance.consumer import oauth_authorized, oauth_error
 
 
@@ -74,8 +74,10 @@ def create_app():
     migrate = Migrate(app, db, login)
     
     # setup SQLAlchemy backend
-    blueprint.backend = SQLAlchemyBackend(OAuth, db.session, user=current_user)
-
+    #blueprint.backend = SQLAlchemyBackend(OAuth, db.session, user=current_user)
+    ##SQLAlchemyStorage
+    blueprint.backend = SQLAlchemyStorage(OAuth, db.session, user=current_user)
+    
     with app.app_context():
         from . import routes, models  # Import routes
         db.Model.metadata.reflect(db.engine)
