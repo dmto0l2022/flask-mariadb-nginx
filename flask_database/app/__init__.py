@@ -75,7 +75,8 @@ def create_app():
         from . import routes, models  # Import routes
         db.Model.metadata.reflect(db.engine)
         db.create_all()  # Create sql tables for our data models
-
+        db.session.commit()
+        print("Database tables created")
         #from app.models import User, Post
         #app.app_context().push()
         #u = User(username='john', email='john@example.com')
@@ -87,7 +88,14 @@ def create_app():
 
 
 ##from app import routes, models
-
-
+'''if __name__ == "__main__":
+    if "--setup" in sys.argv:
+        with app.app_context():
+            db.create_all()
+            db.session.commit()
+            print("Database tables created")
+    else:
+        app.run(debug=True)
+'''
 
 print("finished")
