@@ -15,16 +15,17 @@ podman pod create \
 
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_database
 podman build -t my-flaskdatabase-1 .
-cd /opt/dmtools/code/flask-mariadb-nginx/nginx
-podman build -t my-nginx-1 .
+
+##cd /opt/dmtools/code/flask-mariadb-nginx/nginx
+##podman build -t my-nginx-1 .
 
 # cd /opt/dmtools/code/flask-mariadb-nginx/mariadb
 # podman build -t my-mariadb-1 .
 
-podman run -dt \
---name nginx_backend-1 \
---pod pod-app-backend \
-localhost/my-nginx-1:latest
+##podman run -dt \
+##--name nginx_backend-1 \
+##--pod pod-app-backend \
+##localhost/my-nginx-1:latest
 
 # podman run -dt \
 # --name mariadb_backend-1 \
