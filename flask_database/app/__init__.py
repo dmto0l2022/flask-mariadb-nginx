@@ -67,6 +67,9 @@ def create_app():
     db.init_app(app)
 
     migrate = Migrate(app, db, login)
+    
+    # setup SQLAlchemy backend
+    blueprint.backend = SQLAlchemyBackend(OAuth, db.session, user=current_user)
 
     with app.app_context():
         from . import routes, models  # Import routes
