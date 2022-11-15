@@ -1,3 +1,5 @@
+## https://flask-dance.readthedocs.io/en/v1.2.0/quickstarts/sqla-multiuser.html
+
 import sys
 from flask import Flask, redirect, url_for, flash, render_template
 from flask_sqlalchemy import SQLAlchemy
