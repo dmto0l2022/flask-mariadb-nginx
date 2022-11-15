@@ -64,7 +64,7 @@ def register():
 #        return redirect(url_for('index'))
 #    return render_template('login.html', title='Sign In', form=form)
 
-
+'''
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -79,7 +79,7 @@ def login():
         return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form)
 
-'''
+
 def login():
     # ...
     if form.validate_on_submit():
