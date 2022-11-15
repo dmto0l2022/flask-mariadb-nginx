@@ -40,12 +40,12 @@ def create_app():
     GITHUB_OAUTH_CLIENT_ID = environ.get("GITHUB_OAUTH_CLIENT_ID")
     GITHUB_OAUTH_CLIENT_SECRET = environ.get("GITHUB_OAUTH_CLIENT_SECRET")
     
-    blueprint = make_github_blueprint(
+    github_blueprint = make_github_blueprint(
                 client_id=GITHUB_OAUTH_CLIENT_ID,
                 client_secret=GITHUB_OAUTH_CLIENT_SECRET,
                 )
     
-    app.register_blueprint(blueprint, url_prefix="/login")
+    app.register_blueprint(github_blueprint, url_prefix="/login")
     ##gh
     
     MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
@@ -71,17 +71,17 @@ def create_app():
     
     db.init_app(app)
 
+    # setup SQLAlchemy backend
+    #blueprint.backend = SQLAlchemyBackend(OAuth, db.session, user=current_user)
+    ##SQLAlchemyStorage
+    github_blueprint.backend = SQLAlchemyStorage(OAuth, db.session, user=current_user)
+    
     migrate = Migrate(app, db, login)
     
     
     with app.app_context():
         from . import routes, models, oauth  # Import routes, models and oauth helper
         db.Model.metadata.reflect(db.engine)
-        
-        # setup SQLAlchemy backend
-        #blueprint.backend = SQLAlchemyBackend(OAuth, db.session, user=current_user)
-        ##SQLAlchemyStorage
-        #blueprint.backend = SQLAlchemyStorage(OAuth, db.session, user=current_user)
         
         db.create_all()  # Create sql tables for our data models
         db.session.commit()
