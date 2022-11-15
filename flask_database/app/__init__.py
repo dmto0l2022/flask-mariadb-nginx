@@ -61,7 +61,8 @@ def create_app():
 
     login = LoginManager(app)
     
-    login.login_view = 'login'
+    ##login.login_view = 'login'
+    login.login_view = 'github.login'
     
     db.init_app(app)
 
