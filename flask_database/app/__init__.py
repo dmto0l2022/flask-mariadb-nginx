@@ -3,6 +3,9 @@ import mariadb
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
+#gh
+from flask_dance.contrib.github import make_github_blueprint, github
+
 from flask_login import LoginManager
 
 #from config import Config
@@ -28,7 +31,18 @@ def create_app():
     print(environ.get('FLASK_SECRET_KEY'))
 
     app.config['SECRET_KEY'] = environ.get('FLASK_SECRET_KEY')
-
+    ##gh
+    GITHUB_KEY = environ.get("GITHUB_KEY")
+    GITHUB_SECRET = environ.get("GITHUB_SECRET")
+    
+    blueprint = make_github_blueprint(
+                client_id=GITHUB_KEY,
+                client_secret=GITHUB_SECRET,
+                )
+    
+    app.register_blueprint(blueprint, url_prefix="/login")
+    ##gh
+    
     MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
     MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
     MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
