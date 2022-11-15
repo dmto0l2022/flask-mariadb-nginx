@@ -19,7 +19,7 @@ blueprint = make_github_blueprint(
     client_secret=GITHUB_OAUTH_CLIENT_SECRET,
 )
 
-app.register_blueprint(blueprint, url_prefix="/login")
+app.register_blueprint(blueprint, url_prefix="/app/login")
 
 @app.route("/")
 def index():
