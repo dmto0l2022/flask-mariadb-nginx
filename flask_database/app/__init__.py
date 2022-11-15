@@ -81,7 +81,7 @@ def create_app():
         # setup SQLAlchemy backend
         #blueprint.backend = SQLAlchemyBackend(OAuth, db.session, user=current_user)
         ##SQLAlchemyStorage
-        blueprint.backend = SQLAlchemyStorage(OAuth, db.session, user=current_user)
+        #blueprint.backend = SQLAlchemyStorage(OAuth, db.session, user=current_user)
         
         db.create_all()  # Create sql tables for our data models
         db.session.commit()
