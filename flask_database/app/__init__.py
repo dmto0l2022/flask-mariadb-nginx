@@ -73,14 +73,17 @@ def create_app():
 
     migrate = Migrate(app, db, login)
     
-    # setup SQLAlchemy backend
-    #blueprint.backend = SQLAlchemyBackend(OAuth, db.session, user=current_user)
-    ##SQLAlchemyStorage
-    blueprint.backend = SQLAlchemyStorage(OAuth, db.session, user=current_user)
+    
     
     with app.app_context():
         from . import routes, models  # Import routes
         db.Model.metadata.reflect(db.engine)
+        
+        # setup SQLAlchemy backend
+        #blueprint.backend = SQLAlchemyBackend(OAuth, db.session, user=current_user)
+        ##SQLAlchemyStorage
+        blueprint.backend = SQLAlchemyStorage(OAuth, db.session, user=current_user)
+        
         db.create_all()  # Create sql tables for our data models
         db.session.commit()
         print("Database tables created")
