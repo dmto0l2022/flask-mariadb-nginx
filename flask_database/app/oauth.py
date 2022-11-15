@@ -10,12 +10,19 @@ from sqlalchemy.orm.exc import NoResultFound
 
 from app.models import db, OAuth, User
 
+from os import environ, path
+
+from dotenv import load_dotenv
+
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+
 GITHUB_OAUTH_CLIENT_ID = environ.get("GITHUB_OAUTH_CLIENT_ID")
 GITHUB_OAUTH_CLIENT_SECRET = environ.get("GITHUB_OAUTH_CLIENT_SECRET")
 
 github_blueprint = make_github_blueprint(
-    client_id=os.getenv("GITHUB_OAUTH_CLIENT_ID"),
-    client_secret=os.getenv("GITHUB_OAUTH_CLIENT_SECRET"),
+    client_id=GITHUB_OAUTH_CLIENT_ID,
+    client_secret=GITHUB_OAUTH_CLIENT_SECRET,
     storage=SQLAlchemyStorage(
         OAuth,
         db.session,
