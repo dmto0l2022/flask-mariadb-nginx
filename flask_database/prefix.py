@@ -11,7 +11,7 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 GITHUB_OAUTH_CLIENT_ID = environ.get("GITHUB_OAUTH_CLIENT_ID")
 GITHUB_OAUTH_CLIENT_SECRET = environ.get("GITHUB_OAUTH_CLIENT_SECRET")
 
-app = Flask(__name__)
+app = Flask(__name__, url_prefix="/app")
 
 app.config['SECRET_KEY'] = environ.get('FLASK_SECRET_KEY')
 blueprint = make_github_blueprint(
@@ -19,7 +19,7 @@ blueprint = make_github_blueprint(
     client_secret=GITHUB_OAUTH_CLIENT_SECRET,
 )
 
-app.register_blueprint(blueprint, url_prefix="/app/login")
+app.register_blueprint(blueprint, url_prefix="/login")
 
 @app.route("/")
 def index():
