@@ -17,9 +17,17 @@ from app.forms import LoginForm
 
 from app.forms import RegistrationForm
 
-@app.route('/')
-def hello():
-    return "Hello, World!"
+#@app.route('/')
+#def hello():
+#    return "Hello, World!"
+
+@app.route("/")
+def index():
+    if not github.authorized:
+        return redirect(url_for("github.login"))
+    resp = github.get("/user")
+    assert resp.ok
+    return "You are @{login} on GitHub".format(login=resp.json()["login"])
 
 @app.route('/index')
 @login_required
