@@ -10,6 +10,8 @@ from sqlalchemy.orm.exc import NoResultFound
 
 from app.models import db, OAuth, User
 
+GITHUB_OAUTH_CLIENT_ID = environ.get("GITHUB_OAUTH_CLIENT_ID")
+GITHUB_OAUTH_CLIENT_SECRET = environ.get("GITHUB_OAUTH_CLIENT_SECRET")
 
 github_blueprint = make_github_blueprint(
     client_id=os.getenv("GITHUB_OAUTH_CLIENT_ID"),
