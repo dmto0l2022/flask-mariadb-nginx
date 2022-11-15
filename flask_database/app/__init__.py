@@ -5,7 +5,8 @@ from flask_migrate import Migrate
 
 #gh
 from flask_dance.contrib.github import make_github_blueprint, github
-from flask_dance.consumer.backend.sqla import OAuthConsumerMixin, SQLAlchemyBackend
+##from flask_dance.consumer.backend.sqla import OAuthConsumerMixin, SQLAlchemyBackend
+from flask_dance.consumer.storage.sqla import OAuthConsumerMixin, SQLAlchemyBackend
 from flask_dance.consumer import oauth_authorized, oauth_error
 
 
