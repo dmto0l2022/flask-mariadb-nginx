@@ -80,6 +80,7 @@ def create_app():
     
     
     with app.app_context():
+        app.config["APPLICATION_ROOT"] = "/app"
         from . import routes, models, oauth  # Import routes, models and oauth helper
         #from models import db, login_manager
         #from oauth import github_blueprint
