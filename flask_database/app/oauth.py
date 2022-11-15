@@ -12,8 +12,8 @@ from app.models import db, OAuth, User
 
 
 github_blueprint = make_github_blueprint(
-    client_id=os.getenv("GITHUB_ID"),
-    client_secret=os.getenv("GITHUB_SECRET"),
+    client_id=os.getenv("GITHUB_OAUTH_CLIENT_ID"),
+    client_secret=os.getenv("GITHUB_OAUTH_CLIENT_SECRET"),
     storage=SQLAlchemyStorage(
         OAuth,
         db.session,
@@ -23,15 +23,15 @@ github_blueprint = make_github_blueprint(
 )
 
 # setup SQLAlchemy backend
-blueprint.backend = SQLAlchemyStorage(OAuth, db.session, user=current_user)
+# github_blueprint.backend = SQLAlchemyStorage(OAuth, db.session, user=current_user)
 
 
-def github_logged_in(blueprint, token):
+def github_logged_in(github_blueprint, token):
     if not token:
         flash("Failed to log in with GitHub.", category="error")
         return False
 
-    resp = blueprint.session.get("/user")
+    resp = github_blueprint.session.get("/user")
     if not resp.ok:
         msg = "Failed to fetch user info from GitHub."
         flash(msg, category="error")
@@ -42,14 +42,14 @@ def github_logged_in(blueprint, token):
 
     # Find this OAuth token in the database, or create it
     query = OAuth.query.filter_by(
-        provider=blueprint.name,
+        provider=github_blueprint.name,
         provider_user_id=github_user_id,
     )
     try:
         oauth = query.one()
     except NoResultFound:
         oauth = OAuth(
-            provider=blueprint.name,
+            provider=github_blueprint.name,
             provider_user_id=github_user_id,
             token=token,
         )
@@ -79,13 +79,13 @@ def github_logged_in(blueprint, token):
     return False
 
 # notify on OAuth provider error
-@oauth_error.connect_via(blueprint)
-def github_error(blueprint, error, error_description=None, error_uri=None):
+@oauth_error.connect_via(github_blueprint)
+def github_error(github_blueprint, error, error_description=None, error_uri=None):
     msg = (
         "OAuth error from {name}! "
         "error={error} description={description} uri={uri}"
     ).format(
-        name=blueprint.name,
+        name=github_blueprint.name,
         error=error,
         description=error_description,
         uri=error_uri,
