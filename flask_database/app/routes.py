@@ -19,11 +19,11 @@ from app.forms import LoginForm
 
 from app.forms import RegistrationForm
 
-#@app.route('/')
-#def hello():
-#    return "Hello, World!"
+@app.route('/')
+def hello():
+    return "Hello, World!"
 
-@app.route("/")
+@app.route("/github_login")
 def gitlogin():
     if not github.authorized:
         return redirect(url_for("github.login"))
