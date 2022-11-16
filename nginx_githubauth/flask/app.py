@@ -58,13 +58,12 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 app.config['SESSION_TYPE'] = 'filesystem'
 
-blueprint = make_github_blueprint(
-    client_id=GITHUB_OAUTH_CLIENT_ID,
-    client_secret=GITHUB_OAUTH_CLIENT_SECRET,
-    ##redirect_url="http://dev4.dmtools.info/app/login/github/authorize",
-)
+app.config["GITHUB_OAUTH_CLIENT_ID"] = os.environ.get("GITHUB_OAUTH_CLIENT_ID")
+app.config["GITHUB_OAUTH_CLIENT_SECRET"] = os.environ.get("GITHUB_OAUTH_CLIENT_SECRET")
+github_bp = make_github_blueprint()
+#app.register_blueprint(github_bp, url_prefix="/login")
 
-app.register_blueprint(blueprint, url_prefix="/app/login")
+app.register_blueprint(github_bp, url_prefix="/app/login")
 
 @app.route("/app/")
 def index():
