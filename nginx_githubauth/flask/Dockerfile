@@ -1,6 +1,7 @@
 FROM python:3
 ADD hello.py /
 ADD app.py /
+ADD .env /
 RUN pip install flask
 RUN pip install flask_restful
 RUN pip install flask_dance
