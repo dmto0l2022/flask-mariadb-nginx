@@ -9,6 +9,8 @@ from dotenv import load_dotenv
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 
+print(BASE_DIR)
+
 GITHUB_OAUTH_CLIENT_ID = environ.get("GITHUB_OAUTH_CLIENT_ID")
 GITHUB_OAUTH_CLIENT_SECRET = environ.get("GITHUB_OAUTH_CLIENT_SECRET")
 
@@ -33,9 +35,12 @@ class PrefixMiddleware(object):
 app = Flask(__name__)
 
 #app.wsgi_app = PrefixMiddleware(app.wsgi_app)##, prefix='/app')                    
-                    
-                    
-app.config['SECRET_KEY'] = environ.get('FLASK_SECRET_KEY')
+
+FLASK_SECRET_KEY_VAR = environ.get('FLASK_SECRET_KEY')
+
+print(FLASK_SECRET_KEY_VAR)
+
+app.config['SECRET_KEY'] = FLASK_SECRET_KEY_VAR
 blueprint = make_github_blueprint(
     client_id=GITHUB_OAUTH_CLIENT_ID,
     client_secret=GITHUB_OAUTH_CLIENT_SECRET,
