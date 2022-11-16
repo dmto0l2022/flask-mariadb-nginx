@@ -61,6 +61,8 @@ app.config['SESSION_TYPE'] = 'filesystem'
 
 app.config["GITHUB_OAUTH_CLIENT_ID"] = os.environ.get("GITHUB_OAUTH_CLIENT_ID")
 app.config["GITHUB_OAUTH_CLIENT_SECRET"] = os.environ.get("GITHUB_OAUTH_CLIENT_SECRET")
+redirect_uri = 
+
 github_bp = make_github_blueprint()
 #app.register_blueprint(github_bp, url_prefix="/login")
 
