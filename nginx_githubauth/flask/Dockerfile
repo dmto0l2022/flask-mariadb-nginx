@@ -8,5 +8,5 @@ RUN pip install flask_dance
 RUN pip install python-dotenv
 
 ##EXPOSE 5000
-#CMD [ "python", "./hello.py"]
-CMD [ "python", "./app.py"]
+CMD [ "python", "./hello.py"]
+#CMD [ "python", "./app.py"]
