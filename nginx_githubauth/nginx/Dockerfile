@@ -6,7 +6,7 @@ RUN mkdir /var/www/html
 
 #COPY nginx.conf /etc/nginx/conf.d
 #COPY simple80.conf /etc/nginx/conf.d
-COPY conf80.conf /etc/nginx/conf.d
+COPY justflask_conf /etc/nginx/conf.d
 COPY index1.html /var/www/html/index.html
 
 #COPY server_default.conf /etc/nginx/conf.d/default.conf
