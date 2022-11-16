@@ -58,8 +58,6 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 app.config['SESSION_TYPE'] = 'filesystem'
 
- redirect_url
-
 blueprint = make_github_blueprint(
     client_id=GITHUB_OAUTH_CLIENT_ID,
     client_secret=GITHUB_OAUTH_CLIENT_SECRET,
