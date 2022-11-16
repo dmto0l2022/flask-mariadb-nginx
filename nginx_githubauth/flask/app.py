@@ -36,13 +36,15 @@ app = Flask(__name__)
 
 #app.wsgi_app = PrefixMiddleware(app.wsgi_app)##, prefix='/app')                    
 
-FLASK_SECRET_KEY_VAR = environ.get('FLASK_SECRET_KEY')
+#FLASK_SECRET_KEY_VAR = environ.get('FLASK_SECRET_KEY')
 
-print(FLASK_SECRET_KEY_VAR)
+#print(FLASK_SECRET_KEY_VAR)
 
 #app.config['SECRET_KEY'] = FLASK_SECRET_KEY_VAR
 
-app.secret_key = FLASK_SECRET_KEY_VAR
+##app.secret_key = FLASK_SECRET_KEY_VAR
+
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 app.config['SESSION_TYPE'] = 'filesystem'
 
