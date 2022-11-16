@@ -1,3 +1,5 @@
+podman pod stop nginx-frontend
+podman pod rm nginx-frontend
 cd /opt/dmtools/code/flask-mariadb-nginx/nginx_githubauth/nginx
 podman build -t my-nginx-1 .
 #podman run -dt --pod new:nginx-frontend -p 8080:80 localhost/my-nginx-1:latest
