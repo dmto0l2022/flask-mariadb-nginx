@@ -29,7 +29,7 @@ class PrefixMiddleware(object):
 
 app = Flask(__name__)
 
-app.wsgi_app = PrefixMiddleware(app.wsgi_app)##, prefix='/app')                    
+#app.wsgi_app = PrefixMiddleware(app.wsgi_app)##, prefix='/app')                    
                     
                     
 app.config['SECRET_KEY'] = environ.get('FLASK_SECRET_KEY')
