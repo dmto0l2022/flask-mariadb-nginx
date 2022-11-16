@@ -3,9 +3,8 @@ ADD hello.py /
 ADD app.py /
 ADD .env /
 RUN pip install flask
-RUN pip install flask_restful
-RUN pip install flask_dance
-RUN pip install python-dotenv
+RUN pip install Authlib
+RUN pip install requests
 
 ##EXPOSE 5000
 #CMD [ "python", "./hello.py"]
