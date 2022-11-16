@@ -18,6 +18,9 @@ print(GITHUB_OAUTH_CLIENT_ID)
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"]="1"
 
+from werkzeug.middleware.proxy_fix import ProxyFix
+
+
 class PrefixMiddleware(object):
 
     def __init__(self, app, prefix=''):
@@ -35,6 +38,11 @@ class PrefixMiddleware(object):
             return ["This url does not belong to the app.".encode()]
 
 app = Flask(__name__)
+
+
+app.wsgi_app = ProxyFix(
+    app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
+)
 
 #app.wsgi_app = PrefixMiddleware(app.wsgi_app)##, prefix='/app')                    
 
