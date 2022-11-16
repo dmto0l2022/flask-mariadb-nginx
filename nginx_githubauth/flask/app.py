@@ -11,6 +11,8 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 GITHUB_OAUTH_CLIENT_ID = environ.get("GITHUB_OAUTH_CLIENT_ID")
 GITHUB_OAUTH_CLIENT_SECRET = environ.get("GITHUB_OAUTH_CLIENT_SECRET")
 
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"]=1
+
 class PrefixMiddleware(object):
 
     def __init__(self, app, prefix=''):
