@@ -40,7 +40,12 @@ FLASK_SECRET_KEY_VAR = environ.get('FLASK_SECRET_KEY')
 
 print(FLASK_SECRET_KEY_VAR)
 
-app.config['SECRET_KEY'] = FLASK_SECRET_KEY_VAR
+#app.config['SECRET_KEY'] = FLASK_SECRET_KEY_VAR
+
+app.secret_key = FLASK_SECRET_KEY_VAR
+
+app.config['SESSION_TYPE'] = 'filesystem'
+
 blueprint = make_github_blueprint(
     client_id=GITHUB_OAUTH_CLIENT_ID,
     client_secret=GITHUB_OAUTH_CLIENT_SECRET,
