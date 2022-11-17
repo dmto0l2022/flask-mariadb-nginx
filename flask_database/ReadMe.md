@@ -1,5 +1,9 @@
 # RHEL notes
 
+## good code comments
+
+https://medium.com/@lyle-okoth/how-to-authenticate-and-register-a-user-using-flask-dance-and-the-github-oauth-api-a5aa64edc64b
+
 ## flask needs to know it is behind a proxy
 
 https://flask.palletsprojects.com/en/latest/deploying/proxy_fix/
