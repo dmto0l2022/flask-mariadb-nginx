@@ -46,6 +46,7 @@ def home():
     return render_template('home.html', title='Home')
 
 @app.route('/app/user')
+@login_required
 def user():
     user = {'username': 'Andy'}
     return render_template('user.html', title='Basic', user=user)
