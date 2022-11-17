@@ -35,6 +35,10 @@ def gitlogin():
 ##@login_required
 def index():
     user = {'username': 'Andy'}
+    if not github.authorized:
+        return redirect(url_for("github.login"))
+    resp = github.get("/user")
+    assert resp.ok
     return render_template('index.html', title='Index', user=user)
 
 @app.route('/app/test')
@@ -46,7 +50,6 @@ def home():
     return render_template('home.html', title='Home')
 
 @app.route('/app/user')
-@login_required
 def user():
     user = {'username': 'Andy'}
     return render_template('user.html', title='Basic', user=user)
