@@ -76,7 +76,7 @@ app.register_blueprint(github_bp, url_prefix="/app/login")
 ## this works added to nginx /app/login/github/authorized
 ## added github app call back url - "http://dev4.dmtools.info/app/login/github/authorized"
 
-@app.route("/app")
+@app.route("/app/")
 def index():
     if not github.authorized:
         return redirect(url_for("github.login"))
