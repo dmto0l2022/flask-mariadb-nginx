@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<head>
-    <title>Flask-Dance Multi-User SQLAlchemy</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block main %}
 {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
     <ul class="flash">
@@ -19,4 +16,4 @@
   You are not logged in.
   <a href="{{ url_for("github.login") }}">Log in</a>
 {% endif %}
-</body>
+{% end block %}
