@@ -19,11 +19,11 @@ from app.forms import LoginForm
 
 from app.forms import RegistrationForm
 
-@app.route('/')
+@app.route('/app/')
 def hello():
     return "Hello, World!"
 
-@app.route("/github_login")
+@app.route("/app/login")
 def gitlogin():
     if not github.authorized:
         return redirect(url_for("github.login"))
@@ -31,22 +31,22 @@ def gitlogin():
     assert resp.ok
     return "You are @{login} on GitHub".format(login=resp.json()["login"])
 
-@app.route('/index')
+@app.route('/app/index')
 @login_required
 def index():
     user = {'username': 'Andy'}
     return render_template('index.html', title='Index', user=user)
 
-@app.route('/home')
+@app.route('/app/home')
 def home():
     return render_template('home.html', title='Home')
 
-@app.route('/user')
+@app.route('/app/user')
 def user():
     user = {'username': 'Andy'}
     return render_template('user.html', title='Basic', user=user)
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/app/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
@@ -104,7 +104,7 @@ def login():
         return redirect(next_page)
 '''
 
-@app.route('/logout')
+@app.route('/app/logout')
 def logout():
     logout_user()
     flash("You have logged out")
