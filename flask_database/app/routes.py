@@ -32,7 +32,7 @@ def gitlogin():
     return "You are @{login} on GitHub".format(login=resp.json()["login"])
 
 @app.route('/app/index')
-@login_required
+##@login_required
 def index():
     user = {'username': 'Andy'}
     return render_template('index.html', title='Index', user=user)
