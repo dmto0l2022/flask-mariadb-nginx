@@ -61,15 +61,22 @@ app.config['SESSION_TYPE'] = 'filesystem'
 
 app.config["GITHUB_OAUTH_CLIENT_ID"] = os.environ.get("GITHUB_OAUTH_CLIENT_ID")
 app.config["GITHUB_OAUTH_CLIENT_SECRET"] = os.environ.get("GITHUB_OAUTH_CLIENT_SECRET")
-redirect_uri_var = "http://dev4.dmtools.info/login/github/authorize"
+
+redirect_uri_var = "http://dev4.dmtools.info/login/github/authorized"
 
 github_bp = make_github_blueprint()
 #app.register_blueprint(github_bp, url_prefix="/login")
 
-#app.register_blueprint(github_bp, url_prefix="/app/login")
-app.register_blueprint(github_bp, url_prefix="/login")
+#app.register_blueprint(github_bp, url_prefix="/login") 
+## this works added to nginx /login/github/authorized
+## added github app call back url - "http://dev4.dmtools.info/login/github/authorized"
 
-@app.route("/")
+## adding app prefix
+app.register_blueprint(github_bp, url_prefix="/app/login")
+## this works added to nginx /app/login/github/authorized
+## added github app call back url - "http://dev4.dmtools.info/app/login/github/authorized"
+
+@app.route("/app")
 def index():
     if not github.authorized:
         return redirect(url_for("github.login"))
