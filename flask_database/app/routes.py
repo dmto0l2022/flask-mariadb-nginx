@@ -37,6 +37,10 @@ def index():
     user = {'username': 'Andy'}
     return render_template('index.html', title='Index', user=user)
 
+@app.route('/app/test')
+def test():
+    return render_template('test.html', title='Index')
+
 @app.route('/app/home')
 def home():
     return render_template('home.html', title='Home')
