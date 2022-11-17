@@ -24,7 +24,8 @@ from dotenv import load_dotenv
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 
-
+## while testing without https
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"]="1"
 
 def create_app():
     """Construct the core application."""
