@@ -6,5 +6,6 @@ dockerspawner
 sudospawner
 pandas
 mysqlclient
+mariadb
 jupyter-dash
 dash
