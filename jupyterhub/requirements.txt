@@ -7,3 +7,4 @@ sudospawner
 pandas
 mysqlclient
 jupyter-dash
+dash
