@@ -35,7 +35,7 @@ c.SudoSpawner.sudospawner_path = '/srv/jupyterhub/env/bin/sudospawner'
 
 c.Spawner.default_url = '/tree/'
 
-c.Spawner.notebook_dir='/srv/jupyterhub/notebooks'
+c.Spawner.notebook_dir=pathtofile
 
 #c.Spawner.environment = {
  # "http_proxy": "http://your proxy",
