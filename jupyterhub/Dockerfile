@@ -11,6 +11,9 @@ RUN apt-get update && apt-get -y update \
     && apt-get -y install podman
 
 
+RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
+RUN apt-get install -y mariadb-server galera-4 mariadb-client libmariadb3 mariadb-backup mariadb-common
+
 RUN npm install -g configurable-http-proxy
 
 RUN mkdir srv/jupyterhub
