@@ -1,6 +1,9 @@
 import os
 
-pathtofile = '/srv/jupyterhub/notebooks'
+#pathtofile = '/srv/jupyterhub/notebooks'
+
+
+pathtofile = '/srv/jupyterhub/home/jupyterhub'
 
 c.JupyterHub.authenticator_class = 'jupyterhub.auth.PAMAuthenticator'
 
