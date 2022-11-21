@@ -61,7 +61,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-RUN jupyter lab build
+#RUN jupyter lab build
 
 RUN pip -q install pip --upgrade
 RUN pip install wheel
