@@ -17,7 +17,7 @@ FROM mariadb:latest
 env MARIADB_USER=pythonuser
 env MARIADB_PASSWORD=pythonuser
 env MARIADB_ROOT_PASSWORD=pythonuser
-env MARIADB_DATABASE=world
+env MARIADB_DATABASE=RubyDB
 
 RUN apt-get update && apt-get -y install vim
 RUN apt-get -y install unzip
