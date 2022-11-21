@@ -25,7 +25,7 @@ RUN apt-get -y install unzip
 COPY world-db.zip /var/www/html/world-db.zip
 RUN unzip -j /var/www/html/world-db.zip -d /docker-entrypoint-initdb.d
 
-COPY dmtools_limitsonly.sql /docker-entrypoint-initdb.d
+COPY 20211104_dmtools_backup.sql /docker-entrypoint-initdb.d
 
 #unzip -j /path/to/file.zip -d other_folder
 
