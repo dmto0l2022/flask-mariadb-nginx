@@ -9,3 +9,6 @@ mariadb
 jupyter-dash
 dash
 dash-bootstrap-components
+flask
+flask_sqlalchemy
+python-dotenv
