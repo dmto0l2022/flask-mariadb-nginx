@@ -7,7 +7,6 @@ RUN apt-get update && apt-get -y update \
     && apt-get install -y apt-utils dialog \
     && apt-get install -y build-essential python3.10 python3-pip python3-dev \
     && apt-get -y install nodejs npm \
-    && apt-get -y install python3.10-venv \
     && apt-get -y install podman
 
 RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
