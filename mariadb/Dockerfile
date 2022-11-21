@@ -17,20 +17,22 @@ FROM mariadb:latest
 env MARIADB_USER=pythonuser
 env MARIADB_PASSWORD=pythonuser
 env MARIADB_ROOT_PASSWORD=pythonuser
-#env MARIADB_DATABASE=RubyDB
-env MARIADB_MULTIPLE_DATABASES=RubyDB,World
+env MARIADB_DATABASE=RubyDB
+#env MARIADB_MULTIPLE_DATABASES=RubyDB,World
 
 RUN apt-get update && apt-get -y install vim
 RUN apt-get -y install unzip
 
 COPY world-db.zip /var/www/html/world-db.zip
-RUN unzip -j /var/www/html/world-db.zip -d /docker-entrypoint-initdb.d
+#RUN unzip -j /var/www/html/world-db.zip -d /docker-entrypoint-initdb.d
+
+#RUN unzip -j /var/www/html/world-db.zip -d /
 
 COPY x_backup.sql /docker-entrypoint-initdb.d
 
 #unzip -j /path/to/file.zip -d other_folder
 
-RUN rm /var/www/html/world-db.zip
+#RUN rm /var/www/html/world-db.zip
 
 COPY init.sql /docker-entrypoint-initdb.d/init.sql
 
