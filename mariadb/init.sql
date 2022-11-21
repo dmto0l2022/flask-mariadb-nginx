@@ -1,7 +1,5 @@
 CREATE USER 'pythonuser'@'localhost' IDENTIFIED BY 'pythonuser';
 
-CREATE DATABASE RubyDB;
-
 CREATE DATABASE dmtools;
 
 GRANT ALL PRIVILEGES ON *.* TO 'pythonuser'@'localhost' WITH GRANT OPTION;
