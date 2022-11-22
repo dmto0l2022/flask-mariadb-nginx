@@ -2,6 +2,10 @@
 
 This shows how to create a flask app using podman
 
+# generate model files from existing database
+
+    https://pypi.org/project/sqlacodegen/
+
 # test with flask app
 
 ## empty podman world
