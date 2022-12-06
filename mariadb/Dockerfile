@@ -14,8 +14,8 @@ FROM mariadb:latest
 #ENV MYSQL_USER toto
 #ENV MYSQL_PASSWORD test123
 
-#env MARIADB_USER=pythonuser
-env MARIADB_USER=root
+env MARIADB_USER=pythonuser
+#env MARIADB_USER=root
 env MARIADB_PASSWORD=pythonuser
 env MARIADB_ROOT_PASSWORD=pythonuser
 env MARIADB_DATABASE=RubyDB
