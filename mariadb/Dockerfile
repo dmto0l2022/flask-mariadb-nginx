@@ -14,7 +14,8 @@ FROM mariadb:latest
 #ENV MYSQL_USER toto
 #ENV MYSQL_PASSWORD test123
 
-env MARIADB_USER=pythonuser
+#env MARIADB_USER=pythonuser
+env MARIADB_USER=root
 env MARIADB_PASSWORD=pythonuser
 env MARIADB_ROOT_PASSWORD=pythonuser
 env MARIADB_DATABASE=RubyDB
@@ -23,8 +24,8 @@ env MARIADB_DATABASE=RubyDB
 RUN apt-get update && apt-get -y install vim
 RUN apt-get -y install unzip
 
-#COPY world-db.zip /var/www/html/world-db.zip
-#RUN unzip -j /var/www/html/world-db.zip -d /docker-entrypoint-initdb.d
+COPY world-db.zip /var/www/html/world-db.zip
+RUN unzip -j /var/www/html/world-db.zip -d /docker-entrypoint-initdb.d
 
 #RUN unzip -j /var/www/html/world-db.zip -d /
 
