@@ -3,6 +3,10 @@
 
 https://dev.mysql.com/doc/index-other.html
 
+# Dbeaver Upgrade
+
+sudo apt install /home/andrewcgaitskell/Downloads/dbeaver-ce_22.3.0_amd64.deb
+
 
 # Dockerfile Notes
 
