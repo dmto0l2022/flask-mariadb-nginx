@@ -16,7 +16,8 @@ from sqlalchemy.ext.declarative import declarative_base
 
 #from flask_dance.consumer.backend.sqla import OAuthConsumerMixin, SQLAlchemyBackend
 # flask_dance.consumer.storage.sqla
-from flask_dance.consumer.storage.sqla import OAuthConsumerMixin, SQLAlchemyStorage
+##>> from flask_dance.consumer.storage.sqla import OAuthConsumerMixin, SQLAlchemyStorage
+from flask_dance.consumer.storage.sqla import SQLAlchemyStorage
 
 Base = declarative_base()
 metadata = Base.metadata
@@ -51,10 +52,10 @@ class User(UserMixin , db.Model):
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
-class OAuth(OAuthConsumerMixin, db.Model):
-    provider_user_id = db.Column(db.String(256), unique=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(User.id))
-    user = db.relationship(User)    
+##>> class OAuth(OAuthConsumerMixin, db.Model):
+##>>     provider_user_id = db.Column(db.String(256), unique=True)
+##>>     user_id = db.Column(db.Integer, db.ForeignKey(User.id))
+##>>     user = db.relationship(User)    
     
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
