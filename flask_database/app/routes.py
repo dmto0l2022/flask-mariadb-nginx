@@ -3,7 +3,7 @@ from flask import render_template, flash, redirect, url_for
 ##from app import app
 from flask import current_app as app
 
-from flask_dance.contrib.github import make_github_blueprint, github
+##>> from flask_dance.contrib.github import make_github_blueprint, github
 
 login = app.login_manager
 #from app import db
@@ -23,22 +23,22 @@ from app.forms import RegistrationForm
 def hello():
     return "Hello, World!"
 
-@app.route("/app/login")
-def gitlogin():
-    if not github.authorized:
-        return redirect(url_for("github.login"))
-    resp = github.get("/user")
-    assert resp.ok
-    return "You are @{login} on GitHub".format(login=resp.json()["login"])
+##>> @app.route("/app/login")
+##>> def gitlogin():
+##>>     if not github.authorized:
+##>>         return redirect(url_for("github.login"))
+##>>     resp = github.get("/user")
+##>>     assert resp.ok
+##>>     return "You are @{login} on GitHub".format(login=resp.json()["login"])
 
 @app.route('/app/index')
 ##@login_required
 def index():
     user = {'username': 'Andy'}
-    if not github.authorized:
-        return redirect(url_for("github.login"))
-    resp = github.get("/user")
-    assert resp.ok
+    ##>> if not github.authorized:
+    ##>>     return redirect(url_for("github.login"))
+    ##>> resp = github.get("/user")
+    ##>> assert resp.ok
     return render_template('index.html', title='Index', user=user)
 
 @app.route('/app/test')
@@ -65,7 +65,8 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('Congratulations, you are now a registered user!')
-        return redirect(url_for('gitlogin'))
+        ##>> return redirect(url_for('gitlogin'))
+        return redirect(url_for('index'))
     return render_template('register.html', title='Register', form=form)
 
 #@app.route('/login')
@@ -73,7 +74,7 @@ def register():
 #    form = LoginForm()
 #    return render_template('login.html', title='Sign In', form=form)
 '''
-@app.route('/locallogin', methods=['GET', 'POST'])
+@app.route('/app/login', methods=['GET', 'POST'])
 def locallogin():
     form = LoginForm()
     if form.validate_on_submit():
@@ -83,7 +84,7 @@ def locallogin():
     return render_template('login.html', title='Sign In', form=form)
 '''
 
-@app.route('/app/userlogin', methods=['GET', 'POST'])
+@app.route('/app/login', methods=['GET', 'POST'])
 def userlogin():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
