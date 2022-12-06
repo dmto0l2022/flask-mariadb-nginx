@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
 #gh
-from flask_dance.contrib.github import make_github_blueprint, github
+##>> from flask_dance.contrib.github import make_github_blueprint, github
 ##from flask_dance.consumer.backend.sqla import OAuthConsumerMixin, SQLAlchemyBackend
 from flask_dance.consumer.storage.sqla import OAuthConsumerMixin, SQLAlchemyStorage
 from flask_dance.consumer import oauth_authorized, oauth_error
@@ -25,7 +25,7 @@ BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 
 ## while testing without https
-os.environ["OAUTHLIB_INSECURE_TRANSPORT"]="1"
+##>> os.environ["OAUTHLIB_INSECURE_TRANSPORT"]="1"
 
 def create_app():
     """Construct the core application."""
@@ -38,8 +38,9 @@ def create_app():
 
     app.config['SECRET_KEY'] = environ.get('FLASK_SECRET_KEY')
     ##gh
-    GITHUB_OAUTH_CLIENT_ID = environ.get("GITHUB_OAUTH_CLIENT_ID")
-    GITHUB_OAUTH_CLIENT_SECRET = environ.get("GITHUB_OAUTH_CLIENT_SECRET")
+    
+    ##>> GITHUB_OAUTH_CLIENT_ID = environ.get("GITHUB_OAUTH_CLIENT_ID")
+    ##>> GITHUB_OAUTH_CLIENT_SECRET = environ.get("GITHUB_OAUTH_CLIENT_SECRET")
     
     #github_blueprint = make_github_blueprint(
     #            client_id=GITHUB_OAUTH_CLIENT_ID,
@@ -67,8 +68,8 @@ def create_app():
 
     login = LoginManager(app)
     
-    ##login.login_view = 'login'
-    login.login_view = 'github.login'
+    login.login_view = 'login'
+    ##>> login.login_view = 'github.login'
     
     db.init_app(app)
 
@@ -84,10 +85,13 @@ def create_app():
         #app.config["APPLICATION_ROOT"] = "/app"
         #SCRIPT_NAME
         #app.config["SCRIPT_NAME"] = "/app"
-        from . import routes, models, oauth  # Import routes, models and oauth helper
+        ##>> from . import routes, models, oauth  # Import routes, models and oauth helper
+        from . import routes, models 
         #from models import db, login_manager
         #from oauth import github_blueprint
-        app.register_blueprint(oauth.github_blueprint, url_prefix="/app/login")
+        
+        ##>> app.register_blueprint(oauth.github_blueprint, url_prefix="/app/login")
+        
         db.Model.metadata.reflect(db.engine)
         
         db.create_all()  # Create sql tables for our data models
