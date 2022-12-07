@@ -2,9 +2,9 @@
 
 import smtplib, ssl
 
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEText import MIMEText
-from email.MIMEBase import MIMEBase
+from email import MIMEMultipart
+from email import MIMEText
+from email import MIMEBase
 from email import encoders
 
 import os
