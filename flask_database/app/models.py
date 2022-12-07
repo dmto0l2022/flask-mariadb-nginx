@@ -1,13 +1,13 @@
 import datetime as dt
 from flask import current_app as app
 ##from app import login_manager
-login = app.login_manager
+## login = app.login_manager
 #from app import db
 db = app.extensions['sqlalchemy'].db
 
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from flask_login import UserMixin
+##from flask_login import UserMixin
 
 from sqlalchemy import CHAR, Column, DECIMAL, Enum, ForeignKey, \
                         text, DateTime, Boolean, Integer, String, \
@@ -37,9 +37,9 @@ metadata = Base.metadata
 
 ## https://stackoverflow.com/questions/51209763/attributeerror-type-object-user-has-no-attribute-get
 
-@login.user_loader
-def load_user(user):
-    return User.query.get(user) ## added .query.
+#@login.user_loader
+#def load_user(user):
+#    return User.query.get(user) ## added .query.
 
 ##>> class OAuth(OAuthConsumerMixin, db.Model):
 ##>>     provider_user_id = db.Column(db.String(256), unique=True)
