@@ -2,10 +2,8 @@
 
 import smtplib, ssl
 
-from email import MIMEMultipart
-from email import MIMEText
-from email import MIMEBase
-from email import encoders
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 import os
 
