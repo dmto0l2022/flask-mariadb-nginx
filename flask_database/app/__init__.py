@@ -9,6 +9,9 @@ from flask_migrate import Migrate
 from flask_dance.consumer.storage.sqla import OAuthConsumerMixin, SQLAlchemyStorage
 from flask_dance.consumer import oauth_authorized, oauth_error
 
+from flask_security import Security, SQLAlchemyUserDatastore, auth_required, hash_password
+from flask_security.models import fsqla_v3 as fsqla
+
 #from app.oauth import github_blueprint
 
 from flask_login import LoginManager
