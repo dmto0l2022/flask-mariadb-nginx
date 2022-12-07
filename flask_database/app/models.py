@@ -9,10 +9,15 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from flask_login import UserMixin
 
-from sqlalchemy import CHAR, Column, DECIMAL, Enum, ForeignKey, text, DateTime
+from sqlalchemy import CHAR, Column, DECIMAL, Enum, ForeignKey, \
+                        text, DateTime, Boolean, Integer, String, \
+                        UnicodeText
 from sqlalchemy.dialects.mysql import INTEGER, SMALLINT
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
+
+from flask_security import UserMixin, RoleMixin
+from sqlalchemy.orm import relationship, backref
 
 #from flask_dance.consumer.backend.sqla import OAuthConsumerMixin, SQLAlchemyBackend
 # flask_dance.consumer.storage.sqla
@@ -34,14 +39,42 @@ metadata = Base.metadata
 def load_user(user):
     return User.query.get(user) ## added .query.
 
+##>> class OAuth(OAuthConsumerMixin, db.Model):
+##>>     provider_user_id = db.Column(db.String(256), unique=True)
+##>>     user_id = db.Column(db.Integer, db.ForeignKey(User.id))
+##>>     user = db.relationship(User)    
 
+class RolesUsers(Base):
+    __tablename__ = 'roles_users'
+    id = Column(Integer(), primary_key=True)
+    user_id = Column('user_id', Integer(), ForeignKey('user.id'))
+    role_id = Column('role_id', Integer(), ForeignKey('role.id'))
 
-class User(UserMixin , db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), index=True, unique=True)
-    email = db.Column(db.String(120), index=True, unique=True)
+class Role(Base, RoleMixin):
+    __tablename__ = 'role'
+    id = Column(Integer(), primary_key=True)
+    name = Column(String(80), unique=True)
+    description = Column(String(255))
+    permissions = Column(UnicodeText)
+
+class User(Base, UserMixin):
+    __tablename__ = 'user'
+    id = Column(Integer, primary_key=True)
+    email = Column(String(255), unique=True)
+    username = Column(String(255), unique=True, nullable=True)
+    password = Column(String(255), nullable=False)
     password_hash = db.Column(db.String(128))
     name = db.Column(db.String(256))
+    last_login_at = Column(DateTime())
+    current_login_at = Column(DateTime())
+    last_login_ip = Column(String(100))
+    current_login_ip = Column(String(100))
+    login_count = Column(Integer)
+    active = Column(Boolean())
+    fs_uniquifier = Column(String(255), unique=True, nullable=False)
+    confirmed_at = Column(DateTime())
+    roles = relationship('Role', secondary='roles_users',
+                         backref=backref('users', lazy='dynamic'))
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -52,12 +85,8 @@ class User(UserMixin , db.Model):
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
-##>> class OAuth(OAuthConsumerMixin, db.Model):
-##>>     provider_user_id = db.Column(db.String(256), unique=True)
-##>>     user_id = db.Column(db.Integer, db.ForeignKey(User.id))
-##>>     user = db.relationship(User)    
-    
 class Post(db.Model):
+    __tablename__ = 'post'
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=dt.datetime.utcnow)
