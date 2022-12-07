@@ -2,6 +2,8 @@
 
 ## https://developers.google.com/gmail/api/quickstart/python
 
+## https://www.twilio.com/blog/receiving-emails-python-flask-twilio-sendgrid
+
 import smtplib, ssl
 
 from email.mime.text import MIMEText
