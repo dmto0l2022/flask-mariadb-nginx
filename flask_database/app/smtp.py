@@ -1,5 +1,7 @@
 ## https://stackoverflow.com/questions/73026671/how-do-i-now-since-june-2022-send-an-email-via-gmail-using-a-python-script
 
+## https://developers.google.com/gmail/api/quickstart/python
+
 import smtplib, ssl
 
 from email.mime.text import MIMEText
