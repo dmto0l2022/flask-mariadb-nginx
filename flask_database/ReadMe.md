@@ -16,7 +16,11 @@ https://flask.palletsprojects.com/en/latest/deploying/nginx/
 
 # Reference & Thanks
 
-## todo tomorrow
+## flask security too
+
+https://flask-security-too.readthedocs.io/en/stable/quickstart.html#basic-sqlalchemy-application
+
+## flask dance
 
 https://pypi.org/project/Flask-Dance/
 
