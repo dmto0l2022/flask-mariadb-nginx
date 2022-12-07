@@ -99,8 +99,8 @@ def create_app():
     #github_blueprint.backend = SQLAlchemyStorage(OAuth, db.session, user=current_user)
     
     
-    migrate = Migrate(app, db, login)
-    
+    ##migrate = Migrate(app, db, login)
+    migrate = Migrate(app, db)
     
     with app.app_context():
         #app.config["APPLICATION_ROOT"] = "/app"
