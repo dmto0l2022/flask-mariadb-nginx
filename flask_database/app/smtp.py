@@ -23,14 +23,21 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 #app.config['MAIL_USERNAME'] = 'username'
 #app.config['MAIL_PASSWORD'] = 'password'
 
+mail_server = environ.get('MAIL_SERVER')
+mail_port = environ.get('MAIL_PORT')
+mail_username = environ.get('MAIL_USERNAME')
+mail_password = environ.get('MAIL_PASSWORD')
+sender_email = environ.get('MAIL_SENDEREMAIL')
+receiver_email = environ.get('MAIL_RECEIVEREMAIL')
+
 subject = 'some subject message'
 body = """text body of the email"""
-sender_email = 'my_gmail_account_name@gmail.com'
-receiver_email = 'some_recipient@something.com'
+#sender_email = 'my_gmail_account_name@gmail.com'
+#receiver_email = 'some_recipient@something.com'
 
 # Create a multipart message and set headers
 message = MIMEMultipart()
-message['From'] = 'Mike'
+message['From'] = sender_email
 message['To'] = receiver_email
 message['Subject'] = subject
 # Add body to email
