@@ -15,12 +15,7 @@ from flask_security.models import fsqla_v3 as fsqla
 # At top of file
 from flask_mail import Mail
 
-# After 'Create app'
-app.config['MAIL_SERVER'] = 'smtp.example.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_USERNAME'] = 'username'
-app.config['MAIL_PASSWORD'] = 'password'
+
 
 
 #from app.oauth import github_blueprint
@@ -44,6 +39,13 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 def create_app():
     """Construct the core application."""
     app = Flask(__name__, instance_relative_config=False)
+    
+    # After 'Create app'
+    app.config['MAIL_SERVER'] = 'smtp.example.com'
+    app.config['MAIL_PORT'] = 465
+    app.config['MAIL_USE_SSL'] = True
+    app.config['MAIL_USERNAME'] = 'username'
+    app.config['MAIL_PASSWORD'] = 'password'
     
     db = SQLAlchemy()
         
