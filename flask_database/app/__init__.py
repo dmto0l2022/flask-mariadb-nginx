@@ -40,6 +40,14 @@ def create_app():
     print(environ.get('FLASK_SECRET_KEY'))
 
     app.config['SECRET_KEY'] = environ.get('FLASK_SECRET_KEY')
+    ##security
+    
+    app.config['SECURITY_PASSWORD_SALT'] = environ.get("SECURITY_PASSWORD_SALT", '146585145368132386173505678016728509634')
+
+    # have session and remember cookie be samesite (flask/flask_login)
+    app.config["REMEMBER_COOKIE_SAMESITE"] = "strict"
+    app.config["SESSION_COOKIE_SAMESITE"] = "strict"
+    
     ##gh
     
     ##>> GITHUB_OAUTH_CLIENT_ID = environ.get("GITHUB_OAUTH_CLIENT_ID")
@@ -68,7 +76,16 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
 
     #db = SQLAlchemy(app)
-
+    
+    ##security
+    
+    app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
+    "pool_pre_ping": True,
+    }
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    ##
+    
+    
     login = LoginManager(app)
     
     login.login_view = 'login'
@@ -81,6 +98,7 @@ def create_app():
     ##SQLAlchemyStorage
     #github_blueprint.backend = SQLAlchemyStorage(OAuth, db.session, user=current_user)
     
+    
     migrate = Migrate(app, db, login)
     
     
@@ -92,6 +110,10 @@ def create_app():
         from . import routes, models 
         #from models import db, login_manager
         #from oauth import github_blueprint
+        
+        # Setup Flask-Security
+        user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
+        app.security = Security(app, user_datastore)
         
         ##>> app.register_blueprint(oauth.github_blueprint, url_prefix="/app/login")
         
