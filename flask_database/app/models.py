@@ -19,6 +19,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from flask_security import UserMixin, RoleMixin
 from sqlalchemy.orm import relationship, backref
 
+from flask_security.models import fsqla_v3 as fsqla
+
 #from flask_dance.consumer.backend.sqla import OAuthConsumerMixin, SQLAlchemyBackend
 # flask_dance.consumer.storage.sqla
 ##>> from flask_dance.consumer.storage.sqla import OAuthConsumerMixin, SQLAlchemyStorage
@@ -44,6 +46,16 @@ def load_user(user):
 ##>>     user_id = db.Column(db.Integer, db.ForeignKey(User.id))
 ##>>     user = db.relationship(User)    
 
+# Define models
+fsqla.FsModels.set_db_info(db)
+
+class Role(db.Model, fsqla.FsRoleMixin):
+    pass
+
+class User(db.Model, fsqla.FsUserMixin):
+    pass
+
+'''
 class RolesUsers(Base):
     __tablename__ = 'roles_users'
     id = Column(Integer(), primary_key=True)
@@ -74,7 +86,6 @@ class User(Base, UserMixin):
     roles = relationship('Role', secondary='roles_users',
                          backref=backref('users', lazy='dynamic'))   
     
-    '''
 class User(Base, UserMixin):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
