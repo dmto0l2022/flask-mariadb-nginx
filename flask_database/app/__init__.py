@@ -12,6 +12,17 @@ from flask_dance.consumer import oauth_authorized, oauth_error
 from flask_security import Security, SQLAlchemyUserDatastore, auth_required, hash_password
 from flask_security.models import fsqla_v3 as fsqla
 
+# At top of file
+from flask_mail import Mail
+
+# After 'Create app'
+app.config['MAIL_SERVER'] = 'smtp.example.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USERNAME'] = 'username'
+app.config['MAIL_PASSWORD'] = 'password'
+
+
 #from app.oauth import github_blueprint
 
 ## from flask_login import LoginManager
@@ -119,6 +130,8 @@ def create_app():
         # Setup Flask-Security
         user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
         app.security = Security(app, user_datastore)
+        
+        mail = Mail(app)
         
         app.security.datastore.db.create_all()
         #if not app.security.datastore.find_user(email="test@me.com"):
