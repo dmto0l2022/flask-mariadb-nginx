@@ -14,7 +14,7 @@ from flask_security.models import fsqla_v3 as fsqla
 
 #from app.oauth import github_blueprint
 
-from flask_login import LoginManager
+## from flask_login import LoginManager
 
 #from config import Config
 
@@ -86,9 +86,9 @@ def create_app():
     ##
     
     
-    login = LoginManager(app)
+    #login = LoginManager(app)
     
-    login.login_view = 'login'
+    #login.login_view = 'login'
     ##>> login.login_view = 'github.login'
     
     db.init_app(app)
