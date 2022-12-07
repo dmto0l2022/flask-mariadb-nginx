@@ -22,6 +22,8 @@ RUN pip install flask-sqlacodegen
 RUN pip install flask-login
 RUN pip install email-validator
 RUN pip install blinker
+RUN pip install flask-security-too[fsqla,common]
+
 #RUN flask db init
 #RUN flask db migrate -m "users table"
 #RUN flask db upgrade
