@@ -115,6 +115,11 @@ def create_app():
         user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
         app.security = Security(app, user_datastore)
         
+        app.security.datastore.db.create_all()
+        if not app.security.datastore.find_user(email="test@me.com"):
+            app.security.datastore.create_user(email="test@me.com", password=hash_password("password"))
+        app.security.datastore.db.session.commit()
+        
         ##>> app.register_blueprint(oauth.github_blueprint, url_prefix="/app/login")
         
         db.Model.metadata.reflect(db.engine)
