@@ -2,6 +2,27 @@
 
 import smtplib, ssl
 
+
+import os
+
+from os import environ, path
+
+from dotenv import load_dotenv
+
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+
+## while testing without https
+##>> os.environ["OAUTHLIB_INSECURE_TRANSPORT"]="1"
+
+
+# After 'Create app'
+#app.config['MAIL_SERVER'] = 'smtp.example.com'
+#app.config['MAIL_PORT'] = 465
+#app.config['MAIL_USE_SSL'] = True
+#app.config['MAIL_USERNAME'] = 'username'
+#app.config['MAIL_PASSWORD'] = 'password'
+
 subject = 'some subject message'
 body = """text body of the email"""
 sender_email = 'my_gmail_account_name@gmail.com'
