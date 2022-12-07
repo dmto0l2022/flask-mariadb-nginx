@@ -11,19 +11,19 @@ from flask_security.models import fsqla_v3 as fsqla
 
 ##>> from flask_dance.contrib.github import make_github_blueprint, github
 
-login = app.login_manager
+##login = app.login_manager
 #from app import db
 db = app.extensions['sqlalchemy'].db
 
-from flask_login import current_user, login_user, logout_user
+##from flask_login import current_user, login_user, logout_user
 
-from flask_login import login_required
+##from flask_login import login_required
 
 from app.models import User
 
-from app.forms import LoginForm
+##from app.forms import LoginForm
 
-from app.forms import RegistrationForm
+##from app.forms import RegistrationForm
 
 # Views
 @app.route("/app/check/")
@@ -66,6 +66,7 @@ def user():
     user = {'username': 'Andy'}
     return render_template('user.html', title='Basic', user=user)
 
+'''
 @app.route('/app/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
@@ -80,11 +81,13 @@ def register():
         ##>> return redirect(url_for('gitlogin'))
         return redirect(url_for('index'))
     return render_template('register.html', title='Register', form=form)
-
-#@app.route('/login')
-#def login():
-#    form = LoginForm()
-#    return render_template('login.html', title='Sign In', form=form)
+'''
+'''
+@app.route('/login')
+def login():
+    form = LoginForm()
+    return render_template('login.html', title='Sign In', form=form)
+'''
 '''
 @app.route('/app/login', methods=['GET', 'POST'])
 def locallogin():
@@ -96,6 +99,7 @@ def locallogin():
     return render_template('login.html', title='Sign In', form=form)
 '''
 
+'''
 @app.route('/app/login', methods=['GET', 'POST'])
 def userlogin():
     if current_user.is_authenticated:
@@ -109,6 +113,7 @@ def userlogin():
         login_user(user, remember=form.remember_me.data)
         return redirect(url_for('index'))
     return render_template('userlogin.html', title='Sign In', form=form)
+'''
 
 '''
 def login():
@@ -124,9 +129,10 @@ def login():
             next_page = url_for('index')
         return redirect(next_page)
 '''
-
+'''
 @app.route('/app/logout')
 def logout():
     logout_user()
     flash("You have logged out")
     return redirect(url_for('index'))
+'''
