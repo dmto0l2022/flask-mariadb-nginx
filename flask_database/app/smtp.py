@@ -64,7 +64,7 @@ text = message.as_string()
 context = ssl.create_default_context()
 with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as server:
     print( 'waiting to login...')
-    server.login(sender_email, password)
+    server.login(sender_email, mail_password)
     print( 'waiting to send...')
     server.sendmail(sender_email, receiver_email, text)
 print( 'email appears to have been sent')
