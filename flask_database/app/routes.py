@@ -1,7 +1,13 @@
 #from flask import render_template
 from flask import render_template, flash, redirect, url_for
+
+from flask import Flask, render_template_string
+
 ##from app import app
 from flask import current_app as app
+
+from flask_security import Security, SQLAlchemyUserDatastore, auth_required, hash_password
+from flask_security.models import fsqla_v3 as fsqla
 
 ##>> from flask_dance.contrib.github import make_github_blueprint, github
 
