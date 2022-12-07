@@ -19,6 +19,12 @@ from app.forms import LoginForm
 
 from app.forms import RegistrationForm
 
+# Views
+@app.route("/app/check/")
+@auth_required()
+def check():
+    return render_template_string("Hello {{ current_user.email }}")
+
 @app.route('/app/')
 def hello():
     return "Hello, World!"
