@@ -48,6 +48,7 @@ def create_app():
     app.config["REMEMBER_COOKIE_SAMESITE"] = "strict"
     app.config["SESSION_COOKIE_SAMESITE"] = "strict"
     
+    
     ##gh
     
     ##>> GITHUB_OAUTH_CLIENT_ID = environ.get("GITHUB_OAUTH_CLIENT_ID")
@@ -110,6 +111,10 @@ def create_app():
         from . import routes, models 
         #from models import db, login_manager
         #from oauth import github_blueprint
+        
+        ##https://stackoverflow.com/questions/14793098/how-to-use-flask-security-register-view
+        app.config['SECURITY_REGISTERABLE'] = True
+        app.config['SECURITY_REGISTER_URL'] = '/app/register'
         
         # Setup Flask-Security
         user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
