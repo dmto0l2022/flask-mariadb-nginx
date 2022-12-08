@@ -54,6 +54,11 @@ def create_app():
     app.config['MAIL_USERNAME'] = mail_username
     app.config['MAIL_PASSWORD'] = mail_password
     
+    ## https://stackoverflow.com/questions/65997108/flask-mail-ssl-wrong-version-number-wrong-version-number-ssl-c1123
+    app.config['MAIL_USE_TLS'] = True
+    app.config['MAIL_USE_SSL'] = False
+    
+    
     db = SQLAlchemy()
         
     print('key from file: ')
