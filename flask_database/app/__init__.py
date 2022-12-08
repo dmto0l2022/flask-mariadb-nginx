@@ -14,6 +14,8 @@ from flask_security.models import fsqla_v3 as fsqla
 
 # At top of file
 from flask_mail import Mail
+from werkzeug.middleware.proxy_fix import ProxyFix
+
 
 
 
@@ -58,6 +60,8 @@ def create_app():
     app.config['MAIL_USE_TLS'] = True
     app.config['MAIL_USE_SSL'] = False
     
+    # required for user logging
+    app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1)
     
     db = SQLAlchemy()
         
