@@ -3,6 +3,8 @@
 
 ## https://www.aserto.com/blog/flask-rbac-demystified-a-developer-s-guide
 
+## https://pythonhosted.org/Flask-Security/api.html?highlight=role#flask_security.decorators.roles_required
+
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
