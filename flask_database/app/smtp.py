@@ -4,6 +4,11 @@
 
 ## https://www.twilio.com/blog/receiving-emails-python-flask-twilio-sendgrid
 
+## above two not required
+# 1 enable two factor authentication for gmail account
+# 2 generate 16 char app password and use as normal password in env file
+
+
 import smtplib, ssl
 
 from email.mime.text import MIMEText
