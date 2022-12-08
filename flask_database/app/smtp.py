@@ -8,6 +8,7 @@
 # 1 enable two factor authentication for gmail account
 # 2 generate 16 char app password and use as normal password in env file
 
+# https://github.com/The-Intrigued-Engineer/python_emails/blob/main/text_email.py
 
 import smtplib, ssl
 
