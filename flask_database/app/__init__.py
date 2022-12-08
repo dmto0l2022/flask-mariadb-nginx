@@ -140,6 +140,20 @@ def create_app():
         ##https://stackoverflow.com/questions/14793098/how-to-use-flask-security-register-view
         app.config['SECURITY_REGISTERABLE'] = True
         app.config['SECURITY_REGISTER_URL'] = '/app/register'
+        app.config['SECURITY_RESET_URL'] = '/app/reset'
+        SECURITY_CHANGE_URL
+        SECURITY_CONFIRM_URL
+        SECURITY_POST_LOGIN_VIEW
+        SECURITY_POST_LOGOUT_VIEW
+        SECURITY_POST_REGISTER_VIEW
+        SECURITY_POST_CONFIRM_VIEW
+        SECURITY_POST_RESET_VIEW
+        SECURITY_POST_CHANGE_VIEW
+        SECURITY_UNAUTHORIZED_VIEW
+        SECURITY_CONFIRMABLE=True
+        SECURITY_RECOVERABLE=True
+        SECURITY_TRACKABLE=True
+        SECURITY_CHANGEABLE=True
         
         # Setup Flask-Security
         user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
