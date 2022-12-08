@@ -1,6 +1,8 @@
 
 ## https://flask-user.readthedocs.io/en/latest/basic_app.html
 
+## https://www.aserto.com/blog/flask-rbac-demystified-a-developer-s-guide
+
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
