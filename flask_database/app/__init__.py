@@ -140,6 +140,8 @@ def create_app():
         ##https://stackoverflow.com/questions/14793098/how-to-use-flask-security-register-view
         app.config['SECURITY_REGISTERABLE'] = True
         app.config['SECURITY_REGISTER_URL'] = '/app/register'
+        app.config['SECURITY_LOGIN_URL'] = '/app/login'
+        app.config['SECURITY_LOGOUT_URL'] = '/app/logout'
         app.config['SECURITY_RESET_URL'] = '/app/reset'
         app.config['SECURITY_CHANGE_URL'] = '/app/change'
         app.config['SECURITY_CONFIRM_URL'] = '/app/confirm'
