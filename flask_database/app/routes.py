@@ -15,7 +15,7 @@ from flask_security.models import fsqla_v3 as fsqla
 #from app import db
 db = app.extensions['sqlalchemy'].db
 
-##from flask_login import current_user, login_user, logout_user
+from flask_login import current_user
 
 ##from flask_login import login_required
 
@@ -34,6 +34,10 @@ def check():
 @app.route('/app/')
 def hello():
     return "Hello, World!"
+
+@app.route('/app/welcome/')
+def welcome():
+    return "Welcome to DM Tools!"
 
 ##>> @app.route("/app/login")
 ##>> def gitlogin():
