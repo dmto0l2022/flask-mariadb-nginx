@@ -9,6 +9,8 @@ ADD myapp.py /
 ADD wsgi.py /
 ADD /app/*.* /app/
 ADD /app/templates/*.* /app/templates/
+ADD /app/templates/security/*.* /app/templates/security/
+ADD /app/templates/security/email/*.* /app/templates/security/email/
 RUN pip install python-dotenv
 RUN pip install flask
 RUN pip install flask_restful
