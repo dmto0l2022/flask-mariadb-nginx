@@ -5,6 +5,7 @@ cd /opt/dmtools/code/flask-mariadb-nginx/mariadb
 podman pod create \
 --name pod-db-backend \
 --infra-name infra-db-backend \
+--user 1001 \
 --network bridge \
 --publish 3306:3306
 
@@ -15,5 +16,6 @@ podman build -t my-mariadb-1 .
 podman run -dt \
 --name db_backend-1 \
 --pod pod-db-backend \
+--user 1001 \
 --volume /opt/dmtools/mysql:/var/lib/mysql \
 localhost/my-mariadb-1:latest
