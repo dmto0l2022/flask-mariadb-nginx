@@ -7,6 +7,9 @@
 
 FROM mariadb:latest
 
+RUN apt-get update && apt-get -y install vim
+RUN apt-get -y install unzip
+
 ARG USERNAME=agaitske
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
@@ -30,8 +33,6 @@ env MARIADB_ROOT_PASSWORD=pythonuser
 env MARIADB_DATABASE=RubyDB
 #env MARIADB_MULTIPLE_DATABASES=RubyDB,world
 
-RUN apt-get update && apt-get -y install vim
-RUN apt-get -y install unzip
 
 COPY world-db.zip /var/www/html/world-db.zip
 RUN unzip -j /var/www/html/world-db.zip -d /docker-entrypoint-initdb.d
