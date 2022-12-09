@@ -11,8 +11,8 @@ RUN apt-get update && apt-get -y install vim
 RUN apt-get -y install unzip
 
 ARG USERNAME=agaitske
-ARG USER_UID=1000
-ARG USER_GID=$USER_UID
+ARG USER_UID=1001
+ARG USER_GID=1002 ## dm group
 
 # Create the user
 RUN groupadd --gid $USER_GID $USERNAME \
