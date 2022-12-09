@@ -5,7 +5,6 @@ cd /opt/dmtools/code/flask-mariadb-nginx/mariadb
 podman pod create \
 --name pod-db-backend \
 --infra-name infra-db-backend \
---user 1001 \
 --network bridge \
 --publish 3306:3306
 
