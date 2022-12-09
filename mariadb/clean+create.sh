@@ -10,7 +10,10 @@ podman pod create \
 
 podman build -t my-mariadb-1 .
 
+##-v /HOST-DIR:/CONTAINER-DIR
+
 podman run -dt \
 --name db_backend-1 \
 --pod pod-db-backend \
+--volume /opt/dmtools/mysql:/var/lib/mysql
 localhost/my-mariadb-1:latest
