@@ -18,8 +18,8 @@ ARG USER_GID=$USER_UID
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 
-RUN MKDIR /docker-entrypoint-initdb.d
-RUN CHOWN $USER_UID:$USER_GID /docker-entrypoint-initdb.d
+RUN mkdir /docker-entrypoint-initdb.d
+RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
 
 USER $USERNAME
 #ADD sql/ /docker-entrypoint-initdb.d
