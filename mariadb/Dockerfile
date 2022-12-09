@@ -7,6 +7,15 @@
 
 FROM mariadb:latest
 
+ARG USERNAME=agaitske
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+# Create the user
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+
+USER $USERNAME
 #ADD sql/ /docker-entrypoint-initdb.d
 
 #ENV MYSQL_ROOT_PASSWORD test123
