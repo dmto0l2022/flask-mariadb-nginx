@@ -15,5 +15,5 @@ podman build -t my-mariadb-1 .
 podman run -dt \
 --name db_backend-1 \
 --pod pod-db-backend \
---volume /opt/dmtools/mysql:/var/lib/mysql
+--volume /opt/dmtools/mysql:/var/lib/mysql \
 localhost/my-mariadb-1:latest
