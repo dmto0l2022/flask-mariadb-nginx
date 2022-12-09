@@ -20,6 +20,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 #RUN mkdir /docker-entrypoint-initdb.d ## already exists
 RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
+RUN chown $USER_UID:$USER_GID /var/lib/mysql
 
 USER $USERNAME
 #ADD sql/ /docker-entrypoint-initdb.d
