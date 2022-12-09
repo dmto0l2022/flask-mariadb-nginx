@@ -2,6 +2,13 @@ podman pod stop pod-db-backend
 podman pod rm pod-db-backend
 cd /opt/dmtools/code/flask-mariadb-nginx/mariadb
 
+uid=1001
+gid=1002
+subuidSize=$(( $(podman info --format "{{ range \
+   .Host.IDMappings.UIDMap }}+{{.Size }}{{end }}" ) - 1 ))
+subgidSize=$(( $(podman info --format "{{ range \
+   .Host.IDMappings.GIDMap }}+{{.Size }}{{end }}" ) - 1 ))
+
 podman pod create \
 --name pod-db-backend \
 --infra-name infra-db-backend \
@@ -15,6 +22,12 @@ podman build -t my-mariadb-1 .
 podman run -dt \
 --name db_backend-1 \
 --pod pod-db-backend \
---user 1001 \
---volume /opt/dmtools/mysql:/var/lib/mysql \
+--volume /opt/dmtools/mysql:/var/lib/mysql:z \
+--user $uid:$gid \
+--uidmap 0:1:$uid \
+--uidmap $uid:0:1 \
+--uidmap $(($uid+1)):$(($uid+1)):$(($subuidSize-$uid)) \
+--gidmap 0:1:$gid \
+--gidmap $gid:0:1 \
+--gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
 localhost/my-mariadb-1:latest
