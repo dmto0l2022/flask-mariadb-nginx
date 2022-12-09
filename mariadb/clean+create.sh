@@ -13,6 +13,12 @@ podman pod create \
 --name pod-db-backend \
 --infra-name infra-db-backend \
 --network bridge \
+--uidmap 0:1:$uid \
+--uidmap $uid:0:1 \
+--uidmap $(($uid+1)):$(($uid+1)):$(($subuidSize-$uid)) \
+--gidmap 0:1:$gid \
+--gidmap $gid:0:1 \
+--gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
 --publish 3306:3306
 
 podman build -t my-mariadb-1 .
@@ -24,10 +30,4 @@ podman run -dt \
 --pod pod-db-backend \
 --volume /opt/dmtools/mysql:/var/lib/mysql:z \
 --user $uid:$gid \
---uidmap 0:1:$uid \
---uidmap $uid:0:1 \
---uidmap $(($uid+1)):$(($uid+1)):$(($subuidSize-$uid)) \
---gidmap 0:1:$gid \
---gidmap $gid:0:1 \
---gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
 localhost/my-mariadb-1:latest
