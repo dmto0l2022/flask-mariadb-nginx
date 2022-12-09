@@ -1,5 +1,5 @@
-uid=1000
-gid=1000
+uid=1001
+gid=1002
 subuidSize=$(( $(podman info --format "{{ range \
    .Host.IDMappings.UIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 subgidSize=$(( $(podman info --format "{{ range \
