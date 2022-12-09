@@ -37,7 +37,7 @@ def hello():
 
 @app.route('/app/welcome/')
 def welcome():
-    return "Welcome to DM Tools!"
+    return render_template('welcome.html')
 
 ##>> @app.route("/app/login")
 ##>> def gitlogin():
