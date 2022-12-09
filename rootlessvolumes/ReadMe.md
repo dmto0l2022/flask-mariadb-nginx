@@ -32,17 +32,6 @@ touch: /dest/file: Permission denied
 
 Obviously the container user is not able to write to the volume. So what do we do? Well we need to change the permissions so that they match the user (similar to what podman does for us automatically when using a container volume).
 
-If you have root on the box, that’s pretty easy.
-1
-2
-3
-4
-5
-6
-7
-8
-9
-	
 $ chown 100122:100122 src
  
 $ ls -lZd src
