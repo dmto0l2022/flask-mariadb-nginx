@@ -20,7 +20,7 @@ RUN chown $USER_UID:$USER_GID /app
 USER $USERNAME
 
 RUN python3 -m venv /app/env
-RUN source /app/env/bin/activate
+RUN . /app/env/bin/activate
 RUN pip install --upgrade pip
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
