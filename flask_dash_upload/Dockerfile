@@ -19,9 +19,24 @@ RUN chown $USER_UID:$USER_GID /app
 
 USER $USERNAME
 
-RUN python3 -m venv /app/env
-RUN /app/env/bin/python -m pip install --upgrade pip
-RUN . /app/env/bin/activate
+## https://pythonspeed.com/articles/activate-virtualenv-dockerfile/
+
+ENV VIRTUAL_ENV=/app/env
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# Install dependencies:
+##COPY requirements.txt .
+##RUN pip install -r requirements.txt
+
+# Run the application:
+#COPY myapp.py .
+#CMD ["python", "myapp.py"]
+
+
+##RUN python3 -m venv /app/env
+##RUN /app/env/bin/python -m pip install --upgrade pip
+##RUN . /app/env/bin/activate
 RUN python --version
 RUN whereis python
 RUN whereis pip
