@@ -36,6 +36,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 ##RUN python3 -m venv /app/env
 ##RUN /app/env/bin/python -m pip install --upgrade pip
+RUN /app/env/bin/python3 -m pip install --upgrade pip
 ##RUN . /app/env/bin/activate
 RUN python --version
 RUN whereis python
