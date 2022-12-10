@@ -38,12 +38,12 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 ##RUN python3 -m venv /app/env
 ##RUN /app/env/bin/python -m pip install --upgrade pip
 RUN /app/env/bin/python3 -m pip install --upgrade pip
-##RUN . /app/env/bin/activate
-RUN python3 --version
-RUN whereis python3
-RUN whereis pip3
+#RUN . /app/env/bin/activate
+RUN /app/env/bin/python3 --version
+RUN whereis /app/env/bin/python3/python3
+RUN whereis /app/env/bin/python3/pip3
 COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+RUN /app/env/bin/pip3 install -r requirements.txt
 COPY . .
 EXPOSE 8000
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8000"]
+CMD [ "/app/env/bin/python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8000"]
