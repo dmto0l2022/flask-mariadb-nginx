@@ -21,6 +21,7 @@ USER $USERNAME
 
 RUN python3 -m venv /app/env
 RUN . /app/env/bin/activate
+RUN /app/env/bin/python -m pip install --upgrade pip
 RUN pip install --upgrade pip
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
