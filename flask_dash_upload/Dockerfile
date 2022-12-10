@@ -46,5 +46,5 @@ COPY requirements.txt requirements.txt
 RUN /app/env/bin/pip3 install -r requirements.txt
 RUN /app/env/bin/pip3 freeze
 COPY . .
-EXPOSE 8000
-CMD [ "/app/env/bin/python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8001"]
+EXPOSE 8002
+CMD [ "/app/env/bin/python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8002"]
