@@ -20,10 +20,10 @@ RUN chown $USER_UID:$USER_GID /app
 USER $USERNAME
 
 RUN python3 -m venv /app/env
-RUN /app/env/bin/python -m pip install --upgrade pip
+RUN /app/env/bin/python -m pip3 install --upgrade pip
 RUN . /app/env/bin/activate
 COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 COPY . .
 EXPOSE 8000
-CMD [ "python", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8000"]
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8000"]
