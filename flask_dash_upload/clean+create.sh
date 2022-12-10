@@ -19,7 +19,7 @@ podman pod create \
 --gidmap 0:1:$gid \
 --gidmap $gid:0:1 \
 --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
---publish 8001:8001
+--publish 8002:8002
 
 podman build -t my-dashupload-1 .
 
