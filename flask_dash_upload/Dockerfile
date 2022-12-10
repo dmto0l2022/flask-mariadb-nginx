@@ -20,8 +20,11 @@ RUN chown $USER_UID:$USER_GID /app
 USER $USERNAME
 
 RUN python3 -m venv /app/env
-RUN /app/env/bin/python -m pip3 install --upgrade pip
+RUN /app/env/bin/python -m pip install --upgrade pip
 RUN . /app/env/bin/activate
+RUN python3 --version
+RUN whereis python3
+RUN whereis pip3
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 COPY . .
