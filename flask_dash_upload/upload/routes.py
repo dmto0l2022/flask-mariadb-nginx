@@ -36,6 +36,8 @@ def upload_file():
         path2folder = os.path.join(current_app.config['UPLOAD_FOLDER'], newfolder)
         print(path2folder)
         print(newfilename)
+        fullfilepath = os.path.join(path2folder, newfilename)
+        print(fullfilepath)
         try:
             os.makedirs(path2folder)    
         except FileExistsError:
@@ -46,7 +48,7 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             #filename = secure_filename(file.filename)
-            file.save(path2folder, newfilename)
+            file.save(fullfilepath)
             ##return redirect(url_for('download_file', name=filename))
     return render_template('upload.html')
 
