@@ -6,6 +6,8 @@ from flask import Flask, flash, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import mariadb
 
+from app.database import db_session
+
 import os
 
 from werkzeug.utils import secure_filename
@@ -20,20 +22,30 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 ## while testing without https
 ##>> os.environ["OAUTHLIB_INSECURE_TRANSPORT"]="1"
 
+UPLOAD_FOLDER = environ.get('UPLOAD_FOLDER')
+
 #UPLOAD_FOLDER = '/uploads'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 db = SQLAlchemy()
 
+from app.database import init_db
+
+init_db()
+
 def create_app():
     app = Flask(__name__,  instance_relative_config=True)
     #mail_server = environ.get('MAIL_SERVER')
 
-    db.init_app(app)
-    app.config.from_object('config')
-    #app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    init_app(app)
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     from hello.routes import hello_page_bp
     from upload.routes import upload_page_bp
     app.register_blueprint(hello_page_bp)
     app.register_blueprint(upload_page_bp)
+    
+    @app.teardown_appcontext
+        def shutdown_session(exception=None):
+            db_session.remove()
+    
     return app
