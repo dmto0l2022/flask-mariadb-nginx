@@ -34,7 +34,8 @@ env MARIADB_USER=pythonuser
 #env MARIADB_USER=root
 env MARIADB_PASSWORD=pythonuser
 env MARIADB_ROOT_PASSWORD=pythonuser
-env MARIADB_DATABASE=RubyDB
+#env MARIADB_DATABASE=RubyDB
+env MARIADB_DATABASE=world
 #env MARIADB_MULTIPLE_DATABASES=RubyDB,world
 
 
@@ -43,7 +44,7 @@ RUN unzip -j /var/www/html/world-db.zip -d /docker-entrypoint-initdb.d
 
 #RUN unzip -j /var/www/html/world-db.zip -d /
 
-COPY x_backup.sql /docker-entrypoint-initdb.d
+### COPY x_backup.sql /docker-entrypoint-initdb.d
 
 #unzip -j /path/to/file.zip -d other_folder
 
@@ -54,10 +55,4 @@ COPY init.sql /docker-entrypoint-initdb.d/init.sql
 EXPOSE 3306
 
 CMD ["mysqld"]
-
-#RUN wget -O /var/www/html/type.zip http://wp-templates.ru/download/2405 \
-#&& unzip '/var/www/html/type.zip' -d /var/www/html/wp-content/themes/ && rm 
-#/var/www/html/type.zip || true;
-
-#ADD 20211104_dmtools_backup.sql /docker-entrypoint-initdb.d
 
