@@ -18,6 +18,9 @@ RUN groupadd --gid $USER_GID $USERNAME \
 #RUN chown $USER_UID:$USER_GID /var/lib/mysql
 RUN chown $USER_UID:$USER_GID /app
 
+RUN mkdir /uploads
+RUN chown $USER_UID:$USER_GID /uploads
+
 USER $USERNAME
 
 ## https://pythonspeed.com/articles/activate-virtualenv-dockerfile/
