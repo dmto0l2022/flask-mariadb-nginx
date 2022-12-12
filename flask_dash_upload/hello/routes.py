@@ -1,6 +1,6 @@
 from flask import Blueprint
-route_blueprint = Blueprint('route_blueprint', __name__)
+hello_page_bp = Blueprint('hello_page_bp', __name__)
 
-@route_blueprint.route('/')
+@hello_page_bp.route('/')
 def index():
      return "Hello"
