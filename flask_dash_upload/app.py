@@ -7,7 +7,7 @@ import os
 
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = '/app/uploads'
+UPLOAD_FOLDER = '/uploads'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 def create_app():
