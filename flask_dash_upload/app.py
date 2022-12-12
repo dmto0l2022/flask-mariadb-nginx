@@ -4,6 +4,7 @@ from flask import Flask, flash, request, redirect, url_for
 ## from flask_uploads import UploadSet, configure_uploads
 
 from flask_sqlalchemy import SQLAlchemy
+import mariadb
 
 import os
 
