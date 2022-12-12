@@ -1,5 +1,6 @@
 from flask import Flask
-from flask.ext.uploads import UploadSet, configure_uploads, IMAGES
+##from flask.ext.uploads import UploadSet, configure_uploads, IMAGES
+from flask_uploads import UploadSet, configure_uploads
 
 def create_app():
     app = Flask(__name__)
