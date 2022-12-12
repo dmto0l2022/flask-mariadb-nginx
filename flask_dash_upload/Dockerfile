@@ -55,4 +55,6 @@ RUN /app/env/bin/pip3 install -r requirements.txt
 RUN /app/env/bin/pip3 freeze
 COPY . .
 EXPOSE 8002
-CMD [ "/app/env/bin/python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8002"]
+##CMD [ "/app/env/bin/python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8002"]
+RUN chmod +x /entry-point.sh
+ENTRYPOINT ["./entry-point.sh"]
