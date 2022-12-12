@@ -45,7 +45,7 @@ def create_app():
     app.register_blueprint(upload_page_bp)
     
     @app.teardown_appcontext
-        def shutdown_session(exception=None):
-            db_session.remove()
+    def shutdown_session(exception=None):
+        db_session.remove()
     
     return app
