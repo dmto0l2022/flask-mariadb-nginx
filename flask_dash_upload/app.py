@@ -10,6 +10,16 @@ import os
 
 from werkzeug.utils import secure_filename
 
+from os import environ, path
+
+from dotenv import load_dotenv
+
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+
+## while testing without https
+##>> os.environ["OAUTHLIB_INSECURE_TRANSPORT"]="1"
+
 #UPLOAD_FOLDER = '/uploads'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
@@ -17,7 +27,8 @@ db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__,  instance_relative_config=True)
-    
+    #mail_server = environ.get('MAIL_SERVER')
+
     db.init_app(app)
     app.config.from_object('config')
     #app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
