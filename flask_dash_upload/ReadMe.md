@@ -14,6 +14,10 @@ above encourages using the extension Flask-Uploads
 
 https://pythonhosted.org/Flask-Uploads/
 
+# Flask Blueprints
+
+https://stackoverflow.com/questions/33467537/binding-routes-when-using-an-app-factory
+
 # Dash Upload
 
 https://dash.plotly.com/dash-core-components/upload
