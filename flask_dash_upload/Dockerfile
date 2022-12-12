@@ -8,7 +8,7 @@ RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
 RUN apt-get update && apt-get install -y mariadb-server galera-4 mariadb-client libmariadb3 mariadb-backup mariadb-common
 RUN apt-get install -y libmariadb-dev
 
-WORKDIR /app
+WORKDIR /
 
 ARG USERNAME=agaitske
 ARG USER_UID=1001
@@ -57,4 +57,4 @@ COPY . .
 EXPOSE 8002
 ##CMD [ "/app/env/bin/python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8002"]
 ##RUN chmod +x /app/entry-point.sh
-ENTRYPOINT ["./app/entry-point.sh"]
+ENTRYPOINT ["./entry-point.sh"]
