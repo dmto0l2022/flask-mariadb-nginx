@@ -6,9 +6,8 @@ https://docs.docker.com/language/python/build-images/
 
 https://blog.miguelgrinberg.com/post/handling-file-uploads-with-flask
 
-https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
+https://flask.palletsprojects.com/en/2.0.x/patterns/fileuploads/
 
-above encourages using the extension Flask-Uploads
 
 # Flask Upload in App Context
 
