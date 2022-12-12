@@ -5,7 +5,7 @@ RUN apt-get -y install unzip
 
 RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
 RUN apt-get update && apt-get install -y mariadb-server galera-4 mariadb-client libmariadb3 mariadb-backup mariadb-common
-RUN apt-get install libmariadb-dev
+RUN apt-get install -y libmariadb-dev
 
 WORKDIR /app
 
