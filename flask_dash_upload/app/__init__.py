@@ -31,13 +31,11 @@ db = SQLAlchemy()
 
 from app.database import init_db
 
-init_db()
-
 def create_app():
     app = Flask(__name__,  instance_relative_config=True)
     #mail_server = environ.get('MAIL_SERVER')
 
-    init_db(app)
+    init_db()
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     from hello.routes import hello_page_bp
     from upload.routes import upload_page_bp
