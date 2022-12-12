@@ -1,5 +1,6 @@
 from flask import Blueprint
-from flask.ext.uploads import UploadSet, configure_uploads, IMAGES
+#from flask.ext.uploads import UploadSet, configure_uploads, IMAGES
+from flask_uploads import UploadSet, configure_uploads, IMAGES
 route_blueprint = Blueprint('route_blueprint', __name__)
 
 @route_blueprint.route('/upload/files', methods=['GET', 'POST'])
