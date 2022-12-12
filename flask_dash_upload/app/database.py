@@ -14,7 +14,9 @@ MARIADB_PASSWORD = environ.get('MARIADB_PASSWORD')
 MARIADB_CONTAINER = environ.get('MARIADB_CONTAINER')
 MARIADB_DATABASE = environ.get('MARIADB_DATABASE')
 
-SQLALCHEMY_DATABASE_URI =  "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/" + MARIADB_DATAB$
+SQLALCHEMY_DATABASE_URI =  "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" \
+                            + MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/" \
+                            + MARIADB_DATABASE
 
 
 engine = create_engine(SQLALCHEMY_DATABASE_URI)
