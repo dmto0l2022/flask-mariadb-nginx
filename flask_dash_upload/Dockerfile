@@ -54,7 +54,7 @@ COPY requirements.txt /workdir/requirements.txt
 RUN /workdir/app/env/bin/pip3 install -r /workdir/requirements.txt
 RUN /workdir/app/env/bin/pip3 freeze
 COPY . /workdir/.
-RUN ls -R /workdir/
+##RUN ls -R /workdir/
 EXPOSE 8002
 ##CMD [ "/app/env/bin/python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8002"]
 ##RUN chmod +x //app/entry-point.sh
