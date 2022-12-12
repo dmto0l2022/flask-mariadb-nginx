@@ -23,3 +23,16 @@ https://dash.plotly.com/dash-core-components/upload
 
 https://github.com/Coding-with-Adam/Dash-by-Plotly/tree/master/Dash%20Components/Upload
 
+# Contexts
+
+https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/contexts/
+
+# Blueprints
+
+https://flask.palletsprojects.com/en/2.2.x/blueprints/
+
+
+# SQLAlchemy
+
+https://flask.palletsprojects.com/en/2.2.x/patterns/sqlalchemy/
+
