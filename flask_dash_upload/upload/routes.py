@@ -13,7 +13,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/upload/files', methods=['GET', 'POST'])
+@app.route('/app/upload/files', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
@@ -29,7 +29,7 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('download_file', name=filename))
+            ##return redirect(url_for('download_file', name=filename))
     return '''
     <!doctype html>
     <title>Upload new File</title>
@@ -60,6 +60,6 @@ def show(id):
     return render_template('show.html', url=url, photo=photo)
 '''
 
-@route_blueprint.route('/upload')
+@route_blueprint.route('/app/upload')
 def index():
      return "Hello"
