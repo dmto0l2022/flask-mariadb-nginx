@@ -2,7 +2,7 @@ from flask import Blueprint
 from flask import current_app
 
 import os
-from flask import Flask, flash, request, redirect, url_for
+from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = '/uploads'
