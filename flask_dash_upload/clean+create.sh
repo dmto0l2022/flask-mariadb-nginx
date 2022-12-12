@@ -28,7 +28,7 @@ podman build -t my-dashupload-1 .
 podman run -dt \
 --name upload_backend-1 \
 --pod pod-upload-backend \
---volume /opt/dmtools/mysql:/var/lib/mysql:z \
+--volume /opt/dmtools/uploads:/uploads:z \
 --user $uid:$gid \
 localhost/my-dashupload-1:latest
 
