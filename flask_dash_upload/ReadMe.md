@@ -2,9 +2,13 @@
 
 https://docs.docker.com/language/python/build-images/
 
-# Flask Upload
+# Pure Flask Upload
 
 https://blog.miguelgrinberg.com/post/handling-file-uploads-with-flask
+
+# Flask Upload in App Context
+
+https://pythonhosted.org/Flask-Uploads/
 
 # Dash Upload
 
