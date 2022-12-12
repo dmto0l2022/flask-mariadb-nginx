@@ -56,5 +56,5 @@ RUN /app/env/bin/pip3 freeze
 COPY . .
 EXPOSE 8002
 ##CMD [ "/app/env/bin/python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8002"]
-RUN chmod +x /app/entry-point.sh
+##RUN chmod +x /app/entry-point.sh
 ENTRYPOINT ["./app/entry-point.sh"]
