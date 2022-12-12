@@ -60,6 +60,6 @@ def show(id):
     return render_template('show.html', url=url, photo=photo)
 '''
 
-@route_blueprint.route('/app/upload')
+@upload_page_bp.route('/app/upload')
 def index():
      return "Hello"
