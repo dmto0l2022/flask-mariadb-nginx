@@ -32,8 +32,10 @@ def upload_file():
         iso_date = now.strftime('%Y%m%d%H%M%S%f')
         extension = file.filename.rsplit('.', 1)[1].lower()
         newfolder = iso_date
-        newfilename = "data." + extension
-        path2folder = os.path.join(current_app.config['UPLOAD_FOLDER'], newfolder) 
+        newfilename = 'data.' + extension
+        path2folder = os.path.join(current_app.config['UPLOAD_FOLDER'], newfolder)
+        print(path2folder)
+        print(newfilename)
         try:
             os.makedirs(path2folder)    
         except FileExistsError:
