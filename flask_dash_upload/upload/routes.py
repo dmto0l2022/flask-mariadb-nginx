@@ -1,4 +1,5 @@
 from flask import Blueprint
+from flask import current_app
 
 import os
 from flask import Flask, flash, request, redirect, url_for
@@ -28,7 +29,7 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(upload_page_bp.config['UPLOAD_FOLDER'], filename))
+            file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
             ##return redirect(url_for('download_file', name=filename))
     return '''
     <!doctype html>
