@@ -7,13 +7,13 @@ from werkzeug.utils import secure_filename
 UPLOAD_FOLDER = '/uploads'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
-route_blueprint = Blueprint('route_blueprint', __name__)
+upload_page_bp = Blueprint('upload_page_bp', __name__)
 
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@route_blueprint.route('/app/upload/files', methods=['GET', 'POST'])
+@upload_page_bp.route('/app/upload/files', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
