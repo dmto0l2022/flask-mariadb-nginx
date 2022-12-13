@@ -2,3 +2,11 @@ python-dotenv
 flask
 flask_sqlalchemy
 mariadb
+xlsxwriter
+xlrd
+matplotlib
+ipywidgets
+openpyxl
+python-dotenv
+SQLAlchemy
+pymysql
