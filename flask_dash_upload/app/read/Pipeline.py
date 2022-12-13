@@ -1,21 +1,3 @@
-
-
-Jupyter Notebook
-DataPipeline Last Checkpoint: 5 hours ago (autosaved) Current Kernel Logo
-
-Python 3 (ipykernel)
-
-    File
-    Edit
-    View
-    Insert
-    Cell
-    Kernel
-    Widgets
-    Help
-
-Install Libraries
-
 !pip install xlsxwriter
 
 !pip install  xlrd
