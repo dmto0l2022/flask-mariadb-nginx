@@ -36,8 +36,6 @@ RUN chown $USER_UID:$USER_GID /workdir/uploads
 RUN mkdir /workdir/notebooks
 RUN chown $USER_UID:$USER_GID /workdir/notebooks
 
-RUN mkdir /workdir/notebooks
-
 USER $USERNAME
 
 ENV VIRTUAL_ENV=/workdir/env
