@@ -10,6 +10,6 @@ RUN mkdir /workdir/jupyterhub
 
 COPY jupyterhub_config.py /workdir/jupyterhub/jupyterhub_config.py
 
-RUN ls -al /workdir
+RUN ls -al /workdir/jupyterhub/
 
 CMD ["jupyterhub", "-f", "/workdir/jupyterhub/jupyterhub_config.py"]
