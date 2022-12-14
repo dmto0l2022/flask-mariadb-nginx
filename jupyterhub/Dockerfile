@@ -36,6 +36,9 @@ RUN chown $USER_UID:$USER_GID /workdir/uploads
 RUN mkdir /workdir/notebooks
 RUN chown $USER_UID:$USER_GID /workdir/notebooks
 
+RUN mkdir /workdir/jupyterhub
+RUN chown $USER_UID:$USER_GID /workdir/jupyterhub
+
 USER $USERNAME
 
 ENV VIRTUAL_ENV=/workdir/env
