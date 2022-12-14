@@ -57,16 +57,17 @@ ENV VIRTUAL_ENV=/workdir/jupyterhub/env
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
+RUN /workdir/jupyterhub/env/bin/pip -q install pip --upgrade
+
 # Install dependencies:
 COPY requirements.txt .
-RUN /workdir/jupyterhub/env/bin/python3 pip install -r requirements.txt
+RUN /workdir/jupyterhub/env/bin/pip install -r requirements.txt
 
 #RUN jupyter lab build
 
-RUN /workdir/jupyterhub/env/bin/python3 pip -q install pip --upgrade
-RUN /workdir/jupyterhub/env/bin/python3 pip install wheel
+RUN /workdir/jupyterhub/env/bin/pip -q install wheel
 
-RUN /workdir/jupyterhub/env/bin/python3 pip install git+https://github.com/manics/podmanclispawner
+RUN /workdir/jupyterhub/env/bin/pip install git+https://github.com/manics/podmanclispawner
 
 WORKDIR /workdir/jupyterhub
 
@@ -79,4 +80,4 @@ WORKDIR /workdir/jupyterhub
 COPY jupyterhub_config.py /workdir/jupyterhub/jupyterhub_config.py
 #COPY . .
 EXPOSE 8000
-CMD . /srv/jupyterhub/env/bin/activate && exec jupyterhub -f /workdir/jupyterhub/jupyterhub_config.py
+CMD . /workdir/jupyterhub/env/bin/activate && exec jupyterhub -f /workdir/jupyterhub/jupyterhub_config.py
