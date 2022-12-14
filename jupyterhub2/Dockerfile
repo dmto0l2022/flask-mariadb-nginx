@@ -16,7 +16,7 @@ RUN pip install dockerspawner
 RUN apt-get update
 RUN apt-get -y install libpq-dev
 RUN apt-get -y install python3-dev
-RUN pip install psycopg2
+RUN pip install psycopg2-binary
 
 # add the userlist, spawner, and authenticator
 RUN mkdir /srv/jupyterhub_config
