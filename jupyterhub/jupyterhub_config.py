@@ -9,7 +9,7 @@ pathtofile = '/workdir/notebooks'
 
 c.JupyterHub.authenticator_class = 'jupyterhub.auth.PAMAuthenticator'
 
-c.LocalAuthenticator.create_system_users = True
+##c.LocalAuthenticator.create_system_users = True
 
 #c.JupyterHub.bind_url = 'http://0.0.0.0:8000/'
 
@@ -31,7 +31,9 @@ c.JupyterHub.cookie_secret_file = '/workdir/jupyterhub/jupyterhub_cookie_secret'
 
 c.ConfigurableHTTPProxy.pid_file = '/workdir/jupyterhub/jupyterhub-proxy.pid'
 
-c.SudoSpawner.sudospawner_path = '/workdir/env/bin/sudospawner'
+c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
+
+##c.SudoSpawner.sudospawner_path = '/workdir/env/bin/sudospawner'
 
 #c.JupyterHub.spawner_class = 'podmancli'
 
