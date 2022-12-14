@@ -13,7 +13,7 @@ RUN curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
 ## helps setup rootless docker
 RUN apt-get install -y uidmap
 # Load ip_tables module
-RUN modprobe ip_tables
+RUN /usr/sbin/modprobe ip_tables
 
 
 RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
