@@ -16,9 +16,9 @@ RUN apt-get install libmariadb-dev
 RUN npm install -g configurable-http-proxy
 
 # Install dockerspawner, nativeauthenticator
-RUN python3 -m pip install --no-cache-dir \
-        dockerspawner==12.* \
-        jupyterhub-nativeauthenticator==1.*
+#RUN python3 -m pip install --no-cache-dir \
+ #       dockerspawner==12.* \
+  #      jupyterhub-nativeauthenticator==1.*
 
 WORKDIR /workdir
 #RUN mkdir /workdir
