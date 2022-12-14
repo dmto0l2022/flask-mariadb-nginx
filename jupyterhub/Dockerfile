@@ -15,13 +15,15 @@ RUN apt-get install libmariadb-dev
 
 RUN npm install -g configurable-http-proxy
 
-RUN mkdir srv/jupyterhub
-RUN mkdir srv/jupyterhub/home
+RUN mkdir /workdir
+RUN mkdir /workdir/jupyterhub
+RUN mkdir /workdir/jupyterhub
+RUN mkdir /workdir/jupyterhub/home
 
-RUN mkdir srv/jupyterhub/notebooks
+RUN mkdir /workdir/notebooks
 
 ARG user=jupyterhub
-ARG home=/srv/jupyterhub/home/$user
+ARG home=/workdir/jupyterhub/home/$user
 RUN addgroup --system docker
 RUN adduser \
     --disabled-password \
@@ -41,7 +43,7 @@ RUN groupadd jupyterhub
 
 RUN usermod -aG jupyterhub jupyterhub
 
-RUN chown -R jupyterhub:jupyterhub /srv/jupyterhub
+RUN chown -R jupyterhub:jupyterhub /workdir/jupyterhub
 
 #ensures that /var/run/docker.sock exists
 #RUN touch /var/run/docker.sock
@@ -49,11 +51,11 @@ RUN chown -R jupyterhub:jupyterhub /srv/jupyterhub
 #changes the ownership of /var/run/docker.sock
 #RUN chown jupyterhub:jupyterhub /var/run/docker.sock
 
-RUN chown jupyterhub .
+RUN chown jupyterhub /workdir/.
 
 USER jupyterhub
 
-ENV VIRTUAL_ENV=/srv/jupyterhub/env
+ENV VIRTUAL_ENV=/workdir/jupyterhub/env
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
@@ -68,7 +70,7 @@ RUN pip install wheel
 
 RUN pip install git+https://github.com/manics/podmanclispawner
 
-WORKDIR /srv/jupyterhub
+WORKDIR /workdir/jupyterhub
 
 #RUN touch jupyterhub_cookie_secret
 #RUN chmod g+rw jupyterhub_cookie_secret
@@ -79,4 +81,4 @@ RUN jupyterhub --generate-config
 
 COPY . .
 EXPOSE 8000
-CMD . /srv/jupyterhub/env/bin/activate && exec jupyterhub
+CMD . /srv/jupyterhub/env/bin/activate && exec jupyterhub -f /workdir/jupyterhub/
