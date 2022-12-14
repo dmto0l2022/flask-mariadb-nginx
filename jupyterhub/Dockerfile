@@ -77,8 +77,8 @@ WORKDIR /workdir/jupyterhub
 #RUN openssl rand -hex 32 > jupyterhub_cookie_secret
 #RUN chmod 600 jupyterhub_cookie_secret
 
-RUN jupyterhub --generate-config
-
-COPY . .
+#RUN jupyterhub --generate-config
+COPY jupyterhub_config.py /workdir/jupyterhub/jupyterhub_config.py
+#COPY . .
 EXPOSE 8000
-CMD . /srv/jupyterhub/env/bin/activate && exec jupyterhub -f /workdir/jupyterhub/
+CMD . /srv/jupyterhub/env/bin/activate && exec jupyterhub -f /workdir/jupyterhub/jupyterhub_config.py
