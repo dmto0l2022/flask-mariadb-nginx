@@ -6,8 +6,8 @@ subgidSize=$(( $(podman info --format "{{ range \
    .Host.IDMappings.GIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 
 podman pod create \
---name pod-jupyter-frontend \
---infra-name infra-jupyter-frontend \
+--name pod-jupyterhub \
+--infra-name infra-jupyterhub \
 --network bridge \
 --uidmap 0:1:$uid \
 --uidmap $uid:0:1 \
@@ -22,8 +22,9 @@ podman build -t my-jupyterhub-1 .
 ##-v /HOST-DIR:/CONTAINER-DIR
 
 podman run -dt \
---name jupyter-frontend-1 \
---pod pod-jupyter-frontend \
---volume /opt/dmtools/notebooks:/workdir/notebooks:z \
---user $uid:$gid \
+--name jupyterhub \
+--pod pod-jupyterhub \
 localhost/my-jupyterhub-1:latest
+
+##--volume /opt/dmtools/notebooks:/workdir/notebooks:z \
+##--user $uid:$gid \
