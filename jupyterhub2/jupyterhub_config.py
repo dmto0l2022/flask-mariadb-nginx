@@ -48,7 +48,7 @@ c.JupyterHub.hub_ip = '0.0.0.0'
 c.DockerSpawner.hub_ip_connect = os.environ['HUB_IP']
 
 # Add users to the admin list, the whitelist, and also record their user ids
-with open('/srv/jupyterhub_users/userlist') as f:
+with open('/srv/jupyterhub_users/userlist.txt') as f:
     for line in f:
         if line.isspace():
             continue
