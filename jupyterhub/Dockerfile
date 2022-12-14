@@ -54,10 +54,10 @@ RUN usermod -aG sudo jupyterhub
 #RUN chown jupyterhub:jupyterhub /workdir
 
 #ensures that /var/run/docker.sock exists
-#RUN touch /var/run/docker.sock
+RUN touch /var/run/docker.sock
 
 #changes the ownership of /var/run/docker.sock
-#RUN chown jupyterhub:jupyterhub /var/run/docker.sock
+RUN chown jupyterhub:project /var/run/docker.sock
 
 USER jupyterhub
 
