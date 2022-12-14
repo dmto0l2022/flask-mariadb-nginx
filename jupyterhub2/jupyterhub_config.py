@@ -7,7 +7,10 @@ import os
 
 pathtofile = '/workdir/notebooks'
 
-c.JupyterHub.authenticator_class = 'jupyterhub.auth.PAMAuthenticator'
+##c.JupyterHub.authenticator_class = 'jupyterhub.auth.PAMAuthenticator'
+
+# Authenticate users with Native Authenticator
+c.JupyterHub.authenticator_class = "nativeauthenticator.NativeAuthenticator"
 
 ##c.LocalAuthenticator.create_system_users = True
 
@@ -130,18 +133,3 @@ c.Spawner.mem_limit = '10G'
 
 c.SudoSpawner.mediator_log_level = "DEBUG"
 c.JupyterHub.log_level = 10
-
-
-#------------------------------------------------------------------------------
-# PAMAuthenticator configuration
-#------------------------------------------------------------------------------
-
-# Authenticate local Linux/UNIX users with PAM
-
-# The encoding to use for PAM
-c.PAMAuthenticator.encoding = 'utf8'
-
-# The PAM service to use for authentication.
-c.PAMAuthenticator.service = 'login'
-c.JupyterHub.authenticator_class = 'jupyterhub.auth.PAMAuthenticator'
-c.PAMAuthenticator.open_sessions = False
