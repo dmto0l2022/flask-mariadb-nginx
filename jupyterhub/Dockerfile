@@ -33,12 +33,12 @@ ARG USERNAME=agaitske
 ARG USER_UID=1001
 ARG USER_GID=1002 ## dm group
 
-# Add jupyterhub user to dm group
-RUN groupadd --gid $USER_GID $user
-
 # Create the main user
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+
+# Add jupyterhub user to dm group
+RUN usermod -a -G $USER_GID $user
 
 #RUN mkdir /docker-entrypoint-initdb.d ## already exists
 #RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
