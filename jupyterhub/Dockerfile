@@ -19,6 +19,10 @@ WORKDIR /workdir
 
 RUN mkdir /workdir/home
 
+RUN addgroup shadow \
+    &&  chgrp shadow /etc/shadow \
+    &&  chmod g+r /etc/shadow
+
 ARG user=jupyterhub
 ARG home=/workdir/home/$user
 RUN addgroup --system docker
