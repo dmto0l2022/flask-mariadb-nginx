@@ -23,6 +23,7 @@ COPY podman.service /workdir/config/systemd/user/podman.service
 RUN mkdir -p /workdir/config/containers/user
 
 COPY storage.conf /workdir/config/containers/user/storage.conf
+COPY storage.conf /workdir/config/containers/user/registries.conf
 
 RUN ln -s /etc/containers/registries.conf  /workdir/config/containers/user/registries.conf
 
