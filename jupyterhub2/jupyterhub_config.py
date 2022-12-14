@@ -31,6 +31,7 @@ c.Authenticator.whitelist = whitelist = set()
 
 # Configure the spawner
 c.JupyterHub.spawner_class = 'systemuserspawner.SystemUserSpawner'
+c.DockerSpawner.container_image = 'jupyterhub/singleuser'
 ##c.DockerSpawner.container_image = 'compmodels/systemuser'
 ##c.DockerSpawner.tls_cert = os.environ['DOCKER_TLS_CERT']
 ##c.DockerSpawner.tls_key = os.environ['DOCKER_TLS_KEY']
@@ -45,7 +46,7 @@ c.DockerSpawner.container_ip = "0.0.0.0"
 # we explicitly tell the spawned containers to connect to the proper IP address.
 c.JupyterHub.proxy_api_ip = '0.0.0.0'
 c.JupyterHub.hub_ip = '0.0.0.0'
-c.DockerSpawner.hub_ip_connect = os.environ['HUB_IP']
+##c.DockerSpawner.hub_ip_connect = os.environ['HUB_IP']
 
 # Add users to the admin list, the whitelist, and also record their user ids
 with open('/srv/jupyterhub_users/userlist.txt') as f:
