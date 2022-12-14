@@ -15,6 +15,8 @@ RUN apt-get install libmariadb-dev
 
 RUN npm install -g configurable-http-proxy
 
+WORKDIR /workdir
+
 RUN mkdir /workdir/home
 
 ARG user=jupyterhub
@@ -28,8 +30,6 @@ RUN adduser \
     $user
 
 RUN echo "jupyterhub:jupyterhub" | chpasswd
-
-WORKDIR /workdir
 
 ARG USERNAME=agaitske
 ARG USER_UID=1001
