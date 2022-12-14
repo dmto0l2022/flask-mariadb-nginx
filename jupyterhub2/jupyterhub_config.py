@@ -46,6 +46,10 @@ c.DockerSpawner.container_ip = "0.0.0.0"
 # we explicitly tell the spawned containers to connect to the proper IP address.
 c.JupyterHub.proxy_api_ip = '0.0.0.0'
 c.JupyterHub.hub_ip = '0.0.0.0'
+
+
+c.JupyterHub.bind_url = 'http://0.0.0.0:8000/'
+
 ##c.DockerSpawner.hub_ip_connect = os.environ['HUB_IP']
 
 # Add users to the admin list, the whitelist, and also record their user ids
