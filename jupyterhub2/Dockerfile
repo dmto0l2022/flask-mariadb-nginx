@@ -1,3 +1,5 @@
+ARG HOME=/workdir/home
+
 FROM python:3
 
 #FROM ubuntu:latest
@@ -63,31 +65,31 @@ ARG USER_UID=1001
 ARG USER_GID=1002 ## dm group
 
 # Create the main user
-RUN groupadd --gid $USER_GID $USERNAME \
-    && useradd --uid $USER_UID --gid $USER_GID -g shadow -m $USERNAME
+#RUN groupadd --gid $USER_GID $USERNAME \
+#    && useradd --uid $USER_UID --gid $USER_GID -g shadow -m $USERNAME
 
 ## last one above allows access to passwords
 
 # Add jupyterhub user to dm group
-RUN usermod -a -G $USER_GID $user
+#RUN usermod -a -G $USER_GID $user
 
 #RUN mkdir /docker-entrypoint-initdb.d ## already exists
 #RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
 #RUN chown $USER_UID:$USER_GID /var/lib/mysql
-RUN chown $USER_UID:$USER_GID /workdir
+#RUN chown $USER_UID:$USER_GID /workdir
 
 RUN mkdir /workdir/uploads
-RUN chown $USER_UID:$USER_GID /workdir/uploads
+RUN chown jupyterhub:jupyterhub /workdir/uploads
 
 RUN mkdir /workdir/notebooks
-RUN chown $USER_UID:$USER_GID /workdir/notebooks
+RUN chown jupyterhub:jupyterhub /workdir/notebooks
 
 RUN mkdir /workdir/jupyterhub
-RUN chown $USER_UID:$USER_GID /workdir/jupyterhub
+RUN chown jupyterhub:jupyterhub /workdir/jupyterhub
 
-USER $USERNAME
+USER jupyterhub
 
-RUN npm install -g configurable-http-proxy
+##RUN npm install -g configurable-http-proxy
 
 RUN mkdir "${HOME}/.npm-packages"
 RUN npm config set prefix "${HOME}/.npm-packages"
@@ -107,7 +109,7 @@ RUN /workdir/env/bin/pip install -r /workdir/requirements.txt
 RUN /workdir/env/bin/pip -q install pip --upgrade
 RUN /workdir/env/bin/pip install wheel
 
-RUN /workdir/env/bin/pip install git+https://github.com/manics/podmanclispawner
+##RUN /workdir/env/bin/pip install git+https://github.com/manics/podmanclispawner
 
 #RUN touch jupyterhub_cookie_secret
 #RUN chmod g+rw jupyterhub_cookie_secret
@@ -122,5 +124,5 @@ RUN /workdir/env/bin/pip install git+https://github.com/manics/podmanclispawner
 COPY jupyterhub_config.py /workdir/jupyterhub/jupyterhub_config.py
 EXPOSE 8000
 #CMD . /srv/jupyterhub/env/bin/activate && exec jupyterhub
-CMD . /workdir/env/bin/activate & exec jupyterhub -f /workdir/jupyterhub/jupyterhub_config.py
-
+#CMD . /workdir/env/bin/activate & exec jupyterhub -f /workdir/jupyterhub/jupyterhub_config.py
+CMD . /workdir/env/bin/activate & exec jupyterhub --debug --config=jupyterhub_config.py
