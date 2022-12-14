@@ -15,17 +15,26 @@ RUN apt-get install libmariadb-dev
 
 ####
 
+RUN mkdir -p /workdir/config
+RUN mkdir -p /workdir/config/systemd
 RUN mkdir -p /workdir/config/systemd/user
 
 COPY podman.socket /workdir/config/systemd/user/podman.socket
 COPY podman.service /workdir/config/systemd/user/podman.service
 
+RUN mkdir -p /workdir/config/containers
 RUN mkdir -p /workdir/config/containers/user
 
 COPY storage.conf /workdir/config/containers/user/storage.conf
 COPY storage.conf /workdir/config/containers/user/registries.conf
 
 RUN ln -s /etc/containers/registries.conf  /workdir/config/containers/user/registries.conf
+
+RUN systemctl --user daemon-reload
+RUN systemctl --user enable --now podman.socket
+
+RUN export DOCKER_HOST=unix://$HOME/podman.sock
+RUN export CONTAINER_HOST=unix://$HOME/podman.sock
 
 ####
 
