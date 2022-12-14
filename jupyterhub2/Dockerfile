@@ -17,20 +17,20 @@ RUN apt-get install libmariadb-dev
 
 ####
 
-RUN mkdir -p /workdir/config
-RUN mkdir -p /workdir/config/systemd
-RUN mkdir -p /workdir/config/systemd/user
+RUN mkdir -p /workdir/.config
+RUN mkdir -p /workdir/.config/systemd
+RUN mkdir -p /workdir/.config/systemd/user
 
-COPY podman.socket /workdir/config/systemd/user/podman.socket
-COPY podman.service /workdir/config/systemd/user/podman.service
+COPY podman.socket /workdir/.config/systemd/user/podman.socket
+COPY podman.service /workdir/.config/systemd/user/podman.service
 
-RUN mkdir -p /workdir/config/containers
-RUN mkdir -p /workdir/config/containers/user
+RUN mkdir -p /workdir/.config/containers
+RUN mkdir -p /workdir/.config/containers/user
 
-COPY storage.conf /workdir/config/containers/user/storage.conf
-COPY storage.conf /workdir/config/containers/user/registries.conf
+COPY storage.conf /workdir/.config/containers/user/storage.conf
+COPY storage.conf /workdir/.config/containers/user/registries.conf
 
-RUN ln -s /etc/containers/registries.conf  /workdir/config/containers/user/registries.conf
+RUN ln -s /etc/containers/registries.conf  /workdir/.config/containers/user/registries.conf
 
 RUN systemctl --user daemon-reload
 RUN systemctl --user enable --now podman.socket
@@ -60,9 +60,9 @@ RUN adduser \
 
 RUN echo "jupyterhub:jupyterhub" | chpasswd
 
-ARG USERNAME=agaitske
-ARG USER_UID=1001
-ARG USER_GID=1002 ## dm group
+#ARG USERNAME=agaitske
+#ARG USER_UID=1001
+#ARG USER_GID=1002 ## dm group
 
 # Create the main user
 #RUN groupadd --gid $USER_GID $USERNAME \
@@ -87,6 +87,10 @@ RUN chown jupyterhub:jupyterhub /workdir/notebooks
 RUN mkdir /workdir/jupyterhub
 RUN chown jupyterhub:jupyterhub /workdir/jupyterhub
 
+RUN chown -R jupyterhub:jupyterhub /workdir
+
+RUN chmod -R 2775 /workdir/
+
 USER jupyterhub
 
 ##RUN npm install -g configurable-http-proxy
@@ -100,14 +104,14 @@ ENV VIRTUAL_ENV=/workdir/env
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-# Install dependencies:
-COPY requirements.txt /workdir/requirements.txt
-RUN /workdir/env/bin/pip install -r /workdir/requirements.txt
-
 #RUN jupyter lab build
 
 RUN /workdir/env/bin/pip -q install pip --upgrade
 RUN /workdir/env/bin/pip install wheel
+
+# Install dependencies:
+COPY requirements.txt /workdir/requirements.txt
+RUN /workdir/env/bin/pip install -r /workdir/requirements.txt
 
 ##RUN /workdir/env/bin/pip install git+https://github.com/manics/podmanclispawner
 
@@ -122,7 +126,7 @@ RUN /workdir/env/bin/pip install wheel
 
 #COPY . .
 COPY jupyterhub_config.py /workdir/jupyterhub/jupyterhub_config.py
-EXPOSE 8000
+#EXPOSE 8000
 #CMD . /srv/jupyterhub/env/bin/activate && exec jupyterhub
 #CMD . /workdir/env/bin/activate & exec jupyterhub -f /workdir/jupyterhub/jupyterhub_config.py
 CMD . /workdir/env/bin/activate & exec jupyterhub --debug --config=jupyterhub_config.py
