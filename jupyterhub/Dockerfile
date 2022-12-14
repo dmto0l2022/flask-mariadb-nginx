@@ -80,7 +80,7 @@ RUN /workdir/jupyterhub/env/bin/pip install -r requirements.txt
 
 RUN /workdir/jupyterhub/env/bin/pip -q install wheel
 
-RUN /workdir/jupyterhub/env/bin/pip install git+https://github.com/manics/podmanclispawner
+#RUN /workdir/jupyterhub/env/bin/pip install git+https://github.com/manics/podmanclispawner
 
 WORKDIR /workdir/jupyterhub
 
