@@ -31,9 +31,9 @@ c.JupyterHub.cookie_secret_file = '/workdir/jupyterhub/jupyterhub_cookie_secret'
 
 c.ConfigurableHTTPProxy.pid_file = '/workdir/jupyterhub/jupyterhub-proxy.pid'
 
-#c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
+c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
 
-c.JupyterHub.spawner_class = 'podmancli'
+#c.JupyterHub.spawner_class = 'podmancli'
 
 ##c.SudoSpawner.sudospawner_path = '/workdir/env/bin/sudospawner'
 
