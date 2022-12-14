@@ -78,7 +78,7 @@ c.JupyterHub.debug_db = False
 #  Defaults to an empty set, in which case no user has admin access.
 #  Default: set()
 # c.Authenticator.admin_users = set()
-c.Authenticator.admin_users = {'agaitske'}
+c.Authenticator.admin_users = {'jupyterhub'}
 
 ## Set of usernames that are allowed to log in.
 #  
@@ -88,7 +88,7 @@ c.Authenticator.admin_users = {'agaitske'}
 #  the 'user' role on hub startup.
 #  
 #  If empty, does not perform any additional restriction.
-c.Authenticator.allowed_users = {'agaitske'}
+c.Authenticator.allowed_users = {'jupyterhub'}
 
 ##
 
