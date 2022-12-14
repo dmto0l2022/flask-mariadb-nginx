@@ -6,7 +6,7 @@ StartLimitIntervalSec=0
 
 [Service]
 Type=oneshot
-Environment=REGISTRIES_CONFIG_PATH=%h/.config/containers/registries.conf
+Environment=REGISTRIES_CONFIG_PATH=/workdir/config/containers/registries.conf
 ExecStart=/usr/bin/podman system service unix://%h/podman.sock
 TimeoutStopSec=30
 KillMode=process
