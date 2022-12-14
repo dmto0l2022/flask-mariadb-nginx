@@ -30,4 +30,7 @@ RUN python3 -m pip install --no-cache-dir -r /workdir/jupyterhub/requirements.tx
 
 RUN ls -al /workdir/jupyterhub/
 
-CMD ['jupyterhub', '-f', '/workdir/jupyterhub/jupyterhub_config.py']
+CMD ["jupyterhub", "-f", "/workdir/jupyterhub/jupyterhub_config.py"]
+
+##CMD ["sh", "-c", "jupyter notebook --port=8889 --no-browser --ip=*"]
+
