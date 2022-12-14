@@ -18,7 +18,7 @@ RUN npm install -g configurable-http-proxy
 WORKDIR /workdir
 
 ARG USERNAME=agaitske
-ARG PASSWD=test
+ARG PASSWD=c604fd66-f56a-4a8d-81f5-7ac8afe79a57
 ARG USER_UID=1001
 ARG USER_GID=1002 ## dm group
 
