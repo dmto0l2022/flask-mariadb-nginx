@@ -3,7 +3,9 @@ import os
 #pathtofile = '/srv/jupyterhub/notebooks'
 
 
-pathtofile = '/srv/jupyterhub/home/jupyterhub'
+#pathtofile = '/srv/jupyterhub/home/jupyterhub'
+
+pathtofile = '/workdir/notebooks'
 
 c.JupyterHub.authenticator_class = 'jupyterhub.auth.PAMAuthenticator'
 
@@ -21,15 +23,15 @@ c.JupyterHub.bind_url = 'http://0.0.0.0:8000/'
 #c.JupyterHub.ip = "127.0.0.1" ###
 
 #  Default: 'jupyterhub_config.py'
-c.JupyterHub.config_file = '/srv/jupyterhub/jupyterhub_config.py'
+c.JupyterHub.config_file = '/workdir/jupyterhub_config.py'
 
 ## File in which to store the cookie secret.
 #  Default: 'jupyterhub_cookie_secret'
-c.JupyterHub.cookie_secret_file = '/srv/jupyterhub/jupyterhub_cookie_secret'
+c.JupyterHub.cookie_secret_file = '/workdir/jupyterhub_cookie_secret'
 
-c.ConfigurableHTTPProxy.pid_file = '/srv/jupyterhub/jupyterhub-proxy.pid'
+c.ConfigurableHTTPProxy.pid_file = '/workdir/jupyterhub-proxy.pid'
 
-c.SudoSpawner.sudospawner_path = '/srv/jupyterhub/env/bin/sudospawner'
+c.SudoSpawner.sudospawner_path = '/workdir/env/bin/sudospawner'
 
 #c.JupyterHub.spawner_class = 'podmancli'
 
@@ -43,7 +45,7 @@ c.Spawner.notebook_dir=pathtofile
  # "no_proxy": "127.0.0.1,localhost",
 #}
 
-c.Spawner.cmd = ['/srv/jupyterhub/env/bin/jupyterhub-singleuser']
+c.Spawner.cmd = ['/workdir/env/bin/jupyterhub-singleuser']
 
 #c.Spawner.cmd = 'jupterhub-singleuser'
 
@@ -59,11 +61,11 @@ c.DockerSpawner.notebook_dir = notebook_dir
 
 ## The location of jupyterhub data files (e.g. /usr/local/share/jupyterhub)
 
-c.JupyterHub.data_files_path = '/srv/jupyterhub/env/share/jupyterhub'
+c.JupyterHub.data_files_path = '/workdir/env/share/jupyterhub'
 
 ## url for the database. e.g. `sqlite:///jupyterhub.sqlite`
 #  Default: 'sqlite:///jupyterhub.sqlite'
-c.JupyterHub.db_url = 'sqlite://///srv/jupyterhub/jupyterhub.sqlite'
+c.JupyterHub.db_url = 'sqlite://///workdir/jupyterhub.sqlite'
 
 ## log all database transactions. This has A LOT of output
 #  Default: False
@@ -76,7 +78,7 @@ c.JupyterHub.debug_db = False
 #  Defaults to an empty set, in which case no user has admin access.
 #  Default: set()
 # c.Authenticator.admin_users = set()
-c.Authenticator.admin_users = {'jupyterhub'}
+c.Authenticator.admin_users = {'agaitske'}
 
 ## Set of usernames that are allowed to log in.
 #  
@@ -86,7 +88,7 @@ c.Authenticator.admin_users = {'jupyterhub'}
 #  the 'user' role on hub startup.
 #  
 #  If empty, does not perform any additional restriction.
-c.Authenticator.allowed_users = {'jupyterhub'}
+c.Authenticator.allowed_users = {'agaitske'}
 
 ##
 
