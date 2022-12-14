@@ -38,8 +38,6 @@ RUN export CONTAINER_HOST=unix://$HOME/podman.sock
 
 ####
 
-RUN npm install -g configurable-http-proxy
-
 WORKDIR /workdir
 
 RUN mkdir /workdir/home
@@ -88,6 +86,13 @@ RUN mkdir /workdir/jupyterhub
 RUN chown $USER_UID:$USER_GID /workdir/jupyterhub
 
 USER $USERNAME
+
+RUN npm install -g configurable-http-proxy
+
+RUN mkdir "${HOME}/.npm-packages"
+RUN npm config set prefix "${HOME}/.npm-packages"
+RUN export PATH="$PATH:${HOME}/.npm-packages/bin"
+RUN npm install -g configurable-http-proxy
 
 ENV VIRTUAL_ENV=/workdir/env
 RUN python3 -m venv $VIRTUAL_ENV
