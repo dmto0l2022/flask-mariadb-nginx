@@ -16,7 +16,12 @@ RUN apt-get install libmariadb-dev
 RUN npm install -g configurable-http-proxy
 
 RUN mkdir /workdir
-RUN chmod 755 /workdir
+RUN groupadd project
+RUN chgrp -R project /workdir
+RUN chmod -R 2775 /workdir
+
+#RUN mkdir /workdir
+#RUN chmod -R 2775 /workdir
 RUN mkdir /workdir/jupyterhub
 RUN mkdir /workdir/jupyterhub/home
 
@@ -34,16 +39,17 @@ RUN adduser \
 
 
 RUN usermod -aG shadow jupyterhub
+RUN usermod -aG project jupyterhub
 
 RUN echo "jupyterhub:jupyterhub" | chpasswd
 
 RUN usermod -aG sudo jupyterhub
 
-RUN groupadd jupyterhub
+#RUN groupadd jupyterhub
 
-RUN usermod -aG jupyterhub jupyterhub
+#RUN usermod -aG jupyterhub jupyterhub
 
-RUN chown jupyterhub:jupyterhub /workdir
+#RUN chown jupyterhub:jupyterhub /workdir
 
 #ensures that /var/run/docker.sock exists
 #RUN touch /var/run/docker.sock
