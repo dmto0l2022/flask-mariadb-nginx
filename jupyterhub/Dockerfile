@@ -37,8 +37,7 @@ ARG USER_GID=1002 ## dm group
 
 # Create the main user
 RUN groupadd --gid $USER_GID $USERNAME \
-    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
-    && groupadd shadow $USER_UID
+    && useradd --uid $USER_UID --gid $USER_GID -g shadow -m $USERNAME
 
 ## last one above allows access to passwords
 
