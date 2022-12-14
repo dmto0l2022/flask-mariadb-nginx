@@ -1,5 +1,5 @@
 ## https://github.com/compmodels/jupyterhub/blob/master/Dockerfile
-FROM jupyter/jupyterhub
+FROM jupyterhub/jupyterhub:latest
 
 ## MAINTAINER Jessica Hamrick <jhamrick@berkeley.edu>
 
