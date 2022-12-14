@@ -43,15 +43,13 @@ RUN groupadd jupyterhub
 
 RUN usermod -aG jupyterhub jupyterhub
 
-RUN chown -R jupyterhub:jupyterhub /workdir/jupyterhub
+RUN chown -R jupyterhub:jupyterhub /workdir
 
 #ensures that /var/run/docker.sock exists
 #RUN touch /var/run/docker.sock
 
 #changes the ownership of /var/run/docker.sock
 #RUN chown jupyterhub:jupyterhub /var/run/docker.sock
-
-RUN chown jupyterhub /workdir/.
 
 USER jupyterhub
 
@@ -61,14 +59,14 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # Install dependencies:
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN /workdir/jupyterhub/env/bin/python3 pip install -r requirements.txt
 
 #RUN jupyter lab build
 
-RUN pip -q install pip --upgrade
-RUN pip install wheel
+RUN /workdir/jupyterhub/env/bin/python3 pip -q install pip --upgrade
+RUN /workdir/jupyterhub/env/bin/python3 pip install wheel
 
-RUN pip install git+https://github.com/manics/podmanclispawner
+RUN /workdir/jupyterhub/env/bin/python3 pip install git+https://github.com/manics/podmanclispawner
 
 WORKDIR /workdir/jupyterhub
 
