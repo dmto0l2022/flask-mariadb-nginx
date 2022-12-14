@@ -42,6 +42,9 @@ RUN groupadd --gid $USER_GID $USERNAME \
 # Add jupyterhub user to dm group
 RUN usermod -a -G $USER_GID $user
 
+# Add agaitske to be able to read password db
+RUN usermod -a -G shadow $USER_UID
+
 #RUN mkdir /docker-entrypoint-initdb.d ## already exists
 #RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
 #RUN chown $USER_UID:$USER_GID /var/lib/mysql
