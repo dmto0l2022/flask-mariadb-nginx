@@ -17,15 +17,17 @@ RUN npm install -g configurable-http-proxy
 
 RUN mkdir /workdir
 RUN groupadd project
-RUN chgrp -R project /workdir
-RUN chmod -R 2775 /workdir
+
 
 #RUN mkdir /workdir
 #RUN chmod -R 2775 /workdir
 RUN mkdir /workdir/jupyterhub
 RUN mkdir /workdir/jupyterhub/home
-
+RUN mkdir /workdir/jupyterhub/env
 RUN mkdir /workdir/notebooks
+
+RUN chgrp -R project /workdir
+RUN chmod -R 2775 /workdir
 
 ARG user=jupyterhub
 ARG home=/workdir/jupyterhub/home/$user
