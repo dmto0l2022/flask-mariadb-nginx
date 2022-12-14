@@ -10,8 +10,6 @@ RUN apt-get update && apt-get -y update \
 
 RUN curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
 
-RUN sh /usr/bin/dockerd-rootless-setuptool.sh install
-
 RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
 RUN apt-get update && apt-get install -y mariadb-server galera-4 mariadb-client libmariadb3 mariadb-backup mariadb-common
 RUN apt-get install libmariadb-dev
@@ -65,6 +63,8 @@ RUN usermod -aG sudo jupyterhub
 #RUN chown jupyterhub:project /var/run/docker.sock
 
 USER jupyterhub
+
+RUN sh /usr/bin/dockerd-rootless-setuptool.sh install
 
 ENV VIRTUAL_ENV=/workdir/jupyterhub/env
 RUN python3 -m venv $VIRTUAL_ENV
