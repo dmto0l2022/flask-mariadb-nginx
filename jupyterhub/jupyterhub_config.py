@@ -11,7 +11,7 @@ c.JupyterHub.authenticator_class = 'jupyterhub.auth.PAMAuthenticator'
 
 ##c.LocalAuthenticator.create_system_users = True
 
-#c.JupyterHub.bind_url = 'http://0.0.0.0:8000/'
+c.JupyterHub.bind_url = 'http://0.0.0.0:8000/'
 
 #c.JupyterHub.bind_url = 'http://0.0.0.0:8000/'
 
@@ -64,7 +64,7 @@ c.DockerSpawner.debug = True
 
 # User containers will access hub by container name on the Docker network
 c.JupyterHub.hub_ip = "jupyterhub"
-c.JupyterHub.hub_port = 8000
+c.JupyterHub.hub_port = 8080
 
 ####
 
