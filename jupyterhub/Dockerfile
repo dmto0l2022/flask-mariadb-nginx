@@ -61,10 +61,12 @@ RUN /workdir/env/bin/pip install git+https://github.com/manics/podmanclispawner
 #RUN openssl rand -hex 32 > jupyterhub_cookie_secret
 #RUN chmod 600 jupyterhub_cookie_secret
 
-RUN /workdir/env/bin/python jupyterhub --generate-config
+#RUN /workdir/env/bin/python jupyterhub --generate-config
+
+#RUN /workdir/env/bin/activate && exec jupyterhub --generate-config
 
 #COPY . .
 COPY jupyterhub_config.py /workdir/jupyterhub/jupyterhub_config.py
 EXPOSE 8000
 #CMD . /srv/jupyterhub/env/bin/activate && exec jupyterhub
-CMD . /workdir/env/bin/python jupyterhub
+CMD . /workdir/env/bin/activate & exec jupyterhub -f /workdir/jupyterhub/jupyterhub_config.py
