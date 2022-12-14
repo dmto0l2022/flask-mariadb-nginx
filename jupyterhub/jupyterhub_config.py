@@ -47,6 +47,26 @@ c.Spawner.notebook_dir=pathtofile
  # "no_proxy": "127.0.0.1,localhost",
 #}
 
+####
+
+# Connect containers to this Docker network
+network_name = 'jupyter_network'
+c.DockerSpawner.use_internal_ip = True
+c.DockerSpawner.network_name = network_name
+
+# Remove containers once they are stopped
+c.DockerSpawner.remove = True
+
+# For debugging arguments passed to spawned containers
+c.DockerSpawner.debug = True
+
+# User containers will access hub by container name on the Docker network
+c.JupyterHub.hub_ip = "jupyterhub"
+c.JupyterHub.hub_port = 8000
+
+####
+
+
 c.Spawner.cmd = ['/workdir/jupyterhub/env/bin/jupyterhub-singleuser']
 
 #c.Spawner.cmd = 'jupterhub-singleuser'
