@@ -1,6 +1,6 @@
 import os
 
-c = get_config()
+#c = get_config()
 
 # We rely on environment variables to configure JupyterHub so that we
 # avoid having to rebuild the JupyterHub container every time we change a
