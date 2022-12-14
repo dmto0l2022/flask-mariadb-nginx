@@ -10,6 +10,12 @@ RUN apt-get update && apt-get -y update \
 
 RUN curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
 
+## helps setup rootless docker
+RUN apt-get install -y uidmap
+# Load ip_tables module
+RUN modprobe ip_tables
+
+
 RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
 RUN apt-get update && apt-get install -y mariadb-server galera-4 mariadb-client libmariadb3 mariadb-backup mariadb-common
 RUN apt-get install libmariadb-dev
