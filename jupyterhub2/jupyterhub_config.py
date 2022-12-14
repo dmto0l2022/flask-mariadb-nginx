@@ -2,6 +2,14 @@ import os
 
 #c = get_config()
 
+#  Default: 'jupyterhub_config.py'
+c.JupyterHub.config_file = '/workdir/jupyterhub/jupyterhub_config.py'
+
+## File in which to store the cookie secret.
+#  Default: 'jupyterhub_cookie_secret'
+c.JupyterHub.cookie_secret_file = '/workdir/jupyterhub/jupyterhub_cookie_secret'
+c.ConfigurableHTTPProxy.pid_file = '/workdir/jupyterhub/jupyterhub-proxy.pid'
+
 # We rely on environment variables to configure JupyterHub so that we
 # avoid having to rebuild the JupyterHub container every time we change a
 # configuration parameter.
