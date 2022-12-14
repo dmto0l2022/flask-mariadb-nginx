@@ -1,15 +1,2 @@
-wheel
 jupyterhub
-notebook
 dockerspawner
-jupyterhub-nativeauthenticator
-sudospawner
-pandas
-mysqlclient
-mariadb
-jupyter-dash
-dash
-dash-bootstrap-components
-flask
-flask_sqlalchemy
-python-dotenv
