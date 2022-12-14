@@ -2,6 +2,7 @@ wheel
 jupyterhub
 notebook
 dockerspawner
+jupyterhub-nativeauthenticator
 sudospawner
 pandas
 mysqlclient
