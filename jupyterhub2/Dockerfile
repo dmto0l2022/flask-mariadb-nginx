@@ -13,6 +13,21 @@ RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
 RUN apt-get update && apt-get install -y mariadb-server galera-4 mariadb-client libmariadb3 mariadb-backup mariadb-common
 RUN apt-get install libmariadb-dev
 
+####
+
+RUN mkdir -p /workdir/config/systemd/user
+
+COPY podman.socket /workdir/config/systemd/user/podman.socket
+COPY podman.service /workdir/config/systemd/user/podman.service
+
+RUN mkdir -p /workdir/config/containers/user
+
+COPY storage.conf /workdir/config/containers/user/storage.conf
+
+RUN ln -s /etc/containers/registries.conf  /workdir/config/containers/user/registries.conf
+
+####
+
 RUN npm install -g configurable-http-proxy
 
 WORKDIR /workdir
