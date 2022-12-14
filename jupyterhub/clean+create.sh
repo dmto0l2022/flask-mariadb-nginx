@@ -17,7 +17,7 @@ podman network create jupyter_network
 podman pod create \
 --name pod-jupyterhub \
 --infra-name infra-jupyterhub \
---network jupyter_network
+--network jupyter_network \
 --publish 8000:8000 --publish 8002:8002 --publish 8080:8080
 
 podman build -t my-jupyterhub-1 .
