@@ -16,6 +16,7 @@ RUN apt-get install libmariadb-dev
 RUN npm install -g configurable-http-proxy
 
 RUN mkdir /workdir
+RUN chmod 755 /workdir
 RUN mkdir /workdir/jupyterhub
 RUN mkdir /workdir/jupyterhub/home
 
@@ -41,8 +42,6 @@ RUN usermod -aG sudo jupyterhub
 RUN groupadd jupyterhub
 
 RUN usermod -aG jupyterhub jupyterhub
-
-RUN chmod 755 /workdir
 
 RUN chown jupyterhub:jupyterhub /workdir
 
