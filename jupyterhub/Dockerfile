@@ -63,7 +63,8 @@ RUN /workdir/env/bin/pip install git+https://github.com/manics/podmanclispawner
 
 RUN /workdir/env/bin/python jupyterhub --generate-config
 
-COPY . .
+#COPY . .
+COPY jupyterhub_config.py /workdir/jupyterhub/jupyterhub_config.py
 EXPOSE 8000
 #CMD . /srv/jupyterhub/env/bin/activate && exec jupyterhub
 CMD . /workdir/env/bin/python jupyterhub
