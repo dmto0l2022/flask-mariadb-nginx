@@ -1,40 +1,8 @@
-## https://github.com/compmodels/jupyterhub/blob/master/Dockerfile
 FROM jupyterhub/jupyterhub:latest
 
-## MAINTAINER Jessica Hamrick <jhamrick@berkeley.edu>
+# Install dockerspawner, nativeauthenticator
+RUN python3 -m pip install --no-cache-dir \
+        dockerspawner==12.* \
+        jupyterhub-nativeauthenticator==1.*
 
-# We need to update pip, otherwise the version of requests that
-# is installed by dockerspawner breaks things.
-RUN pip install --upgrade pip
-
-# Install dockerspawner and oauthenticator
-RUN pip install docker-py==1.9.0
-RUN pip install dockerspawner
-## RUN pip install git+git://github.com/jupyter/oauthenticator.git
-
-# Install psycopg2
-RUN apt-get update
-RUN apt-get -y install libpq-dev
-RUN apt-get -y install python3-dev
-RUN pip install psycopg2-binary
-
-# add the userlist, spawner, and authenticator
-RUN mkdir /srv/jupyterhub_config
-WORKDIR /srv/jupyterhub_config
-ADD systemuserspawner.py /srv/jupyterhub_config/systemuserspawner.py
-#ADD docker_oauth.py /srv/jupyterhub_config/docker_oauth.py
-ADD jupyterhub_config.py /srv/jupyterhub_config/jupyterhub_config.py
-
-# create /srv/jupyterhub_users directory (which is where we'll mount the userlist)
-RUN mkdir /srv/jupyterhub_users
-ADD userlist.txt  /srv/jupyterhub_users/userlist.txt
-
-# we need to expose ports for the hub api and for the proxy api
-EXPOSE 8080
-EXPOSE 8001
-
-# environment variable for swarm
-# ENV DOCKER_HOST https://swarm:2375
-
-# run jupyterhub
-ENTRYPOINT ["jupyterhub", "-f", "/srv/jupyterhub_config/jupyterhub_config.py"]
+CMD ["jupyterhub", "-f", "/workdir/jupyterhub/jupyterhub_config.py"]
