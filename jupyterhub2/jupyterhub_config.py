@@ -1,64 +1,64 @@
-# Configuration file for Jupyter Hub
+import os
+
 c = get_config()
 
-import os
-import sys
-sys.path.insert(0, '/srv/jupyterhub_config')
+# We rely on environment variables to configure JupyterHub so that we
+# avoid having to rebuild the JupyterHub container every time we change a
+# configuration parameter.
 
-# Base configuration
-c.JupyterHub.log_level = "INFO"
-'''
-c.JupyterHub.db_url = "postgresql://{}:{}@{}:{}/{}".format(
-    os.environ['JPY_DB_USER'],
-    os.environ['JPY_DB_PASSWORD'],
-    os.environ['POSTGRES_PORT_5432_TCP_ADDR'],
-    os.environ['POSTGRES_PORT_5432_TCP_PORT'],
-    os.environ['JPY_DB_NAME']
-)
-'''
-c.JupyterHub.admin_access = True
-c.JupyterHub.confirm_no_ssl = True
+# Spawn single-user servers as Docker containers
+c.JupyterHub.spawner_class = "dockerspawner.DockerSpawner"
 
-# Configure the authenticator
-##c.JupyterHub.authenticator_class = 'docker_oauth.DockerOAuthenticator'
-##c.GoogleOAuthenticator.oauth_callback_url = os.environ['OAUTH_CALLBACK_URL']
-##c.GoogleOAuthenticator.client_id = os.environ['OAUTH_CLIENT_ID']
-##c.GoogleOAuthenticator.client_secret = os.environ['OAUTH_CLIENT_SECRET']
-##c.GoogleOAuthenticator.hosted_domain = os.environ['HOSTED_DOMAIN']
-##c.LocalAuthenticator.create_system_users = True
-c.Authenticator.admin_users = admin = set()
-c.Authenticator.whitelist = whitelist = set()
+# Spawn containers from this image
+c.DockerSpawner.image = 'jupyterhub/singleuser:latest'
 
-# Configure the spawner
-c.JupyterHub.spawner_class = 'systemuserspawner.SystemUserSpawner'
-c.DockerSpawner.container_image = 'jupyterhub/singleuser'
-##c.DockerSpawner.container_image = 'compmodels/systemuser'
-##c.DockerSpawner.tls_cert = os.environ['DOCKER_TLS_CERT']
-##c.DockerSpawner.tls_key = os.environ['DOCKER_TLS_KEY']
-c.DockerSpawner.remove_containers = True
-##c.DockerSpawner.volumes = {os.environ['NBGRADER_EXCHANGE']: os.environ['NBGRADER_EXCHANGE']}
-##c.DockerSpawner.extra_host_config = {'mem_limit': '1g'}
-c.DockerSpawner.container_ip = "0.0.0.0"
+# JupyterHub requires a single-user instance of the Notebook server, so we
+# default to using the `start-singleuser.sh` script included in the
+# jupyter/docker-stacks *-notebook images as the Docker run command when
+# spawning containers.  Optionally, you can override the Docker run command
+# using the DOCKER_SPAWN_CMD environment variable.
+# spawn_cmd = os.environ.get("DOCKER_SPAWN_CMD", "start-singleuser.sh")
+# c.DockerSpawner.cmd = spawn_cmd
 
-# The docker instances need access to the Hub, so the default loopback port
-# doesn't work. We need to tell the hub to listen on 0.0.0.0 because it's in a
-# container, and we'll expose the port properly when the container is run. Then,
-# we explicitly tell the spawned containers to connect to the proper IP address.
-c.JupyterHub.proxy_api_ip = '0.0.0.0'
-c.JupyterHub.hub_ip = '0.0.0.0'
+# Connect containers to this Docker network
+network_name = 'jupyter_network'
+c.DockerSpawner.use_internal_ip = True
+c.DockerSpawner.network_name = network_name
 
+# Explicitly set notebook directory because we'll be mounting a volume to it.
+# Most jupyter/docker-stacks *-notebook images run the Notebook server as
+# user `jovyan`, and set the notebook directory to `/home/jovyan/work`.
+# We follow the same convention.
+notebook_dir = "/workdir/notebooks
+c.DockerSpawner.notebook_dir = notebook_dir
+
+# Mount the real user's Docker volume on the host to the notebook user's
+# notebook directory in the container
+c.DockerSpawner.volumes = {"jupyterhub-user-{username}": notebook_dir}
+
+# Remove containers once they are stopped
+c.DockerSpawner.remove = True
+
+# For debugging arguments passed to spawned containers
+c.DockerSpawner.debug = True
+
+# User containers will access hub by container name on the Docker network
+c.JupyterHub.hub_ip = "jupyterhub"
+c.JupyterHub.hub_port = 8000
+
+# Persist hub data on volume mounted inside container
+c.JupyterHub.cookie_secret_file = "/workdir/data/jupyterhub_cookie_secret"
+c.JupyterHub.db_url = "sqlite://///workdir/data/jupyterhub.sqlite"
+
+# Authenticate users with Native Authenticator
+c.JupyterHub.authenticator_class = "nativeauthenticator.NativeAuthenticator"
+
+# Allow anyone to sign-up without approval
+c.NativeAuthenticator.open_signup = True
+
+# Allowed admins
+admin = 'jupyterhub'
+if admin:
+    c.Authenticator.admin_users = [admin]
 
 c.JupyterHub.bind_url = 'http://0.0.0.0:8000/'
-
-##c.DockerSpawner.hub_ip_connect = os.environ['HUB_IP']
-
-# Add users to the admin list, the whitelist, and also record their user ids
-with open('/srv/jupyterhub_users/userlist.txt') as f:
-    for line in f:
-        if line.isspace():
-            continue
-        parts = line.split()
-        name = parts[0]
-        whitelist.add(name)
-        if len(parts) > 1 and parts[1] == 'admin':
-            admin.add(name)
