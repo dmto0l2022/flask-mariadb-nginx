@@ -15,6 +15,7 @@ RUN pip install dockerspawner
 # Install psycopg2
 RUN apt-get update
 RUN apt-get -y install libpq-dev
+RUN apt-apt -y install python3-dev
 RUN pip install psycopg2
 
 # add the userlist, spawner, and authenticator
