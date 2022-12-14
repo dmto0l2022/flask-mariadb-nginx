@@ -43,6 +43,8 @@ RUN adduser \
 RUN usermod -aG shadow jupyterhub
 RUN usermod -aG project jupyterhub
 
+RUN usermod --add-subuids 100000-165535 --add-subgids 100000-165535 jupyterhub
+
 RUN echo "jupyterhub:jupyterhub" | chpasswd
 
 RUN usermod -aG sudo jupyterhub
