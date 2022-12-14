@@ -18,12 +18,15 @@ RUN npm install -g configurable-http-proxy
 WORKDIR /workdir
 
 ARG USERNAME=agaitske
+ARG PASSWD=test
 ARG USER_UID=1001
 ARG USER_GID=1002 ## dm group
 
 # Create the user
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+
+RUN echo "${USER_UID}:${PASSWD}" | chpasswd
 
 #RUN mkdir /docker-entrypoint-initdb.d ## already exists
 #RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
