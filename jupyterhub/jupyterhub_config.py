@@ -13,7 +13,7 @@ c.JupyterHub.authenticator_class = 'jupyterhub.auth.PAMAuthenticator'
 
 #c.JupyterHub.bind_url = 'http://0.0.0.0:8000/'
 
-c.JupyterHub.bind_url = 'http://0.0.0.0:8000/'
+#c.JupyterHub.bind_url = 'http://0.0.0.0:8000/'
 
 #c.JupyterHub.bind_url = 'http://localhost:8000/dev' #### for dev path
 
