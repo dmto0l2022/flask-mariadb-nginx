@@ -15,8 +15,10 @@ RUN apt-get install libmariadb-dev
 
 RUN npm install -g configurable-http-proxy
 
+RUN mkdir /workdir/home
+
 ARG user=jupyterhub
-ARG home=/workdir/$user
+ARG home=/workdir/home/$user
 RUN addgroup --system docker
 RUN adduser \
     --disabled-password \
