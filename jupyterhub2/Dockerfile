@@ -26,7 +26,7 @@ RUN mkdir /workdir/jupyterhub
 
 COPY jupyterhub_config.py /workdir/jupyterhub/jupyterhub_config.py
 COPY requirements.txt /workdir/jupyterhub/requirements.txt
-RUN python3 pip install -r /workdir/jupyterhub/requirements.txt
+RUN python3 -m pip install --no-cache-dir -r /workdir/jupyterhub/requirements.txt
 
 RUN ls -al /workdir/jupyterhub/
 
