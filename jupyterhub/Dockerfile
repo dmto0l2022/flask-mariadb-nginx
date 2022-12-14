@@ -17,7 +17,6 @@ RUN npm install -g configurable-http-proxy
 
 RUN mkdir /workdir
 RUN mkdir /workdir/jupyterhub
-RUN mkdir /workdir/jupyterhub
 RUN mkdir /workdir/jupyterhub/home
 
 RUN mkdir /workdir/notebooks
