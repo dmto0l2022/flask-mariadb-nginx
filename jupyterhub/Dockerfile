@@ -19,8 +19,8 @@ WORKDIR /workdir
 
 RUN mkdir /workdir/home
 
-RUN addgroup shadow \
-    &&  chgrp shadow /etc/shadow \
+##RUN addgroup shadow \
+RUN chgrp shadow /etc/shadow \
     &&  chmod g+r /etc/shadow
 
 ARG user=jupyterhub
