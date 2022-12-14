@@ -25,5 +25,7 @@ podman run -dt \
 --name jupyter-frontend-1 \
 --pod pod-jupyter-frontend \
 --volume /opt/dmtools/notebooks:/workdir/notebooks:z \
+--volume /opt/dmtools/jupyterhub:/workdir/jupyterhub:z \
+--volume - /var/run/docker.sock:/var/run/docker.sock:rw \
 --user $uid:$gid \
 localhost/my-jupyterhub-1:latest
