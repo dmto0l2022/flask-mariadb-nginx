@@ -26,7 +26,7 @@ ADD jupyterhub_config.py /srv/jupyterhub_config/jupyterhub_config.py
 
 # create /srv/jupyterhub_users directory (which is where we'll mount the userlist)
 RUN mkdir /srv/jupyterhub_users
-RUN copy userlist.txt  /srv/jupyterhub_users/userlist.txt
+ADD userlist.txt  /srv/jupyterhub_users/userlist.txt
 
 # we need to expose ports for the hub api and for the proxy api
 EXPOSE 8080
