@@ -42,7 +42,9 @@ RUN groupadd jupyterhub
 
 RUN usermod -aG jupyterhub jupyterhub
 
-RUN chown -R jupyterhub:jupyterhub /workdir
+RUN chmod 755 /workdir
+
+RUN chown jupyterhub:jupyterhub /workdir
 
 #ensures that /var/run/docker.sock exists
 #RUN touch /var/run/docker.sock
