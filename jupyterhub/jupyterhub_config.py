@@ -23,13 +23,13 @@ c.JupyterHub.bind_url = 'http://0.0.0.0:8000/'
 #c.JupyterHub.ip = "127.0.0.1" ###
 
 #  Default: 'jupyterhub_config.py'
-c.JupyterHub.config_file = '/workdir/jupyterhub_config.py'
+c.JupyterHub.config_file = '/workdir/jupyterhub/jupyterhub_config.py'
 
 ## File in which to store the cookie secret.
 #  Default: 'jupyterhub_cookie_secret'
-c.JupyterHub.cookie_secret_file = '/workdir/jupyterhub_cookie_secret'
+c.JupyterHub.cookie_secret_file = '/workdir/jupyterhub/jupyterhub_cookie_secret'
 
-c.ConfigurableHTTPProxy.pid_file = '/workdir/jupyterhub-proxy.pid'
+c.ConfigurableHTTPProxy.pid_file = '/workdir/jupyterhub/jupyterhub-proxy.pid'
 
 c.SudoSpawner.sudospawner_path = '/workdir/env/bin/sudospawner'
 
@@ -65,7 +65,7 @@ c.JupyterHub.data_files_path = '/workdir/env/share/jupyterhub'
 
 ## url for the database. e.g. `sqlite:///jupyterhub.sqlite`
 #  Default: 'sqlite:///jupyterhub.sqlite'
-c.JupyterHub.db_url = 'sqlite://///workdir/jupyterhub.sqlite'
+c.JupyterHub.db_url = 'sqlite://///workdir/jupyterhub/jupyterhub.sqlite'
 
 ## log all database transactions. This has A LOT of output
 #  Default: False
