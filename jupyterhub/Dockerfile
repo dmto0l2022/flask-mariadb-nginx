@@ -73,7 +73,7 @@ USER jupyterhub
 
 ARG HOME=/workdir/jupyterhub/
 
-RUN sh /usr/bin/dockerd-rootless-setuptool.sh install
+RUN sh /usr/bin/dockerd-rootless-setuptool.sh install --skip-iptables
 
 ENV VIRTUAL_ENV=/workdir/jupyterhub/env
 RUN python3 -m venv $VIRTUAL_ENV
