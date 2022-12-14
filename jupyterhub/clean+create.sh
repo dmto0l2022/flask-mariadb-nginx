@@ -5,10 +5,12 @@ subuidSize=$(( $(podman info --format "{{ range \
 subgidSize=$(( $(podman info --format "{{ range \
    .Host.IDMappings.GIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 
+podman network create jupyter_network
+
 podman pod create \
 --name pod-jupyterhub \
 --infra-name infra-jupyterhub \
---network bridge \
+--network jupyter_network \
 --uidmap 0:1:$uid \
 --uidmap $uid:0:1 \
 --uidmap $(($uid+1)):$(($uid+1)):$(($subuidSize-$uid)) \
