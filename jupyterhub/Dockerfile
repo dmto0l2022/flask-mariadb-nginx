@@ -54,10 +54,10 @@ RUN usermod -aG sudo jupyterhub
 #RUN chown jupyterhub:jupyterhub /workdir
 
 #ensures that /var/run/docker.sock exists
-RUN touch /var/run/docker.sock
+#RUN touch /var/run/docker.sock
 
 #changes the ownership of /var/run/docker.sock
-RUN chown jupyterhub:project /var/run/docker.sock
+#RUN chown jupyterhub:project /var/run/docker.sock
 
 USER jupyterhub
 
@@ -87,5 +87,5 @@ WORKDIR /workdir/jupyterhub
 #RUN jupyterhub --generate-config
 COPY jupyterhub_config.py /workdir/jupyterhub/jupyterhub_config.py
 #COPY . .
-EXPOSE 8000
+#EXPOSE 8000
 CMD . /workdir/jupyterhub/env/bin/activate && exec jupyterhub -f /workdir/jupyterhub/jupyterhub_config.py
