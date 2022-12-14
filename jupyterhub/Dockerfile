@@ -64,6 +64,8 @@ RUN usermod -aG sudo jupyterhub
 
 USER jupyterhub
 
+ARG HOME=/workdir/jupyterhub/
+
 RUN sh /usr/bin/dockerd-rootless-setuptool.sh install
 
 ENV VIRTUAL_ENV=/workdir/jupyterhub/env
