@@ -15,13 +15,28 @@ RUN apt-get install libmariadb-dev
 
 RUN npm install -g configurable-http-proxy
 
+ARG user=jupyterhub
+ARG home=/workdir/$user
+RUN addgroup --system docker
+RUN adduser \
+    --disabled-password \
+    --gecos "" \
+    --home $home \
+    --ingroup docker \
+    $user
+
+RUN echo "jupyterhub:jupyterhub" | chpasswd
+
 WORKDIR /workdir
 
 ARG USERNAME=agaitske
 ARG USER_UID=1001
 ARG USER_GID=1002 ## dm group
 
-# Create the user
+# Add jupyterhub user to dm group
+RUN groupadd --gid $USER_GID $user
+
+# Create the main user
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 
