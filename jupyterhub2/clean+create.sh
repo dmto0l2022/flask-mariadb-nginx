@@ -26,6 +26,7 @@ podman build -t my-jupyterhub-1 .
 podman run -dt \
 --name jupyterhub \
 --pod pod-jupyterhub \
+--volume /opt/dmtools/data:/workdir/data:z \
 --volume /opt/dmtools/notebooks:/workdir/notebooks:z \
 --volume /opt/dmtools/jupyterhub:/workdir/jupyterhub:z \
 --user $uid:$gid \
