@@ -38,12 +38,12 @@ ARG USER_GID=1002 ## dm group
 # Create the main user
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+    && usermod -a -G shadow $USER_UID
+
+## last one above allows access to passwords
 
 # Add jupyterhub user to dm group
 RUN usermod -a -G $USER_GID $user
-
-# Add agaitske to be able to read password db
-RUN usermod -a -G shadow $USER_UID
 
 #RUN mkdir /docker-entrypoint-initdb.d ## already exists
 #RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
