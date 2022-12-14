@@ -27,6 +27,7 @@ podman build -t my-jupyterhub-1 .
 podman run -dt \
 --name jupyterhub \
 --pod pod-jupyterhub \
+--volume /var/run/docker.sock:/var/run/docker.sock \
 localhost/my-jupyterhub-1:latest
 
 ##--volume /opt/dmtools/notebooks:/workdir/notebooks:z \
