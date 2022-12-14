@@ -47,7 +47,7 @@ c.Spawner.notebook_dir=pathtofile
  # "no_proxy": "127.0.0.1,localhost",
 #}
 
-c.Spawner.cmd = ['/workdir/env/bin/jupyterhub-singleuser']
+c.Spawner.cmd = ['/workdir/jupyterhub/env/bin/jupyterhub-singleuser']
 
 #c.Spawner.cmd = 'jupterhub-singleuser'
 
@@ -63,7 +63,7 @@ c.DockerSpawner.notebook_dir = notebook_dir
 
 ## The location of jupyterhub data files (e.g. /usr/local/share/jupyterhub)
 
-c.JupyterHub.data_files_path = '/workdir/env/share/jupyterhub'
+c.JupyterHub.data_files_path = '/workdir/jupyterhub/env/share/jupyterhub'
 
 ## url for the database. e.g. `sqlite:///jupyterhub.sqlite`
 #  Default: 'sqlite:///jupyterhub.sqlite'
@@ -142,7 +142,7 @@ c.JupyterHub.log_level = 10
 c.PAMAuthenticator.encoding = 'utf8'
 
 # The PAM service to use for authentication.
-c.PAMAuthenticator.service = 'login'
-c.JupyterHub.authenticator_class = 'jupyterhub.auth.PAMAuthenticator'
-c.PAMAuthenticator.open_sessions = False
+#c.PAMAuthenticator.service = 'login'
+#c.JupyterHub.authenticator_class = 'jupyterhub.auth.PAMAuthenticator'
+#c.PAMAuthenticator.open_sessions = False
 
