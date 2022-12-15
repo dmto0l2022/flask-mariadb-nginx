@@ -33,6 +33,8 @@ podman pod create \
 
 podman build -t my-jupyterhub-1 .
 
+##"unix:/run/user/1001/podman/podman.sock"
+
 ##-v /HOST-DIR:/CONTAINER-DIR
 
 podman run -dt \
