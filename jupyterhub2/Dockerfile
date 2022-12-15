@@ -2,6 +2,8 @@ FROM python:3
 RUN apt-get update && apt-get -y update \
     && apt-get -y install npm podman python3-venv
 
+RUN systemctl --user start podman.socket
+
 #RUN $HOME
 RUN mkdir "${HOME}/.npm-packages"
 RUN npm config set prefix "${HOME}/.npm-packages"
