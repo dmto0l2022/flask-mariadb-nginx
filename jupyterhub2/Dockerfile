@@ -1,6 +1,6 @@
 FROM python:3
 RUN apt-get update && apt-get -y update \
-    && apt-get -y install npm podman python3-venv
+    && apt-get -y install npm python3-venv
 
 #RUN $HOME
 RUN mkdir "${HOME}/.npm-packages"
@@ -9,6 +9,8 @@ RUN export PATH="$PATH:${HOME}/.npm-packages/bin"
 RUN npm install -g configurable-http-proxy
 
 RUN python3 -mvenv $HOME/jhenv
+
+RUN $HOME/jhenv/bin/pip install jupyterhub dockerspawner
 
 COPY jupyterhub_config.py jupyterhub_config.py
 
