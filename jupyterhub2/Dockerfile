@@ -1,4 +1,4 @@
-ARG HOME=/workdir/home
+ARG HOME=/workdir/home/jupyterhub
 
 FROM python:3
 
@@ -17,32 +17,17 @@ RUN apt-get install libmariadb-dev
 
 ####
 
-RUN mkdir -p /workdir/.config
-RUN mkdir -p /workdir/.config/systemd
-RUN mkdir -p /workdir/.config/systemd/user
 
-COPY podman.socket /workdir/.config/systemd/user/podman.socket
-COPY podman.service /workdir/.config/systemd/user/podman.service
+RUN ln -s /etc/containers/registries.conf  /workdir/home/jupyterhub/.config/containers/user/registries.conf
 
-RUN mkdir -p /workdir/.config/containers
-RUN mkdir -p /workdir/.config/containers/user
 
-COPY storage.conf /workdir/.config/containers/user/storage.conf
-COPY storage.conf /workdir/.config/containers/user/registries.conf
-
-RUN ln -s /etc/containers/registries.conf  /workdir/.config/containers/user/registries.conf
-
-RUN systemctl --user daemon-reload
-RUN systemctl --user enable --now podman.socket
-
-RUN export DOCKER_HOST=unix://$HOME/podman.sock
-RUN export CONTAINER_HOST=unix://$HOME/podman.sock
+#RUN export CONTAINER_HOST=unix://$HOME/podman.sock
 
 ####
 
 WORKDIR /workdir
 
-RUN mkdir /workdir/home
+#RUN mkdir /workdir/home
 
 ##RUN addgroup shadow \
 RUN chgrp shadow /etc/shadow \
@@ -93,11 +78,30 @@ RUN chmod -R 2775 /workdir/
 
 USER jupyterhub
 
+#RUN mkdir -p /workdir/home/jupyterhub
+#RUN mkdir -p /workdir/home/jupyterhub/.config
+RUN mkdir -p /workdir/home/jupyterhub/.config/systemd
+RUN mkdir -p /workdir/home/jupyterhub/.config/systemd/user
+
+COPY podman.socket /workdir/home/jupyterhub/.config/systemd/user/podman.socket
+COPY podman.service /workdir/home/jupyterhub/.config/systemd/user/podman.service
+
+RUN mkdir -p /workdir/home/jupyterhub/.config/containers
+RUN mkdir -p /workdir/home/jupyterhub/.config/containers/user
+
+COPY storage.conf /workdir/home/jupyterhub/.config/containers/user/storage.conf
+COPY registries.conf /workdir/home/jupyterhub/.config/containers/user/registries.conf
+
+RUN systemctl --user daemon-reload
+RUN systemctl --user enable --now podman.socket
+
+RUN export DOCKER_HOST=unix:///workdir/home/jupyterhub/podman.sock
+
 ##RUN npm install -g configurable-http-proxy
 
-RUN mkdir "${HOME}/.npm-packages"
-RUN npm config set prefix "${HOME}/.npm-packages"
-RUN export PATH="$PATH:${HOME}/.npm-packages/bin"
+RUN mkdir "/workdir/home/jupyterhub/.npm-packages"
+RUN npm config set prefix "/workdir/home/jupyterhub/.npm-packages"
+RUN export PATH="$PATH:/workdir/home/jupyterhub/.npm-packages/bin"
 RUN npm install -g configurable-http-proxy
 
 ENV VIRTUAL_ENV=/workdir/env
