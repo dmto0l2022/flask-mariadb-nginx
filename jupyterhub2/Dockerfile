@@ -8,8 +8,11 @@ RUN apt-get update && apt-get -y update \
     && apt-get -y install sudo \
     && apt-get install -y apt-utils dialog \
     && apt-get install -y build-essential python3.10 python3-pip python3-dev \
-    && apt-get -y install nodejs npm \
-    && apt-get -y install podman
+    && apt-get -y install nodejs npm
+    
+##&& apt-get -y install podman
+    
+RUN apt-get -y install podman && systemctl enable podman
 
 RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
 RUN apt-get update && apt-get install -y mariadb-server galera-4 mariadb-client libmariadb3 mariadb-backup mariadb-common
