@@ -1,5 +1,5 @@
 FROM python:3
-RUN apt-get update
+RUN apt-get -y update
 RUN apt-get -y install npm podman python3-venv
 
 RUN $HOME
