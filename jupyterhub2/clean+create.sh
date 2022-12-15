@@ -16,8 +16,8 @@ ln -s /etc/containers/registries.conf ~/.config/containers/registries.conf
 systemctl --user daemon-reload
 systemctl --user enable --now podman.socket
 
-export DOCKER_HOST=unix://$HOME/podman.sock
-export CONTAINER_HOST=unix://$HOME/podman.sock
+#export DOCKER_HOST=unix://$HOME/podman.sock
+#export CONTAINER_HOST=unix://$HOME/podman.sock
 
 podman pod create \
 --name pod-jupyterhub \
