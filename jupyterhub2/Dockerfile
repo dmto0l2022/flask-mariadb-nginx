@@ -9,6 +9,6 @@ RUN export PATH="$PATH:${HOME}/.npm-packages/bin"
 RUN npm install -g configurable-http-proxy
 
 RUN python3 -mvenv $HOME/jhenv
-RUN . $HOME/jhenv/bin/activate
 
-jupyterhub --debug --config=jupyterhub_config.py
+CMD . $HOME/jhenv/bin/activate & exec jupyterhub --debug --config=jupyterhub_config.py
+
