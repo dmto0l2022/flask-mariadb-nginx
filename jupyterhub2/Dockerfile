@@ -1,6 +1,6 @@
 FROM python:3
-sudo apt-get update
-sudo apt-get -y install npm podman python3-venv
+RUN apt-get update
+RUN apt-get -y install npm podman python3-venv
 
 RUN $HOME
 RUN mkdir "${HOME}/.npm-packages"
