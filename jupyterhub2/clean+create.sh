@@ -12,7 +12,7 @@ subgidSize=$(( $(podman info --format "{{ range \
 #--gidmap $gid:0:1 \
 #--gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
 
-podman network create bridge
+# podman network create bridge
 
 
 podman pod create \
