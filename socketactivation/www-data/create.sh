@@ -1,4 +1,6 @@
 podman pull registry.redhat.io/rhel8/httpd-24
-podman create --name httpd -p 127.0.0.1:8080:8080 \
--v ~/www-data:/var/www/html/:Z \
+
+podman create --name httpd -p 0.0.0.0:8000:8000 \
+-v /opt/dmtools/code/flask-mariadb-nginx/socketactivation/www-data:/var/www/html/:Z \
 registry.redhat.io/rhel8/httpd-24
+
