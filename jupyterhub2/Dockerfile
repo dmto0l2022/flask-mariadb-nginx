@@ -18,7 +18,7 @@ RUN apt-get install libmariadb-dev
 ####
 
 
-RUN ln -s /etc/containers/registries.conf  /workdir/home/jupyterhub/.config/containers/user/registries.conf
+#RUN ln -s /etc/containers/registries.conf  /workdir/home/jupyterhub/.config/containers/user/registries.conf
 
 
 #RUN export CONTAINER_HOST=unix://$HOME/podman.sock
