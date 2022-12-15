@@ -37,12 +37,14 @@ podman build -t my-jupyterhub-1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
+#/home/agaitske/podman.sock
+
 podman run -dt \
 --name jupyterhub \
 --pod pod-jupyterhub \
 --volume /opt/dmtools/data:/workdir/data:z \
 --volume /opt/dmtools/notebooks:/workdir/notebooks:z \
 --volume /opt/dmtools/jupyterhub:/workdir/jupyterhub:z \
---volume  /run/user/1001/podman/podman.sock:///podman/run/podman.sock \
+--volume  /home/agaitske/podman.sock:/run/user/1001/podman/podman.sock \
 --user $uid:$gid \
 localhost/my-jupyterhub-1:latest
