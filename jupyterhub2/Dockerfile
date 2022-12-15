@@ -95,7 +95,9 @@ COPY registries.conf /workdir/home/jupyterhub/.config/containers/user/registries
 RUN systemctl --user daemon-reload
 RUN systemctl --user enable --now podman.socket
 
-RUN export DOCKER_HOST=unix:///workdir/home/jupyterhub/podman.sock
+RUN systemctl --user status podman.socket
+
+#RUN export DOCKER_HOST=unix:///workdir/home/jupyterhub/podman.sock
 
 ##RUN npm install -g configurable-http-proxy
 
