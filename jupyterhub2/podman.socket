@@ -2,7 +2,7 @@
 Description=Podman API Socket
 
 [Socket]
-ListenStream=/workdir/home/podman.sock
+ListenStream=%h/podman.sock
 SocketMode=0660
 
 [Install]
