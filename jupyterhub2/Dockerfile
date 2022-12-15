@@ -7,6 +7,8 @@ RUN echo $XDG_RUNTIME_DIR
 RUN echo $DBUS_SESSION_BUS_ADDRESS
 RUN service --status-all
 
+RUN podman system service --time 5
+
 #RUN $HOME
 RUN mkdir "${HOME}/.npm-packages"
 RUN npm config set prefix "${HOME}/.npm-packages"
