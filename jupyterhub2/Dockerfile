@@ -10,5 +10,7 @@ RUN npm install -g configurable-http-proxy
 
 RUN python3 -mvenv $HOME/jhenv
 
+COPY jupyterhub_config.py jupyterhub_config.py
+
 CMD . $HOME/jhenv/bin/activate & exec jupyterhub --debug --config=jupyterhub_config.py
 
