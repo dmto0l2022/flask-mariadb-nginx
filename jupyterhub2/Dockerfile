@@ -5,7 +5,7 @@ RUN apt-get update && apt-get -y update \
 ##RUN systemctl --user start /usr/lib/systemd/user/podman.socket
 RUN echo $XDG_RUNTIME_DIR
 RUN echo $DBUS_SESSION_BUS_ADDRESS
-RUN systemctl status dbus.service
+RUN systemctl status podman.service
 
 #RUN $HOME
 RUN mkdir "${HOME}/.npm-packages"
