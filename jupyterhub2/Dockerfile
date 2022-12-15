@@ -36,11 +36,13 @@ RUN chgrp shadow /etc/shadow \
 ARG user=jupyterhub
 ARG home=/workdir/home/$user
 RUN addgroup --system docker
+RUN addgroup jupyterhub
 RUN adduser \
     --disabled-password \
     --gecos "" \
     --home $home \
     --ingroup docker \
+    --group jupyterhub \
     $user
 
 RUN echo "jupyterhub:jupyterhub" | chpasswd
