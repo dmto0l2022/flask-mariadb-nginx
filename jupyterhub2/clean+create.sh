@@ -5,17 +5,27 @@ subuidSize=$(( $(podman info --format "{{ range \
 subgidSize=$(( $(podman info --format "{{ range \
    .Host.IDMappings.GIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 
-#--uidmap 0:1:$uid \
-#--uidmap $uid:0:1 \
-#--uidmap $(($uid+1)):$(($uid+1)):$(($subuidSize-$uid)) \
-#--gidmap 0:1:$gid \
-#--gidmap $gid:0:1 \
-#--gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
-
 # podman network create bridge
 
+cp podman.socket ~/.config/systemd/user/podman.socket
+cp podman.service ~/.config/systemd/user/podman.service
+mkdir -p ~/.config/containers
+cp storage.conf ~/.config/containers/storage.conf
+
+ln -s /etc/containers/registries.conf ~/.config/containers/registries.conf
+systemctl --user daemon-reload
+systemctl --user enable --now podman.socket
+
+export DOCKER_HOST=unix://$HOME/podman.sock
+export CONTAINER_HOST=unix://$HOME/podman.sock
 
 podman pod create \
+--uidmap 0:1:$uid \
+--uidmap $uid:0:1 \
+--uidmap $(($uid+1)):$(($uid+1)):$(($subuidSize-$uid)) \
+--gidmap 0:1:$gid \
+--gidmap $gid:0:1 \
+--gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
 --name pod-jupyterhub \
 --infra-name infra-jupyter-frontend \
 --network bridge \
@@ -31,6 +41,6 @@ podman run -dt \
 --volume /opt/dmtools/data:/workdir/data:z \
 --volume /opt/dmtools/notebooks:/workdir/notebooks:z \
 --volume /opt/dmtools/jupyterhub:/workdir/jupyterhub:z \
---volume  /run/user/1001/podman/podman.sock:///.podman/run/podman.sock \
+--volume  /run/user/1001/podman/podman.sock:///podman/run/podman.sock \
 --user $uid:$gid \
 localhost/my-jupyterhub-1:latest
