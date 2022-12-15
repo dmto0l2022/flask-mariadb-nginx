@@ -8,8 +8,8 @@ RUN apt-get update && apt-get -y update \
     && apt-get -y install sudo \
     && apt-get install -y apt-utils dialog \
     && apt-get install -y build-essential python3.10 python3-pip python3-dev \
-    && apt-get -y install nodejs npm
-    && apt-get -y install systemd
+    && apt-get -y install nodejs npm \
+    && apt-get -y install systemd \
     && apt-get -y install podman
     
 ##RUN apt-get -y install podman && systemctl enable podman
