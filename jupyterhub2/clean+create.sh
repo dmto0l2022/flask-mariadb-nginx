@@ -20,15 +20,15 @@ export DOCKER_HOST=unix://$HOME/podman.sock
 export CONTAINER_HOST=unix://$HOME/podman.sock
 
 podman pod create \
+--name pod-jupyterhub \
+--infra-name infra-jupyterhub \
+--network bridge \
 --uidmap 0:1:$uid \
 --uidmap $uid:0:1 \
 --uidmap $(($uid+1)):$(($uid+1)):$(($subuidSize-$uid)) \
 --gidmap 0:1:$gid \
 --gidmap $gid:0:1 \
 --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
---name pod-jupyterhub \
---infra-name infra-jupyter-frontend \
---network bridge \
 --publish 8000:8000 --publish 8001:8001 --publish 8002:8002
 
 podman build -t my-jupyterhub-1 .
