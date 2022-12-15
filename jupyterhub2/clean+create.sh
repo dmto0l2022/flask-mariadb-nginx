@@ -31,5 +31,6 @@ podman run -dt \
 --volume /opt/dmtools/data:/workdir/data:z \
 --volume /opt/dmtools/notebooks:/workdir/notebooks:z \
 --volume /opt/dmtools/jupyterhub:/workdir/jupyterhub:z \
+--volume  /run/user/1001/podman/podman.sock:///workdir/home/jupyterhub//.docker/run/podman.sock \
 --user $uid:$gid \
 localhost/my-jupyterhub-1:latest
