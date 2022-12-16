@@ -7,8 +7,7 @@
 ##FROM base AS stage2
 ##RUN echo "stage2"
 
-
-FROM ubuntu:latest AS base
+FROM ubuntu:latest
 RUN apt-get update && apt-get -y update \
     && apt-get install software-properties-common -y \
     && add-apt-repository ppa:deadsnakes/ppa -y \
@@ -20,9 +19,7 @@ RUN apt-get update && apt-get -y update \
 #RUN chown $USER_UID:$USER_GID /var/lib/mysql
 
 #################
-##WORKDIR /workdir
-
-FROM base AS stage1
+WORKDIR /workdir
 
 ARG USERNAME=agaitske
 ARG USER_UID=1001
@@ -35,24 +32,24 @@ RUN groupadd --gid $USER_GID $USERNAME \
 #RUN mkdir /docker-entrypoint-initdb.d ## already exists
 #RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
 #RUN chown $USER_UID:$USER_GID /var/lib/mysql
-RUN mkdir /workdir
+#RUN mkdir /workdir
 RUN chown $USER_UID:$USER_GID /workdir
 
-RUN mkdir /workdir/jupyterhub
-RUN chown $USER_UID:$USER_GID /workdir/jupyterhub
+#ADD entry-point.sh /workdir/jupyterhub/entry-point.sh
+#RUN chmod +x /workdir/jupyterhub/entry-point.sh
+#RUN dos2unix /workdir/jupyterhub/entry-point.sh
+#RUN chown $USER_UID:$USER_GID /workdir/jupyterhub/entry-point.sh
 
-ADD entry-point.sh /workdir/jupyterhub/entry-point.sh
-RUN chmod +x /workdir/jupyterhub/entry-point.sh
-RUN dos2unix /workdir/jupyterhub/entry-point.sh
-RUN chown $USER_UID:$USER_GID /workdir/jupyterhub/entry-point.sh
+#FROM stage1 AS stage2
 
-FROM stage1 AS stage2
+#ARG USERNAME=agaitske
+#ARG USER_UID=1001
+#ARG USER_GID=1002 ## dm group
 
-ARG USERNAME=agaitske
-ARG USER_UID=1001
-ARG USER_GID=1002 ## dm group
 USER $USERNAME
 
+RUN mkdir /workdir/jupyterhub
+RUN export PATH="$PATH:/workdir/jupyterhub"
 ## https://pythonspeed.com/articles/activate-virtualenv-dockerfile/
 
 ENV VIRTUAL_ENV=/workdir/jupyterhub/env
@@ -102,5 +99,5 @@ RUN npm install -g configurable-http-proxy
 ##ENTRYPOINT ["/workdir/jupyterhub/entry-point.sh"] # didn't work
 #CMD ["/bin/bash", "/workdir/jupyterhub/entry-point.sh"] # ??
 ## CMD [ "./jupyterhub/env/bin/python3", "jupyterhub" , "--debug", "--config=/workdir/jupyterhub/jupyterhub_config.py"] # didn't work
-# CMD [ "jupyterhub" , "--debug", "--config=/workdir/jupyterhub/jupyterhub_config.py"]
+CMD [ "jupyterhub" , "--debug", "--config=/workdir/jupyterhub/jupyterhub_config.py"]
 ##--debug --config=/workdir/jupyterhub/jupyterhub_config.py
