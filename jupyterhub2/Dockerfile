@@ -1,4 +1,14 @@
-FROM python:3
+##FROM ubuntu AS base
+##RUN echo "base"
+
+##FROM base AS stage1
+##RUN echo "stage1"
+
+##FROM base AS stage2
+##RUN echo "stage2"
+
+
+FROM python:3 AS base
 RUN apt-get update && apt-get -y update \
     && apt-get -y install npm python3-venv dos2unix
 
@@ -8,6 +18,8 @@ RUN apt-get update && apt-get -y update \
 
 #################
 ##WORKDIR /workdir
+
+FROM base AS stage1
 
 ARG USERNAME=agaitske
 ARG USER_UID=1001
@@ -31,6 +43,11 @@ RUN chmod +x /workdir/jupyterhub/entry-point.sh
 RUN dos2unix /workdir/jupyterhub/entry-point.sh
 RUN chown $USER_UID:$USER_GID /workdir/jupyterhub/entry-point.sh
 
+FROM stage1 AS stage2
+
+ARG USERNAME=agaitske
+ARG USER_UID=1001
+ARG USER_GID=1002 ## dm group
 USER $USERNAME
 
 ## https://pythonspeed.com/articles/activate-virtualenv-dockerfile/
