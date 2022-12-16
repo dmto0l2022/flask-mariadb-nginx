@@ -8,8 +8,11 @@
 ##RUN echo "stage2"
 
 
-FROM python:3 AS base
+FROM ubuntu:latest AS base
 RUN apt-get update && apt-get -y update \
+    && apt-get install software-properties-common -y /
+    && add-apt-repository ppa:deadsnakes/ppa -y /
+    && apt-get install python3.10 /
     && apt-get -y install npm python3-venv dos2unix
 
 #RUN mkdir /docker-entrypoint-initdb.d ## already exists
