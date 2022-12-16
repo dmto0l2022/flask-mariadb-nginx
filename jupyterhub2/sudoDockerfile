@@ -1,23 +1,10 @@
-##FROM ubuntu AS base
-##RUN echo "base"
-
-##FROM base AS stage1
-##RUN echo "stage1"
-
-##FROM base AS stage2
-##RUN echo "stage2"
-
 FROM ubuntu:latest
 RUN apt-get update && apt-get -y update \
     && apt-get install software-properties-common -y \
     && add-apt-repository ppa:deadsnakes/ppa -y \
     && apt-get install python3.10 \
     && apt-get -y install npm python3-venv dos2unix
-    
 
-#RUN mkdir /docker-entrypoint-initdb.d ## already exists
-#RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
-#RUN chown $USER_UID:$USER_GID /var/lib/mysql
 
 #################
 WORKDIR /workdir
@@ -30,22 +17,34 @@ ARG USER_GID=1002 ## dm group
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 
-#RUN mkdir /docker-entrypoint-initdb.d ## already exists
-#RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
-#RUN chown $USER_UID:$USER_GID /var/lib/mysql
-#RUN mkdir /workdir
 RUN chown $USER_UID:$USER_GID /workdir
 
-#ADD entry-point.sh /workdir/jupyterhub/entry-point.sh
-#RUN chmod +x /workdir/jupyterhub/entry-point.sh
-#RUN dos2unix /workdir/jupyterhub/entry-point.sh
-#RUN chown $USER_UID:$USER_GID /workdir/jupyterhub/entry-point.sh
+RUN apt-get -y update \
+    && apt-get -y install sudo \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+# fix permissions on sudo executable (how did this get messed up?)
 
-#FROM stage1 AS stage2
+RUN chmod 4755 /usr/bin/sudo
 
-#ARG USERNAME=agaitske
-#ARG USER_UID=1001
-#ARG USER_GID=1002 ## dm group
+#RUN python3 -m pip install notebook
+
+# add the rhea user, who will run the server
+# she needs to be in the shadow group in order to access the PAM service
+RUN useradd -m -G shadow -p $(openssl passwd -1 agaitske) agaitske
+
+# Give rhea passwordless sudo access to run the sudospawner mediator on behalf of users:
+ADD examples/sudoers /tmp/sudoers
+RUN cat /tmp/sudoers >> /etc/sudoers
+RUN rm /tmp/sudoers
+
+# add some regular users
+RUN for name in io ganymede; do useradd -m -p $(openssl passwd -1 $name) $name; done
+
+# make home directories private
+RUN chmod o-rwx /workdir/notebooks/*
+
+# make the working dir owned by rhea, so she can create the state database
 
 USER $USERNAME
 
