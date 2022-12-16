@@ -1,0 +1,107 @@
+##FROM ubuntu AS base
+##RUN echo "base"
+
+##FROM base AS stage1
+##RUN echo "stage1"
+
+##FROM base AS stage2
+##RUN echo "stage2"
+
+FROM ubuntu:latest
+RUN apt-get update && apt-get -y update \
+    && apt-get install software-properties-common -y \
+    && add-apt-repository ppa:deadsnakes/ppa -y \
+    && apt-get install python3.10 \
+    && apt-get -y install npm python3-venv dos2unix
+    
+
+#RUN mkdir /docker-entrypoint-initdb.d ## already exists
+#RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
+#RUN chown $USER_UID:$USER_GID /var/lib/mysql
+
+#################
+WORKDIR /workdir
+
+ARG USERNAME=agaitske
+ARG USER_UID=1001
+ARG USER_GID=1002 ## dm group
+
+# Create the user
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+
+#RUN mkdir /docker-entrypoint-initdb.d ## already exists
+#RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
+#RUN chown $USER_UID:$USER_GID /var/lib/mysql
+#RUN mkdir /workdir
+RUN chown $USER_UID:$USER_GID /workdir
+
+#ADD entry-point.sh /workdir/jupyterhub/entry-point.sh
+#RUN chmod +x /workdir/jupyterhub/entry-point.sh
+#RUN dos2unix /workdir/jupyterhub/entry-point.sh
+#RUN chown $USER_UID:$USER_GID /workdir/jupyterhub/entry-point.sh
+
+#FROM stage1 AS stage2
+
+#ARG USERNAME=agaitske
+#ARG USER_UID=1001
+#ARG USER_GID=1002 ## dm group
+
+USER $USERNAME
+
+## RUN export CONTAINER_HOST=unix://$HOME/podman.sock
+
+RUN mkdir /workdir/jupyterhub
+RUN export PATH="$PATH:/workdir/jupyterhub"
+## https://pythonspeed.com/articles/activate-virtualenv-dockerfile/
+
+ENV VIRTUAL_ENV=/workdir/jupyterhub/env
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# Install dependencies:
+##COPY requirements.txt .
+##RUN pip install -r requirements.txt
+
+# Run the application:
+#COPY myapp.py .
+#CMD ["python", "myapp.py"]
+
+
+##RUN python3 -m venv /app/env
+##RUN /app/env/bin/python -m pip install --upgrade pip
+RUN /workdir/jupyterhub/env/bin/python3 -m pip install --upgrade pip
+RUN . /workdir/jupyterhub/env/bin/activate
+RUN /workdir/jupyterhub/env/bin/python3 --version
+RUN whereis python3
+RUN whereis pip3
+COPY requirements.txt /workdir/jupyterhub/requirements.txt
+##COPY entry-point.sh /workdir/jupyterhub/entry-point.sh
+COPY jupyterhub_config.py /workdir/jupyterhub/jupyterhub_config.py
+RUN /workdir/jupyterhub/env/bin/pip3 install -r /workdir/jupyterhub/requirements.txt
+RUN /workdir/jupyterhub/env/bin/pip3 freeze
+#COPY . /workdir/jupyterhub/.
+##RUN ls -R /workdir/
+##CMD [ "/app/env/bin/python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8002"]
+##RUN chmod +x //app/entry-point.sh
+
+
+################
+
+#RUN mkdir "${HOME}/.npm-packages"
+#RUN npm config set prefix "${HOME}/.npm-packages"
+#RUN export PATH="$PATH:${HOME}/.npm-packages/bin"
+#RUN npm install -g configurable-http-proxy
+
+RUN mkdir /workdir/.npm-packages
+RUN npm config set prefix /workdir/.npm-packages
+RUN export PATH="$PATH:/workdir/.npm-packages"
+RUN npm install -g configurable-http-proxy
+
+# EXPOSE 8000
+##ENTRYPOINT ["/workdir/jupyterhub/entry-point.sh"] # didn't work
+#CMD ["/bin/bash", "/workdir/jupyterhub/entry-point.sh"] # ??
+## CMD [ "./jupyterhub/env/bin/python3", "jupyterhub" , "--debug", "--config=/workdir/jupyterhub/jupyterhub_config.py"] # didn't work
+CMD [ "/workdir/jupyterhub/env/bin/jupyterhub" , "--debug", "--config=/workdir/jupyterhub/jupyterhub_config.py"]
+##--debug --config=/workdir/jupyterhub/jupyterhub_config.py
+## /workdir/jupyterhub/env/bin/jupyterhub --config=/workdir/jupyterhub/jupyterhub_config.py
