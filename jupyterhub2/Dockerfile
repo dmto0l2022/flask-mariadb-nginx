@@ -46,7 +46,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 ##RUN /app/env/bin/python -m pip install --upgrade pip
 RUN /workdir/jupyterhub/env/bin/python3 -m pip install --upgrade pip
 RUN . /workdir/jupyterhub/env/bin/activate
-RUN /workdir/app/env/bin/python3 --version
+RUN /workdir/jupyterhub/env/bin/python3 --version
 RUN whereis python3
 RUN whereis pip3
 COPY requirements.txt /workdir/jupyterhub/requirements.txt
@@ -56,7 +56,6 @@ RUN /workdir/jupyterhub/env/bin/pip3 install -r /workdir/jupyterhub/requirements
 RUN /workdir/jupyterhub/env/bin/pip3 freeze
 COPY . /workdir/jupyterhub/.
 ##RUN ls -R /workdir/
-EXPOSE 8000
 ##CMD [ "/app/env/bin/python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8002"]
 ##RUN chmod +x //app/entry-point.sh
 
@@ -68,7 +67,6 @@ RUN npm config set prefix "${HOME}/.npm-packages"
 RUN export PATH="$PATH:${HOME}/.npm-packages/bin"
 RUN npm install -g configurable-http-proxy
 
+EXPOSE 8000
 ENTRYPOINT ["sh","/workdir/jupyterhub/entry-point.sh"]
-
-CMD . /workdir/jupyterhub/env/bin/activate & exec jupyterhub --debug --config=jupyterhub_config.py
 
