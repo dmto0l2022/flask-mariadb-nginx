@@ -25,6 +25,10 @@ RUN chown $USER_UID:$USER_GID /workdir
 RUN mkdir /workdir/jupyterhub
 RUN chown $USER_UID:$USER_GID /workdir/jupyterhub
 
+ADD entry-point.sh /workdir/jupyterhub/entry-point.sh
+RUN chmod +x /workdir/jupyterhub/entry-point.sh
+RUN chown $USER_UID:$USER_GID /workdir/jupyterhub/entry-point.sh
+
 USER $USERNAME
 
 ## https://pythonspeed.com/articles/activate-virtualenv-dockerfile/
@@ -50,7 +54,7 @@ RUN /workdir/jupyterhub/env/bin/python3 --version
 RUN whereis python3
 RUN whereis pip3
 COPY requirements.txt /workdir/jupyterhub/requirements.txt
-COPY entry-point.sh /workdir/jupyterhub/entry-point.sh
+##COPY entry-point.sh /workdir/jupyterhub/entry-point.sh
 COPY jupyterhub_config.py /workdir/jupyterhub/jupyterhub_config.py
 RUN /workdir/jupyterhub/env/bin/pip3 install -r /workdir/jupyterhub/requirements.txt
 RUN /workdir/jupyterhub/env/bin/pip3 freeze
@@ -68,5 +72,5 @@ RUN export PATH="$PATH:${HOME}/.npm-packages/bin"
 RUN npm install -g configurable-http-proxy
 
 EXPOSE 8000
-ENTRYPOINT ["/workdir/jupyterhub/entry-point.sh"]
+ENTRYPOINT /workdir/jupyterhub/entry-point.sh
 
