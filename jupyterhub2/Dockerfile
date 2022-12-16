@@ -68,5 +68,5 @@ RUN export PATH="$PATH:${HOME}/.npm-packages/bin"
 RUN npm install -g configurable-http-proxy
 
 EXPOSE 8000
-ENTRYPOINT ["sh","/workdir/jupyterhub/entry-point.sh"]
+ENTRYPOINT ["sh","jupyterhub/entry-point.sh"]
 
