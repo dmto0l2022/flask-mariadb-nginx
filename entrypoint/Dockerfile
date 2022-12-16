@@ -1,7 +1,21 @@
-FROM python:3.9-alpine
+# syntax=docker/dockerfile:1
 
-WORKDIR /app
-COPY . /app
+FROM python:3.8-slim-buster
 
-RUN ["chmod", "+x", "./entrypoint.sh"]
-ENTRYPOINT ['./entrypoint.sh']
+WORKDIR /python-docker
+
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
+
+COPY . .
+
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+
+##
+##FROM python:3.9-alpine
+
+##WORKDIR /app
+##COPY . /app
+
+###RUN ["chmod", "+x", "./entrypoint.sh"]
+##ENTRYPOINT ['./entrypoint.sh']
