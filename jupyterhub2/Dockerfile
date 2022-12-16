@@ -59,7 +59,7 @@ COPY requirements.txt /workdir/jupyterhub/requirements.txt
 COPY jupyterhub_config.py /workdir/jupyterhub/jupyterhub_config.py
 RUN /workdir/jupyterhub/env/bin/pip3 install -r /workdir/jupyterhub/requirements.txt
 RUN /workdir/jupyterhub/env/bin/pip3 freeze
-COPY . /workdir/jupyterhub/.
+#COPY . /workdir/jupyterhub/.
 ##RUN ls -R /workdir/
 ##CMD [ "/app/env/bin/python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8002"]
 ##RUN chmod +x //app/entry-point.sh
@@ -73,5 +73,6 @@ RUN export PATH="$PATH:${HOME}/.npm-packages/bin"
 RUN npm install -g configurable-http-proxy
 
 EXPOSE 8000
-ENTRYPOINT ["/workdir/jupyterhub/entry-point.sh"]
-
+##ENTRYPOINT ["/workdir/jupyterhub/entry-point.sh"]
+#CMD ["/bin/bash", "/workdir/jupyterhub/entry-point.sh"]
+CMD [ "/workdir/jupyterhub/env/bin/python3", "jupyterhub" , "flask", "run", "--host=0.0.0.0", "--port=8002"]
