@@ -7,6 +7,10 @@ subgidSize=$(( $(podman info --format "{{ range \
 
 # podman network create bridge
 
+XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-/run/user/$(id -u)}
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
+export DOCKER_SOCK=$XDG_RUNTIME_DIR/podman/podman.sock
+
 cp podman.socket ~/.config/systemd/user/podman.socket
 cp podman.service ~/.config/systemd/user/podman.service
 mkdir -p ~/.config/containers
@@ -15,6 +19,7 @@ cp storage.conf ~/.config/containers/storage.conf
 ln -s /etc/containers/registries.conf ~/.config/containers/registries.conf
 systemctl --user daemon-reload
 systemctl --user enable --now podman.socket
+systemctl --user status podman.socket
 
 #export DOCKER_HOST=unix://$HOME/podman.sock
 #export CONTAINER_HOST=unix://$HOME/podman.sock
