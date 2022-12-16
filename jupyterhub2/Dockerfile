@@ -50,14 +50,16 @@ RUN /workdir/app/env/bin/python3 --version
 RUN whereis python3
 RUN whereis pip3
 COPY requirements.txt /workdir/jupyterhub/requirements.txt
+COPY entry-point.sh /workdir/jupyterhub/entry-point.sh
+COPY jupyterhub_config.py /workdir/jupyterhub/jupyterhub_config.py
 RUN /workdir/jupyterhub/env/bin/pip3 install -r /workdir/jupyterhub/requirements.txt
 RUN /workdir/jupyterhub/env/bin/pip3 freeze
-COPY . /workdir/.
+COPY . /workdir/jupyterhub/.
 ##RUN ls -R /workdir/
 EXPOSE 8000
 ##CMD [ "/app/env/bin/python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8002"]
 ##RUN chmod +x //app/entry-point.sh
-ENTRYPOINT ["sh","/workdir/entry-point.sh"]
+
 
 ################
 
@@ -66,9 +68,7 @@ RUN npm config set prefix "${HOME}/.npm-packages"
 RUN export PATH="$PATH:${HOME}/.npm-packages/bin"
 RUN npm install -g configurable-http-proxy
 
-RUN $HOME/jhenv/bin/pip install jupyterhub dockerspawner
+ENTRYPOINT ["sh","/workdir/jupyterhub/entry-point.sh"]
 
-COPY jupyterhub_config.py jupyterhub_config.py
-
-CMD . $HOME/jhenv/bin/activate & exec jupyterhub --debug --config=jupyterhub_config.py
+CMD . /workdir/jupyterhub/env/bin/activate & exec jupyterhub --debug --config=jupyterhub_config.py
 
