@@ -5,6 +5,8 @@ c.JupyterHub.hub_ip = '0.0.0.0'
 #  Default: 'jupyterhub_config.py'
 c.JupyterHub.config_file = '/workdir/jupyterhub/jupyterhub_config.py'
 
+c.ConfigurableHTTPProxy.command = '/workdir/.npm-packages/bin/configurable-http-proxy
+
 # Get external IP https://stackoverflow.com/a/166589
 import socket
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
