@@ -1,6 +1,7 @@
 c.JupyterHub.authenticator_class = "dummy"
 c.JupyterHub.spawner_class = "docker"
 c.JupyterHub.hub_ip = '0.0.0.0'
+c.JupyterHub.port=8000
 
 #  Default: 'jupyterhub_config.py'
 c.JupyterHub.config_file = '/workdir/jupyterhub/jupyterhub_config.py'
