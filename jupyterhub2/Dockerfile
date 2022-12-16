@@ -1,6 +1,6 @@
 FROM python:3
 RUN apt-get update && apt-get -y update \
-    && apt-get -y install npm python3-venv
+    && apt-get -y install npm python3-venv dos2unix
 
 #RUN mkdir /docker-entrypoint-initdb.d ## already exists
 #RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
@@ -27,6 +27,7 @@ RUN chown $USER_UID:$USER_GID /workdir/jupyterhub
 
 ADD entry-point.sh /workdir/jupyterhub/entry-point.sh
 RUN chmod +x /workdir/jupyterhub/entry-point.sh
+RUN dos2unix /workdir/jupyterhub/entry-point.sh
 RUN chown $USER_UID:$USER_GID /workdir/jupyterhub/entry-point.sh
 
 USER $USERNAME
