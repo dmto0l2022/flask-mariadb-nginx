@@ -8,3 +8,5 @@ https://medium.com/devops-dudes/how-to-setup-root-less-podman-containers-efd109f
 https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md
 
 https://github.com/jupyterhub/sudospawner/blob/main/examples/Dockerfile
+
+https://jupyterhub.readthedocs.io/en/stable/reference/config-sudo.html
