@@ -2,6 +2,9 @@ c.JupyterHub.authenticator_class = "dummy"
 c.JupyterHub.spawner_class = "docker"
 c.JupyterHub.hub_ip = '0.0.0.0'
 
+#  Default: 'jupyterhub_config.py'
+c.JupyterHub.config_file = '/workdir/jupyterhub/jupyterhub_config.py'
+
 # Get external IP https://stackoverflow.com/a/166589
 import socket
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
