@@ -11,8 +11,8 @@ subgidSize=$(( $(podman info --format "{{ range \
 #export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
 #export DOCKER_SOCK=$XDG_RUNTIME_DIR/podman/podman.sock
 
-cp podman.socket ~/.config/systemd/user/podman.socket
-cp podman.service ~/.config/systemd/user/podman.service
+#cp podman.socket ~/.config/systemd/user/podman.socket
+#cp podman.service ~/.config/systemd/user/podman.service
 mkdir -p ~/.config/containers
 cp storage.conf ~/.config/containers/storage.conf
 
@@ -51,6 +51,6 @@ podman run -dt \
 --pod pod-jupyterhub \
 --volume /opt/dmtools/data:/workdir/data:z \
 --volume /opt/dmtools/notebooks:/workdir/notebooks:z \
---volume  /home/agaitske/podman.sock:/run/user/1001/podman/podman.sock \
+--volume  /run/user/1001/podman/podman.sock:/run/user/1001/podman/podman.sock \
 --user $uid:$gid \
 localhost/my-jupyterhub-1:latest
