@@ -20,6 +20,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
 #RUN mkdir /docker-entrypoint-initdb.d ## already exists
 #RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
 #RUN chown $USER_UID:$USER_GID /var/lib/mysql
+RUN mkdir /workdir
 RUN chown $USER_UID:$USER_GID /workdir
 
 RUN mkdir /workdir/jupyterhub
@@ -67,12 +68,17 @@ RUN /workdir/jupyterhub/env/bin/pip3 freeze
 
 ################
 
-RUN mkdir "${HOME}/.npm-packages"
-RUN npm config set prefix "${HOME}/.npm-packages"
-RUN export PATH="$PATH:${HOME}/.npm-packages/bin"
+#RUN mkdir "${HOME}/.npm-packages"
+#RUN npm config set prefix "${HOME}/.npm-packages"
+#RUN export PATH="$PATH:${HOME}/.npm-packages/bin"
+#RUN npm install -g configurable-http-proxy
+
+RUN mkdir /workdir/.npm-packages
+RUN npm config set prefix /workdir/.npm-packages
+RUN export PATH="$PATH:/workdir/.npm-packages"
 RUN npm install -g configurable-http-proxy
 
-EXPOSE 8000
+# EXPOSE 8000
 ##ENTRYPOINT ["/workdir/jupyterhub/entry-point.sh"] # didn't work
 #CMD ["/bin/bash", "/workdir/jupyterhub/entry-point.sh"] # ??
 ## CMD [ "./jupyterhub/env/bin/python3", "jupyterhub" , "--debug", "--config=/workdir/jupyterhub/jupyterhub_config.py"] # didn't work
