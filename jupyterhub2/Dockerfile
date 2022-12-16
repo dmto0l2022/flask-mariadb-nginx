@@ -75,5 +75,5 @@ RUN npm install -g configurable-http-proxy
 EXPOSE 8000
 ##ENTRYPOINT ["/workdir/jupyterhub/entry-point.sh"] # didn't work
 #CMD ["/bin/bash", "/workdir/jupyterhub/entry-point.sh"] # ??
-CMD [ "/workdir/jupyterhub/env/bin/python3", "jupyterhub" , "--debug", "--config=/workdir/jupyterhub/jupyterhub_config.py"]
+CMD [ "./jupyterhub/env/bin/python3", "jupyterhub" , "--debug", "--config=/workdir/jupyterhub/jupyterhub_config.py"]
 ##--debug --config=/workdir/jupyterhub/jupyterhub_config.py
