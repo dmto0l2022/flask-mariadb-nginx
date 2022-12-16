@@ -1,5 +1,6 @@
-c.JupyterHub.authenticator_class = "dummy"
-c.JupyterHub.spawner_class = "docker"
+c.JupyterHub.authenticator_class = 'dummyauthenticator.DummyAuthenticator'
+c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
+
 c.JupyterHub.hub_ip = '0.0.0.0'
 c.JupyterHub.port=8000
 
