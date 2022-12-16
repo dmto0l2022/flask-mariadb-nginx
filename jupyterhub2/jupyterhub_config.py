@@ -1,6 +1,7 @@
 c.JupyterHub.authenticator_class = 'dummyauthenticator.DummyAuthenticator'
 c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
 c.DummyAuthenticator.password = 'password'
+c.DockerSpawner.notebook_dir = '/workdir/notebooks/'
 
 c.JupyterHub.hub_ip = '0.0.0.0'
 c.JupyterHub.port=8000
