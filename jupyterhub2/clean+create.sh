@@ -36,7 +36,7 @@ podman pod create \
 --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
 --publish 8000:8000 --publish 8001:8001 --publish 8002:8002
 
-podman build --file JupyterDockerfile -t my-jupyterhub-1 .
+podman build --file sudoDockerfile -t my-jupyterhub-1 .
 
 ##"unix:/run/user/1001/podman/podman.sock"
 
