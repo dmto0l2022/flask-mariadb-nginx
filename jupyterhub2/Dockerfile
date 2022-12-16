@@ -7,7 +7,7 @@ RUN apt-get update && apt-get -y update \
 #RUN chown $USER_UID:$USER_GID /var/lib/mysql
 
 #################
-WORKDIR /workdir
+##WORKDIR /workdir
 
 ARG USERNAME=agaitske
 ARG USER_UID=1001
@@ -75,5 +75,6 @@ RUN npm install -g configurable-http-proxy
 EXPOSE 8000
 ##ENTRYPOINT ["/workdir/jupyterhub/entry-point.sh"] # didn't work
 #CMD ["/bin/bash", "/workdir/jupyterhub/entry-point.sh"] # ??
-CMD [ "./jupyterhub/env/bin/python3", "jupyterhub" , "--debug", "--config=/workdir/jupyterhub/jupyterhub_config.py"]
+## CMD [ "./jupyterhub/env/bin/python3", "jupyterhub" , "--debug", "--config=/workdir/jupyterhub/jupyterhub_config.py"] # didn't work
+CMD [ "python3", "jupyterhub" , "--debug", "--config=/workdir/jupyterhub/jupyterhub_config.py"]
 ##--debug --config=/workdir/jupyterhub/jupyterhub_config.py
