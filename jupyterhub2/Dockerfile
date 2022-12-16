@@ -48,6 +48,8 @@ RUN chown $USER_UID:$USER_GID /workdir
 
 USER $USERNAME
 
+RUN export CONTAINER_HOST=unix://$HOME/podman.sock
+
 RUN mkdir /workdir/jupyterhub
 RUN export PATH="$PATH:/workdir/jupyterhub"
 ## https://pythonspeed.com/articles/activate-virtualenv-dockerfile/
