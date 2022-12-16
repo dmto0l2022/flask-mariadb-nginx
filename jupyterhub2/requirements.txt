@@ -1,3 +1,5 @@
 jupyterhub
+jupyter
+sudospawner
 dockerspawner
 jupyterhub-dummyauthenticator
