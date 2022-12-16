@@ -22,14 +22,14 @@ RUN groupadd --gid $USER_GID $USERNAME \
 #RUN chown $USER_UID:$USER_GID /var/lib/mysql
 RUN chown $USER_UID:$USER_GID /workdir
 
-RUN mkdir /workdir/uploads
-RUN chown $USER_UID:$USER_GID /workdir/uploads
+RUN mkdir /workdir/jupyterhub
+RUN chown $USER_UID:$USER_GID /workdir/jupyterhub
 
 USER $USERNAME
 
 ## https://pythonspeed.com/articles/activate-virtualenv-dockerfile/
 
-ENV VIRTUAL_ENV=/workdir/app/env
+ENV VIRTUAL_ENV=/workdir/jupyterhub/env
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
@@ -44,32 +44,27 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 ##RUN python3 -m venv /app/env
 ##RUN /app/env/bin/python -m pip install --upgrade pip
-RUN /workdir/app/env/bin/python3 -m pip install --upgrade pip
-RUN . /workdir/app/env/bin/activate
+RUN /workdir/jupyterhub/env/bin/python3 -m pip install --upgrade pip
+RUN . /workdir/jupyterhub/env/bin/activate
 RUN /workdir/app/env/bin/python3 --version
 RUN whereis python3
 RUN whereis pip3
-COPY requirements.txt /workdir/requirements.txt
-RUN /workdir/app/env/bin/pip3 install -r /workdir/requirements.txt
-RUN /workdir/app/env/bin/pip3 freeze
+COPY requirements.txt /workdir/jupyterhub/requirements.txt
+RUN /workdir/jupyterhub/env/bin/pip3 install -r /workdir/jupyterhub/requirements.txt
+RUN /workdir/jupyterhub/env/bin/pip3 freeze
 COPY . /workdir/.
 ##RUN ls -R /workdir/
-EXPOSE 8002
+EXPOSE 8000
 ##CMD [ "/app/env/bin/python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8002"]
 ##RUN chmod +x //app/entry-point.sh
 ENTRYPOINT ["sh","/workdir/entry-point.sh"]
 
 ################
 
-
-USER $USERNAME
-#RUN $HOME
 RUN mkdir "${HOME}/.npm-packages"
 RUN npm config set prefix "${HOME}/.npm-packages"
 RUN export PATH="$PATH:${HOME}/.npm-packages/bin"
 RUN npm install -g configurable-http-proxy
-
-RUN python3 -mvenv $HOME/jhenv
 
 RUN $HOME/jhenv/bin/pip install jupyterhub dockerspawner
 
