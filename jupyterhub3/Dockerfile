@@ -17,4 +17,6 @@ ENV HOME=/home/agaitske
 WORKDIR $HOME
 USER agaitske
 
+RUN export JUPYTERHUB_API_TOKEN=123456789012345678901234567890
+
 CMD ["jupyterhub-singleuser"]
