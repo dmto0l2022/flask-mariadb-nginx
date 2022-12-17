@@ -7,9 +7,7 @@ ARG USERNAME=agaitske
 ARG USER_UID=1001
 ARG USER_GID=1002 ## dm group
 
-ADD shared-notebook.conf /etc/supervisor/conf.d/shared-notebook.conf
-
-RUN supervisorctl reload
+ADD jupyterhub_config.py /home/agaitske/jupyterhub_config.py
 
 # create a user, since we don't want to run as root
 RUN groupadd --gid $USER_GID $USERNAME \
@@ -21,4 +19,4 @@ ENV HOME=/home/agaitske
 WORKDIR $HOME
 USER agaitske
 
-CMD ["jupyterhub-singleuser" "/home/agaitske/jupyterhub_config.py]
+CMD ["jupyterhub-singleuser" "-f /home/agaitske/jupyterhub_config.py"]
