@@ -14,7 +14,7 @@ c.JupyterHub.services = [
     {
         'name': service_name,
         'url': f'http://127.0.0.1:{service_port}',
-        'api_token': 'c3a29e5d386fd7c9aa1e8fe9d41c282ec8b',
+        'api_token': '8b1b11907e4511eda1eb0242ac120002',
     }
 ]
 
