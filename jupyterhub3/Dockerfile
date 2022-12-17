@@ -10,7 +10,9 @@ ARG USER_GID=1002 ## dm group
 # create a user, since we don't want to run as root
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
-    
+
+RUN echo "agaitske:agaitske" | chpasswd
+
 ENV HOME=/home/agaitske
 WORKDIR $HOME
 USER agaitske
