@@ -1,7 +1,7 @@
-FROM python:3.8
+FROM python:3.10
 RUN pip3 install \
-    'jupyterhub==1.3.*' \
-    'notebook==6.*'
+    'jupyterhub' \
+    'notebook'
 
 ARG USERNAME=agaitske
 ARG USER_UID=1001
