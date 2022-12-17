@@ -19,4 +19,11 @@ ENV HOME=/home/agaitske
 WORKDIR $HOME
 USER agaitske
 
+# these must match the values in jupyterhub_config.py
+export JUPYTERHUB_API_TOKEN=8b1b11907e4511eda1eb0242ac120002
+export JUPYTERHUB_SERVICE_URL=http://127.0.0.1:9999
+export JUPYTERHUB_SERVICE_NAME=shared-notebook
+export JUPYTERHUB_SERVICE_PREFIX="/services/${JUPYTERHUB_SERVICE_NAME}/"
+export JUPYTERHUB_CLIENT_ID="service-${JUPYTERHUB_SERVICE_NAME}"
+
 CMD ["jupyterhub-singleuser" "-f /home/agaitske/jupyterhub_config.py"]
