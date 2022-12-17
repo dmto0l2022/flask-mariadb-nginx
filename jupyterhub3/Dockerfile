@@ -26,4 +26,4 @@ RUN export JUPYTERHUB_SERVICE_NAME=shared-notebook
 RUN export JUPYTERHUB_SERVICE_PREFIX="/services/${JUPYTERHUB_SERVICE_NAME}/"
 RUN export JUPYTERHUB_CLIENT_ID="service-${JUPYTERHUB_SERVICE_NAME}"
 
-#CMD ["jupyterhub-singleuser -f /home/agaitske/jupyterhub_config.py"]
+CMD ["jupyterhub-singleuser ---config /home/agaitske/jupyterhub_config.py"]
