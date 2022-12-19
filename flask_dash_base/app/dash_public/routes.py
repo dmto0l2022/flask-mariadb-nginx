@@ -16,6 +16,11 @@ def publiclanding():
      #return "This will be a public dash app"
      return flask.redirect('/app1')
 
+@dash_public_page_bp.route('/dmpublic/first')
+def publiclanding():
+     #return "This will be a public dash app"
+     return flask.render_template('dash.html')
+
 #current_app.wsgi_app = DispatcherMiddleware(server, {'/dash1': dash_app1.server})
 
 #current_app = DispatcherMiddleware(server, {
