@@ -1,11 +1,11 @@
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
-from app import flask_app
+from flask_app import flask_app as fs
 
 from app1 import app as app1
 from app2 import app as app2
 
-application = DispatcherMiddleware(flask_app, {
+application = DispatcherMiddleware(fs.flask_app, {
     '/app1': app1.server,
     '/app2': app2.server,
 })  
