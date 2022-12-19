@@ -1,3 +1,7 @@
+# Running this
+
+gunicorn wsgi:application -b 0.0.0.0:8002
+
 # References & Thanks
 
 https://docs.docker.com/language/python/build-images/
