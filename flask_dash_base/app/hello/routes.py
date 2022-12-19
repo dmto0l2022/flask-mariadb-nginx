@@ -5,10 +5,10 @@ hello_page_bp = Blueprint('hello_page_bp', __name__)
 def index():
      return "Hello this is the landing site"
 
-@app.route('/app/')
+@hello_page_bp.route('/app/')
 def hello():
     return "Hello, World!"
 
-@app.route('/app/welcome/')
+@hello_page_bp.route('/app/welcome/')
 def welcome():
     return render_template('welcome.html')
