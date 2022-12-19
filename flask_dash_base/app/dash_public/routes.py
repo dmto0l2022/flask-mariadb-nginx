@@ -11,15 +11,6 @@ server = flask.Flask(__name__)
 #dash_app1 = Dash(__name__, server = server, url_base_pathname='/dash1/')
 #dash_app1.layout = html.Div([html.H1('Hi there, I am Dash1')])
 
-@dash_public_page_bp.route('/app1')
-def show_dash():
-    return flask.send_file('/app1')
-
-@dash_public_page_bp.route('/dmpublic/embed')
-def publiclembed():
-     #return "This will be a public dash landing"
-     return flask.redirect('/app1')
-
 @dash_public_page_bp.route('/dmpublic/')
 def publiclanding():
      #return "This will be a public dash landing"
