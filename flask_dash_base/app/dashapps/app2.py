@@ -5,7 +5,7 @@ import pandas as pd
 
 df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv')
 
-app = Dash(__name__)
+app = Dash(__name__, requests_pathname_prefix='/app2/')
 
 app.layout = html.Div([
     dcc.Graph(id='graph-with-slider'),
