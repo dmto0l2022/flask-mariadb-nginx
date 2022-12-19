@@ -1,6 +1,7 @@
 from dash import Dash
 from dash import html
-from werkzeug.wsgi import DispatcherMiddleware
+##from werkzeug.wsgi import DispatcherMiddleware
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
 #from flask import Blueprint
 from flask import current_app, Blueprint, render_template
 dash_public_page_bp = Blueprint('dash_public_page_bp', __name__)
