@@ -1,6 +1,6 @@
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
-from flask_app import flask_app as fs
+import flask_app as fs
 
 from app1 import app as app1
 from app2 import app as app2
