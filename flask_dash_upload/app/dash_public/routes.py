@@ -1,20 +1,20 @@
 from dash import Dash
 from dash import html
 ##from werkzeug.wsgi import DispatcherMiddleware
-from werkzeug.middleware.dispatcher import DispatcherMiddleware
+##from werkzeug.middleware.dispatcher import DispatcherMiddleware
 #from flask import Blueprint
 import flask
 from flask import current_app, Blueprint, render_template
 dash_public_page_bp = Blueprint('dash_public_page_bp', __name__)
 
 server = flask.Flask(__name__)
-dash_app1 = Dash(__name__, server = server, url_base_pathname='/dash1/')
-dash_app1.layout = html.Div([html.H1('Hi there, I am Dash1')])
+#dash_app1 = Dash(__name__, server = server, url_base_pathname='/dash1/')
+#dash_app1.layout = html.Div([html.H1('Hi there, I am Dash1')])
 
 @dash_public_page_bp.route('/dmpublic/')
 def publiclanding():
      #return "This will be a public dash app"
-     return flask.redirect('/dash1')
+     return flask.redirect('/app1')
 
 #current_app.wsgi_app = DispatcherMiddleware(server, {'/dash1': dash_app1.server})
 
