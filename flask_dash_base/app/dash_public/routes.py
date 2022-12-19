@@ -11,7 +11,7 @@ server = flask.Flask(__name__)
 #dash_app1 = Dash(__name__, server = server, url_base_pathname='/dash1/')
 #dash_app1.layout = html.Div([html.H1('Hi there, I am Dash1')])
 
-@app.route('/app1')
+@dash_public_page_bp.route('/app1')
 def show_dash():
     return flask.send_file('/app1')
 
