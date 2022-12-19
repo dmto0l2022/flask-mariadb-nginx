@@ -6,8 +6,8 @@ from werkzeug.middleware.dispatcher import DispatcherMiddleware
 from flask import current_app, Blueprint, render_template
 dash_public_page_bp = Blueprint('dash_public_page_bp', __name__)
 
-#server = flask.Flask(__name__)
-dash_app1 = Dash(__name__, server = current_app, url_base_pathname='/')
+server = flask.Flask(__name__)
+dash_app1 = Dash(__name__, server = server, url_base_pathname='/')
 dash_app1.layout = html.Div([html.H1('Hi there, I am Dash1')])
 
 @dash_public_page_bp.route('/dmtpublic')
