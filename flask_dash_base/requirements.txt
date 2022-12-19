@@ -2,6 +2,8 @@ gunicorn
 python-dotenv
 flask
 flask_sqlalchemy
+plotly
+pandas
 dash
 mariadb
 xlsxwriter
