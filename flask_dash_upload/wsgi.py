@@ -2,7 +2,7 @@ from app import create_app
 
 from werkzeug.wsgi import DispatcherMiddleware
 
-from app.dashapps import app1 as app1
+from app.dashapps import app1.app as app1
 
 app = create_app()
 
