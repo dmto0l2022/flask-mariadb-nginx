@@ -11,6 +11,10 @@ server = flask.Flask(__name__)
 #dash_app1 = Dash(__name__, server = server, url_base_pathname='/dash1/')
 #dash_app1.layout = html.Div([html.H1('Hi there, I am Dash1')])
 
+@app.route('/app1')
+def show_dash():
+    return flask.send_file('/app1')
+
 @dash_public_page_bp.route('/dmpublic/embed')
 def publiclembed():
      #return "This will be a public dash landing"
@@ -62,4 +66,17 @@ app = DispatcherMiddleware(server, {
     '/dash1': dash_app1.server,
     '/dash2': dash_app2.server
 })
+
+
+@app.route('/maps/map.html')
+def show_map():
+    return flask.send_file('/maps/map.html')
+
+Flask will automatically prepend your server's address (http://127.0.0.1:4995) to the beginning of any route that you define.
+
+Also, in the template for your HTML, I would use url_for to get the URL for the map to avoid changes in your routes requiring changes to your templates.
+
+<iframe src="{{ url_for('show_dash') }}"></iframe>
+
+
 '''
