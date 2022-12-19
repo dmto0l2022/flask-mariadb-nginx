@@ -12,7 +12,7 @@ server = flask.Flask(__name__)
 #dash_app1.layout = html.Div([html.H1('Hi there, I am Dash1')])
 
 @dash_public_page_bp.route('/dmpublic/embed')
-def publiclanding():
+def publiclembed():
      #return "This will be a public dash landing"
      return flask.redirect('/app1')
 
