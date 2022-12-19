@@ -13,11 +13,11 @@ server = flask.Flask(__name__)
 
 @dash_public_page_bp.route('/dmpublic/')
 def publiclanding():
-     #return "This will be a public dash app"
+     #return "This will be a public dash landing"
      return flask.redirect('/app1')
 
 @dash_public_page_bp.route('/dmpublic/first')
-def publiclanding():
+def publicdash():
      #return "This will be a public dash app"
      return flask.render_template('dash.html')
 
