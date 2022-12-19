@@ -1,6 +1,7 @@
 python-dotenv
 flask
 flask_sqlalchemy
+dash
 mariadb
 xlsxwriter
 xlrd
