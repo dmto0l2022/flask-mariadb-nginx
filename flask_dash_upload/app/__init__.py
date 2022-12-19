@@ -42,6 +42,11 @@ def create_app():
     app.register_blueprint(hello_page_bp)
     app.register_blueprint(upload_page_bp)
     
+    from app.dash_private.routes import dash_private_page_bp
+    from app.dash_public.routes import dash_public_page_bp
+    app.register_blueprint(dash_private_page_bp)
+    app.register_blueprint(dash_public_page_bp)
+    
     @app.teardown_appcontext
     def shutdown_session(exception=None):
         db_session.remove()
