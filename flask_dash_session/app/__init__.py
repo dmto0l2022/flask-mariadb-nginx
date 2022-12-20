@@ -34,7 +34,7 @@ def create_app():
         #SCRIPT_NAME
         #app.config["SCRIPT_NAME"] = "/app"
         ##>> from . import routes, models, oauth  # Import routes, models and oauth helper
-        from . import routes ## models
+        # from . import routes ## models
         
         # Create a user to test with
         d = dbf.init_db()
