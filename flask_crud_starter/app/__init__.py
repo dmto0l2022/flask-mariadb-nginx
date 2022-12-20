@@ -8,17 +8,17 @@ db = SQLAlchemy()
 
 def init_app():
     """Create Flask application."""
-    app = Flask(__name__, instance_relative_config=False)
+    flask_app = Flask(__name__, instance_relative_config=False)
 
-    app.config.from_object('src.config.Config')  # configure app using the Config class defined in src/config.py
+    flask_app.config.from_object('app.config.Config')  # configure app using the Config class defined in src/config.py
 
-    db.init_app(app)  # initialise the database for the app
+    db.init_app(flask_app)  # initialise the database for the app
 
-    with app.app_context():
-        from src.models.models import User  # this import allows us to create the table if it does not exist
+    with flask_app.app_context():
+        from app.models.models import User  # this import allows us to create the table if it does not exist
         db.create_all()
 
-        from src.users.routes import bp as users_bp
-        app.register_blueprint(users_bp)
+        from app.users.routes import bp as users_bp
+        flask_app.register_blueprint(users_bp)
 
-        return app
+        return flask_app
