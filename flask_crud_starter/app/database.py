@@ -62,6 +62,7 @@ class AppDb:
                 bind=self.engine,
                 expire_on_commit=False
             )
+        )
 
         setattr(self, 'session', sqlalchemy_scoped_session)
             
