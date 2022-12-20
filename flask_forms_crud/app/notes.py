@@ -1,5 +1,5 @@
 from . import database as dbf
-from . imports models as mdf
+from . import models as mdf
 
 def create_note(text):
     note = mdf.Note(text=text)
