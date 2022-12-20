@@ -42,7 +42,7 @@ def create_app():
         
         # create session and add objects
         # verbose version of what a context manager will do
-        with dbf.Session(dbf.engine) as session:
+        with dbf.db_session as session:
             session.begin()
             try:
                #session.add(some_object)
@@ -58,7 +58,7 @@ def create_app():
             else:
                session.commit()
           
-        with dbf.Session(dbf.engine) as session:
+        with dbf.db_session as session:
               # query for ``User`` objects
               statement = select(User).filter_by(name="user1")
 
