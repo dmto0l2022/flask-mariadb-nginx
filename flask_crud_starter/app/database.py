@@ -47,8 +47,7 @@ class AppDb:
         #sqlalchemy_engine_options = app.config.get('SQLALCHEMY_ENGINE_OPTIONS')
 
         engine = create_engine(
-            sqlalchemy_db_uri,
-            **sqlalchemy_engine_options
+            sqlalchemy_db_uri
         )
         sqlalchemy_scoped_session = scoped_session(
             sessionmaker(
