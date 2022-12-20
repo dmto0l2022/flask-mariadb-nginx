@@ -29,7 +29,7 @@ def hello():
 def welcome():
     return render_template('welcome.html')
 
-@current_app.route("/notes/", methods=['POST', 'GET'])
+@current_app.route("/notes/", methods=['POST'])
 def view_index():
     if request.method == 'POST':
         notes.create_note(request.form['text'])
