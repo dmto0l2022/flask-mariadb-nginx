@@ -25,5 +25,4 @@ def init_app():
 
         from app.blueprints.users_bp import users_bp
         flask_app.register_blueprint(users_bp)
-        cu.insert_dummy_data()
         return flask_app
