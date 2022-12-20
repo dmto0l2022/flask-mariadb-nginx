@@ -1,8 +1,6 @@
 import os
 
 from flask import Flask, render_template_string
-from flask_security import Security, current_user, auth_required, hash_password, \
-     SQLAlchemySessionUserDatastore
 
 from . import database as dbf ##import db_session, init_db
 from . import models as modf ## import User, Role
