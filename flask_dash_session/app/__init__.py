@@ -42,4 +42,17 @@ def create_app():
         d = dbf.init_db()
         dbf.db_session.commit()
         
+        # create session and add objects
+        # verbose version of what a context manager will do
+        with dbf.Session(dbf.engine) as session:
+            session.begin()
+            try:
+               session.add(some_object)
+               session.add(some_other_object)
+            except:
+               session.rollback()
+               raise
+            else:
+               session.commit()
+          
         return app
