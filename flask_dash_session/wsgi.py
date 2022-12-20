@@ -1,1 +1,2 @@
-from app import server as application
+from app import create_app
+application = create_app()
