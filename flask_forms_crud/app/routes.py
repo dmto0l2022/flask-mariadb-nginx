@@ -15,7 +15,7 @@ from flask_security.models import fsqla_v3 as fsqla
 from . import notes as notes
 
 # Views
-@current_app.route("/")
+@current_app.route("/", methods=['POST','GET'])
 def home():
     return render_template_string('Home is where the heart is !')
 
