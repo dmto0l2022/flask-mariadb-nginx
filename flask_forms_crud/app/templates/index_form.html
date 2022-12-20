@@ -23,13 +23,13 @@
     <h2 class="display-2">List</h2>
     {% for note in notes %}
       <p>
-        <form method="POST" action="/edit/{{note.id}}">
+        <form method="POST" action="/notes/edit/{{note.id}}">
             <div class="input-group mb-3">
 
               <div class="input-group-prepend">
                 <div class="input-group-text">
                     <input type="hidden" name="done" value="off">
-                    <input type="checkbox" onclick="redirect('/edit/{{note.id}}')" data-target="/edit/{{note.id}}" name="done">
+                    <input type="checkbox" onclick="redirect('/notes/edit/{{note.id}}')" data-target="/notes/edit/{{note.id}}" name="done">
                 </div>
               </div>
 
