@@ -34,3 +34,10 @@ class User(dbf.Base, UserMixin):
     confirmed_at = Column(DateTime())
     roles = relationship('Role', secondary='roles_users',
                          backref=backref('users', lazy='dynamic'))
+
+class Note(dbf.Model):    id = db.Column(db.Integer, primary_key = True)
+    username = db.Column(db.String(20), nullable = False)
+    note = db.Column(db.String(800), nullable = False)
+    boolean = db.Column(db.Boolean, default = False)
+    float = db.Column(db.Float, nullable = False)
+    date = db.Column(db.Date, nullable = False)
