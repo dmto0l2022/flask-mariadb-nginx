@@ -1,9 +1,8 @@
-from src import db
-
+from app import db
 
 # User table
 class User(db.Model):
-    __tablename__ = "users"
+    __tablename__ = "users_simple"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String)
     name = db.Column(db.String)
