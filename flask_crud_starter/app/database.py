@@ -67,4 +67,6 @@ class AppDb:
         setattr(self, 'session', sqlalchemy_scoped_session)
             
         self.session = sqlalchemy_scoped_session
+        
+        self.Base = declarative_base()
  
