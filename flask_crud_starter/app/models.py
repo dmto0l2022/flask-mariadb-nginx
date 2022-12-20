@@ -9,10 +9,10 @@ Base = declarative_base()
 # User table
 class User(Base):
     __tablename__ = "users_simple"
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String)
-    name = db.Column(db.String)
-    email = db.Column(db.String)
+    id = Column(Integer, primary_key=True)
+    username = Column(String)
+    name = Column(String)
+    email = Column(String)
 
     def __init__(self, username: str, name: str, email: str):
         self.username = username
@@ -25,8 +25,8 @@ class User(Base):
         Create new user
         """
         new_user = User(username, name, email)
-        db.session.add(new_user)
-        db.session.commit()
+        Base.session.add(new_user)
+        Base.session.commit()
 
     @staticmethod
     def get_users():
