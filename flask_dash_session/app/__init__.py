@@ -44,15 +44,34 @@ def create_app():
         
         # create session and add objects
         # verbose version of what a context manager will do
-        with dbf.Session(dbf.engine) as session:
+        with Session(dbf.engine) as session:
             session.begin()
             try:
-               session.add(some_object)
-               session.add(some_other_object)
+               #session.add(some_object)
+               #session.add(some_other_object)
+               user1 = User(name="user1")
+               user2 = User(name="user2")
+               session.add(user1)
+               session.add(user2)
+               session.commit()
             except:
                session.rollback()
                raise
             else:
                session.commit()
           
+        with Session(dbf.engine) as session:
+              # query for ``User`` objects
+              statement = select(User).filter_by(name="user1")
+
+              # list of ``User`` objects
+              user_obj = session.scalars(statement).all()
+
+              # query for individual columns
+              statement = select(User.name)
+
+              # list of Row objects
+              rows = session.execute(statement).all()
+              print(rows)
+               
         return app
