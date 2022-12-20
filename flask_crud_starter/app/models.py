@@ -12,7 +12,7 @@ app_db = AppDb()
 
 
 # User table
-class User(Base):
+class User(app_db.Base):
     __tablename__ = "users_simple"
     id = Column(Integer, primary_key=True)
     username = Column(String)
