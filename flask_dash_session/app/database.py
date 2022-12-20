@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker, Session
+from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 import mariadb
 import os
@@ -21,6 +21,9 @@ MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + MARIADB_P
 #app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
 
 engine = create_engine(MARIADB_URI)
+
+Session = sessionmaker(engine)
+
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
                                          bind=engine))
