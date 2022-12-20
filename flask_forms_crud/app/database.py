@@ -32,8 +32,8 @@ def init_db():
     # they will be registered properly on the metadata.  Otherwise
     # you will have to import them first before calling init_db()
     from . import models
-    Base.drop_all(bind=engine)
-    Base.create_all(bind=engine)
+    Base.metadata.drop_all(bind=engine)
+    Base.metadata.create_all(bind=engine)
     return 1
     
     
