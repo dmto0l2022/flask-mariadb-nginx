@@ -6,19 +6,47 @@ from flask_security import Security, current_user, auth_required, hash_password,
 from database import db_session, init_db
 from models import User, Role
 
-# Create app
-app = Flask(__name__)
-app.config['DEBUG'] = True
+import mariadb
 
-# Generate a nice key using secrets.token_urlsafe()
-app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", 'pf9Wkove4IKEAXvy-cQkeDPhv9Cb3Ag-wyJILbq_dFw')
-# Bcrypt is set as default SECURITY_PASSWORD_HASH, which requires a salt
-# Generate a good salt using: secrets.SystemRandom().getrandbits(128)
-app.config['SECURITY_PASSWORD_SALT'] = os.environ.get("SECURITY_PASSWORD_SALT", '146585145368132386173505678016728509634')
+from flask_mail import Mail
+from werkzeug.middleware.proxy_fix import ProxyFix
 
-# Setup Flask-Security
-user_datastore = SQLAlchemySessionUserDatastore(db_session, User, Role)
-app.security = Security(app, user_datastore)
+import os
+
+from os import environ, path
+
+from dotenv import load_dotenv
+
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+
+def create_app():
+     # Create app
+     app = Flask(__name__)
+     app.config['DEBUG'] = True
+
+     # Generate a nice key using secrets.token_urlsafe()
+     app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", 'pf9Wkove4IKEAXvy-cQkeDPhv9Cb3Ag-wyJILbq_dFw')
+     # Bcrypt is set as default SECURITY_PASSWORD_HASH, which requires a salt
+     # Generate a good salt using: secrets.SystemRandom().getrandbits(128)
+     app.config['SECURITY_PASSWORD_SALT'] = os.environ.get("SECURITY_PASSWORD_SALT", '146585145368132386173505678016728509634')
+
+     with app.app_context():
+        #app.config["APPLICATION_ROOT"] = "/app"
+        #SCRIPT_NAME
+        #app.config["SCRIPT_NAME"] = "/app"
+        ##>> from . import routes, models, oauth  # Import routes, models and oauth helper
+        from . import routes, models 
+     
+        # Setup Flask-Security
+        user_datastore = SQLAlchemySessionUserDatastore(db_session, User, Role)
+        app.security = Security(app, user_datastore)
+        # Create a user to test with
+        initdb()
+        if not app.security.datastore.find_user(email="test@me.com"):
+            app.security.datastore.create_user(email="test@me.com", password=hash_password("password"))
+        db_session.commit()
+        return app
 
 # Views
 @app.route("/")
@@ -26,11 +54,3 @@ app.security = Security(app, user_datastore)
 def home():
     return render_template_string('Hello {{email}} !', email=current_user.email)
 
-if __name__ == '__main__':
-    with app.app_context():
-        # Create a user to test with
-        initdb()
-        if not app.security.datastore.find_user(email="test@me.com"):
-            app.security.datastore.create_user(email="test@me.com", password=hash_password("password"))
-        db_session.commit()
-    app.run()
