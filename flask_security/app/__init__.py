@@ -3,8 +3,8 @@ import os
 from flask import Flask, render_template_string
 from flask_security import Security, current_user, auth_required, hash_password, \
      SQLAlchemySessionUserDatastore
-from database import db_session, init_db
-from models import User, Role
+import database as dbf ##import db_session, init_db
+#import models as modf ## import User, Role
 
 import mariadb
 
@@ -39,7 +39,7 @@ def create_app():
         from . import routes, models , mail
      
         # Setup Flask-Security
-        user_datastore = SQLAlchemySessionUserDatastore(db_session, User, Role)
+        user_datastore = SQLAlchemySessionUserDatastore(dbf.db_session, User, Role)
         app.security = Security(app, user_datastore)
         # Create a user to test with
         initdb()
