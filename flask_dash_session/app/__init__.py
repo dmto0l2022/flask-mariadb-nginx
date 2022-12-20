@@ -47,8 +47,8 @@ def create_app():
             try:
                #session.add(some_object)
                #session.add(some_other_object)
-               user1 = User(name="user1")
-               user2 = User(name="user2")
+               user1 = modf.User(name="user1")
+               user2 = modf.User(name="user2")
                session.add(user1)
                session.add(user2)
                session.commit()
@@ -60,13 +60,14 @@ def create_app():
           
         with dbf.db_session() as session:
               # query for ``User`` objects
-              statement = select(User).filter_by(name="user1")
+              statement = select(modf.User).filter_by(name="user1")
 
               # list of ``User`` objects
               user_obj = session.scalars(statement).all()
-
+              print(user_obj)
+              
               # query for individual columns
-              statement = select(User.name)
+              statement = select(modf.User.name)
 
               # list of Row objects
               rows = session.execute(statement).all()
