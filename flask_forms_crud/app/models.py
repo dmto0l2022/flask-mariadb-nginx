@@ -3,7 +3,7 @@ from flask_security import UserMixin, RoleMixin
 from sqlalchemy import create_engine
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy import Boolean, DateTime, Column, Integer, \
-                    String, ForeignKey, UnicodeText
+                    String, ForeignKey, UnicodeText, Text
 
 class RolesUsers(dbf.Base):
     __tablename__ = 'roles_users'
