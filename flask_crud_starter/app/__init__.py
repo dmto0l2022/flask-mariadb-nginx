@@ -22,7 +22,7 @@ def init_app():
         from app import create_users as cu
         dbModel = declarative_base()
         dbModel.metadata.create_all(bind=app_db.engine)
-        dbModel.query = app_db.db_session.query_property()
+        dbModel.query = app_db.session.query_property()
 
         from app.blueprints.users_bp import users_bp
         flask_app.register_blueprint(users_bp)
