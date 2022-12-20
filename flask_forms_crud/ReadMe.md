@@ -8,3 +8,4 @@ https://github.com/janjilecek/simple_python_flask_crud_todo_app
 
 https://www.peterspython.com/en/blog/flask-sqlalchemy-crud-application-with-wtforms-queryselectfield-and-queryselectmultiplefield
 
+https://towardsdatascience.com/how-to-insert-dummy-data-into-databases-using-flask-sqlalchemy-9c59efab4527
