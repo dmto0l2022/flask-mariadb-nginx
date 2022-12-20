@@ -37,8 +37,8 @@ class User(dbf.Base, UserMixin):
 
 
 class Note(dbf.Base):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    text = db.Column(db.Text)
-    done = db.Column(db.Boolean)
-    dateAdded = db.Column(db.DateTime, default=datetime.now())
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    text = Column(Text)
+    done = Column(Boolean)
+    dateAdded = Column(DateTime, default=datetime.now())
 
