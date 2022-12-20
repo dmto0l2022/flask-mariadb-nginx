@@ -61,7 +61,7 @@ class AppDb:
 
         setattr(self, 'session', sqlalchemy_scoped_session)
      
-    def create_all(self, app):
+    def create_all(self):
         sqlalchemy_scoped_session.create_all()
         sqlalchemy_scoped_session.commit()
         print("done")
