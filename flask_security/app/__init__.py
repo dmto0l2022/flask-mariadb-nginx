@@ -36,7 +36,7 @@ def create_app():
         #SCRIPT_NAME
         #app.config["SCRIPT_NAME"] = "/app"
         ##>> from . import routes, models, oauth  # Import routes, models and oauth helper
-        from . import routes, models 
+        from . import routes, models , mail
      
         # Setup Flask-Security
         user_datastore = SQLAlchemySessionUserDatastore(db_session, User, Role)
@@ -47,10 +47,3 @@ def create_app():
             app.security.datastore.create_user(email="test@me.com", password=hash_password("password"))
         db_session.commit()
         return app
-
-# Views
-@app.route("/")
-@auth_required()
-def home():
-    return render_template_string('Hello {{email}} !', email=current_user.email)
-
