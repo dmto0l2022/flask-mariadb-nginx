@@ -2,7 +2,7 @@
 Insert dummy data into database
 """
 from app import init_app
-from app.models.models import User
+from app.models import User
 
 def insert_dummy_data():
     flask_app = init_app()
