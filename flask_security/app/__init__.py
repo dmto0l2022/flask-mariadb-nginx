@@ -47,4 +47,7 @@ def create_app():
         if not app.security.datastore.find_user(email="test@me.com"):
             app.security.datastore.create_user(email="test@me.com", password=hash_password("password"))
         dbf.db_session.commit()
+        
+        mail = Mail(app)
+     
         return app
