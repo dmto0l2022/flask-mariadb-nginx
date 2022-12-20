@@ -20,7 +20,6 @@ def init_app():
     with flask_app.app_context():
         from app.models import User  # this import allows us to create the table if it does not exist
         from app import create_users as cu
-        dbModel = declarative_base()
         dbModel.metadata.create_all(bind=app_db.engine)
         dbModel.query = app_db.session.query_property()
 
