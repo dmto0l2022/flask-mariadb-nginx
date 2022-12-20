@@ -29,7 +29,7 @@ def create_app():
      app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", 'pf9Wkove4IKEAXvy-cQkeDPhv9Cb3Ag-wyJILbq_dFw')
      # Bcrypt is set as default SECURITY_PASSWORD_HASH, which requires a salt
      # Generate a good salt using: secrets.SystemRandom().getrandbits(128)
-     app.config['SECURITY_PASSWORD_SALT'] = os.environ.get("SECURITY_PASSWORD_SALT", '146585145368132386173505678016728509634')
+     #app.config['SECURITY_PASSWORD_SALT'] = os.environ.get("SECURITY_PASSWORD_SALT", '146585145368132386173505678016728509634')
 
      with app.app_context():
         #app.config["APPLICATION_ROOT"] = "/app"
@@ -37,9 +37,6 @@ def create_app():
         #app.config["SCRIPT_NAME"] = "/app"
         ##>> from . import routes, models, oauth  # Import routes, models and oauth helper
         from . import routes ## models
-     
-        # Setup Flask-Security
-        user_datastore = SQLAlchemySessionUserDatastore(dbf.db_session, modf.User, modf.Role)
         
         # Create a user to test with
         d = dbf.init_db()
