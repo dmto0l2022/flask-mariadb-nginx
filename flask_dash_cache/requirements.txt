@@ -1,3 +1,5 @@
+gunicorn
+plotly
 dash
 flask_caching
 pandas
