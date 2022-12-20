@@ -29,17 +29,17 @@ def hello():
 def welcome():
     return render_template('welcome.html')
 
-@current_app.route("/notes/", methods=["POST", "GET"])
+@current_app.route("/notes/", methods=['POST', 'GET'])
 def view_index():
-    if request.method == "POST":
+    if request.method == 'POST':
         notes.create_note(request.form['text'])
-    return render_template("index_form.html", notes=notes.read_notes())
+    return render_template('index_form.html', notes=notes.read_notes())
 
 
-@current_app.route("/notes/edit/<note_id>", methods=["POST", "GET"])
+@current_app.route('/notes/edit/<note_id>', methods=['POST', 'GET'])
 def edit_note(note_id):
-    if request.method == "POST":
+    if request.method == 'POST':
         notes.update_note(notes.note_id, text=request.form['text'], done=request.form['done'])
-    elif request.method == "GET":
+    elif request.method == 'GET':
         notes.delete_note(note_id)
     return redirect("/notes/", code=302)
