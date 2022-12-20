@@ -1,7 +1,13 @@
-from app import db
+# model.py
+
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, ForeignKey, Integer, String, Table
+from sqlalchemy.orm import relationship
+
+Base = declarative_base()
 
 # User table
-class User(db.Model):
+class User(Base):
     __tablename__ = "users_simple"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String)
