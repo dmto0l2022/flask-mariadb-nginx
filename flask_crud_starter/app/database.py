@@ -19,15 +19,43 @@ MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
 
 MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/" + MARIADB_DATABASE
 
-current_app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
+#current_app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
 
-engine = create_engine(MARIADB_URI)
+#engine = create_engine(MARIADB_URI)
 
-Session = sessionmaker(engine)
+#Session = sessionmaker(engine)
 
-db_session = scoped_session(sessionmaker(autocommit=False,
-                                         autoflush=False,
-                                         bind=engine))
-Base = declarative_base()
-Base.query = db_session.query_property()
+#db_session = scoped_session(sessionmaker(autocommit=False,
+#                                         autoflush=False,
+#                                         bind=engine))
+#Base = declarative_base()
+#Base.query = db_session.query_property()
 
+# service_app_db.py
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, scoped_session
+
+class AppDb:
+
+    def __init__(self, app=None):
+        if app is not None:
+            self.init_app(app)
+
+    def init_app(self, app):
+        sqlalchemy_db_uri = MARIADB_URI
+        #sqlalchemy_engine_options = app.config.get('SQLALCHEMY_ENGINE_OPTIONS')
+
+        engine = create_engine(
+            sqlalchemy_db_uri,
+            **sqlalchemy_engine_options
+        )
+        sqlalchemy_scoped_session = scoped_session(
+            sessionmaker(
+                bind=engine,
+                expire_on_commit=False
+            )
+        )
+
+        setattr(self, 'session', sqlalchemy_scoped_session)
+        
