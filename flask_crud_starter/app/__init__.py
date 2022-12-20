@@ -20,7 +20,7 @@ def init_app():
         from app.models import User  # this import allows us to create the table if it does not exist
         from app import create_users as cu
         
-        db.create_all()
+        app_db.create_all()
 
         from app.blueprints.users import users_bp
         flask_app.register_blueprint(users_bp)
