@@ -10,8 +10,9 @@ def init_app():
     """Create Flask application."""
     flask_app = Flask(__name__, instance_relative_config=False)
 
-    flask_app.config.from_object('app.config.Config')  # configure app using the Config class defined in src/config.py
-
+    #flask_app.config.from_object('app.config.Config')  # configure app using the Config class defined in src/config.py
+    from app import database
+    
     db.init_app(flask_app)  # initialise the database for the app
 
     with flask_app.app_context():
