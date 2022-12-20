@@ -7,6 +7,9 @@ from flask import Flask, render_template_string
 from flask import current_app
 
 from flask_security import Security, SQLAlchemyUserDatastore, auth_required, hash_password
+
+from flask_login import current_user
+
 from flask_security.models import fsqla_v3 as fsqla
 
 # Views
