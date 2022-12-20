@@ -2,3 +2,9 @@ flask
 sqlalchemy
 flask-security-too[common]
 email_validator
+python-dotenv
+flask_restful
+flask-wtf
+flask-sqlalchemy
+flask-migrate
+mariadb
