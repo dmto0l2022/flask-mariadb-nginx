@@ -53,7 +53,7 @@ class AppDb:
             self.sqlalchemy_db_uri
         )
         
-        self.engine = create_engine(
+        engine = create_engine(
             self.sqlalchemy_db_uri
         )
         
