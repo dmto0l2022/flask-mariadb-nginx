@@ -43,7 +43,7 @@ def create_app():
         user_datastore = SQLAlchemySessionUserDatastore(dbf.db_session, modf.User, modf.Role)
         app.security = Security(app, user_datastore)
         # Create a user to test with
-        d = dbf.initdb()
+        d = dbf.init_db()
         if not app.security.datastore.find_user(email="test@me.com"):
             app.security.datastore.create_user(email="test@me.com", password=hash_password("password"))
         db_session.commit()
