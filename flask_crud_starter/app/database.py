@@ -49,20 +49,15 @@ class AppDb:
         self.sqlalchemy_db_uri = MARIADB_URI
         #sqlalchemy_engine_options = app.config.get('SQLALCHEMY_ENGINE_OPTIONS')
 
-        engine = create_engine(
+        self.engine = create_engine(
             self.sqlalchemy_db_uri
         )
         sqlalchemy_scoped_session = scoped_session(
             sessionmaker(
-                bind=engine,
+                bind=self.engine,
                 expire_on_commit=False
             )
         )
 
         setattr(self, 'session', sqlalchemy_scoped_session)
-     
-    def create_all(self):
-        session.create_all()
-        session.commit()
-        print("done")
-        
+ 
