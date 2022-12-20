@@ -4,7 +4,12 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, ForeignKey, Integer, String, Table
 from sqlalchemy.orm import relationship
 
-Base = declarative_base()
+#Base = declarative_base()
+
+from app.database import AppDb
+app_db = AppDb()
+
+
 
 # User table
 class User(Base):
