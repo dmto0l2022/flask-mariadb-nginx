@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+from flask import current_app
 import mariadb
 import os
 
@@ -18,7 +19,7 @@ MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
 
 MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/" + MARIADB_DATABASE
 
-#app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
+current_app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
 
 engine = create_engine(MARIADB_URI)
 
