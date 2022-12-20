@@ -39,6 +39,7 @@ class User(dbf.Base, UserMixin):
 
 
 class Note(dbf.Base):
+    __tablename__ = 'note'
     id = Column(Integer, primary_key=True, autoincrement=True)
     text = Column(Text)
     done = Column(Boolean)
