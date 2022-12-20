@@ -1,4 +1,4 @@
 flask
 sqlalchemy
-flask_security
+flask-security-too[common]
 email_validator
