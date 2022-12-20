@@ -10,8 +10,19 @@ import pandas as pd
 import time
 import uuid
 
-app = dash.Dash()
-cache = Cache(app.server, config={
+import plotly.graph_objs as go
+import flask
+
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
+server = flask.Flask(__name__) # define flask app.server
+
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets, server=server) # call flask server
+
+# run following in command
+# gunicorn graph:app.server -b :8000
+
+cache = Cache(server=server, config={
     'CACHE_TYPE': 'filesystem',
     'CACHE_DIR': 'cache-directory',
     'CACHE_THRESHOLD': 50  # should be equal to maximum number of active users
@@ -47,6 +58,3 @@ def display_value(value, session_id):
     df = dataframe(session_id)
     return df.to_csv()
 
-
-if __name__ == '__main__':
-    app.run_server(debug=True)
