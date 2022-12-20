@@ -37,7 +37,7 @@ def create_app():
         #SCRIPT_NAME
         #app.config["SCRIPT_NAME"] = "/app"
         ##>> from . import routes, models, oauth  # Import routes, models and oauth helper
-        from . import routes, mail ## models
+        from . import routes, mail, security ## models
      
         # Setup Flask-Security
         user_datastore = SQLAlchemySessionUserDatastore(dbf.db_session, modf.User, modf.Role)
