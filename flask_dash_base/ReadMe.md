@@ -40,3 +40,8 @@ https://flask.palletsprojects.com/en/2.2.x/blueprints/
 
 https://flask.palletsprojects.com/en/2.2.x/patterns/sqlalchemy/
 
+# Flask Security
+
+https://flask-security-too.readthedocs.io/_/downloads/en/latest/pdf/
+
+
