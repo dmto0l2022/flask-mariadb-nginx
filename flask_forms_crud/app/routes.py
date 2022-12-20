@@ -29,8 +29,9 @@ def hello():
 def welcome():
     return render_template('welcome.html')
 
-@current_app.route("/notes/", methods=['POST'])
+@current_app.route("/notes/", methods=['POST','GET'])
 def view_index():
+    print(request.method)
     if request.method == 'POST':
         notes.create_note(request.form['text'])
     return render_template('index_form.html', notes=notes.read_notes())
