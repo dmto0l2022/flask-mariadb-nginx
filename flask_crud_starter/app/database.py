@@ -52,6 +52,17 @@ class AppDb:
         self.engine = create_engine(
             self.sqlalchemy_db_uri
         )
+        
+        self.engine = create_engine(
+            self.sqlalchemy_db_uri
+        )
+        
+        self.sqlalchemy_scoped_session = scoped_session(
+            sessionmaker(
+                bind=self.engine,
+                expire_on_commit=False
+            )
+        
         sqlalchemy_scoped_session = scoped_session(
             sessionmaker(
                 bind=self.engine,
