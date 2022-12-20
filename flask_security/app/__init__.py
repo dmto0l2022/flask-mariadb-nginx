@@ -3,8 +3,9 @@ import os
 from flask import Flask, render_template_string
 from flask_security import Security, current_user, auth_required, hash_password, \
      SQLAlchemySessionUserDatastore
+
 from . import database as dbf ##import db_session, init_db
-import models as modf ## import User, Role
+from . import models as modf ## import User, Role
 
 import mariadb
 
@@ -36,7 +37,7 @@ def create_app():
         #SCRIPT_NAME
         #app.config["SCRIPT_NAME"] = "/app"
         ##>> from . import routes, models, oauth  # Import routes, models and oauth helper
-        from . import routes, models , mail
+        from . import routes, mail ## models
      
         # Setup Flask-Security
         user_datastore = SQLAlchemySessionUserDatastore(dbf.db_session, modf.User, modf.Role)
