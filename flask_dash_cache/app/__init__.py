@@ -22,7 +22,7 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets, server=serv
 # run following in command
 # gunicorn graph:app.server -b :8000
 
-cache = Cache(server=server, config={
+cache = Cache(server, config={
     'CACHE_TYPE': 'filesystem',
     'CACHE_DIR': 'cache-directory',
     'CACHE_THRESHOLD': 50  # should be equal to maximum number of active users
