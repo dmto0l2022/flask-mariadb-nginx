@@ -21,3 +21,8 @@ def home():
 @auth_required()
 def hello():
     return render_template_string('Hello {{email}} !', email=current_user.email)
+
+@current_app.route('/app/welcome/')
+@auth_required()
+def welcome():
+    return render_template('welcome.html')
