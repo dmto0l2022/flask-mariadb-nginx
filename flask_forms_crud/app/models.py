@@ -36,7 +36,7 @@ class User(dbf.Base, UserMixin):
                          backref=backref('users', lazy='dynamic'))
 
 
-class Note(db.Model):
+class Note(dbf.Base):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     text = db.Column(db.Text)
     done = db.Column(db.Boolean)
