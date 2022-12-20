@@ -15,10 +15,10 @@ def init_app():
     db.init_app(flask_app)  # initialise the database for the app
 
     with flask_app.app_context():
-        from app.models.models import User  # this import allows us to create the table if it does not exist
+        from app.models import User  # this import allows us to create the table if it does not exist
         db.create_all()
 
-        from app.users.routes import bp as users_bp
+        from app.blueprints.users import users_bp
         flask_app.register_blueprint(users_bp)
 
         return flask_app
