@@ -21,7 +21,6 @@ def init_app():
         from app.models import User  # this import allows us to create the table if it does not exist
         from app import create_users as cu
         dbModel = declarative_base()
-        dbModel.query = app_db.query_property()
         dbModel.metadata.create_all(bind=app_db.engine)
 
         from app.blueprints.users import users_bp
