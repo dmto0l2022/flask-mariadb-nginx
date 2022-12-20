@@ -1,3 +1,4 @@
+from flask import current_app
 
 import os
 
@@ -16,12 +17,12 @@ sender_email = environ.get('MAIL_SENDEREMAIL')
 receiver_email = environ.get('MAIL_RECEIVEREMAIL')
 
 # After 'Create app'
-app.config['MAIL_SERVER'] = mail_server
-app.config['MAIL_PORT'] = mail_port
-app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_USERNAME'] = mail_username
-app.config['MAIL_PASSWORD'] = mail_password
+current_app.config['MAIL_SERVER'] = mail_server
+current_app.config['MAIL_PORT'] = mail_port
+current_app.config['MAIL_USE_SSL'] = True
+current_app.config['MAIL_USERNAME'] = mail_username
+current_app.config['MAIL_PASSWORD'] = mail_password
 
 ## https://stackoverflow.com/questions/65997108/flask-mail-ssl-wrong-version-number-wrong-version-number-ssl-c1123
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = False
+current_app.config['MAIL_USE_TLS'] = True
+current_app.config['MAIL_USE_SSL'] = False
