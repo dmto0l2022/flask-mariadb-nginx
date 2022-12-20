@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship, backref
 from sqlalchemy import Boolean, DateTime, Column, Integer, \
                     String, ForeignKey, UnicodeText
 
-class User(dbf.Base, UserMixin):
+class User(dbf.Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
     name = Column(String(255), unique=True)
