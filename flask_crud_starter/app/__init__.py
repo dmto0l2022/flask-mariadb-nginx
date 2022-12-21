@@ -1,8 +1,8 @@
 from flask import Flask
-from database_bind import SQLAlchemy_bind
+from . import database_bind as dbind
 
 # outside of app factory
-db = SQLAlchemy_bind()
+db = dbind.SQLAlchemy_bind()
 
 from os import environ, path
 
