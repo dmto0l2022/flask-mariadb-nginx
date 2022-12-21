@@ -34,7 +34,22 @@ class SQLAlchemy_bind:
         self.session.remove()
         if error:
             print("logging error: ", str(error))
-
+    
+    def init_app(self, app=None):
+        # connect database
+        self.engine = sqlalchemy.create_engine(app.config['DATABASE'])
+        # create session factory
+        self.sessionmaker = self.init_session_maker()
+        # access scoped session registery (implicitely)
+        self.session = self.init_scoped_session()
+        # add ability to query against the tables
+        self.Base.query = self.session.query_property()
+        # make sure db is initialize and up to date
+        self.init_db()
+        # call scoped_session.remove() after each request to scope
+        # the session objects to each request
+        app.teardown_request(self.end_session)
+    '''
     def init_app(self, app=None):
         """Set up SQLAlchemy to be used with a specific app."""
         if app:
@@ -56,3 +71,4 @@ class SQLAlchemy_bind:
                 logging.error("Error connecting database.\nPlease set app.config['DATABASE'] to your database connection string")
         else:
             logging.error("SQLAlchemy was not set up properly.\nUsage:\nOutside app factory\n>> db = SQLAlchemy()\nInside app factory\n>> db.init_app(your_flask_app)")
+    '''
