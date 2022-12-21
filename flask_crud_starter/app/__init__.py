@@ -34,7 +34,7 @@ class User(db.Base):
         self.password = password
 
 # app factory
-def create_app():
+def init_app():
     app = Flask(__name__)
     app.config["DATABASE"] = MARIADB_URI
     # import your database tables if defined in a different module
