@@ -17,8 +17,8 @@ from sqlalchemy import Column, Integer, String
 class User(db.Base):
     __tablename__ = 'users_new'
     id = Column(Integer, primary_key=True)
-    username = Column(String, unique=True)
-    password = Column(String, unique=True)
+    username = Column(String(25), unique=True)
+    password = Column(String(25), unique=True)
 
     def __init__(self, username=None, password=None):
         self.username = username
