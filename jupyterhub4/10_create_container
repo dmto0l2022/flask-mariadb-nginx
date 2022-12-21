@@ -1,0 +1,5 @@
+podman pull ubuntu:latest
+podman cp requirements.txt ubuntu:/requirements.txt
+podman cp requirements.txt ubuntu:/requirements.txt
+podman cp requirements.txt ubuntu:/requirements.txt
+podman run -it ubuntu bash
