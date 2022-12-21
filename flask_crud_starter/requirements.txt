@@ -1,3 +1,4 @@
+werkzeug
 gunicorn
 python-dotenv
 flask
