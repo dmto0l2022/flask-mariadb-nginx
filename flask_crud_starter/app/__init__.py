@@ -36,7 +36,8 @@ def init_app():
                     + MARIADB_DATABASE
     print(MARIADB_URI)
     app = Flask(__name__)
-    app.config["DATABASE"] = MARIADB_URI
+    #app.config["DATABASE"] = MARIADB_URI
+    app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
     # import your database tables if defined in a different module
     # for example if the User model above was in a different module:
     db.init_app(app)
