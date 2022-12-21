@@ -37,7 +37,7 @@ class SQLAlchemy_bind:
     
     def init_app(self, app=None):
         # connect database
-        self.engine = sqlalchemy.create_engine(app.config['DATABASE'])
+        self.engine = sqlalchemy.create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
         # create session factory
         self.sessionmaker = self.init_session_maker()
         # access scoped session registery (implicitely)
