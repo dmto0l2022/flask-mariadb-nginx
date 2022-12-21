@@ -4,10 +4,27 @@ from database_bind import SQLAlchemy_bind
 # outside of app factory
 db = SQLAlchemy_bind()
 
+from os import environ, path
+
+from dotenv import load_dotenv
+
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+
+MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
+MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
+MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
+MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
+
+MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + \
+                MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
+                + MARIADB_DATABASE
+
 # must be defined after db = SQLAlchemy_bind() if in same module
 from sqlalchemy import Column, Integer, String
+
 class User(db.Base):
-    __tablename__ = 'users'
+    __tablename__ = 'users_new'
     id = Column(Integer, primary_key=True)
     username = Column(String, unique=True)
     password = Column(String, unique=True)
@@ -19,9 +36,8 @@ class User(db.Base):
 # app factory
 def create_app():
     app = Flask(__name__)
-    app.config["DATABASE"] = "sqlite:///:memory:"
+    app.config["DATABASE"] = MARIADB_URI
     # import your database tables if defined in a different module
     # for example if the User model above was in a different module:
-    from your_application.database import User
     db.init_app(app)
     return app
