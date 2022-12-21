@@ -11,15 +11,6 @@ from dotenv import load_dotenv
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 
-MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
-MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
-MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
-MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
-
-MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + \
-                MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
-                + MARIADB_DATABASE
-
 # must be defined after db = SQLAlchemy_bind() if in same module
 from sqlalchemy import Column, Integer, String
 
@@ -35,6 +26,15 @@ class User(db.Base):
 
 # app factory
 def init_app():
+    MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
+    MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
+    MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
+    MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
+
+    MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + \
+                    MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
+                    + MARIADB_DATABASE
+    print(MARIADB_URI)
     app = Flask(__name__)
     app.config["DATABASE"] = MARIADB_URI
     # import your database tables if defined in a different module
