@@ -1,7 +1,7 @@
 gunicorn
 python-dotenv
 flask
-flask_sqlalchemy
+Flask-SQLAlchemy==2.5.1
 plotly
 pandas
 dash
