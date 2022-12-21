@@ -18,7 +18,7 @@ class SQLAlchemy_bind:
 
     def init_scoped_session(self):
         """Creates a SQLAlchemy scoped_session object"""
-        return scoped_session(self.sessionmaker, scopefunc=_app_ctx_stack.__ident_func__)
+        return scoped_session(self.sessionmaker)
 
     def init_db(self):
         """Creates tables in connected database according to defined models."""
