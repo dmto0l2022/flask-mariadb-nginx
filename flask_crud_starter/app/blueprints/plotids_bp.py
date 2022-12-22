@@ -81,8 +81,27 @@ def FuncCreatePlot():
 @plotids_bp.route('/plots/read/', methods=['GET', 'POST'])
 def FuncReadPlot():
     plotid = request.form['plotid']
-    plot = Plots.query.filter(Plots.plotid == plotid).first()
+    plot = Plots.read(plotid)
     form1 = ShowPlot()
+    return render_template('read_plot.html', form1=form1)
+
+# add a new plot to the database
+@plotids_bp.route('/plots/update/', methods=['GET', 'POST'])
+def FuncUpdatePlot():
+    plotid = request.form['plotid']
+    newname = "newname"
+    plot = Plots.update(plotid, newname)
+    plots = Plots.get
+    form1 = ShowPlot()
+    return render_template('update_plot.html', form1=form1)
+
+# add a new plot to the database
+@plotids_bp.route('/plots/delete/', methods=['GET', 'POST'])
+def FuncDeletePlot():
+    plotid = request.form['plotid']
+    plot = Plots.delete(plotid)
+    return render_template('update_plot.html', form1=form1)
+
 '''
 
 # edit or delete - come here from form in /select_record
