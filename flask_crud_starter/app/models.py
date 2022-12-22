@@ -61,9 +61,8 @@ class UserSimple(db.Base):
 class Plots(db.Base):
     __tablename__ = "plots"
     id = Column(Integer, primary_key=True)
-    plotid = Column(String(25)
-    name = Column(String(25)
-                   )
+    plotid = Column(String(25))
+    name = Column(String(25))
 
     def __init__(self, plotid: str, name: str):
         self.plotid = plotid
