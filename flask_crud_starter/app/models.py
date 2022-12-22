@@ -9,10 +9,21 @@ from sqlalchemy.orm import relationship
 from app.database import AppDb
 app_db = AppDb()
 
+# must be defined after db = SQLAlchemy_bind() if in same module
+# from sqlalchemy import Column, Integer, String
 
+class User(db.Base):
+    __tablename__ = 'users_new'
+    id = Column(Integer, primary_key=True)
+    username = Column(String(25), unique=True)
+    password = Column(String(25), unique=True)
+
+    def __init__(self, username=None, password=None):
+        self.username = username
+        self.password = password
 
 # User table
-class User(app_db.Base):
+class UserSimple(app_db.Base):
     __tablename__ = "users_simple"
     id = Column(Integer, primary_key=True)
     username = Column(String)
