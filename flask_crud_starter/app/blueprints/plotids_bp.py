@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template
 ##from flask import current_app
 from app.models import Plots
+from app.forms import PlotsForm
 from datetime import datetime
 import json
 
@@ -22,3 +23,16 @@ def newplots():
 def showplots():
     allplots = Plots.get_plots()
     return allplots
+
+
+@plotids_bp.route("/plots/enter", methods=["GET", "POST"])
+def contact():
+    """Standard `contact` form."""
+    form = ContactForm()
+    if form.validate_on_submit():
+        return redirect(url_for("success"))
+    return render_template(
+        "newplot.html",
+        form=form,
+        template="form-template"
+    )
