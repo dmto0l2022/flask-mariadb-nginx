@@ -56,3 +56,39 @@ class UserSimple(db.Base):
             for i in User.query.order_by('id').all()
         ]
         return users
+
+# Plots table
+class Plots(db.Base):
+    __tablename__ = "plots"
+    id = Column(Integer, primary_key=True)
+    plotid = Column(String(25)
+    name = Column(String(25)
+                   )
+
+    def __init__(self, plotid: str, name: str):
+        self.plotid = plotid
+        self.name = name
+
+    @staticmethod
+    def create(plotid):
+        """
+        Create new plot
+        """
+        new_plots = Plots(plotid)
+        Base.session.add(new_plots)
+        Base.session.commit()
+
+    @staticmethod
+    def get_plots():
+        """
+        :return: list of user details
+        """
+        plots = [
+            {
+                'id': i.id,
+                'plotid': i.plotid,
+                'name': i.name,
+            }
+            for i in Plots.query.order_by('id').all()
+        ]
+        return plots
