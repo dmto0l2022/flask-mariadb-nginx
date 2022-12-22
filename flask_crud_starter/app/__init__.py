@@ -4,6 +4,7 @@ from . import database_bind as dbind
 # outside of app factory
 db = dbind.SQLAlchemy_bind()
 
+import os
 from os import environ, path
 
 from dotenv import load_dotenv
@@ -38,6 +39,8 @@ def init_app():
                     + MARIADB_DATABASE
     print(MARIADB_URI)
     app = Flask(__name__)
+    SECRET_KEY = os.urandom(32)
+    app.config['SECRET_KEY'] = SECRET_KEY
     app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
     # import your database tables if defined in a different module
     from . import models
