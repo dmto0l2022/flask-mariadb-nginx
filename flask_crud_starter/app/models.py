@@ -38,8 +38,8 @@ class UserSimple(db.Base):
         Create new user
         """
         new_user = User(username, name, email)
-        Base.session.add(new_user)
-        Base.session.commit()
+        db.Base.session.add(new_user)
+        db.Base.session.commit()
 
     @staticmethod
     def get_users():
@@ -74,8 +74,8 @@ class Plots(db.Base):
         Create new plot
         """
         new_plots = Plots(plotid,name)
-        Base.session.add(new_plots)
-        Base.session.commit()
+        db.Base.session.add(new_plots)
+        db.Base.session.commit()
 
     @staticmethod
     def get_plots():
