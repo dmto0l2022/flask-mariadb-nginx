@@ -69,11 +69,11 @@ class Plots(db.Base):
         self.name = name
 
     @staticmethod
-    def create(plotid):
+    def create(plotid,name):
         """
         Create new plot
         """
-        new_plots = Plots(plotid)
+        new_plots = Plots(plotid,name)
         Base.session.add(new_plots)
         Base.session.commit()
 
