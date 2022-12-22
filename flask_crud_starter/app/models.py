@@ -100,3 +100,9 @@ class Plots(db.Base):
         oneplot = Plots.query.filter(Plots.plotid.in_((plotid_in)))
         
         return oneplot
+
+    @staticmethod
+    def update_plot(plotid_in):
+        num_rows_updated = Plots.query.filter_by(plotid=plotid_in).update(dict(name='my_new_name')))
+        db.session.commit()
+    
