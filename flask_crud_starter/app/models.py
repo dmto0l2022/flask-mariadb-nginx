@@ -78,7 +78,7 @@ class Plots(db.Base):
         db.session.commit()
 
     @staticmethod
-    def get_plots():
+    def getall():
         """
         :return: list of user details
         """
@@ -93,16 +93,21 @@ class Plots(db.Base):
         return plots
     
     @staticmethod
-    def get_plot(plotid_in):
+    def read(plotid_in):
         """
         :return: one plot
         """
-        oneplot = Plots.query.filter(Plots.plotid.in_((plotid_in)))
-        
+        #oneplot = Plots.query.filter(Plots.plotid.in_((plotid_in)))
+        oneplot = Plots.query.filter_by(plotid=plotid_in)
         return oneplot
 
     @staticmethod
-    def update_plot(plotid_in):
-        num_rows_updated = Plots.query.filter_by(plotid=plotid_in).update(dict(name='my_new_name')))
+    def update(plotid_in, newname_in):
+        num_rows_updated = Plots.query.filter_by(plotid=plotid_in).update(dict(name=newname_in))
+        db.session.commit()
+        
+    @staticmethod
+    def delete(plotid_in):
+        num_rows_deleted = Plots.query.filter_by(plotid=plotid_in).delete()
         db.session.commit()
     
