@@ -4,10 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, ForeignKey, Integer, String, Table
 from sqlalchemy.orm import relationship
 
-from . import database_bind as dbind
-
-# outside of app factory
-db = dbind.SQLAlchemy_bind()
+from . import db
 
 # must be defined after db = SQLAlchemy_bind() if in same module
 # from sqlalchemy import Column, Integer, String
@@ -23,7 +20,7 @@ class User(db.Base):
         self.password = password
 
 # User table
-class UserSimple(app_db.Base):
+class UserSimple(db.Base):
     __tablename__ = "users_simple"
     id = Column(Integer, primary_key=True)
     username = Column(String)
