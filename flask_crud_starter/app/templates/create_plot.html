@@ -15,13 +15,13 @@
 			<!-- links -->
 			<p><a href="{{ url_for('FuncCreatePlot') }}">Create another Plot</a></p>
 
-			<p><a href="{{ url_for('home') }}">Return to the index.</a></p>
+			<p><a href="{{ url_for('home_bp.home') }}">Return to the index.</a></p>
 
 		{% else %}
 
 			<!-- the form is displayed when template opens via GET not POST -->
 			<p class="lead alert alert-primary">Create a new plot.</p>
-			<p class="ml-4"><a href="{{ url_for('home') }}">Return to the home.</a></p>
+			<p class="ml-4"><a href="{{ url_for('home_bp.home') }}">Return to the home.</a></p>
 
 			{% with errors = get_flashed_messages() %}
 				{% if errors %}
