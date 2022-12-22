@@ -5,9 +5,7 @@ from sqlalchemy import Column, ForeignKey, Integer, String, Table
 from sqlalchemy.orm import relationship
 
 #Base = declarative_base()
-
-from app.database import AppDb
-app_db = AppDb()
+import db from app
 
 # must be defined after db = SQLAlchemy_bind() if in same module
 # from sqlalchemy import Column, Integer, String
