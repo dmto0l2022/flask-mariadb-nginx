@@ -35,8 +35,25 @@
 			{% endwith %}
 			<!-- end of flash -->
 
-			<!-- the form, thanks to WTForms -->
-		    {{ wtf.quick_form(form1) }}
+			 <div class="form-wrapper">
+			      <h2 class="title">New Plot</h2>
+
+			      <form method="POST" action="{{ url_for('plotids_bp.CreateNewPlot') }}">
+
+			      <fieldset class="form-field">
+				  {{ form.name.label }}
+				  {{ form.name }}
+			      </fieldset>
+
+			      <fieldset class="form-field">
+				  {{ form.plotid.label }}
+				  {{ form.plotid }}
+			      </fieldset>
+
+			      {{ form.submit }}
+
+			      </form>
+    			</div>
 
 		{% endif %}
 
