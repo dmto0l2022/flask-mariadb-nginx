@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 
+'''
 # must be defined after db = SQLAlchemy_bind() if in same module
 from sqlalchemy import Column, Integer, String
 
@@ -23,6 +24,7 @@ class User(db.Base):
     def __init__(self, username=None, password=None):
         self.username = username
         self.password = password
+'''
 
 # app factory
 def init_app():
