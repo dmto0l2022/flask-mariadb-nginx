@@ -19,26 +19,3 @@ def index():
     allplots = Plots.get_plots(plotid,name)
     return allplots
 
- @staticmethod
-    def create(plotid,name):
-        """
-        Create new plot
-        """
-        new_plots = Plots(plotid,name)
-        Base.session.add(new_plots)
-        Base.session.commit()
-
-    @staticmethod
-    def get_plots():
-        """
-        :return: list of user details
-        """
-        plots = [
-            {
-                'id': i.id,
-                'plotid': i.plotid,
-                'name': i.name,
-            }
-            for i in Plots.query.order_by('id').all()
-        ]
-        return plots
