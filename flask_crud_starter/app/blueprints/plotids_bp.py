@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template
-from app import models
-from app import db
+from flask import current_app
 from datetime import datetime
 users_bp = Blueprint('plotids_bp', __name__)
 
