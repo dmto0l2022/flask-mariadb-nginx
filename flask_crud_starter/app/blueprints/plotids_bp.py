@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 ##from flask import current_app
 from app.models import Plots
-from app.forms import PlotsForm
+from app.forms import PlotsForm as frms
 from datetime import datetime
 import json
 
@@ -28,7 +28,7 @@ def showplots():
 @plotids_bp.route("/plots/enter", methods=["GET", "POST"])
 def EnterNewPlot():
     """Standard 'plot' form."""
-    form = PlotForm()
+    form = frms.EnterNewPlot()
     if form.validate_on_submit():
         return redirect(url_for("success"))
     return render_template(
