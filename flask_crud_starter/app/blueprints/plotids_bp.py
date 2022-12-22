@@ -50,7 +50,7 @@ def success():
 #####
 
 @plotids_bp.route("/plots", methods=["GET", "POST"])
-def success():
+def plots():
    return "plots"
 
 # add a new sock to the database
