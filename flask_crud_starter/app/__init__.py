@@ -38,7 +38,8 @@ def init_app():
                     + MARIADB_DATABASE
     print(MARIADB_URI)
     app = Flask(__name__)
-    #app.config["DATABASE"] = MARIADB_URI
+    from app.blueprints.routes import hello_page_bp
+    app.register_blueprint(hello_page_bp)
     app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
     # import your database tables if defined in a different module
     from . import models
