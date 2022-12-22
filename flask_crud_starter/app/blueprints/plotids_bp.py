@@ -3,7 +3,7 @@ from flask import current_app
 from datetime import datetime
 users_bp = Blueprint('plotids_bp', __name__)
 
-@plotid_bp.route('/plots/new/')
+@plotids_bp.route('/plots/new/')
 def index():
     name = 'new plot'
     plotid = 'P123455662357989092370'
@@ -13,7 +13,7 @@ def index():
         plotid=plotid
     ) 
 
-@plotid_bp.route('/plots/show/')
+@plotids_bp.route('/plots/show/')
 def index():
     allplots = Plots.get_plots(plotid,name)
     return allplots
