@@ -4,8 +4,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, ForeignKey, Integer, String, Table
 from sqlalchemy.orm import relationship
 
-#Base = declarative_base()
-import db from app
+from . import database_bind as dbind
+
+# outside of app factory
+db = dbind.SQLAlchemy_bind()
 
 # must be defined after db = SQLAlchemy_bind() if in same module
 # from sqlalchemy import Column, Integer, String
