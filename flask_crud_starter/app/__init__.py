@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import flash
 from . import database_bind as dbind
 
 # outside of app factory
