@@ -8,7 +8,7 @@ import json
 plotids_bp = Blueprint('plotids_bp', __name__)
 
 @plotids_bp.route('/plots/new/')
-def newplots():
+def CreateNewPlot():
     name = 'new plot'
     plotid = 'P123455662357989092370'
     plotids = Plots.create(plotid,name)
@@ -26,9 +26,9 @@ def showplots():
 
 
 @plotids_bp.route("/plots/enter", methods=["GET", "POST"])
-def contact():
-    """Standard `contact` form."""
-    form = ContactForm()
+def EnterNewPlot():
+    """Standard 'plot' form."""
+    form = PlotForm()
     if form.validate_on_submit():
         return redirect(url_for("success"))
     return render_template(
@@ -36,3 +36,7 @@ def contact():
         form=form,
         template="form-template"
     )
+
+@plotids_bp.route("/plots/success", methods=["GET", "POST"])
+def success():
+   return "success"
