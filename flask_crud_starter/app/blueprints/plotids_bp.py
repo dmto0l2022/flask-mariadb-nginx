@@ -4,14 +4,11 @@ from app.models import Plots
 from app.forms import EnterNewPlotForm
 from datetime import datetime
 import json
-import date
+from datetime import datetime
 
 def stringdate():
-    today = date.today()
-    date_list = str(today).split('-')
-    # build string in format 01-01-2000
-    date_string = date_list[1] + "-" + date_list[2] + "-" + date_list[0]
-    return date_string
+    plotidnow = datetime.datetime.utcnow().strftime("%Y%m%d%H%M%S%f")
+    return plotidnow
 
 plotids_bp = Blueprint('plotids_bp', __name__)
 
@@ -53,7 +50,7 @@ def success():
 #####
 
 # add a new sock to the database
-@app.route('/plot/create', methods=['GET', 'POST'])
+@plotids_bp.route('/plot/create', methods=['GET', 'POST'])
 def FuncCreatePlot():
     form1 = FormCreatePlot()
     if form1.validate_on_submit():
@@ -61,7 +58,7 @@ def FuncCreatePlot():
         plotid = request.form['plotid']
         Plots.create(plotid,name)
         # create a message to send to the template
-        message = f"The data for sock {plotid} has been submitted."
+        message = f"The data for plot {plotid} has been submitted."
         return render_template('create_plot.html', message=message)
     else:
         # show validaton errors
@@ -74,14 +71,7 @@ def FuncCreatePlot():
                 ), 'error')
         return render_template('create_plot.html', form1=form1)
 
-# select a record to edit or delete
-@app.route('/select_record/<letters>')
-def select_record(letters):
-    # alphabetical lists by sock name, chunked by letters between _ and _
-    # .between() evaluates first letter of a string
-    a, b = list(letters)
-    socks = Sock.query.filter(Sock.name.between(a, b)).order_by(Sock.name).all()
-    return render_template('select_record.html', socks=socks)
+'''
 
 # edit or delete - come here from form in /select_record
 @app.route('/edit_or_delete', methods=['POST'])
@@ -142,3 +132,4 @@ def edit_result():
                     error
                 ), 'error')
         return render_template('edit_or_delete.html', form1=form1, sock=sock, choice='edit')
+'''
