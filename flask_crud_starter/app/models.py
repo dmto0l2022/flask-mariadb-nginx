@@ -91,3 +91,12 @@ class Plots(db.Base):
             for i in Plots.query.order_by('id').all()
         ]
         return plots
+    
+    @staticmethod
+    def get_plot(plotid_in):
+        """
+        :return: one plot
+        """
+        oneplot = Plots.query.filter(Plots.plotid.in_((plotid_in)))
+        
+        return oneplot
