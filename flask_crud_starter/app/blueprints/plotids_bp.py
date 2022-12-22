@@ -11,7 +11,7 @@ def stringdate():
     return plotidnow
 
 plotids_bp = Blueprint('plotids_bp', __name__)
-
+'''
 @plotids_bp.route('/plots/new/')
 def CreateNewPlot():
     name = 'new plot'
@@ -23,13 +23,14 @@ def CreateNewPlot():
         }
     r = json.dumps(y)
     return r
+'''
 
 @plotids_bp.route('/plots/show/')
 def showplots():
     allplots = Plots.get_plots()
     return allplots
 
-
+'''
 @plotids_bp.route("/plots/enter", methods=["GET", "POST"])
 def EnterNewPlotFunc():
     """Standard 'plot' form."""
@@ -41,6 +42,7 @@ def EnterNewPlotFunc():
         form=form,
         template="form-template"
     )
+'''
 
 @plotids_bp.route("/plots/success", methods=["GET", "POST"])
 def success():
@@ -53,7 +55,7 @@ def success():
 def plots():
    return "plots"
 
-# add a new sock to the database
+# add a new plot to the database
 @plotids_bp.route('/plots/create/', methods=['GET', 'POST'])
 def FuncCreatePlot():
     form1 = FormCreatePlot()
@@ -75,6 +77,12 @@ def FuncCreatePlot():
                 ), 'error')
         return render_template('create_plot.html', form1=form1)
 
+# add a new plot to the database
+@plotids_bp.route('/plots/read/', methods=['GET', 'POST'])
+def FuncReadPlot():
+    plotid = request.form['plotid']
+    plot = Plots.query.filter(Plots.plotid == plotid).first()
+    form1 = ShowPlot()
 '''
 
 # edit or delete - come here from form in /select_record
