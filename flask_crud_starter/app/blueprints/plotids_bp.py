@@ -11,7 +11,12 @@ def newplots():
     name = 'new plot'
     plotid = 'P123455662357989092370'
     plotids = Plots.create(plotid,name)
-    return json.dumps(name=name,plotid=plotid) 
+    y =  {
+        "plotid": plotid,
+        "name": name
+        }
+    r = json.dumps(y)
+    return r
 
 @plotids_bp.route('/plots/show/')
 def showplots():
