@@ -49,8 +49,12 @@ def success():
 
 #####
 
+@plotids_bp.route("/plots", methods=["GET", "POST"])
+def success():
+   return "plots"
+
 # add a new sock to the database
-@plotids_bp.route('/plot/create', methods=['GET', 'POST'])
+@plotids_bp.route('/plots/create', methods=['GET', 'POST'])
 def FuncCreatePlot():
     form1 = FormCreatePlot()
     if form1.validate_on_submit():
