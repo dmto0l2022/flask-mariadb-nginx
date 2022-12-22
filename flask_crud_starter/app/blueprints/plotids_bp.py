@@ -58,8 +58,8 @@ def plots():
 def FuncCreatePlot():
     form1 = FormCreatePlot()
     if form1.validate_on_submit():
-        name = request.form['name']
-        plotid = request.form['plotid']
+        name = request.form1['name']
+        plotid = request.form1['plotid']
         Plots.create(plotid,name)
         # create a message to send to the template
         message = f"The data for plot {plotid} has been submitted."
