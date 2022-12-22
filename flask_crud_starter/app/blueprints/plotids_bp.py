@@ -21,4 +21,4 @@ def newplots():
 @plotids_bp.route('/plots/show/')
 def showplots():
     allplots = Plots.get_plots()
-    return json.dumps(allplots.serialize())
+    return allplots
