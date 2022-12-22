@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, flash
 ##from flask import current_app
 from app.models import Plots
 from app.forms import EnterNewPlotForm, FormCreatePlot
