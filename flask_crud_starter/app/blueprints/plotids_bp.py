@@ -2,6 +2,8 @@ from flask import Blueprint, render_template
 ##from flask import current_app
 from app.models import Plots
 from datetime import datetime
+import jsonify
+
 plotids_bp = Blueprint('plotids_bp', __name__)
 
 @plotids_bp.route('/plots/new/')
