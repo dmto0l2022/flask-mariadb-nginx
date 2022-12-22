@@ -5,6 +5,10 @@ from wtforms.validators import DataRequired, Length
 
 class EnterNewPlotForm(FlaskForm):
     """New Plot form."""
+    plotid = StringField(
+        'plotid',
+        [DataRequired()]
+    )
     name = StringField(
         'name',
         [DataRequired()]
