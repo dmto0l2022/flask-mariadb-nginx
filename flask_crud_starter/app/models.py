@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, ForeignKey, Integer, String, Table
 from sqlalchemy.orm import relationship
 
-from . import db
+from . import db ## import db from __init__
 
 # must be defined after db = SQLAlchemy_bind() if in same module
 # from sqlalchemy import Column, Integer, String
@@ -23,9 +23,9 @@ class User(db.Base):
 class UserSimple(db.Base):
     __tablename__ = "users_simple"
     id = Column(Integer, primary_key=True)
-    username = Column(String)
-    name = Column(String)
-    email = Column(String)
+    username = Column(String(25))
+    name = Column(String(25))
+    email = Column(String(25))
 
     def __init__(self, username: str, name: str, email: str):
         self.username = username
