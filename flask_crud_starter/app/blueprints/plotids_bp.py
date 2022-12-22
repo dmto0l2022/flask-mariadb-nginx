@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 ##from flask import current_app
 from app.models import Plots
-from app.forms import EnterNewPlotForm
+from app.forms import EnterNewPlotForm, FormCreatePlot
 from datetime import datetime
 import json
 from datetime import datetime
