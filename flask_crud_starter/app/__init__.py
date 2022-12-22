@@ -46,6 +46,8 @@ def init_app():
     from . import models
     # for example if the User model above was in a different module:
     db.init_app(app)
+    from app.blueprints.home_bp import home_bp
+    app.register_blueprint(home_bp)
     from app.blueprints.plotids_bp import plotids_bp
     app.register_blueprint(plotids_bp)
     return app
