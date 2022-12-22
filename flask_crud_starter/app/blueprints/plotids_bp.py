@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 from flask import current_app
 from datetime import datetime
-users_bp = Blueprint('plotids_bp', __name__)
+plotids_bp = Blueprint('plotids_bp', __name__)
 
 @plotids_bp.route('/plots/new/')
 def index():
