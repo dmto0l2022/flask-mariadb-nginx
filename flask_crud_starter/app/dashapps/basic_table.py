@@ -4,13 +4,54 @@ import pandas as pd
 import plotly.express as px
 import json
 import requests
+###
+
+import requests
+import json
+
+
+class MakeApiCall:
+
+    def get_data(self, api):
+        response = requests.get(f"{api}")
+        if response.status_code == 200:
+            print("sucessfully fetched the data")
+            self.formatted_print(response.json())
+        else:
+            print(
+                f"Hello person, there's a {response.status_code} error with your request")
+
+    '''def get_user_data(self, api, parameters):
+        response = requests.get(f"{api}", params=parameters)
+        if response.status_code == 200:
+            print("sucessfully fetched the data with parameters provided")
+            self.formatted_print(response.json())
+        else:
+            print(
+                f"Hello person, there's a {response.status_code} error with your request")
+    '''
+    def formatted_print(self, obj):
+        text = json.dumps(obj, sort_keys=True, indent=4)
+        print(text)
+    '''
+    def __init__(self, api):
+        # self.get_data(api)
+
+        parameters = {
+            "username": "kedark"
+        }
+        self.get_user_data(api, parameters)
+    '''
+###
+
 
 app = Dash(__name__, requests_pathname_prefix='/wsgi_app2/')
 
 ##data_request = requests.get('/plots/getall')
 ##url = "http://localhost:8002/plots/getall/"
 url = "http://localhost:8002/todo/list/1"
-data_request = requests.get(url)
+api_call = MakeApiCall(url)
+##data_request = requests.get(url)
 print(data_request)
 ##data_frame = pd.read_json(data_request)
 ##print(data_frame)
