@@ -7,7 +7,9 @@ import requests
 
 app = Dash(__name__, requests_pathname_prefix='/wsgi_app2/')
 
-data_request = requests.get('/plots/getall')
+##data_request = requests.get('/plots/getall')
+url = "http://dev4.dmtools.info:8002/plots/getall/"
+data_request = requests.get(url)
 data_frame = pd.read_json(data_request)
 print(data_frame)
 
