@@ -1,0 +1,7 @@
+FROM localhost/my-pythonbaseapi-1:latest
+WORKDIR /workdir/
+
+RUN /workdir/app/env/bin/pip3 freeze
+COPY . /workdir/.
+##RUN ls -R /workdir/
+CMD ["gunicorn"  , "--bind", "0.0.0.0:8002", "wsgi:application"]
