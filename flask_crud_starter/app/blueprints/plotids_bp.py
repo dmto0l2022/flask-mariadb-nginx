@@ -25,8 +25,8 @@ def CreateNewPlot():
     return r
 '''
 
-@plotids_bp.route('/plots/show/')
-def showplots():
+@plotids_bp.route('/plots/getall/', methods=["GET", "POST"])
+def getallplots():
     allplots = Plots.getall()
     return allplots
 
@@ -98,9 +98,9 @@ def FuncUpdatePlot():
 # add a new plot to the database
 @plotids_bp.route('/plots/delete/', methods=['GET', 'POST'])
 def FuncDeletePlot():
-    plotid = request.form['plotid']
-    plot = Plots.delete(plotid)
-    return render_template('update_plot.html', form1=form1)
+    plotid_in = request.args.get('plotid')
+    howmany = Plots.delete(plotid_in)
+    return howmany
 
 '''
 
