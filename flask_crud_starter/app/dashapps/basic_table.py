@@ -7,6 +7,10 @@ import requests
 
 app = Dash(__name__, requests_pathname_prefix='/wsgi_app2/')
 
+data_request = requests.get('/plots/getall')
+data_frame = pd.read_json(data_request)
+print(data_frame)
+
 df = px.data.gapminder()
 df["id"] = df.index
 # print(df.head(15))
@@ -58,6 +62,8 @@ def cell_clicked(active_cell):
     print("---------------------")   
     
     cell_value = dff.iat[active_cell['row'], active_cell['column']]
+    
+    ##http://127.0.0.1:5000/query-example?plotid=Python
     
     return cell_value, country
 
