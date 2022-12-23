@@ -50,9 +50,3 @@ RUN . /workdir/app/env/bin/activate
 RUN /workdir/app/env/bin/python3 --version
 RUN whereis python3
 RUN whereis pip3
-COPY requirements.txt /workdir/requirements.txt
-RUN /workdir/app/env/bin/pip3 install -r /workdir/requirements.txt
-RUN /workdir/app/env/bin/pip3 freeze
-COPY . /workdir/.
-##RUN ls -R /workdir/
-CMD ["/workdir/app/env/bin/gunicorn"  , "--bind", "0.0.0.0:8004", "/workdir/wsgi:application"]
