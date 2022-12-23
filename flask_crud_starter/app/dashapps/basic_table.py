@@ -57,8 +57,8 @@ def cell_clicked(active_cell):
     row = active_cell["row_id"]
     print(f"row id: {row}")
 
-    plotid = df.at[row, "country"]
-    print(plotid)
+    country = df.at[row, "country"]
+    print(country)
 
     col = active_cell["column_id"]
     print(f"column id: {col}")
