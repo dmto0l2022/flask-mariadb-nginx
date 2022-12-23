@@ -27,8 +27,13 @@ def CreateNewPlot():
 
 @plotids_bp.route('/plots/getall/', methods=["GET", "POST"])
 def getallplots():
-    allplots = Plots.getall()
-    return allplots
+    return {
+        data: [{
+            "id": plot.id,
+            "plotid": plot.plotid,
+            "name": plot.username,
+        } for plot in Plots]
+    }
 
 '''
 @plotids_bp.route("/plots/enter", methods=["GET", "POST"])
