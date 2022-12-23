@@ -132,9 +132,9 @@ def cell_clicked(active_cell):
         url = "http://10.154.0.20:8004/plots/delete/"
         requests.post(url, params=params)
         url = "http://10.154.0.20:8004/plots/getall/"
-        r = requests.get(url,headers={'Accept': 'application/json'})
-        response_data = r.json()
-        updated_data_frame = pd.DataFrame(response_data)
+        #r = requests.get(url,headers={'Accept': 'application/json'})
+        #response_data = r.json()
+        #updated_data_frame = pd.DataFrame(response_data)
         
     
     cell_value = dff.iat[active_cell['row'], active_cell['column'] + 1]
