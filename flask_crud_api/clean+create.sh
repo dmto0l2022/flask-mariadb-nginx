@@ -3,8 +3,9 @@ podman stop infra_api_backend
 podman rm api_backend_1
 podman rm infra_api_backend
 
-podman pod stop pod-api-backend
-podman pod rm pod-api-backend
+podman pod stop pod_api_backend
+podman pod rm pod_api_backend
+
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_crud_api
 
 uid=1001
