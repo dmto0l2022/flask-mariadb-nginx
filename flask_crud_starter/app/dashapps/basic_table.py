@@ -10,7 +10,7 @@ import requests
 import json
 
 
-class MakeApiCall:
+class MakeApiCall():
 
     def get_data(self, api):
         response = requests.get(f"{api}")
@@ -50,9 +50,9 @@ app = Dash(__name__, requests_pathname_prefix='/wsgi_app2/')
 ##data_request = requests.get('/plots/getall')
 ##url = "http://localhost:8002/plots/getall/"
 url = "http://localhost:8002/todo/list/1"
-api_call = MakeApiCall(url)
+MakeApiCall.get_data(url)
 ##data_request = requests.get(url)
-print(data_request)
+#print(data_request)
 ##data_frame = pd.read_json(data_request)
 ##print(data_frame)
 ##dff = data_frame.copy()
