@@ -30,4 +30,4 @@ podman run -dt \
 --name api_backend-1 \
 --pod pod-api-backend \
 --user $uid:$gid \
-localhost/my-dbapi-1:latest
+localhost/my-pythonapi-1:latest
