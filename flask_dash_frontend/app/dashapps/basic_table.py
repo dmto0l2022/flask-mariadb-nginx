@@ -62,7 +62,7 @@ print(f"Response: {r.json()}")
 
 #data_request = requests.get(url=url)
 #text = json.dumps(data_request, sort_keys=True, indent=4)
-print(text)
+#print(text)
 #MakeApiCall().get_data(url)
 ##data_request = requests.get(url)
 #print(data_request)
