@@ -9,7 +9,7 @@ app = Dash(__name__, requests_pathname_prefix='/wsgi_app2/')
 df = px.data.gapminder()
 df["id"] = df.index
 # print(df.head(15))
-dff = df[df.year == 2007]
+dff = df[df.year == 2007].copy()
 dff['create'] = "create"
 dff['read'] = "read"
 dff['update'] = "update"
