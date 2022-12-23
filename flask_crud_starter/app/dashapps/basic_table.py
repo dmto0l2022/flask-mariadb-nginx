@@ -9,7 +9,7 @@ app = Dash(__name__, requests_pathname_prefix='/wsgi_app2/')
 
 ##data_request = requests.get('/plots/getall')
 ##url = "http://localhost:8002/plots/getall/"
-url = "/todo/list/1"
+url = "http://localhost:8002/todo/list/1"
 data_request = requests.get(url)
 print(data_request)
 ##data_frame = pd.read_json(data_request)
