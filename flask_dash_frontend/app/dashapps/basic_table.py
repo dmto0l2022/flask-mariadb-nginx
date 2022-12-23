@@ -126,6 +126,8 @@ def cell_clicked(active_cell):
     print(f"column id: {col}")
     print("---------------------")
     
+    cell_value = dff.iat[active_cell['row'], active_cell['column'] + 1]
+    
     if cell_value == 'delete':
         params = {'plotid': plotid}
         url = "http://10.154.0.20:8004/plots/delete/"
@@ -134,10 +136,7 @@ def cell_clicked(active_cell):
         r = requests.get(url,headers={'Accept': 'application/json'})
         response_data = r.json()
         updated_data_frame = pd.DataFrame(response_data)
-        
-    
-    cell_value = dff.iat[active_cell['row'], active_cell['column'] + 1]
-    
+            
     ##http://127.0.0.1:5000/query-example?plotid=Python
     return_data = cell_value, plotid
     return return_data, updated_data_frame.to_dict('records') ##country
