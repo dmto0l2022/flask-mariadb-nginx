@@ -3,6 +3,7 @@ from dash import Dash, dcc, html, Input, Output, dash_table, no_update  # Dash v
 import pandas as pd
 import plotly.express as px
 import json
+import requests
 
 app = Dash(__name__, requests_pathname_prefix='/wsgi_app2/')
 
