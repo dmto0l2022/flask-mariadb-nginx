@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, request
+from flask import Blueprint, render_template, flash, request, jsonify
 ##from flask import current_app
 from app.models import Plots
 from app.forms import EnterNewPlotForm, FormCreatePlot
@@ -27,13 +27,8 @@ def CreateNewPlot():
 
 @plotids_bp.route('/plots/getall/', methods=["GET", "POST"])
 def getallplots():
-    return {
-        data: [{
-            "id": plot.id,
-            "plotid": plot.plotid,
-            "name": plot.username,
-        } for plot in Plots]
-    }
+    j = jsonify(Plots.getall())
+    return j
 
 '''
 @plotids_bp.route("/plots/enter", methods=["GET", "POST"])
