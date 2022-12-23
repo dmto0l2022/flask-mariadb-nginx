@@ -27,7 +27,7 @@ podman build -f Dockerfile_pythonfrontend -t flask_dash_frontend_1 .
 ##-v /HOST-DIR:/CONTAINER-DIR
 
 podman run -dt \
---name flask_dash_frontend-1 \
---pod pod_flask_dash_frontend-1 \
+--name flask_dash_frontend_1 \
+--pod pod_flask_dash_frontend_1 \
 --user $uid:$gid \
 localhost/flask_dash_frontend_1:latest
