@@ -8,22 +8,22 @@ import requests
 app = Dash(__name__, requests_pathname_prefix='/wsgi_app2/')
 
 ##data_request = requests.get('/plots/getall')
-url = "http://localhost:8002/plots/getall/"
-data_request = requests.get(url)
-data_frame = pd.read_json(data_request)
-print(data_frame)
-dff = data_frame.copy()
-#df = px.data.gapminder()
-#df["id"] = df.index
+##url = "http://localhost:8002/plots/getall/"
+##data_request = requests.get(url)
+##data_frame = pd.read_json(data_request)
+##print(data_frame)
+##dff = data_frame.copy()
+df = px.data.gapminder()
+df["id"] = df.index
 # print(df.head(15))
-#dff = df[df.year == 2007].copy()
+dff = df[df.year == 2007].copy()
 dff['create'] = "create"
 dff['read'] = "read"
 dff['update'] = "update"
 dff['delete'] = "delete"
-#columns = ["country", "continent", "lifeExp", "pop", "gdpPercap", "create", "read", "update", "delete"]
-columns = ["id", "plotid", "name", "create", "read", "update", "delete"]
-initial_active_cell = {"row": 0, "column": 0, "column_id": "plotid", "row_id": 0}
+columns = ["country", "continent", "lifeExp", "pop", "gdpPercap", "create", "read", "update", "delete"]
+#columns = ["id", "plotid", "name", "create", "read", "update", "delete"]
+initial_active_cell = {"row": 0, "column": 0, "column_id": "country", "row_id": 0}
 
 app.layout = html.Div(
     [
@@ -57,7 +57,7 @@ def cell_clicked(active_cell):
     row = active_cell["row_id"]
     print(f"row id: {row}")
 
-    plotid = df.at[row, "plotid"]
+    plotid = df.at[row, "country"]
     print(plotid)
 
     col = active_cell["column_id"]
@@ -68,6 +68,6 @@ def cell_clicked(active_cell):
     
     ##http://127.0.0.1:5000/query-example?plotid=Python
     
-    return cell_value, plotid
+    return cell_value, country
 
 ##json.dumps(list(active_cell))
