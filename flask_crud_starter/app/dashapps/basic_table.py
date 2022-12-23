@@ -51,8 +51,10 @@ app = Dash(__name__, requests_pathname_prefix='/wsgi_app2/')
 ##url = "http://localhost:8002/plots/getall/"
 #url = "http://localhost:8002/todo/list/1"
 #data_request = requests.get(url="http://0.0.0.0:8002/todo/list/1")
-url = "http://dev4.dmtools.info:8002/todo/list/1"
-data_request = requests.get(url=url)
+##url = "http://dev4.dmtools.info:8002/todo/list/1"
+## url = "http://10.154.0.20/todo/list/1"
+##10.154.0.20 
+##data_request = requests.get(url=url)
 #MakeApiCall().get_data(url)
 ##data_request = requests.get(url)
 #print(data_request)
