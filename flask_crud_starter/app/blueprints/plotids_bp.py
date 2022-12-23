@@ -27,7 +27,7 @@ def CreateNewPlot():
 
 @plotids_bp.route('/plots/show/')
 def showplots():
-    allplots = Plots.get_plots()
+    allplots = Plots.getall()
     return allplots
 
 '''
