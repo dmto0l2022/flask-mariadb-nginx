@@ -7,5 +7,5 @@ from app.dashapps.interactive_table import app as app1
 app = init_app()
 
 application = DispatcherMiddleware(app, {
-    '/app1': app1.server,
+    '/wsgi_app1': app1.server,
 })  
