@@ -51,4 +51,4 @@ def cell_clicked(active_cell):
     print(f"column id: {col}")
     print("---------------------")
 
-    return row, col
+    return row, col, " active_cell >> ",   active_cell
