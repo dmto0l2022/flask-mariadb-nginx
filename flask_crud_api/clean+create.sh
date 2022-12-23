@@ -1,3 +1,8 @@
+podman stop api_backend_1
+podman stop infra_api_backend
+podman rm api_backend_1
+podman rm infra_api_backend
+
 podman pod stop pod-api-backend
 podman pod rm pod-api-backend
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_crud_api
@@ -10,8 +15,8 @@ subgidSize=$(( $(podman info --format "{{ range \
    .Host.IDMappings.GIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 
 podman pod create \
---name pod-api-backend \
---infra-name infra-api-backend \
+--name pod_api_backend \
+--infra-name infra_api_backend \
 --network bridge \
 --uidmap 0:1:$uid \
 --uidmap $uid:0:1 \
@@ -21,13 +26,13 @@ podman pod create \
 --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
 --publish 8004:8004
 
-podman build -f Dockerfile_pythonbase -t my-pythonbaseapi-1 .
-podman build -f Dockerfile_pythonapi -t my-pythonapi-1 .
+podman build -f Dockerfile_pythonbase -t my_pythonbaseapi_1 .
+podman build -f Dockerfile_pythonapi -t my_pythonapi_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
 podman run -dt \
---name api_backend-1 \
---pod pod-api-backend \
+--name api_backend_1 \
+--pod pod_api_backend \
 --user $uid:$gid \
-localhost/my-pythonapi-1:latest
+localhost/my_pythonapi_1:latest
