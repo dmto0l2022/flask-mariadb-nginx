@@ -1,4 +1,5 @@
 werkzeug
+requests
 gunicorn
 python-dotenv
 flask
