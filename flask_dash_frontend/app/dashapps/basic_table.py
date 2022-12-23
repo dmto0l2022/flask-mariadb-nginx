@@ -48,20 +48,18 @@ class MakeApiCall():
 app = Dash(__name__, requests_pathname_prefix='/wsgi_app2/')
 
 ##data_request = requests.get('/plots/getall')
-url = "http://10.154.0.20:8004/plots/getall/"
+#url = "http://10.154.0.20:8004/plots/getall/"
 #url = "http://localhost:8002/todo/list/1"
 #data_request = requests.get(url="http://0.0.0.0:8002/todo/list/1")
 ##url = "http://dev4.dmtools.info:8002/todo/list/1"
 #url = "http://10.154.0.20:8004/todo/list/1"
 ##10.154.0.20
 
+url = "http://10.154.0.20:8004/plots/getall/"
 r = requests.get(url, 
                  headers={'Accept': 'application/json'})
-
-print(f"Response: {r.json()}")
-
 response_data = r.json()
-
+data_frame = pd.DataFrame(response_data)
 #data_request = requests.get(url=url)
 #text = json.dumps(data_request, sort_keys=True, indent=4)
 #print(text)
@@ -69,7 +67,7 @@ response_data = r.json()
 ##data_request = requests.get(url)
 #print(data_request)
 #data_frame = pd.read_json(response_data, orient='records')
-data_frame = pd.DataFrame(response_data)
+#data_frame = pd.DataFrame(response_data)
 ##print(data_frame)
 dff = data_frame.copy()
 ##df = px.data.gapminder()
@@ -109,9 +107,11 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output("output-div", "children"), Input("table", "active_cell"),
+    [Output("output-div", "children"), Output('table','data')], Input("table", "active_cell"),
 )
 def cell_clicked(active_cell):
+    
+    updated_data_frame = 
     if active_cell is None:
         return no_update
 
@@ -120,17 +120,28 @@ def cell_clicked(active_cell):
 
     #country = df.at[row, "country"]
     #print(country)
-    country = df.at[row, "plotid"]
+    plotid = dff.at[row, "plotid"]
     print(plotid)
 
     col = active_cell["column_id"]
     print(f"column id: {col}")
-    print("---------------------")   
+    print("---------------------")
+    
+    if cell_value = 'delete':
+        params = {'plotid': plotid}
+        url = "http://10.154.0.20:8004/plots/delete/"
+        requests.post(url, params=params)
+        url = "http://10.154.0.20:8004/plots/getall/"
+        r = requests.get(url, 
+                 headers={'Accept': 'application/json'})
+        response_data = r.json()
+        updated_data_frame = pd.DataFrame(response_data)
+        
     
     cell_value = dff.iat[active_cell['row'], active_cell['column'] + 1]
     
     ##http://127.0.0.1:5000/query-example?plotid=Python
-    
-    return cell_value, plotid ##country
+    return_data = cell_value, plotid
+    return return_data, updated_data_frame.to_dict('records') ##country
 
 ##json.dumps(list(active_cell))
