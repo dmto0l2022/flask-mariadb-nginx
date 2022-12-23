@@ -133,16 +133,24 @@ def cell_clicked(active_cell):
     if active_cell is None:
         return no_update
 
-    row = active_cell["row_id"]
-    print(f"row id: {row}")
+    #row = active_cell["row_id"]
+    row_id = active_cell["row_id"]
+    print(f"row_id: {row_id}")
+    
+    #row = active_cell["row_id"]
+    row_id = active_cell["column_id"]
+    print(f"column_id: {column_id}")
+    
+    row = active_cell["row"]
+    print(f"row: {row}")
 
     #country = df.at[row, "country"]
     #print(country)
     plotid = dff.at[row, "plotid"]
     print(plotid)
 
-    col = active_cell["column_id"]
-    print(f"column id: {col}")
+    column = active_cell["column"]
+    print(f"column: {column}")
     print("---------------------")
     
     cell_value = dff.iat[active_cell['row'], active_cell['column']]
