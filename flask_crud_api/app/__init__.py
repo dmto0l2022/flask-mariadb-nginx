@@ -52,10 +52,6 @@ def init_app():
     from app.blueprints.plotids_bp import plotids_bp
     app.register_blueprint(plotids_bp)
     ##
-    #dashapp1_bp
-    from app.blueprints.dashapp1_bp import dashapp1_bp
-    app.register_blueprint(dashapp1_bp)
-    ##
     ##todo_bp
     from app.blueprints.todo_bp import todo_bp
     app.register_blueprint(todo_bp)
