@@ -21,7 +21,7 @@ podman pod create \
 --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
 --publish 8004:8004
 
-podman build -t my-dbapi-1 .
+podman build -f Dockerfile_pythonbase -t my-pythonbaseapi-1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
