@@ -138,7 +138,7 @@ def cell_clicked(active_cell):
     print(f"row_id: {row_id}")
     
     #row = active_cell["row_id"]
-    row_id = active_cell["column_id"]
+    column_id = active_cell["column_id"]
     print(f"column_id: {column_id}")
     
     row = active_cell["row"]
