@@ -126,7 +126,7 @@ def cell_clicked(active_cell):
     print(f"column id: {col}")
     print("---------------------")
     
-    if cell_value = 'delete':
+    if cell_value == 'delete':
         params = {'plotid': plotid}
         url = "http://10.154.0.20:8004/plots/delete/"
         requests.post(url, params=params)
