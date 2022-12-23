@@ -22,6 +22,7 @@ podman pod create \
 --publish 8004:8004
 
 podman build -f Dockerfile_pythonbase -t my-pythonbaseapi-1 .
+podman build -f Dockerfile_pythonapi -t my-pythonapi-1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
