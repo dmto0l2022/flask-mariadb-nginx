@@ -126,7 +126,7 @@ def cell_clicked(active_cell):
     print(f"column id: {col}")
     print("---------------------")
     
-    cell_value = dff.iat[active_cell['row'], active_cell['column'] + 1]
+    cell_value = dff.iat[active_cell['row'], active_cell['column']]
     
     if cell_value == 'delete':
         params = {'plotid': plotid}
