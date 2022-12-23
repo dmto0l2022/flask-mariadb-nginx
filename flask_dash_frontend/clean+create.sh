@@ -1,5 +1,5 @@
-podman pod stop pod-python_frontend
-podman pod rm pod-python_frontend
+podman pod stop pod_python_frontend
+podman pod rm pod_python_frontend
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_dash_frontend
 
 uid=1001
@@ -28,6 +28,6 @@ podman build -f Dockerfile_pythonfrontend -t flask_dash_frontend_1 .
 
 podman run -dt \
 --name flask_dash_frontend_1 \
---pod pod_flask_dash_frontend_1 \
+--pod pod_flask_dash_frontend \
 --user $uid:$gid \
 localhost/flask_dash_frontend_1:latest
