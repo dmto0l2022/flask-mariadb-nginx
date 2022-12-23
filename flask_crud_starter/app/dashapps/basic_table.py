@@ -52,4 +52,4 @@ def cell_clicked(active_cell):
     print(f"column id: {col}")
     print("---------------------")   
     
-    return json.dumps(active_cell.keys())
+    return json.dumps(list(active_cell))
