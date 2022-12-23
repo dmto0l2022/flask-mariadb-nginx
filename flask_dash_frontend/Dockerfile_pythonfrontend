@@ -1,4 +1,4 @@
-FROM localhost/my-pythonbasefrontend-1:latest
+FROM localhost/python_base_frontend_1:latest
 WORKDIR /workdir/
 
 RUN /workdir/app/env/bin/pip3 freeze
