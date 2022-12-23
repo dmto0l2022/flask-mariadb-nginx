@@ -55,9 +55,4 @@ RUN /workdir/app/env/bin/pip3 install -r /workdir/requirements.txt
 RUN /workdir/app/env/bin/pip3 freeze
 COPY . /workdir/.
 ##RUN ls -R /workdir/
-EXPOSE 8004
-CMD [ "/app/env/bin/python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8002"]
-
-CMD ["/app/env/bin/gunicorn"  , "--bind", "0.0.0.0:8000", "/workdir/app:app"]
-##RUN chmod +x //app/entry-point.sh
-#ENTRYPOINT ["sh","/workdir/entry-point.sh"]
+CMD ["/app/env/bin/gunicorn"  , "--bind", "0.0.0.0:8004", "/workdir/wsgi:application"]
