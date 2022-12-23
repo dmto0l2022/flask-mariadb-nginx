@@ -64,7 +64,7 @@ def cell_clicked(active_cell):
     print(f"column id: {col}")
     print("---------------------")   
     
-    cell_value = dff.iat[active_cell['row'], active_cell['column']]
+    cell_value = dff.iat[active_cell['row'], active_cell['column'] - 1]
     
     ##http://127.0.0.1:5000/query-example?plotid=Python
     
