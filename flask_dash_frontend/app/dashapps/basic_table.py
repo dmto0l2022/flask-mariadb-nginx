@@ -44,6 +44,23 @@ class MakeApiCall():
     '''
 ###
 
+def DeleteRow(plotid_in):
+    params = {'plotid': plotid_in}
+    url = "http://10.154.0.20:8004/plots/delete/"
+    requests.post(url, params=params)
+
+def RefreshTableData():
+    url = "http://10.154.0.20:8004/plots/getall/"
+    r = requests.get(url,headers={'Accept': 'application/json'})
+    response_data = r.json()
+    updated_data_frame = pd.DataFrame(response_data)
+    updated_data_frame['create'] = "create"
+    updated_data_frame['read'] = "read"
+    updated_data_frame['update'] = "update"
+    updated_data_frame['delete'] = "delete"
+    updated_data_ret = updated_data_frame.to_dict('records')
+    return updated_data_ret
+    
 
 app = Dash(__name__, requests_pathname_prefix='/wsgi_app2/')
 
@@ -129,16 +146,11 @@ def cell_clicked(active_cell):
     cell_value = dff.iat[active_cell['row'], active_cell['column']]
     
     if cell_value == 'delete':
-        params = {'plotid': plotid}
-        url = "http://10.154.0.20:8004/plots/delete/"
-        requests.post(url, params=params)
-        url = "http://10.154.0.20:8004/plots/getall/"
-        r = requests.get(url,headers={'Accept': 'application/json'})
-        response_data = r.json()
-        updated_data_frame = pd.DataFrame(response_data)
+        DeleteRow(plotid)
+        updated_data = RefreshTableData()
             
     ##http://127.0.0.1:5000/query-example?plotid=Python
     return_data = cell_value, plotid
-    return return_data, updated_data_frame.to_dict('records') ##country
+    return return_data, updated_data ##country
 
 ##json.dumps(list(active_cell))
