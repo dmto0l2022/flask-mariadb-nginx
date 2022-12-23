@@ -12,17 +12,18 @@ url = "http://dev4.dmtools.info:8002/plots/getall/"
 data_request = requests.get(url)
 data_frame = pd.read_json(data_request)
 print(data_frame)
-
-df = px.data.gapminder()
-df["id"] = df.index
+dff = data_frame.copy()
+#df = px.data.gapminder()
+#df["id"] = df.index
 # print(df.head(15))
-dff = df[df.year == 2007].copy()
+#dff = df[df.year == 2007].copy()
 dff['create'] = "create"
 dff['read'] = "read"
 dff['update'] = "update"
 dff['delete'] = "delete"
-columns = ["country", "continent", "lifeExp", "pop", "gdpPercap", "create", "read", "update", "delete"]
-initial_active_cell = {"row": 0, "column": 0, "column_id": "country", "row_id": 0}
+#columns = ["country", "continent", "lifeExp", "pop", "gdpPercap", "create", "read", "update", "delete"]
+columns = ["id", "plotid", "name", "create", "read", "update", "delete"]
+initial_active_cell = {"row": 0, "column": 0, "column_id": "plotid", "row_id": 0}
 
 app.layout = html.Div(
     [
@@ -56,8 +57,8 @@ def cell_clicked(active_cell):
     row = active_cell["row_id"]
     print(f"row id: {row}")
 
-    country = df.at[row, "country"]
-    print(country)
+    plotid = df.at[row, "plotid"]
+    print(plotid)
 
     col = active_cell["column_id"]
     print(f"column id: {col}")
@@ -67,6 +68,6 @@ def cell_clicked(active_cell):
     
     ##http://127.0.0.1:5000/query-example?plotid=Python
     
-    return cell_value, country
+    return cell_value, plotid
 
 ##json.dumps(list(active_cell))
