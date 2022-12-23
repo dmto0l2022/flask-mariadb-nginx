@@ -160,7 +160,7 @@ def cell_clicked(active_cell):
         updated_data = RefreshTableData()
             
     ##http://127.0.0.1:5000/query-example?plotid=Python
-    return_data = row, col, cell_value, plotid
+    return_data = row, column, cell_value, plotid
     return return_data, updated_data ##country
 
 ##json.dumps(list(active_cell))
