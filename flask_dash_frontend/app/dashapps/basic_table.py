@@ -53,9 +53,15 @@ url = "http://10.154.0.20:8004/plots/getall/"
 #data_request = requests.get(url="http://0.0.0.0:8002/todo/list/1")
 ##url = "http://dev4.dmtools.info:8002/todo/list/1"
 #url = "http://10.154.0.20:8004/todo/list/1"
-##10.154.0.20 
-data_request = requests.get(url=url)
-text = json.dumps(data_request, sort_keys=True, indent=4)
+##10.154.0.20
+
+r = requests.get(url, 
+                 headers={'Accept': 'application/json'})
+
+print(f"Response: {r.json()}")
+
+#data_request = requests.get(url=url)
+#text = json.dumps(data_request, sort_keys=True, indent=4)
 print(text)
 #MakeApiCall().get_data(url)
 ##data_request = requests.get(url)
