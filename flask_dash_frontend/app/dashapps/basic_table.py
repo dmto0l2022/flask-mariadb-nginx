@@ -60,13 +60,15 @@ r = requests.get(url,
 
 print(f"Response: {r.json()}")
 
+response_data = r.json()
+
 #data_request = requests.get(url=url)
 #text = json.dumps(data_request, sort_keys=True, indent=4)
 #print(text)
 #MakeApiCall().get_data(url)
 ##data_request = requests.get(url)
 #print(data_request)
-data_frame = pd.read_json(r.json(), orient='records')
+data_frame = pd.read_json(response_data, orient='records')
 ##print(data_frame)
 dff = data_frame.copy()
 ##df = px.data.gapminder()
