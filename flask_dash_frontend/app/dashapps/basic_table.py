@@ -55,9 +55,11 @@ app = Dash(__name__, requests_pathname_prefix='/wsgi_app2/')
 url = "http://10.154.0.20:8004/todo/list/1"
 ##10.154.0.20 
 data_request = requests.get(url=url)
+text = json.dumps(data_request, sort_keys=True, indent=4)
+print(text)
 #MakeApiCall().get_data(url)
 ##data_request = requests.get(url)
-print(data_request)
+#print(data_request)
 ##data_frame = pd.read_json(data_request)
 ##print(data_frame)
 ##dff = data_frame.copy()
