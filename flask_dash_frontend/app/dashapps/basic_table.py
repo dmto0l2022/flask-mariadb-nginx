@@ -128,6 +128,8 @@ app.layout = html.Div(
 )
 def cell_clicked(active_cell):
     
+    updated_data = RefreshTableData()
+    
     if active_cell is None:
         return no_update
 
