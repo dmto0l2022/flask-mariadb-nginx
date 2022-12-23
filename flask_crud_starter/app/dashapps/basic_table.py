@@ -1,5 +1,6 @@
 # This Code was written by Ann Marie - a Plotly Forum Moderator
 from dash import Dash, dcc, html, Input, Output, dash_table, no_update  # Dash version >= 2.0.0
+import pandas as pd
 import plotly.express as px
 import json
 
@@ -9,8 +10,11 @@ df = px.data.gapminder()
 df["id"] = df.index
 # print(df.head(15))
 dff = df[df.year == 2007]
-columns = ["country", "continent", "lifeExp", "pop", "gdpPercap"]
-color = {"lifeExp": "#636EFA", "pop": "#EF553B", "gdpPercap": "#00CC96"}
+dff['create'] = "create"
+dff['read'] = "read"
+dff['update'] = "update"
+dff['delete'] = "delete"
+columns = ["country", "continent", "lifeExp", "pop", "gdpPercap", "create", "read", "update", "delete"]
 initial_active_cell = {"row": 0, "column": 0, "column_id": "country", "row_id": 0}
 
 app.layout = html.Div(
@@ -52,4 +56,8 @@ def cell_clicked(active_cell):
     print(f"column id: {col}")
     print("---------------------")   
     
-    return json.dumps(list(active_cell))
+    cell_value = dff.iat[active_cell['row'], active_cell['column']]
+    
+    return cell_value, country
+
+##json.dumps(list(active_cell))
