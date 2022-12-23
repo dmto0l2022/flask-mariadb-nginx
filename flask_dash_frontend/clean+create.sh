@@ -10,8 +10,8 @@ subgidSize=$(( $(podman info --format "{{ range \
    .Host.IDMappings.GIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 
 podman pod create \
---name pod-python-frontend \
---infra-name infra-python-frontend \
+--name pod_flask_dash_frontend \
+--infra-name infra_flask_dash_frontend \
 --network bridge \
 --uidmap 0:1:$uid \
 --uidmap $uid:0:1 \
@@ -21,13 +21,13 @@ podman pod create \
 --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
 --publish 8002:8002
 
-podman build -f Dockerfile_pythonbase -t my-pythonbasefrontend-1 .
-podman build -f Dockerfile_pythonfrontend -t my-pythonfrontend-1 .
+podman build -f Dockerfile_pythonbase -t python_base_frontend_1 .
+podman build -f Dockerfile_pythonfrontend -t flask_dash_frontend_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
 podman run -dt \
---name python_frontend-1 \
---pod pod-python_frontend-1 \
+--name flask_dash_frontend-1 \
+--pod pod_flask_dash_frontend-1 \
 --user $uid:$gid \
-localhost/my-pythonfrontend-1:latest
+localhost/flask_dash_frontend_1:latest
