@@ -1,6 +1,7 @@
 # This Code was written by Ann Marie - a Plotly Forum Moderator
 from dash import Dash, dcc, html, Input, Output, dash_table, no_update  # Dash version >= 2.0.0
 import plotly.express as px
+import json
 
 app = Dash(__name__, requests_pathname_prefix='/wsgi_app2/')
 
@@ -51,4 +52,4 @@ def cell_clicked(active_cell):
     print(f"column id: {col}")
     print("---------------------")   
     
-    return active_cell.keys()
+    return json.dumps(active_cell.keys())
