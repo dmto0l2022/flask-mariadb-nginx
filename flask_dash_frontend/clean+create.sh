@@ -21,7 +21,7 @@ podman pod create \
 --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
 --publish 8002:8002
 
-podman build -f Dockerfile_pythonbase -t python_base_frontend_1 .
+podman build -f Dockerfile_pythonfrontendbase -t python_base_frontend_1 .
 podman build -f Dockerfile_pythonfrontend -t flask_dash_frontend_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
