@@ -51,4 +51,7 @@ def cell_clicked(active_cell):
     print(f"column id: {col}")
     print("---------------------")
 
-    return active_cell
+    print(active_cell.type())
+   
+    
+    return active_cell.keys()
