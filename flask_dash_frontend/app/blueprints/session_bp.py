@@ -4,6 +4,11 @@ from flask_restful import Api, Resource, url_for
 
 session_bp = Blueprint('session_bp', __name__)
 
+def createsessionid():
+    sessionidnow = datetime.datetime.utcnow().strftime("S%Y%m%d%H%M%S%f")
+    return sessionidnow
+
+
 @session_bp.route('/session', methods=['GET', 'POST'])
 def sessionroot():
     return 'session root'
@@ -14,6 +19,7 @@ def set_email():
     if request.method == 'POST':
         # Save the form data to the session object
         session['email'] = request.form['email_address']
+        session['sessionid'] = createsessionid()
         return redirect(url_for('get_email'))
 
     return """
@@ -33,6 +39,7 @@ def get_email():
             {% else %}
                 <h1>Welcome! Please enter your email <a href="{{ url_for('set_email') }}">here.</a></h1>
             {% endif %}
+            <h1>Session ID : {{ session['sessionid'] }}</h1>
         """)
 
 
@@ -40,4 +47,5 @@ def get_email():
 def delete_email():
     # Clear the email stored in the session object
     session.pop('email', default=None)
+    session.pop('sessionid', default=None)
     return '<h1>Session deleted!</h1>'
