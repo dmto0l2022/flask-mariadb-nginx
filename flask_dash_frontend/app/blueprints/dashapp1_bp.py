@@ -9,3 +9,7 @@ def dashapp1():
 @dashapp1_bp.route('/dashapp2')
 def dashapp2():
     return redirect('/wsgi_app2', code=302)
+
+@dashapp1_bp.route('/session_app1')
+def dashapp3():
+    return redirect('/session_app', code=302)
