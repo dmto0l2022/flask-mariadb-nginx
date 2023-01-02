@@ -1,7 +1,7 @@
 # model.py
 
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, ForeignKey, Integer, String, Table
+from sqlalchemy import Column, ForeignKey, Integer, String, Table, LargeBinary, DateTime
 from sqlalchemy.orm import relationship
 
 from . import db ## import db from __init__
@@ -9,9 +9,21 @@ from . import db ## import db from __init__
 # must be defined after db = SQLAlchemy_bind() if in same module
 # from sqlalchemy import Column, Integer, String
 
-class Session(db.Base):
+ class Session(db.Base):
     __tablename__ = 'session'
+
     id = Column(Integer, primary_key=True)
+    session_id = Column(String(255), unique=True)
+    data = Column(LargeBinary)
+    expiry = Column(DateTime)
+
+    def __init__(self, session_id, data, expiry):
+        self.session_id = session_id
+        self.data = data
+        self.expiry = expiry
+
+    def __repr__(self):
+        return '<Session data %s>' % self.data
 
 class User(db.Base):
     __tablename__ = 'users_new'
