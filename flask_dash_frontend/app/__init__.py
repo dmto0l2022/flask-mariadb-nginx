@@ -47,17 +47,25 @@ def init_app():
     ###
     ## session
     # Configure Redis for storing the session data on the server-side
-    app.config['SESSION_TYPE'] = 'sqlalchemy'
-    app.config['SESSION_PERMANENT'] = False
-    app.config['SESSION_USE_SIGNER'] = True
+   
       
     
     # import your database tables if defined in a different module
     from . import models
     # for example if the User model above was in a different module:
     db.init_app(app)
-    ##
+    
+    ## setup session data
+    app.config['SESSION_TYPE'] = 'sqlalchemy'
+    app.config['SESSION_PERMANENT'] = False
+    app.config['SESSION_USE_SIGNER'] = True
+    app.config['SESSION_SQLALCHEMY_TABLE'] = 'sessions'
+    app.config['SESSION_SQLALCHEMY'] = db
     server_session = Session(app)
+   
+
+    server_session.app.session_interface.db.create_all()
+
     
     from app.blueprints.home_bp import home_bp
     app.register_blueprint(home_bp)
