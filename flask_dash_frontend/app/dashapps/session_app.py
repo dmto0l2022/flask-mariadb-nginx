@@ -28,9 +28,9 @@ app.layout = html.Div(children=[
 app.callback(
    [Output('store_client_id', 'data')],
    [Input('div3', 'children')])
-   def update_user(children):
-     try:
+def update_user(children):
+    try:
          s = session.get('sessionid', None)
          return s
-     except:
-         return -10
+    except:
+        return -10
