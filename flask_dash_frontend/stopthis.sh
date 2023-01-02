@@ -1,0 +1,2 @@
+podman stop container_flask_dash_frontend_1
+podman stop infra_flask_dash_frontend
