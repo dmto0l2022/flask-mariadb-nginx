@@ -1,10 +1,12 @@
-podman stop api_backend_1
+podman stop container_api_backend_1
 # podman stop infra_api_backend
-podman rm api_backend_1
+# podman rm container_api_backend_1
 #podman rm infra_api_backend
 
 podman pod stop pod_api_backend
 podman pod rm pod_api_backend
+
+podman rmi image_pythonapi_1
 
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_crud_api
 
