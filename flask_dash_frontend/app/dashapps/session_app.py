@@ -9,24 +9,21 @@ server = flask.Flask(__name__)
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP],server=server, requests_pathname_prefix='/session_app/')
 
-##session_text = json.dumps(session)
-##session['key'] = 'value'
-
-try:
-    sessionid = session['sessionid'] 
-except:
-    sessionid = 'unknown'
-    
-#session_div =html.Div(html.H1(children="Hello Session!",id='session id div'))
-
 app.layout = html.Div([
-            html.H1(children="Hello world!",className="hello",
+            html.H1(children="Hello world!",className="hello",id="div3",
     style={'color':'#00361c','text-align':'center'
           }),
-            html.H1(children=sessionid ,className="hello",
+            html.H1(children="session id" ,id="div2",
     style={'color':'#00361c','text-align':'center'
           })
       ])
+
+@app.callback(
+	Output('div2', 'children'),
+	[Input('div3', 'children')])
+def update_id(children):
+	return 'id: {}'.format(session.get('sessionid', None))
+
 
 #app.layout = dbc.Container(
 #    dbc.Alert("Hello Bootstrap!", color="success"),
