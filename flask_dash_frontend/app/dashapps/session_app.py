@@ -9,7 +9,7 @@ server = flask.Flask(__name__)
 app = dash.Dash(
     __name__,
     server=server,
-    routes_pathname_prefix='/dashboard/'
+    routes_pathname_prefix='/session_app/'
 )
 
 app.layout = html.Div(style={children=[
