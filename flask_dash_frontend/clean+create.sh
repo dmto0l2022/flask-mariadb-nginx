@@ -1,3 +1,4 @@
+podman stop container_flask_dash_frontend_1
 podman pod stop pod_python_frontend
 podman pod rm pod_python_frontend
 podman rmi image_flask_dash_frontend_1
@@ -29,7 +30,7 @@ podman build -f Dockerfile_pythonfrontend -t image_flask_dash_frontend_1 .
 ##-v /HOST-DIR:/CONTAINER-DIR
 
 podman run -dt \
---name flask_dash_frontend_1 \
+--name container_flask_dash_frontend_1 \
 --pod pod_flask_dash_frontend \
 --user $uid:$gid \
-localhost/flask_dash_frontend_1:latest
+localhost/image_flask_dash_frontend_1:latest
