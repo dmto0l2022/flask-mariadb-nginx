@@ -64,7 +64,7 @@ def init_app():
     server_session = Session(app)
    
 
-    server_session.app.session_interface.db.create_all()
+    #server_session.app.session_interface.db.create_all()
 
     
     from app.blueprints.home_bp import home_bp
