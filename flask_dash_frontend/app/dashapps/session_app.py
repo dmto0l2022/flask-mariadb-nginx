@@ -10,7 +10,7 @@ server = flask.Flask(__name__)
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP],server=server, requests_pathname_prefix='/session_app/')
 
 ##session_text = json.dumps(session)
-session['key'] = 'value'
+##session['key'] = 'value'
 
 try:
     sessionid = session['sessionid'] 
