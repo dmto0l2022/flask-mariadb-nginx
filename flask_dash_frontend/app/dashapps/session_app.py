@@ -1,29 +1,10 @@
 import flask
-from flask import Flask, flash, render_template
+from flask import Flask, flash, render_template, session
 import dash
-import dash_html_components as html
-import dash_core_components as dcc
-from werkzeug.wsgi import DispatcherMiddleware
-from werkzeug.serving import run_simple
-import pandas as pd
-
+from dash import html
+from dash import dcc
 
 server = flask.Flask(__name__)
-
-@server.route("/")
-def welcome():
-   return render_template("home.html")
-
-@server.route("/home", methods=["GET","POST"])
-def home():
-     if request.method=="POST":
-          DATE = request.form["date"]
-          try:
-               return render_template("success.html")
-          except ClientError as e:
-               return render_template("failure.html")
-     else:
-          return render_template("home.html")
 
 dash_app = dash.Dash(
     __name__,
@@ -31,65 +12,22 @@ dash_app = dash.Dash(
     routes_pathname_prefix='/dashboard/'
 )
 
-file = 'test_file_{}.dat'.format(DATE)
-
-df = pd.read_csv(file, header = 0)
-
-colors = {
-    'background': '#111111',
-    'text': '#7FDBFF'
-}
-dash_app.layout = html.Div(style={'backgroundColor': colors['background']}, children=[
+dash_app.layout = html.Div(style={children=[
     html.H1(
-        children='Hello Dash',
-        style={
-            'textAlign': 'center',
-            'color': colors['text']
-        }
-    ),
-    html.Div(children='Dash: A web application framework for Python.', style={
-        'textAlign': 'center',
-        'color': colors['text']
-    }),
-    dcc.Graph(
-        id='Graph1',
-        figure={
-            'data': [
-                {'x':df['col1'], 'y':df['col2'], 'type': 'bar', 'name': 'SF'},
-                {'x':df['col1'], 'y':df['col3'], 'type': 'bar', 'name': u'Montréal'},
-            ],
-            'layout': {
-                'plot_bgcolor': colors['background'],
-                'paper_bgcolor': colors['background'],
-                'font': {
-                    'color': colors['text']
-                }
-            }
-        }
-    )
+        children='Hello Dash',),
+   html.H1(
+        id='store_client_id'
+        children='Session ID Here'),
 ])
-
-@server.route('/dashboard/')
-def render_dashboard():
-    return flask.redirect('/dash1')
-   
-@app.route('/' , methods=['GET', 'POST'])
-def landing_page():
-    dashboard_id = request.args.get('dashboard_id')
-    
-    session['dashboard_id'] = dashboard_id
-    
-    return redirect("/dash/")
 
 ## that session is then available inside callbacks.
 
-
-@app.callback(
+dash_app.callback(
    [Output('store_client_id', 'data')],
    [Input('div3', 'children')])
    def update_user(children):
      try:
-         s = session.get('dashboard_id', None)
+         s = session.get('sessionoid', None)
          return s
      except:
          return -10
