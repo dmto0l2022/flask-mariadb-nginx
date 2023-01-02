@@ -72,3 +72,24 @@ dash_app.layout = html.Div(style={'backgroundColor': colors['background']}, chil
 @server.route('/dashboard/')
 def render_dashboard():
     return flask.redirect('/dash1')
+   
+@app.route('/' , methods=['GET', 'POST'])
+def landing_page():
+    dashboard_id = request.args.get('dashboard_id')
+    
+    session['dashboard_id'] = dashboard_id
+    
+    return redirect("/dash/")
+
+## that session is then available inside callbacks.
+
+
+@app.callback(
+   [Output('store_client_id', 'data')],
+   [Input('div3', 'children')])
+   def update_user(children):
+     try:
+         s = session.get('dashboard_id', None)
+         return s
+     except:
+         return -10
