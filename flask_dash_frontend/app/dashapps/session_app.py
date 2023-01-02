@@ -12,7 +12,7 @@ app = dash.Dash(
     routes_pathname_prefix='/session_app/'
 )
 
-app.layout = html.Div(style={children=[
+app.layout = html.Div(children=[
     html.H1(
         children='Hello Dash',),
     html.H1(
@@ -21,7 +21,7 @@ app.layout = html.Div(style={children=[
    html.H1(
         id='store_client_id',
         children='Session ID Here'),
-]})
+])
 
 ## that session is then available inside callbacks.
 
