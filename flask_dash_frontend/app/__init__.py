@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import flash
+from flask_session import Session
 from . import database_bind as dbind
 
 # outside of app factory
@@ -43,10 +44,23 @@ def init_app():
     SECRET_KEY = os.urandom(32)
     app.config['SECRET_KEY'] = SECRET_KEY
     app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
+    ###
+    ## session
+    # Configure Redis for storing the session data on the server-side
+    app.config['SESSION_TYPE'] = 'redis'
+    app.config['SESSION_PERMANENT'] = False
+    app.config['SESSION_USE_SIGNER'] = True
+    app.config['SESSION_REDIS'] = redis.from_url('redis://localhost:6379')
+
+    
+    
     # import your database tables if defined in a different module
     from . import models
     # for example if the User model above was in a different module:
     db.init_app(app)
+    ##
+    server_session = Session(app)
+    
     from app.blueprints.home_bp import home_bp
     app.register_blueprint(home_bp)
     from app.blueprints.plotids_bp import plotids_bp
