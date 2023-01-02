@@ -21,7 +21,7 @@ def set_email():
         # Save the form data to the session object
         session['email'] = request.form['email_address']
         session['sessionid'] = createsessionid()
-        return redirect(url_for('get_email'))
+        return redirect(url_for('session_bp.get_email'))
 
     return """
         <form method="post">
@@ -38,7 +38,7 @@ def get_email():
             {% if session['email'] %}
                 <h1>Welcome {{ session['email'] }}!</h1>
             {% else %}
-                <h1>Welcome! Please enter your email <a href="{{ url_for('set_email') }}">here.</a></h1>
+                <h1>Welcome! Please enter your email <a href="{{ url_for('session_bp.set_email') }}">here.</a></h1>
             {% endif %}
             <h1>Session ID : {{ session['sessionid'] }}</h1>
         """)
