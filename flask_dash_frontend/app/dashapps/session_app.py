@@ -15,10 +15,13 @@ app = dash.Dash(
 app.layout = html.Div(style={children=[
     html.H1(
         children='Hello Dash',),
+    html.H1(
+        id='div3',
+        children='Input',),
    html.H1(
-        id='store_client_id'
+        id='store_client_id',
         children='Session ID Here'),
-])
+]})
 
 ## that session is then available inside callbacks.
 
@@ -27,7 +30,7 @@ app.callback(
    [Input('div3', 'children')])
    def update_user(children):
      try:
-         s = session.get('sessionoid', None)
+         s = session.get('sessionid', None)
          return s
      except:
          return -10
