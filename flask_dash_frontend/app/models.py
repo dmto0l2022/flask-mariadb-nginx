@@ -9,6 +9,10 @@ from . import db ## import db from __init__
 # must be defined after db = SQLAlchemy_bind() if in same module
 # from sqlalchemy import Column, Integer, String
 
+class Session(db.Base):
+    __tablename__ = 'session'
+    id = Column(Integer, primary_key=True)
+
 class User(db.Base):
     __tablename__ = 'users_new'
     id = Column(Integer, primary_key=True)
