@@ -1,5 +1,7 @@
 podman pod stop pod_python_frontend
 podman pod rm pod_python_frontend
+podman rmi image_flask_dash_frontend_1
+
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_dash_frontend
 
 uid=1001
@@ -21,8 +23,8 @@ podman pod create \
 --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
 --publish 8002:8002
 
-podman build -f Dockerfile_pythonfrontendbase -t python_base_frontend_1 .
-podman build -f Dockerfile_pythonfrontend -t flask_dash_frontend_1 .
+podman build -f Dockerfile_pythonfrontendbase -t image_python_base_frontend_1 .
+podman build -f Dockerfile_pythonfrontend -t image_flask_dash_frontend_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
