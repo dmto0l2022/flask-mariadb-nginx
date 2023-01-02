@@ -1,8 +1,8 @@
 podman pod stop pod_mariadb_backend
 podman pod rm pod_mariadb_backend
-podman pod stop infra_mariadb_backend
-podman pod rm infra_mariadb_backend
-podman rm container_mariadb_backend
+# podman pod stop infra_mariadb_backend
+# podman pod rm infra_mariadb_backend
+# podman rm container_mariadb_backend
 podman rmi image_mariadb_1
 
 cd /opt/dmtools/code/flask-mariadb-nginx/mariadb
