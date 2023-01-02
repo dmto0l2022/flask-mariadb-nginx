@@ -60,4 +60,8 @@ def init_app():
     from app.blueprints.todo_bp import todo_bp
     app.register_blueprint(todo_bp)
     
+    ##session_bp
+    from app.blueprints.session_bp import session_bp
+    app.register_blueprint(session_bp)
+    
     return app
