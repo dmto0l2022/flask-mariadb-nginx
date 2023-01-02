@@ -1,6 +1,6 @@
 podman stop container_flask_dash_frontend_1
-podman pod stop pod_python_frontend
-podman pod rm pod_python_frontend
+podman pod stop pod_flask_dash_frontend
+podman pod rm pod_flask_dash_frontend
 podman rmi image_flask_dash_frontend_1
 
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_dash_frontend
