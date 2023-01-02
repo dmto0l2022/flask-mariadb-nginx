@@ -1,5 +1,9 @@
 import sqlalchemy
 from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy import Column
+from sqlalchemy import ForeignKey
+from sqlalchemy import Integer
+from sqlalchemy import String
 from sqlalchemy.ext.declarative import declarative_base
 from flask import _app_ctx_stack
 import logging
@@ -8,6 +12,9 @@ class SQLAlchemy_bind:
     def __init__(self):
         """Create instance of SQLAlchemy_bind with the declarative extension"""
         self.Base = declarative_base()
+        self.Base.Column = Column
+        self.Base.Integer = Integer
+        self.Base.String = String
 
     def init_session_maker(self):
         """Create SQLAlchemy sessionmaker object with desired configuration"""
