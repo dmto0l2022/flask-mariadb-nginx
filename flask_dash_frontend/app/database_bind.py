@@ -43,6 +43,8 @@ class SQLAlchemy_bind:
         # access scoped session registery (implicitely)
         self.session = self.init_scoped_session()
         # add ability to query against the tables
+        self.Model = self.Base
+        # add ability to query against the tables
         self.Base.query = self.session.query_property()
         # make sure db is initialize and up to date
         self.init_db()
