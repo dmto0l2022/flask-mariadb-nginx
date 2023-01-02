@@ -47,12 +47,10 @@ def init_app():
     ###
     ## session
     # Configure Redis for storing the session data on the server-side
-    app.config['SESSION_TYPE'] = 'redis'
+    app.config['SESSION_TYPE'] = 'sqlalchemy'
     app.config['SESSION_PERMANENT'] = False
     app.config['SESSION_USE_SIGNER'] = True
-    app.config['SESSION_REDIS'] = redis.from_url('redis://localhost:6379')
-
-    
+      
     
     # import your database tables if defined in a different module
     from . import models
