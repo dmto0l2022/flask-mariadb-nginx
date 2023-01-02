@@ -1,7 +1,7 @@
 podman stop api_backend_1
-podman stop infra_api_backend
+# podman stop infra_api_backend
 podman rm api_backend_1
-podman rm infra_api_backend
+#podman rm infra_api_backend
 
 podman pod stop pod_api_backend
 podman pod rm pod_api_backend
@@ -27,13 +27,13 @@ podman pod create \
 --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
 --publish 8004:8004
 
-podman build -f Dockerfile_pythonbase -t my_pythonbaseapi_1 .
-podman build -f Dockerfile_pythonapi -t my_pythonapi_1 .
+podman build -f Dockerfile_pythonbase -t image_pythonbaseapi_1 .
+podman build -f Dockerfile_pythonapi -t image_pythonapi_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
 podman run -dt \
---name api_backend_1 \
+--name container_api_backend_1 \
 --pod pod_api_backend \
 --user $uid:$gid \
-localhost/my_pythonapi_1:latest
+localhost/image_pythonapi_1:latest
