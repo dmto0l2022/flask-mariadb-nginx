@@ -3,7 +3,7 @@ import dash_bootstrap_components as dbc
 from dash import Input, Output
 from dash import html, dcc
 
-dash.register_page(__name__, path='/')
+dash.register_page(__name__)
 
 import dash_bootstrap_components as dbc
 from dash import Input, Output
