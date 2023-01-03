@@ -23,21 +23,23 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 print('BASE_DIR_DASHAPP')
 print(BASE_DIR)
 
+FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY")
+
 app.layout = html.Div([
             html.H1(children="Hello world!",className="hello",id="div3",
     style={'color':'#00361c','text-align':'center'
           }),
-            html.H1(children="session id" ,id="div2",
+            html.H1(children=FLASK_SECRET_KEY ,id="div2",
     style={'color':'#00361c','text-align':'center'
           })
       ])
 
-@app.callback(
+'''@app.callback(
 	Output('div2', 'children'),
 	[Input('div3', 'children')])
 def update_id(children):
 	return 'id: {}'.format(session.get('sessionid', None))
-
+'''
 
 #app.layout = dbc.Container(
 #    dbc.Alert("Hello Bootstrap!", color="success"),
