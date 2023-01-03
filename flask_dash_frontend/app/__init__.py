@@ -14,6 +14,8 @@ from dotenv import load_dotenv
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 
+print(BASE_DIR)
+
 '''
 # must be defined after db = SQLAlchemy_bind() if in same module
 from sqlalchemy import Column, Integer, String
@@ -41,6 +43,8 @@ def init_app():
                     + MARIADB_DATABASE
     print(MARIADB_URI)
     app = Flask(__name__)
+    filename = os.path.join(app.instance_path, 'my_folder', 'my_file.txt')
+    print(filename)
     SECRET_KEY = os.urandom(32)
     app.config['SECRET_KEY'] = SECRET_KEY
     app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
