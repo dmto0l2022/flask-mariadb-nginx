@@ -11,6 +11,23 @@ from os import environ, path
 
 from dotenv import load_dotenv
 
+import secrets
+import string
+ 
+# initializing size of string
+N = 32
+ 
+# using secrets.choice()
+# generating random strings
+res = ''.join(secrets.choice(string.ascii_uppercase + string.digits)
+              for i in range(N))
+ 
+# print result
+print("The generated random string : " + str(res))
+
+#os.environ["SECRET_KEY"] = os.urandom(32)
+os.environ["SECRET_KEY"] = res
+
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 
