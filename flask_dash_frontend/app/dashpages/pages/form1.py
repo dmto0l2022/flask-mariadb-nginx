@@ -17,7 +17,7 @@ input_group = dbc.InputGroup(
 
 layout = html.Div(children=[input_group])
 
-@app.callback(
+@callback(
     Output("input-group-button-input", "value"),
     [Input("input-group-button", "n_clicks")],
 )
