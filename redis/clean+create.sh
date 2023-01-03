@@ -1,4 +1,4 @@
-podman stop container_flask_dash_frontend_1
+podman stop container_redis_1
 podman pod stop pod_redis
 podman pod rm pod_redis
 podman rmi image_redis
@@ -22,7 +22,7 @@ podman pod create \
 --gidmap 0:1:$gid \
 --gidmap $gid:0:1 \
 --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
---publish 8002:8002
+--publish 6379:6379
 
 podman build -f Dockerfile -t image_redis_1 .
 ##-v /HOST-DIR:/CONTAINER-DIR
