@@ -38,6 +38,8 @@ def init_app():
     MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
     MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
     MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
+    
+    FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY")
 
     MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + \
                     MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
@@ -48,7 +50,7 @@ def init_app():
     print('filename')
     print(filename)
     SECRET_KEY = os.urandom(32)
-    app.config['SECRET_KEY'] = SECRET_KEY
+    app.config['SECRET_KEY'] = FLASK_SECRET_KEY
     app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
     ###
     ## session
