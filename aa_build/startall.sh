@@ -1,8 +1,12 @@
 podman start infra_mariadb_backend
+podman start infra_redis
 podman start infra_api_backend
 podman start infra_flask_dash_frontend
 
-podman start container_flask_dash_frontend_1
-podman start container_api_backend_1
 podman start container_mariadb_backend
+podman start container_redis_1
+podman start container_api_backend_1
+podman start container_flask_dash_frontend_1
+
+
 
