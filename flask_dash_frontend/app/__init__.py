@@ -13,15 +13,19 @@ from dotenv import load_dotenv
 
 import secrets
 import string
- 
+
+import random
+
 # initializing size of string
 N = 32
  
 # using secrets.choice()
 # generating random strings
-res = ''.join(secrets.choice(string.ascii_uppercase + string.digits)
-              for i in range(N))
- 
+#res = ''.join(secrets.choice(string.ascii_uppercase + string.digits)
+#              for i in range(N))
+
+res = ''.join(random.choices(string.ascii_letters, k=N))
+
 # print result
 print("The generated random string : " + str(res))
 
