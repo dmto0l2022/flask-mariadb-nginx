@@ -1,6 +1,6 @@
 import dash
 import dash_bootstrap_components as dbc
-from dash import Input, Output
+from dash import Input, Output, callback
 from dash import html, dcc
 
 dash.register_page(__name__)
