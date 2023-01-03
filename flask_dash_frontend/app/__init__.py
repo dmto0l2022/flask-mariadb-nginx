@@ -56,7 +56,8 @@ def init_app():
     MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
     MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
     
-    FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY")
+    #FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY") ## from file
+    FLASK_SECRET_KEY = environ.get("SECRET_KEY") ## generated
 
     MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + \
                     MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
