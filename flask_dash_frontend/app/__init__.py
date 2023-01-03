@@ -14,6 +14,7 @@ from dotenv import load_dotenv
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 
+print('BASE_DIR')
 print(BASE_DIR)
 
 '''
@@ -44,6 +45,7 @@ def init_app():
     print(MARIADB_URI)
     app = Flask(__name__)
     filename = os.path.join(app.instance_path, 'my_folder', 'my_file.txt')
+    print('filename')
     print(filename)
     SECRET_KEY = os.urandom(32)
     app.config['SECRET_KEY'] = SECRET_KEY
