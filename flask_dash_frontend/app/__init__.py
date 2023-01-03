@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import flash
 from flask_session import Session
+import redis
 from . import database_bind as dbind
 
 # outside of app factory
