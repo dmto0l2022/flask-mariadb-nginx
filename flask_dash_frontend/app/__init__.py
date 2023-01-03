@@ -89,7 +89,7 @@ def init_app():
     app.config['SESSION_KEY_PREFIX'] = 'session:'
     ##app.config['SESSION_MEMCACHED'] = '127.0.0.1:11211'
     ##app.config['SESSION_REDIS'] = '127.0.0.1:6379'
-    app.config['SESSION_REDIS'] = redis.Redis(host='localhost', port=6379)
+    app.config['SESSION_REDIS'] = redis.Redis("redis")
     #app.config['SESSION_USE_SIGNER'] = True
     #app.config['SESSION_SQLALCHEMY_TABLE'] = 'sessions'
     #app.config['SESSION_SQLALCHEMY'] = db
