@@ -13,12 +13,9 @@ from dotenv import load_dotenv
 
 import secrets
 import string
-
 import random
-
 # initializing size of string
 N = 32
- 
 # using secrets.choice()
 # generating random strings
 #res = ''.join(secrets.choice(string.ascii_uppercase + string.digits)
