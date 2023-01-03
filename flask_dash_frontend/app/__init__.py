@@ -83,12 +83,15 @@ def init_app():
     db.init_app(app)
     
     ## setup session data
-    #app.config['SESSION_TYPE'] = 'sqlalchemy'
-    #app.config['SESSION_PERMANENT'] = False
+    app.config['SESSION_TYPE'] = 'redis'
+    app.config['SESSION_PERMANENT'] = False
+    app.config['SESSION_KEY_PREFIX'] = 'session:'
+    ##app.config['SESSION_MEMCACHED'] = '127.0.0.1:11211'
+    app.config['SESSION_REDIS'] = '127.0.0.1:6379'
     #app.config['SESSION_USE_SIGNER'] = True
     #app.config['SESSION_SQLALCHEMY_TABLE'] = 'sessions'
     #app.config['SESSION_SQLALCHEMY'] = db
-    #server_session = Session(app)
+    server_session = Session(app)
    
 
     #server_session.app.session_interface.db.create_all()
