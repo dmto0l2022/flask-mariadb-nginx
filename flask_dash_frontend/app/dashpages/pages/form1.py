@@ -1,3 +1,10 @@
+import dash
+import dash_bootstrap_components as dbc
+from dash import Input, Output
+from dash import html, dcc
+
+dash.register_page(__name__, path='/')
+
 import dash_bootstrap_components as dbc
 from dash import Input, Output
 
@@ -8,6 +15,7 @@ input_group = dbc.InputGroup(
     ]
 )
 
+layout = html.Div(children=[input_group])
 
 @app.callback(
     Output("input-group-button-input", "value"),
