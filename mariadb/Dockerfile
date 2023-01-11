@@ -26,8 +26,9 @@ ARG USER_UID=${ENV_UID}
 ARG USER_GID=${ENV_GID} ## dm group
 
 # Create the user
-RUN groupadd --gid $USER_GID $USERNAME \
-    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+RUN useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+RUN groupadd --gid $USER_GID $USERNAME
+   
 
 #RUN mkdir /docker-entrypoint-initdb.d ## already exists
 RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
