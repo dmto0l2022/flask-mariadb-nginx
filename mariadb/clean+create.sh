@@ -35,5 +35,5 @@ podman run -dt --env 'ENV*' \
 --pod pod_mariadb_backend \
 --volume /opt/dmtools/mysql:/var/lib/mysql:z \
 #--user $uid:$gid \
---user $ENV_UID:$ENV_GID
+--user $ENV_UID:$ENV_GID \
 localhost/image_mariadb_1:latest
