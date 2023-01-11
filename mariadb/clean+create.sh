@@ -31,6 +31,7 @@ podman build \
 --build-arg=ENV_UID=${ENV_UID} \
 --build-arg=ENV_USERNAME=${ENV_USERNAME} \
 --build-arg=ENV_GID=${ENV_GID} \
+--build-arg=ENV_GROUPNAME=${ENV_GROUPNAME} \
 --build-arg=ENV_MARIADB_USER=${ENV_MARIADB_USER} \
 --build-arg=ENV_MARIADB_PASSWORD=${ENV_MARIADB_PASSWORD} \
 --build-arg=ENV_MARIADB_ROOT_PASSWORD=${ENV_MARIADB_ROOT_PASSWORD} \
