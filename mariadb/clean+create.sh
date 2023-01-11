@@ -7,8 +7,9 @@ podman rmi image_mariadb_1
 
 cd /opt/dmtools/code/flask-mariadb-nginx/mariadb
 
-uid=1001
-gid=1002
+uid=${ENV_UID} ##1000
+gid=${ENV_GID} ##1002
+
 subuidSize=$(( $(podman info --format "{{ range \
    .Host.IDMappings.UIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 subgidSize=$(( $(podman info --format "{{ range \
@@ -30,10 +31,9 @@ podman build -t image_mariadb_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
-podman run -dt --env 'ENV*' \
+podman run -dt \
 --name container_mariadb_backend \
 --pod pod_mariadb_backend \
 --volume /opt/dmtools/mysql:/var/lib/mysql:z \
-#--user $uid:$gid \
---user $ENV_UID:$ENV_GID \
+--user $uid:$gid \
 localhost/image_mariadb_1:latest
