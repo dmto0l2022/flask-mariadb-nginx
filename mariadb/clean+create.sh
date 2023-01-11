@@ -30,9 +30,10 @@ podman build -t image_mariadb_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
-podman run -dt \
+podman run -dt --env 'ENV*' \
 --name container_mariadb_backend \
 --pod pod_mariadb_backend \
 --volume /opt/dmtools/mysql:/var/lib/mysql:z \
---user $uid:$gid \
+#--user $uid:$gid \
+--user $ENV_UID:$ENV_GID
 localhost/image_mariadb_1:latest
