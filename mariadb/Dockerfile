@@ -5,13 +5,16 @@
 #--env MARIADB_ROOT_PASSWORD=my-secret-pw  
 #mariadb:latest
 
+ARG ENV_UID=me
+
 FROM mariadb:latest
 
 RUN apt-get update && apt-get -y install vim
 RUN apt-get -y install unzip
 
 ARG USERNAME=agaitske
-ARG USER_UID=1001
+##ARG USER_UID=1001
+ARG USER_UID=${ENV_UID}
 ARG USER_GID=1002 ## dm group
 
 # Create the user
