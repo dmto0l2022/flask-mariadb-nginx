@@ -1,5 +1,7 @@
 # Using Env file
 
+https://zwbetz.com/set-environment-variables-in-your-bash-shell-from-a-env-file/
+
 
 # Source of Database
 
