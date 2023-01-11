@@ -27,7 +27,15 @@ podman pod create \
 --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
 --publish 3306:3306
 
-podman build --build-arg=ENV_UID=${ENV_UID} -t image_mariadb_1 .
+podman build \
+--build-arg=ENV_UID=${ENV_UID} \
+--build-arg=ENV_USERNAME=${ENV_USERNAME} \
+--build-arg=ENV_GID=${ENV_GID} \
+--build-arg=ENV_MARIADB_USER=${ENV_MARIADB_USER} \
+--build-arg=ENV_MARIADB_PASSWORD=${ENV_MARIADB_PASSWORD} \
+--build-arg=ENV_MARIADB_ROOT_PASSWORD=${ENV_MARIADB_ROOT_PASSWORD} \
+--build-arg=ENV_MARIADB_DATABASE=${ENV_MARIADB_DATABASE} \
+-t image_mariadb_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
