@@ -10,15 +10,20 @@ FROM mariadb:latest
 RUN apt-get update && apt-get -y install vim
 RUN apt-get -y install unzip
 
-ARG ENV_UID=me
+ARG ENV_USERNAME=me
+ARG ENV_UID=9999
+ARG ENV_GID=9999
+ARG ENV_MARIADB_USER=pythonuser
+ARG ENV_MARIADB_PASSWORD=pythonuser
+ARG ENV_MARIADB_ROOT_PASSWORD=pythonuser
+ARG ENV_MARIADB_DATABASE=world
 
 RUN echo ${ENV_UID}
 
 
-ARG USERNAME=agaitske
-##ARG USER_UID=1001
+ARG USERNAME=${ENV_USERNAME}
 ARG USER_UID=${ENV_UID}
-ARG USER_GID=1002 ## dm group
+ARG USER_GID=${ENV_GID} ## dm group
 
 # Create the user
 RUN groupadd --gid $USER_GID $USERNAME \
@@ -36,14 +41,10 @@ USER $USERNAME
 #ENV MYSQL_USER toto
 #ENV MYSQL_PASSWORD test123
 
-env MARIADB_USER=pythonuser
-#env MARIADB_USER=root
-env MARIADB_PASSWORD=pythonuser
-env MARIADB_ROOT_PASSWORD=pythonuser
-#env MARIADB_DATABASE=RubyDB
-env MARIADB_DATABASE=world
-#env MARIADB_MULTIPLE_DATABASES=RubyDB,world
-
+env MARIADB_USER=${ENV_MARIADB_USER}
+env MARIADB_PASSWORD=${ENV_MARIADB_PASSWORD}
+env MARIADB_ROOT_PASSWORD=${ENV_MARIADB_ROOT_PASSWORD}
+env MARIADB_DATABASE=${ENV_MARIADB_DATABASE}
 
 COPY world-db.zip /var/www/html/world-db.zip
 RUN unzip -j /var/www/html/world-db.zip -d /docker-entrypoint-initdb.d
