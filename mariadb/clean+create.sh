@@ -7,7 +7,7 @@ podman rmi image_mariadb_1
 
 cd /opt/dmtools/code/flask-mariadb-nginx/mariadb
 
-uid=${ENV_UID} ##1000
+uid=${ENV_UID} ##1001
 gid=${ENV_GID} ##1002
 
 subuidSize=$(( $(podman info --format "{{ range \
