@@ -18,6 +18,7 @@ ARG ENV_MARIADB_USER=pythonuser
 ARG ENV_MARIADB_PASSWORD=pythonuser
 ARG ENV_MARIADB_ROOT_PASSWORD=pythonuser
 ARG ENV_MARIADB_DATABASE=world
+ARG ENV_LOCALHOST=localhost
 
 RUN echo ${ENV_UID}
 
@@ -29,7 +30,9 @@ ARG USER_GROUPNAME=${ENV_GROUPNAME}
 
 # Create the user
 RUN echo groupadd --gid ${ENV_GID} ${ENV_GROUPNAME}
+RUN groupadd --gid ${ENV_GID} ${ENV_GROUPNAME}
 RUN echo useradd --uid ${ENV_UID} --gid ${ENV_GID} -m ${ENV_USERNAME}
+RUN useradd --uid ${ENV_UID} --gid ${ENV_GID} -m ${ENV_USERNAME}
 
    
 
