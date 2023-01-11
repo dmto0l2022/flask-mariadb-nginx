@@ -45,4 +45,4 @@ podman run -dt \
 --pod pod_mariadb_backend \
 --volume /opt/dmtools/mysql:/var/lib/mysql:z \
 --user $uid:$gid \
-${ENV_LOCALHOST}/image_mariadb_1:latest
+localhost/image_mariadb_1:latest
