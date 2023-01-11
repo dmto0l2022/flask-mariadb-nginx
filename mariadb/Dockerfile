@@ -5,12 +5,12 @@
 #--env MARIADB_ROOT_PASSWORD=my-secret-pw  
 #mariadb:latest
 
-ARG ENV_UID=me
-
 FROM mariadb:latest
 
 RUN apt-get update && apt-get -y install vim
 RUN apt-get -y install unzip
+
+ARG ENV_UID=me
 
 ARG USERNAME=agaitske
 ##ARG USER_UID=1001
