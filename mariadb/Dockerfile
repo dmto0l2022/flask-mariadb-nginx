@@ -13,6 +13,7 @@ RUN apt-get -y install unzip
 ARG ENV_USERNAME=me
 ARG ENV_UID=9999
 ARG ENV_GID=9999
+ARG ENV_GROUPNAME=thegroup
 ARG ENV_MARIADB_USER=pythonuser
 ARG ENV_MARIADB_PASSWORD=pythonuser
 ARG ENV_MARIADB_ROOT_PASSWORD=pythonuser
@@ -23,11 +24,13 @@ RUN echo ${ENV_UID}
 
 ARG USERNAME=${ENV_USERNAME}
 ARG USER_UID=${ENV_UID}
-ARG USER_GID=${ENV_GID} ## dm group
+ARG USER_GID=${ENV_GID} ##
+ARG USER_GROUPNAME=${ENV_GROUPNAME}
 
 # Create the user
+RUN groupadd --gid $USER_GID $USER_GROUPNAME
 RUN useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
-RUN groupadd --gid $USER_GID $USERNAME
+
    
 
 #RUN mkdir /docker-entrypoint-initdb.d ## already exists
