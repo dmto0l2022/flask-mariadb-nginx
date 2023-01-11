@@ -12,6 +12,9 @@ RUN apt-get -y install unzip
 
 ARG ENV_UID=me
 
+RUN echo ${ENV_UID}
+
+
 ARG USERNAME=agaitske
 ##ARG USER_UID=1001
 ARG USER_UID=${ENV_UID}
