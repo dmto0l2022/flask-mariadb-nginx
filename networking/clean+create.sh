@@ -10,17 +10,18 @@ podman pod create \
 --network bridge \
 --publish 80:80
 
-podman pull nginx:latest
+podman build -f Dockerfile8080 -t image_nginx8080 .
+podman build -f Dockerfile8090 -t image_nginx8090 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
 podman run -dt \
 --name container_1 \
 --pod pod_main \
-docker.io/library/nginx:latest
+localhost/image_nginx8080:latest
 
 podman run -dt \
 --name container_2 \
 --pod pod_main \
-docker.io/library/nginx:latest
+localhost/image_nginx8090:latest
 
