@@ -3,6 +3,9 @@ podman stop container_2
 
 podman pod rm pod_main
 podman rmi nginx:latest
+podman rmi image_nginx8080:latest
+podman rmi image_nginx8090:latest
+
 
 podman pod create \
 --name pod_main \
