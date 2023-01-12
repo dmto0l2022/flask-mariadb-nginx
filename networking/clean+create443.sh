@@ -34,5 +34,5 @@ localhost/image_nginx8090:latest
 podman run -dt \
 --name container_443 \
 --pod pod_main \
--v /etc/letsencrypt:/etc/letsencrypt
+-v /etc/letsencrypt:/etc/letsencrypt \
 localhost/image_nginx443:latest
