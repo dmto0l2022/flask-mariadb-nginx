@@ -28,7 +28,7 @@ res = ''.join(random.choices(string.ascii_letters, k=N))
 print("The generated random string : " + str(res))
 
 #os.environ["SECRET_KEY"] = os.urandom(32)
-os.environ["SECRET_KEY"] = res
+#os.environ["SECRET_KEY"] = res
 
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
@@ -59,7 +59,7 @@ def init_app():
     MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
     
     #FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY") ## from file
-    FLASK_SECRET_KEY = environ.get("SECRET_KEY") ## generated
+    FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY") ## generated
 
     MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + \
                     MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
