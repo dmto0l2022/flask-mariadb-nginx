@@ -17,10 +17,10 @@ podman pull nginx:latest
 podman run -dt \
 --name container_1 \
 --pod pod_main \
-localhost/nginx:latest
+docker.io/library/nginx:latest
 
 podman run -dt \
 --name container_2 \
 --pod pod_main \
-localhost/nginx:latest
+docker.io/library/nginx:latest
 
