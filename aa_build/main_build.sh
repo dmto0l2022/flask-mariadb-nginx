@@ -25,6 +25,21 @@ podman pod create \
 --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
 --publish 5000:5000
 
+
+podman stop container_redis_1
+podman rmi image_redis
+
+cd /opt/dmtools/code/flask-mariadb-nginx/redis
+
+podman build -f Dockerfile -t image_redis_1 .
+##-v /HOST-DIR:/CONTAINER-DIR
+
+podman run -dt \
+--name container_redis_1 \
+--pod pod_main_backend \
+--user $uid:$gid \
+localhost/image_redis_1:latest
+
 podman build \
 --build-arg=ENV_UID=${ENV_UID} \
 --build-arg=ENV_USERNAME=${ENV_USERNAME} \
