@@ -11,7 +11,6 @@ podman rmi image_nginx8090:latest
 
 podman pod create \
 --name pod_main \
---infra-name infra_1 \
 --network bridge \
 --publish 443:443 80:80
 
