@@ -6,4 +6,5 @@ cp ./.env ../flask_crud_api/app/.env
 cp ./.env ../flask_dash_frontend/.env
 ## set the variables for the mariadb 
 source ../mariadb/setenv.sh
-source ../mariadb/createsql.sh
+source ../mariadb/createinitsql.sh
+
