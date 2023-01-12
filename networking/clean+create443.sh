@@ -13,7 +13,7 @@ podman pod create \
 --name pod_main \
 --infra-name infra_1 \
 --network bridge \
---publish 443:443
+--publish 443:443 80:80
 
 podman build -f Dockerfile443 -t image_nginx443 .
 podman build -f Dockerfile8080 -t image_nginx8080 .
