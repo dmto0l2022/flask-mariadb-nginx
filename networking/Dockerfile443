@@ -7,7 +7,7 @@ RUN mkdir /var/www/html
 RUN mkdir /etc/pki
 RUN mkdir /etc/pki/nginx
 
-RUN mkdir /var/log/nginx
+## RUN mkdir /var/log/nginx
 
 COPY conf443.conf /etc/nginx/conf.d/conf443.conf
 COPY index443.html /var/www/html/index.html
