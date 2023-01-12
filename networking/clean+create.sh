@@ -1,5 +1,5 @@
-podman stop container_1
-podman stop container_2
+podman stop container_8080
+podman stop container_8090
 
 podman pod rm pod_main
 podman rmi nginx:latest
@@ -19,12 +19,12 @@ podman build -f Dockerfile8090 -t image_nginx8090 .
 ##-v /HOST-DIR:/CONTAINER-DIR
 
 podman run -dt \
---name container_1 \
+--name container_8080 \
 --pod pod_main \
 localhost/image_nginx8080:latest
 
 podman run -dt \
---name container_2 \
+--name container_8090 \
 --pod pod_main \
 localhost/image_nginx8090:latest
 
