@@ -16,3 +16,4 @@ flask-wtf
 flask-migrate
 flask_session
 dash-bootstrap-components
+redis
