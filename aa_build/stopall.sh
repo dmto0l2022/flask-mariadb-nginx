@@ -3,7 +3,4 @@ podman stop container_api_backend_1
 podman stop container_mariadb_backend
 podman stop container_redis_1
 
-podman stop infra_mariadb_backend
-podman stop infra_api_backend
-podman stop infra_flask_dash_frontend
-podman stop infra_redis
+
