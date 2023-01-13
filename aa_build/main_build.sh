@@ -24,7 +24,10 @@ podman pod create \
 --gidmap $gid:0:1 \
 --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
 --publish 5000:5000
-
+--publish 6379:6379
+--publish 3306:3306
+--publish 8002:8002
+--publish 8004:8004
 
 podman stop container_redis_1
 podman rmi image_redis
