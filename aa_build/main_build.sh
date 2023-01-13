@@ -1,10 +1,6 @@
 podman pod stop pod_main_backend
 podman pod rm pod_main_backend
 
-podman rmi image_mariadb_1
-
-cd /opt/dmtools/code/flask-mariadb-nginx/mariadb
-
 uid=${ENV_UID} ##1001
 gid=${ENV_GID} ##1002
 
@@ -29,19 +25,22 @@ podman pod create \
 --publish 8002:8002 \
 --publish 8004:8004
 
+##-v /HOST-DIR:/CONTAINER-DIR
+
+cd /opt/dmtools/code/flask-mariadb-nginx/redis
 podman stop container_redis_1
 podman rmi image_redis
 
-cd /opt/dmtools/code/flask-mariadb-nginx/redis
-
 podman build -f Dockerfile -t image_redis_1 .
-##-v /HOST-DIR:/CONTAINER-DIR
 
 podman run -dt \
 --name container_redis_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
 localhost/image_redis_1:latest
+
+cd /opt/dmtools/code/flask-mariadb-nginx/mariadb
+podman rmi image_mariadb_1
 
 podman build \
 --build-arg=ENV_UID=${ENV_UID} \
