@@ -1,7 +1,4 @@
-podman start infra_mariadb_backend
-podman start infra_redis
-podman start infra_api_backend
-podman start infra_flask_dash_frontend
+podman start infra_main_backend
 
 podman start container_mariadb_backend
 podman start container_redis_1
