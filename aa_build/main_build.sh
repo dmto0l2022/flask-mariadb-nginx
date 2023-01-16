@@ -62,10 +62,10 @@ localhost/image_mariadb_1:latest
 
 #####
 
-podman stop container_api_backend_1
-podman rmi pythonapi_1:latest
+#podman stop container_api_backend_1
+#podman rmi pythonapi_1:latest
 
-podman pull docker.io/dmto0l2022/pythonapi_1:latest
+#podman pull docker.io/dmto0l2022/pythonapi_1:latest
 
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_crud_api
 
@@ -78,12 +78,12 @@ podman run -dt \
 --name container_api_backend_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
-dmto0l2022/pythonapi_1:latest
+localhost/python_api_1:latest
 
 ####
 
-podman stop container_flask_dash_frontend_1
-podman rmi flask_dash_frontend_1:latest
+## podman stop container_flask_dash_frontend_1
+## podman rmi flask_dash_frontend_1:latest
 
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_dash_frontend
 
@@ -92,13 +92,13 @@ cd /opt/dmtools/code/flask-mariadb-nginx/flask_dash_frontend
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
-podman pull docker.io/dmto0l2022/flask_dash_frontend_1:latest
+## podman pull docker.io/dmto0l2022/flask_dash_frontend_1:latest
 
 podman run -dt \
 --name container_flask_dash_frontend_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
-dmto0l2022/flask_dash_frontend_1:latest
+localhost/flask_dash_frontend_1:latest
 
 
 
