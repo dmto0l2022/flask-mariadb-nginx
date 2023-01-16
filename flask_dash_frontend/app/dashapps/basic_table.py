@@ -9,6 +9,7 @@ import requests
 import requests
 import json
 
+api_container = "container_api_backend_1:8004"
 
 class MakeApiCall():
 
@@ -46,11 +47,11 @@ class MakeApiCall():
 
 def DeleteRow(plotid_in):
     params = {'plotid': plotid_in}
-    url = "http://10.154.0.20:8004/plots/delete/"
+    url = "http://" + api_container + "/plots/delete/"
     requests.post(url, params=params)
 
 def RefreshTableData():
-    url = "http://10.154.0.20:8004/plots/getall/"
+    url = "http://" + api_container + "/plots/getall/"
     r = requests.get(url,headers={'Accept': 'application/json'})
     response_data = r.json()
     updated_data_frame = pd.DataFrame(response_data)
@@ -72,7 +73,7 @@ app = Dash(__name__, requests_pathname_prefix='/wsgi_app2/')
 #url = "http://10.154.0.20:8004/todo/list/1"
 ##10.154.0.20
 
-url = "http://10.154.0.20:8004/plots/getall/"
+url = "http://" + api_container + "/plots/getall/"
 r = requests.get(url, 
                  headers={'Accept': 'application/json'})
 response_data = r.json()
