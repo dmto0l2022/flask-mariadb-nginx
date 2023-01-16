@@ -2,7 +2,7 @@ cd /opt/dmtools/code/flask-mariadb-nginx/redis
 podman rmi redis_1:latest
 podman build -f Dockerfile -t redis_1 .
 podman tag redis_1:latest dmto0l2022/redis_1:latest
-podman push docker.io/dmto0l2022/redis_1:latest
+podman push dmto0l2022/redis_1:latest
 
 cd /opt/dmtools/code/flask-mariadb-nginx/mariadb
 podman rmi localhost/mariadb_1
@@ -27,11 +27,11 @@ cd /opt/dmtools/code/flask-mariadb-nginx/flask_crud_api
 
 podman build -f Dockerfile_pythonbase -t pythonbaseapi_1 .
 podman tag pythonbaseapi_1:latest dmto0l2022/pythonbaseapi_1:latest
-podman push docker.io/dmto0l2022/pythonbaseapi_1:latest
+podman push dmto0l2022/pythonbaseapi_1:latest
 
 podman build -f Dockerfile_pythonapi -t pythonapi_1 .
 podman tag pythonapi_1:latest dmto0l2022/pythonapi_1:latest
-podman push docker.io/dmto0l2022/pythonapi_1:latest
+podman push dmto0l2022/pythonapi_1:latest
 
 podman stop container_flask_dash_frontend_1
 podman rmi python_base_frontend_1
@@ -41,9 +41,9 @@ cd /opt/dmtools/code/flask-mariadb-nginx/flask_dash_frontend
 
 podman build -f Dockerfile_pythonfrontendbase -t python_base_frontend_1 .
 podman tag python_base_frontend_1:latest dmto0l2022/python_base_frontend_1:latest
-podman push docker.io/dmto0l2022/python_base_frontend_1:latest
+podman push dmto0l2022/python_base_frontend_1:latest
 
 podman build -f Dockerfile_pythonfrontend -t flask_dash_frontend_1 .
 podman tag flask_dash_frontend_1:latest dmto0l2022/flask_dash_frontend_1:latest
-podman push docker.io/dmto0l2022/flask_dash_frontend_1:latest
+podman push dmto0l2022/flask_dash_frontend_1:latest
 
