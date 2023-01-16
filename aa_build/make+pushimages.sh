@@ -27,7 +27,7 @@ podman build \
 
 #podman stop container_api_backend_1
 podman rmi python_base_api_1
-podman rmi pythonapi_1
+podman rmi python_api_1
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_crud_api
 
 podman build -f Dockerfile_pythonbase -t python_base_api_1 .
