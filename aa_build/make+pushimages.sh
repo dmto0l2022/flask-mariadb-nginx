@@ -1,11 +1,11 @@
 cd /opt/dmtools/code/flask-mariadb-nginx/redis
-podman rmi redis_1
+podman rmi redis_1:latest
 podman build -f Dockerfile -t redis_1 .
-podman tag image_redis_1:latest dmto0l2022/redis_1:latest
+podman tag redis_1:latest dmto0l2022/redis_1:latest
 podman push docker.io/dmto0l2022/redis_1:latest
 
 cd /opt/dmtools/code/flask-mariadb-nginx/mariadb
-podman rmi mariadb_1
+podman rmi localhost/mariadb_1
 
 podman build \
 --build-arg=ENV_UID=${ENV_UID} \
@@ -20,7 +20,7 @@ podman build \
 
 ## not pushing the above for obvious reasons!
 
-podman stop container_api_backend_1
+#podman stop container_api_backend_1
 podman rmi pythonbaseapi_1
 podman rmi pythonapi_1
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_crud_api
