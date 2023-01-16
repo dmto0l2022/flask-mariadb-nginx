@@ -37,7 +37,7 @@ localhost/image_nginx8090:latest
 podman run -dt \
 --name container_443 \
 --pod pod_main \
--v /etc/pki/nginx:/etc/pki/nginx \
--v /var/www/phetwebcit.services.brown.edu:/var/www \
--v /var/log/nginx/phetwebcit.services.brown.edu:/var/log/nginx/log \
+-v /etc/letsencrypt:/etc/letsencrypt \
+-v /var/www:/var/www \
+-v /var/log/nginx:/var/log/nginx \
 localhost/image_nginx443:latest
