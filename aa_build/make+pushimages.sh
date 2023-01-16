@@ -7,10 +7,10 @@ cd /opt/dmtools/code/flask-mariadb-nginx/redis
 podman rmi redis_1:latest
 podman build -f Dockerfile -t redis_1 .
 podman tag redis_1:latest dmto0l2022/redis_1:latest
-podman push dmto0l2022/redis_1:latest
+podman push docker.io/dmto0l2022/redis_1:latest
 
 cd /opt/dmtools/code/flask-mariadb-nginx/mariadb
-podman rmi localhost/mariadb_1
+podman rmi mariadb_1
 
 podman build \
 --build-arg=ENV_UID=${ENV_UID} \
@@ -32,7 +32,7 @@ cd /opt/dmtools/code/flask-mariadb-nginx/flask_crud_api
 
 podman build -f Dockerfile_pythonbase -t python_base_api_1 .
 podman tag python_base_api_1:latest dmto0l2022/python_base_api_1:latest
-podman push dmto0l2022/python_base_api_1:latest
+podman push docker.io/dmto0l2022/python_base_api_1:latest
 
 ## this is only local as it contains the env file
 podman build -f Dockerfile_pythonapi -t python_api_1 .
@@ -47,7 +47,7 @@ cd /opt/dmtools/code/flask-mariadb-nginx/flask_dash_frontend
 
 podman build -f Dockerfile_pythonfrontendbase -t python_base_frontend_1 .
 podman tag python_base_frontend_1:latest dmto0l2022/python_base_frontend_1:latest
-podman push dmto0l2022/python_base_frontend_1:latest
+podman push docker.io/dmto0l2022/python_base_frontend_1:latest
 
 ## this is only local as it contains the env file
 podman build -f Dockerfile_pythonfrontend -t flask_dash_frontend_1 .
