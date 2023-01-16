@@ -33,7 +33,7 @@ podman stop container_redis_1
 
 #podman build -f Dockerfile -t image_redis_1 .
 
-podman pull dmto0l2022/redis_1:latest
+podman pull docker.io/dmto0l2022/redis_1:latest
 
 podman run -dt \
 --name container_redis_1 \
@@ -69,7 +69,7 @@ localhost/image_mariadb_1:latest
 podman stop container_api_backend_1
 podman rmi pythonapi_1:latest
 
-podman pull dmto0l2022/pythonapi_1:latest
+podman pull docker.io/dmto0l2022/pythonapi_1:latest
 
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_crud_api
 
@@ -96,7 +96,7 @@ cd /opt/dmtools/code/flask-mariadb-nginx/flask_dash_frontend
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
-podman pull dmto0l2022/flask_dash_frontend_1:latest
+podman pull docker.io/dmto0l2022/flask_dash_frontend_1:latest
 
 podman run -dt \
 --name container_flask_dash_frontend_1 \
