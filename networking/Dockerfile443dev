@@ -6,6 +6,8 @@ RUN mkdir /var/www/html
 
 ## RUN mkdir /var/log/nginx
 
+RUN mkdir /etc/letsencrypt/
+
 COPY conf443dev.conf /etc/nginx/conf.d/conf443dev.conf
 
 EXPOSE 443
