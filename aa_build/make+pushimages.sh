@@ -31,14 +31,10 @@ podman rmi python_api_1
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_crud_api
 
 podman build -f Dockerfile_pythonbase -t python_base_api_1 .
-#podman tag python_base_api_1:latest dmto0l2022/python_base_api_1:latest
-#podman push dmto0l2022/python_base_api_1:latest
-podman push dmto0l2022/python_base_api_1:latest
+podman push python_base_api_1:latest dmto0l2022/python_base_api_1:latest
 
 ## this is only local as it contains the env file
 podman build -f Dockerfile_pythonapi -t python_api_1 .
-##podman tag pythonapi_1:latest dmto0l2022/python_api_1:latest
-##podman push dmto0l2022/pythonapi_1:latest
 
 podman stop container_flask_dash_frontend_1
 podman rmi python_base_frontend_1
@@ -47,12 +43,9 @@ podman rmi flask_dash_frontend_1
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_dash_frontend
 
 podman build -f Dockerfile_pythonfrontendbase -t python_base_frontend_1 .
-#podman tag python_base_frontend_1:latest dmto0l2022/python_base_frontend_1:latest
-podman push dmto0l2022/python_base_frontend_1:latest
+podman push python_base_frontend_1:latest dmto0l2022/python_base_frontend_1:latest
 
 ## this is only local as it contains the env file
 podman build -f Dockerfile_pythonfrontend -t flask_dash_frontend_1 .
-##podman tag flask_dash_frontend_1:latest dmto0l2022/flask_dash_frontend_1:latest
-##podman push dmto0l2022/flask_dash_frontend_1:latest
 
 
