@@ -70,7 +70,8 @@ localhost/image_mariadb_1:latest
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_crud_api
 
 ##podman build -f Dockerfile_pythonbase -t image_pythonbaseapi_1 .
-##podman build -f Dockerfile_pythonapi -t image_pythonapi_1 .
+podman rmi image_python_api_1
+podman build -f Dockerfile_pythonapi -t image_python_api_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
@@ -88,7 +89,8 @@ localhost/python_api_1:latest
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_dash_frontend
 
 #podman build -f Dockerfile_pythonfrontendbase -t image_python_base_frontend_1 .
-#podman build -f Dockerfile_pythonfrontend -t image_flask_dash_frontend_1 .
+podman rmi flask_dash_frontend_1:latest
+podman build -f Dockerfile_pythonfrontend -t image_flask_dash_frontend_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
