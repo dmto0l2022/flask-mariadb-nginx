@@ -31,7 +31,7 @@ podman rmi python_api_1
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_crud_api
 
 podman build -f Dockerfile_pythonbase -t python_base_api_1 .
-podman tag pythonbaseapi_1:latest dmto0l2022/python_base_api_1:latest
+podman tag python_base_api_1:latest dmto0l2022/python_base_api_1:latest
 podman push dmto0l2022/python_base_api_1:latest
 
 ## this is only local as it contains the env file
