@@ -39,5 +39,4 @@ podman run -dt \
 --pod pod_main \
 -v /etc/letsencrypt:/etc/letsencrypt \
 -v /var/www:/var/www \
-#-v /var/log/nginx:/var/log/nginx \
 localhost/image_nginx443dev:latest
