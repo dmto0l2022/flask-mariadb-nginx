@@ -69,6 +69,8 @@ localhost/image_mariadb_1:latest
 podman stop container_api_backend_1
 podman rmi pythonapi_1:latest
 
+podman pull dmto0l2022/pythonapi_1:latest
+
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_crud_api
 
 ##podman build -f Dockerfile_pythonbase -t image_pythonbaseapi_1 .
@@ -93,6 +95,8 @@ cd /opt/dmtools/code/flask-mariadb-nginx/flask_dash_frontend
 #podman build -f Dockerfile_pythonfrontend -t image_flask_dash_frontend_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
+
+podman pull dmto0l2022/flask_dash_frontend_1:latest
 
 podman run -dt \
 --name container_flask_dash_frontend_1 \
