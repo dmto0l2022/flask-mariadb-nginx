@@ -35,8 +35,8 @@ podman tag pythonbaseapi_1:latest dmto0l2022/python_base_api_1:latest
 podman push dmto0l2022/python_base_api_1:latest
 
 ## this is only local as it contains the env file
-podman build -f Dockerfile_pythonapi -t pythonapi_1 .
-##podman tag pythonapi_1:latest dmto0l2022/pythonapi_1:latest
+podman build -f Dockerfile_pythonapi -t python_api_1 .
+##podman tag pythonapi_1:latest dmto0l2022/python_api_1:latest
 ##podman push dmto0l2022/pythonapi_1:latest
 
 podman stop container_flask_dash_frontend_1
