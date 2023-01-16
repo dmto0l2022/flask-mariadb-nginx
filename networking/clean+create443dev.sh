@@ -38,5 +38,4 @@ podman run -dt \
 --name container_443dev \
 --pod pod_main \
 -v /etc/letsencrypt:/etc/letsencrypt \
--v /var/www:/var/www \
 localhost/image_nginx443dev:latest
