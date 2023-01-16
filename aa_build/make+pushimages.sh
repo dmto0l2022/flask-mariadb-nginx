@@ -7,7 +7,7 @@ cd /opt/dmtools/code/flask-mariadb-nginx/redis
 podman rmi redis_1:latest
 podman build -f Dockerfile -t redis_1 .
 podman tag redis_1:latest dmto0l2022/redis_1:latest
-podman push docker.io/dmto0l2022/redis_1:latest
+podman push dmto0l2022/redis_1:latest
 
 cd /opt/dmtools/code/flask-mariadb-nginx/mariadb
 podman rmi mariadb_1
