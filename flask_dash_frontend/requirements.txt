@@ -12,15 +12,13 @@ matplotlib
 ipywidgets
 openpyxl
 flask_restful
-flask-wtf
 flask-migrate
 flask_session
 dash-bootstrap-components
 redis
 sqlalchemy
-flask-security-too[common]
+flask-security-too[common,fsqla]
 flask_restful
 flask-migrate
-flask-login
 mariadb
-email-validator
+
