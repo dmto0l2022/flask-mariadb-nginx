@@ -15,7 +15,13 @@ flask_restful
 flask-wtf
 flask-migrate
 flask_session
-flask_security
-flask_mail
+Flask-Mail
 dash-bootstrap-components
 redis
+sqlalchemy
+flask-security-too[common]
+email_validator
+flask_restful
+flask-migrate
+flask-login
+mariadb
