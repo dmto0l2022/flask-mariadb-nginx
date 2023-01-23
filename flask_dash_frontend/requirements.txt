@@ -15,5 +15,7 @@ flask_restful
 flask-wtf
 flask-migrate
 flask_session
+flask_security
+flask_mail
 dash-bootstrap-components
 redis
