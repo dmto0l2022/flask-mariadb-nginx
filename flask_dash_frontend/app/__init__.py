@@ -1,5 +1,5 @@
 import os
-from flask import Flask, , render_template_string
+from flask import Flask, render_template_string
 from flask import flash
 from flask_session import Session
 import redis
