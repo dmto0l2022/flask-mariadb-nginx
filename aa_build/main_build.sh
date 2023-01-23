@@ -25,9 +25,7 @@ podman pod create \
 
 cd /opt/dmtools/code/flask-mariadb-nginx/redis
 podman stop container_redis_1
-#podman rmi image_redis
-
-#podman build -f Dockerfile -t image_redis_1 .
+podman rm container_redis_1
 
 podman pull docker.io/dmto0l2022/redis_1:latest
 
@@ -38,7 +36,7 @@ podman run -dt \
 dmto0l2022/redis_1:latest
 
 cd /opt/dmtools/code/flask-mariadb-nginx/mariadb
-podman rmi image_mariadb_1
+podman rmi mariadb_1
 
 podman build \
 --build-arg=ENV_UID=${ENV_UID} \
@@ -49,7 +47,7 @@ podman build \
 --build-arg=ENV_MARIADB_PASSWORD=${ENV_MARIADB_PASSWORD} \
 --build-arg=ENV_MARIADB_ROOT_PASSWORD=${ENV_MARIADB_ROOT_PASSWORD} \
 --build-arg=ENV_MARIADB_DATABASE=${ENV_MARIADB_DATABASE} \
--t image_mariadb_1 .
+-t mariadb_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
@@ -58,20 +56,14 @@ podman run -dt \
 --pod pod_main_backend \
 --volume /opt/dmtools/mysql:/var/lib/mysql:z \
 --user $uid:$gid \
-localhost/image_mariadb_1:latest
+localhost/mariadb_1:latest
 
 #####
 
-#podman stop container_api_backend_1
-#podman rmi pythonapi_1:latest
-
-#podman pull docker.io/dmto0l2022/pythonapi_1:latest
-
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_crud_api
 
-##podman build -f Dockerfile_pythonbase -t image_pythonbaseapi_1 .
-podman rmi image_python_api_1
-podman build -f Dockerfile_pythonapi -t image_python_api_1 .
+podman rmi python_api_1
+podman build -f Dockerfile_pythonapi -t python_api_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
@@ -83,12 +75,8 @@ localhost/python_api_1:latest
 
 ####
 
-## podman stop container_flask_dash_frontend_1
-## podman rmi flask_dash_frontend_1:latest
-
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_dash_frontend
 
-#podman build -f Dockerfile_pythonfrontendbase -t image_python_base_frontend_1 .
 podman rmi flask_dash_frontend_1:latest
 podman build -f Dockerfile_pythonfrontend -t flask_dash_frontend_1 .
 
