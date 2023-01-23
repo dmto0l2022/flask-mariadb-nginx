@@ -1,8 +1,11 @@
 # model.py
 
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, ForeignKey, Integer, String, Table, LargeBinary, DateTime
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, ForeignKey, Integer, String, Table, LargeBinary, DateTime, Boolean,UnicodeText
+
+from flask_security import UserMixin, RoleMixin
+from sqlalchemy import create_engine
+from sqlalchemy.orm import relationship, backref
 
 from . import db ## import db from __init__
 
