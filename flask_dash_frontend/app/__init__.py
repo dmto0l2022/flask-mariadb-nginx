@@ -86,58 +86,58 @@ def init_app():
     ## session
     # Configure Redis for storing the session data on the server-side
    
-      
+    with app.app_context():  
     
-    # import your database tables if defined in a different module
-    from . import models as md
-    from . import mail, security
-    # for example if the User model above was in a different module:
-    # Setup Flask-Security
-    
-    db.init_app(app)
-     
-    user_datastore = SQLAlchemySessionUserDatastore(db.db_session, md.User, md.Role)
-    app.security = Security(app, user_datastore)
+         # import your database tables if defined in a different module
+         from . import models as md
+         from . import mail, security
+         # for example if the User model above was in a different module:
+         # Setup Flask-Security
 
-    if not app.security.datastore.find_user(email="test@me.com"):
-            app.security.datastore.create_user(email="test@me.com", password=hash_password("password"))
-    db.db_session.commit()
-        
-    mail = Mail(app)
-    
-    ## setup session data
-    app.config['SESSION_TYPE'] = 'redis'
-    #app.config['SESSION_PERMANENT'] = False
-    #app.config['SESSION_KEY_PREFIX'] = 'session:'
-    ##app.config['SESSION_MEMCACHED'] = '127.0.0.1:11211'
-    ##app.config['SESSION_REDIS'] = '127.0.0.1:6379'
-    #app.config['SESSION_REDIS'] = redis.Redis("redis")
-    ##app.config['SESSION_REDIS'] = redis.from_url('redis://10.154.0.20:6379')
-    app.config['SESSION_REDIS'] = redis.from_url('redis://localhost:6379')
-    #app.config['SESSION_USE_SIGNER'] = True
-    #app.config['SESSION_SQLALCHEMY_TABLE'] = 'sessions'
-    #app.config['SESSION_SQLALCHEMY'] = db
-    server_session = Session(app)
-   
+         db.init_app(app)
 
-    #server_session.app.session_interface.db.create_all()
+         user_datastore = SQLAlchemySessionUserDatastore(db.db_session, md.User, md.Role)
+         app.security = Security(app, user_datastore)
 
-    
-    from app.blueprints.home_bp import home_bp
-    app.register_blueprint(home_bp)
-    from app.blueprints.plotids_bp import plotids_bp
-    app.register_blueprint(plotids_bp)
-    ##
-    #dashapp1_bp
-    from app.blueprints.dashapp1_bp import dashapp1_bp
-    app.register_blueprint(dashapp1_bp)
-    ##
-    ##todo_bp
-    from app.blueprints.todo_bp import todo_bp
-    app.register_blueprint(todo_bp)
-    
-    ##session_bp
-    from app.blueprints.session_bp import session_bp
-    app.register_blueprint(session_bp)
-    
-    return app
+         if not app.security.datastore.find_user(email="test@me.com"):
+                 app.security.datastore.create_user(email="test@me.com", password=hash_password("password"))
+         db.db_session.commit()
+
+         mail = Mail(app)
+
+         ## setup session data
+         app.config['SESSION_TYPE'] = 'redis'
+         #app.config['SESSION_PERMANENT'] = False
+         #app.config['SESSION_KEY_PREFIX'] = 'session:'
+         ##app.config['SESSION_MEMCACHED'] = '127.0.0.1:11211'
+         ##app.config['SESSION_REDIS'] = '127.0.0.1:6379'
+         #app.config['SESSION_REDIS'] = redis.Redis("redis")
+         ##app.config['SESSION_REDIS'] = redis.from_url('redis://10.154.0.20:6379')
+         app.config['SESSION_REDIS'] = redis.from_url('redis://localhost:6379')
+         #app.config['SESSION_USE_SIGNER'] = True
+         #app.config['SESSION_SQLALCHEMY_TABLE'] = 'sessions'
+         #app.config['SESSION_SQLALCHEMY'] = db
+         server_session = Session(app)
+
+
+         #server_session.app.session_interface.db.create_all()
+
+
+         from app.blueprints.home_bp import home_bp
+         app.register_blueprint(home_bp)
+         from app.blueprints.plotids_bp import plotids_bp
+         app.register_blueprint(plotids_bp)
+         ##
+         #dashapp1_bp
+         from app.blueprints.dashapp1_bp import dashapp1_bp
+         app.register_blueprint(dashapp1_bp)
+         ##
+         ##todo_bp
+         from app.blueprints.todo_bp import todo_bp
+         app.register_blueprint(todo_bp)
+
+         ##session_bp
+         from app.blueprints.session_bp import session_bp
+         app.register_blueprint(session_bp)
+
+         return app
