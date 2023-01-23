@@ -16,7 +16,7 @@ def home():
 
 # Views
 @home_bp.route("/app/heart")
-def home():
+def heart():
     return render_template_string('Home is where the heart is !')
 
 @home_bp.route("/app/hello")
