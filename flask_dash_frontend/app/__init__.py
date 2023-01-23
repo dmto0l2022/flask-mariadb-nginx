@@ -98,11 +98,7 @@ def init_app():
 
          user_datastore = SQLAlchemySessionUserDatastore(db.session, md.User, md.Role)
          app.security = Security(app, user_datastore)
-
-         if not app.security.datastore.find_user(email="test@me.com"):
-                 app.security.datastore.create_user(email="test@me.com", password=hash_password("password"))
-         db.session.commit()
-
+         
          mail = Mail(app)
 
          ## setup session data
