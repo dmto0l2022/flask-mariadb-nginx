@@ -69,8 +69,7 @@ def init_app():
     
     #FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY") ## from file
     FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY") ## generated
-    app.config['SECURITY_PASSWORD_SALT'] = os.environ.get("SECURITY_PASSWORD_SALT",'146585145368132386173505678016728509634')
-
+   
     MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + \
                     MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
                     + MARIADB_DATABASE
@@ -81,6 +80,7 @@ def init_app():
     print(filename)
     #SECRET_KEY = os.urandom(32)
     app.config['SECRET_KEY'] = FLASK_SECRET_KEY
+    app.config['SECURITY_PASSWORD_SALT'] = os.environ.get("SECURITY_PASSWORD_SALT",'146585145368132386173505678016728509634')
     app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
     ###
     ## session
@@ -89,14 +89,16 @@ def init_app():
       
     
     # import your database tables if defined in a different module
-    from . import models
+    from . import models as md
     from . import mail, security
     # for example if the User model above was in a different module:
     # Setup Flask-Security
-    user_datastore = SQLAlchemySessionUserDatastore(dbf.db_session, modf.User, modf.Role)
-    app.security = Security(app, user_datastore)
-    db.init_app(app)
     
+    db.init_app(app)
+     
+    user_datastore = SQLAlchemySessionUserDatastore(db.db_session, md.User, md.Role)
+    app.security = Security(app, user_datastore)
+
     if not app.security.datastore.find_user(email="test@me.com"):
             app.security.datastore.create_user(email="test@me.com", password=hash_password("password"))
     db.db_session.commit()
