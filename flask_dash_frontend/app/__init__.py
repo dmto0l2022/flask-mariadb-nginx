@@ -9,7 +9,7 @@ from flask_security import Security, current_user, auth_required, hash_password,
      SQLAlchemySessionUserDatastore
 
 
-from flask_mail import Mail
+from flask_mailman import Mail
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 
