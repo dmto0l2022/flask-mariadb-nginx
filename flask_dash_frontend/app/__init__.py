@@ -1,8 +1,17 @@
-from flask import Flask
+import os
+from flask import Flask, , render_template_string
 from flask import flash
 from flask_session import Session
 import redis
 from . import database_bind as dbind
+
+from flask_security import Security, current_user, auth_required, hash_password, \
+     SQLAlchemySessionUserDatastore
+
+
+from flask_mail import Mail
+from werkzeug.middleware.proxy_fix import ProxyFix
+
 
 # outside of app factory
 db = dbind.SQLAlchemy_bind()
@@ -22,10 +31,10 @@ N = 32
 #res = ''.join(secrets.choice(string.ascii_uppercase + string.digits)
 #              for i in range(N))
 
-res = ''.join(random.choices(string.ascii_letters, k=N))
+#res = ''.join(random.choices(string.ascii_letters, k=N))
 
 # print result
-print("The generated random string : " + str(res))
+#print("The generated random string : " + str(res))
 
 #os.environ["SECRET_KEY"] = os.urandom(32)
 #os.environ["SECRET_KEY"] = res
@@ -60,6 +69,7 @@ def init_app():
     
     #FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY") ## from file
     FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY") ## generated
+    app.config['SECURITY_PASSWORD_SALT'] = os.environ.get("SECURITY_PASSWORD_SALT",'146585145368132386173505678016728509634')
 
     MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + \
                     MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
@@ -69,7 +79,7 @@ def init_app():
     filename = os.path.join(app.instance_path, 'my_folder', 'my_file.txt')
     print('filename')
     print(filename)
-    SECRET_KEY = os.urandom(32)
+    #SECRET_KEY = os.urandom(32)
     app.config['SECRET_KEY'] = FLASK_SECRET_KEY
     app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
     ###
@@ -80,8 +90,18 @@ def init_app():
     
     # import your database tables if defined in a different module
     from . import models
+    from . import mail, security
     # for example if the User model above was in a different module:
+    # Setup Flask-Security
+    user_datastore = SQLAlchemySessionUserDatastore(dbf.db_session, modf.User, modf.Role)
+    app.security = Security(app, user_datastore)
     db.init_app(app)
+    
+    if not app.security.datastore.find_user(email="test@me.com"):
+            app.security.datastore.create_user(email="test@me.com", password=hash_password("password"))
+    db.db_session.commit()
+        
+    mail = Mail(app)
     
     ## setup session data
     app.config['SESSION_TYPE'] = 'redis'
