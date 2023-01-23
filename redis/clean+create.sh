@@ -27,6 +27,8 @@ podman pod create \
 podman build -f Dockerfile -t image_redis_1 .
 ##-v /HOST-DIR:/CONTAINER-DIR
 
+## docker run --name some-redis -d redis redis-server --save 60 1 --loglevel warning
+
 podman run -dt \
 --name container_redis_1 \
 --pod pod_redis \
