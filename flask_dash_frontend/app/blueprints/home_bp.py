@@ -4,8 +4,24 @@ home_bp = Blueprint('home_bp', __name__)
 
 @home_bp.route('/app/', methods=['GET', 'POST'])
 def rootofserver():
-    return 'root'
+    return 'the name is root'
 
 @home_bp.route('/app/home')
 def home():
     return render_template('home.html')
+
+# Views
+@home_bp.route("/app/heart")
+def home():
+    return render_template_string('Home is where the heart is !')
+
+@home_bp.route("/app/hello")
+@auth_required()
+def hello():
+    return render_template_string('Hello {{email}} !', email=current_user.email)
+
+@home_bp.route('/app/welcome/')
+@auth_required()
+def welcome():
+    return render_template('welcome.html')
+
