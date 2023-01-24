@@ -21,3 +21,7 @@ https://pypi.org/project/flask-http-middleware/
 
 https://community.plotly.com/t/how-protect-dash-routes-with-login-after-dash-1-0-release/25114/14
 
+# FastAPI
+
+https://stackoverflow.com/questions/67312219/problem-with-combining-fastapi-with-plotly-dash-and-adding-token-dependency-as-a
+
