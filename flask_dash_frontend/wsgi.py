@@ -22,7 +22,8 @@ application = DispatcherMiddleware(app, {
 
 class Middleware:
 
-    def __init__(self, app):
+    def __init__(self, wsgi, app):
+        self.wsgi = wsgi
         self.app = app
 
     def __call__(self, environ, start_response):
@@ -33,4 +34,4 @@ class Middleware:
         return self.app(environ, start_response)
 
 
-application = Middleware(application)
+applicationapp.wsgi_app = Middleware(application.wsgi_app, application)
