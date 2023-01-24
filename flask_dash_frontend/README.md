@@ -29,3 +29,7 @@ https://community.plotly.com/t/how-protect-dash-routes-with-login-after-dash-1-0
 
 https://stackoverflow.com/questions/67312219/problem-with-combining-fastapi-with-plotly-dash-and-adding-token-dependency-as-a
 
+# Redirect 301
+
+https://stackoverflow.com/questions/28337246/redirect-a-user-to-url-with-wsgi-no-framework
+
