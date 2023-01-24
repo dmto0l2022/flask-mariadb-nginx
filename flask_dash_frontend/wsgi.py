@@ -34,4 +34,4 @@ class Middleware:
         return self.app(environ, start_response)
 
 
-applicationapp.wsgi_app = Middleware(application.wsgi_app, application)
+application = Middleware(application.wsgi_app, application)
