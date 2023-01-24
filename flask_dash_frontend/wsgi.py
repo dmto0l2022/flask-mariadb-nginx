@@ -28,7 +28,7 @@ class Middleware:
         return self.wsgi(environ, start_response)
 
 
-##app.wsgi_app = Middleware(app.wsgi_app)
+app.wsgi_app = Middleware(app.wsgi_app)
 
 application = DispatcherMiddleware(app, {
     '/wsgi_app1': app1.server,
