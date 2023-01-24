@@ -13,6 +13,10 @@ https://github.com/RafaelMiquelino/dash-flask-login/blob/master/app.py
 
 https://newbedev.com/how-to-merge-flask-login-with-a-dash-application
 
+# Simple Middleware
+
+https://stackoverflow.com/questions/18573712/how-to-access-request-in-flask-middleware
+
 # Add Middleware
 
 https://pypi.org/project/flask-http-middleware/
