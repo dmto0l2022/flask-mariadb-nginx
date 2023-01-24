@@ -117,7 +117,8 @@ def init_app():
          #app.config['SESSION_SQLALCHEMY_TABLE'] = 'sessions'
          #app.config['SESSION_SQLALCHEMY'] = db
          server_session = Session(app)
-
+         
+         server_session.init_app(app)
 
          #server_session.app.session_interface.db.create_all()
          
