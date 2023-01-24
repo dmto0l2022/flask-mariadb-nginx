@@ -117,12 +117,16 @@ def init_app():
 
 
          #server_session.app.session_interface.db.create_all()
-
+         
+         from app.blueprints.auth_bp import auth_bp
+         app.register_blueprint(auth_bp)
 
          from app.blueprints.home_bp import home_bp
          app.register_blueprint(home_bp)
+         
          from app.blueprints.plotids_bp import plotids_bp
          app.register_blueprint(plotids_bp)
+         
          ##
          #dashapp1_bp
          from app.blueprints.dashapp1_bp import dashapp1_bp
