@@ -8,11 +8,12 @@ from flask_login import current_user
 
 dashapp1_bp = Blueprint('dashapp1_bp', __name__)
 
+@dashapp1_bp.before_request
 def check_route_access():
     if request.endpoint is None:
         return redirect("/login")
  
-    func = app.view_functions[request.endpoint]
+    func = @dashapp1_bp.view_functions[request.endpoint]
     if (getattr(func, "is_public", False)):
         return  # Access granted
 
@@ -26,6 +27,7 @@ def check_route_access():
 def public_route(function):
     function.is_public = True
     return function
+
 
 @public_route
 @dashapp1_bp.route('/app/dashapp1')
