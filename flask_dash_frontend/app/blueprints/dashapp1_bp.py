@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, request
+from flask import Blueprint, render_template, redirect, request, session
 
 from flask_security import Security, SQLAlchemyUserDatastore, auth_required, hash_password
 
@@ -33,6 +33,12 @@ def public_route(function):
 @dashapp1_bp.route('/app/dashapp1')
 def dashapp1():
     return redirect('/wsgi_app1', code=302)
+
+@public_route
+@dashapp1_bp.route('/wsgi_app1')
+def dashapp2_raw():
+    return redirect('/wsgi_app1', code=302)
+
 
 @dashapp1_bp.route('/wsgi_app2')
 @auth_required()
