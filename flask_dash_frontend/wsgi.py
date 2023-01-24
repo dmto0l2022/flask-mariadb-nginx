@@ -2,6 +2,9 @@ from app import init_app
 
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
+from werkzeug.wrappers import Request, Response, ResponseStream
+
+
 from app.dashapps.interactive_table import app as app1
 from app.dashapps.basic_table import app as app2
 from app.dashapps.session_app import app as app3
