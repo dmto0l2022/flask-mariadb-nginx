@@ -4,6 +4,8 @@ from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
 from werkzeug.wrappers import Request, Response, ResponseStream
 
+from werkzeug.debug import DebuggedApplication
+
 
 from app.dashapps.interactive_table import app as app1
 from app.dashapps.basic_table import app as app2
@@ -35,3 +37,4 @@ application = DispatcherMiddleware(app, {
     '/multipage': app4.server,
 })  
 
+application = DebuggedApplication(application, True)
