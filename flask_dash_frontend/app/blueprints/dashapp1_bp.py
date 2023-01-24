@@ -35,7 +35,7 @@ def dashapp1():
     return redirect('/wsgi_app1', code=302)
 
 @dashapp1_bp.route('/wsgi_app1')
-def dashapp2_raw():
+def dashapp1_raw():
     return redirect('/wsgi_app1', code=302)
 
 @dashapp1_bp.route('/wsgi_app2')
