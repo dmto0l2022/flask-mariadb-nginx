@@ -8,6 +8,7 @@ from flask_login import current_user
 
 dashapp1_bp = Blueprint('dashapp1_bp', __name__)
 
+'''
 @dashapp1_bp.before_request
 def check_route_access():
     if request.endpoint is None:
@@ -27,18 +28,15 @@ def check_route_access():
 def public_route(function):
     function.is_public = True
     return function
+'''
 
-
-@public_route
 @dashapp1_bp.route('/app/dashapp1')
 def dashapp1():
     return redirect('/wsgi_app1', code=302)
 
-@public_route
 @dashapp1_bp.route('/wsgi_app1')
 def dashapp2_raw():
     return redirect('/wsgi_app1', code=302)
-
 
 @dashapp1_bp.route('/wsgi_app2')
 @auth_required()
