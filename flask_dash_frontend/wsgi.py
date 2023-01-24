@@ -15,19 +15,18 @@ app = init_app()
 
 class Middleware:
 
-    def __init__(self, wsgi, app):
+    def __init__(self, wsgi):
         self.wsgi = wsgi
-        self.app = app
-
+        
     def __call__(self, environ, start_response):
         # not Flask request - from werkzeug.wrappers import Request
         request = Request(environ)
         print('path: %s, url: %s' % (request.path, request.url))
         # just do here everything what you need
-        return self.app(environ, start_response)
+        return self.wsgi(environ, start_response)
 
 
-app.wsgi_app = Middleware(app.wsgi_app, app)
+app.wsgi_app = Middleware(app.wsgi_app)
 
 application = DispatcherMiddleware(app, {
     '/wsgi_app1': app1.server,
