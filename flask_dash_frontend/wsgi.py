@@ -13,13 +13,6 @@ from app.dashpages.app import app as app4
 
 app = init_app()
 
-application = DispatcherMiddleware(app, {
-    '/wsgi_app1': app1.server,
-    '/wsgi_app2': app2.server,
-    '/session_app': app3.server,
-    '/multipage': app4.server,
-})  
-
 class Middleware:
 
     def __init__(self, wsgi, app):
@@ -34,4 +27,12 @@ class Middleware:
         return self.app(environ, start_response)
 
 
-application = Middleware(application.wsgi_app, application)
+app = Middleware(app.wsgi_app, app)
+
+application = DispatcherMiddleware(app, {
+    '/wsgi_app1': app1.server,
+    '/wsgi_app2': app2.server,
+    '/session_app': app3.server,
+    '/multipage': app4.server,
+})  
+
