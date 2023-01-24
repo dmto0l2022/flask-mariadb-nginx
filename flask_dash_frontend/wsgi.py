@@ -17,7 +17,7 @@ application = DispatcherMiddleware(app, {
     '/multipage': app4.server,
 })  
 
-class Middleware(app):
+class Middleware:
 
     def __init__(self, app):
         self.app = app
