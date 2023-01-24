@@ -19,5 +19,5 @@ podman run -dt \
 --name container_redis_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
---v /opt/redis-data:/data \
+--volume /opt/dmtools/redis-data:/data \
 localhost/redis_1:latest
