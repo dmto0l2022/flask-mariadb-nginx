@@ -1,5 +1,7 @@
 from app import init_app
 
+from urllib.parse import urlparse
+
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
 from werkzeug.wrappers import Request, Response, ResponseStream
@@ -27,8 +29,8 @@ class Middleware:
         print('path: %s, url: %s' % (request.path, request.url))
         # just do here everything what you need
         if 'wsgi' in request.path:
-            url_return = request
-            url_return.path = '/app/welcome'
+            url_return = urlparse(request.url)
+            url_return._replace(path='/app/welcome')
             werkzeug.utils.redirect(url_return)
         return self.wsgi(environ, start_response)
 
