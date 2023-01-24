@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template_string
+from flask import Flask, render_template_string, session
 from flask import flash
 from flask_session import Session
 import redis
@@ -116,7 +116,7 @@ def init_app():
          #app.config['SESSION_USE_SIGNER'] = True
          #app.config['SESSION_SQLALCHEMY_TABLE'] = 'sessions'
          #app.config['SESSION_SQLALCHEMY'] = db
-         server_session = Session(app)
+         server_session = Session()
          
          server_session.init_app(app)
 
