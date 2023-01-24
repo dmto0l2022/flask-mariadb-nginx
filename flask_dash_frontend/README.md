@@ -5,3 +5,7 @@ Simple Flask app for my medium article
 
 https://github.com/RafaelMiquelino/dash-flask-login/blob/master/app.py
 
+# Protect URL
+
+https://newbedev.com/how-to-merge-flask-login-with-a-dash-application
+
