@@ -38,7 +38,43 @@ class Middleware:
             return []
         else:
             return self.wsgi(environ, start_response)
+'''
 
+https://gist.github.com/devries/4a747a284e75a5d63f93
+
+from urllib import quote
+
+class SSLRedirect(object):
+    def __init__(self,app):
+        self.app=app
+
+    def __call__(self,environ,start_response):
+        proto = environ.get('HTTP_X_FORWARDED_PROTO') or environ.get('wsgi.url_scheme', 'http')
+
+        if proto=='https':
+            return self.app(environ,start_response)
+
+        else:
+            url = 'https://'
+
+            if environ.get('HTTP_HOST'):
+                url += environ['HTTP_HOST']
+            else:
+                url += environ['SERVER_NAME']
+
+            url += quote(environ.get('SCRIPT_NAME', ''))
+            url += quote(environ.get('PATH_INFO', ''))
+            if environ.get('QUERY_STRING'):
+                url += '?' + environ['QUERY_STRING']
+
+            status = "301 Moved Permanently"
+            headers = [('Location',url),('Content-Length','0')]
+
+            start_response(status,headers)
+
+            return ['']
+
+'''
 
 app.wsgi_app = Middleware(app.wsgi_app)
 
