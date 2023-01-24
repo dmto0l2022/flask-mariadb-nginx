@@ -31,8 +31,10 @@ class Middleware:
         if 'wsgi' in request.path:
             url_return = urlparse(request.url)
             url_return._replace(path='/app/welcome')
-            werkzeug.utils.redirect(url_return)
-        return self.wsgi(environ, start_response)
+            start_response('301 Redirect', [('Location', url_return),])
+            return []
+        else:
+            return self.wsgi(environ, start_response)
 
 
 app.wsgi_app = Middleware(app.wsgi_app)
