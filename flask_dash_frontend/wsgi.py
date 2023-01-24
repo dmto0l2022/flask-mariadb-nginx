@@ -1,6 +1,6 @@
 from app import init_app
 
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urlunparse
 
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
@@ -26,11 +26,14 @@ class Middleware:
     def __call__(self, environ, start_response):
         # not Flask request - from werkzeug.wrappers import Request
         request = Request(environ)
+        url_return_parts = urlparse(request.url)
+        url_return_parts._replace(path='/app/welcome')
+        url_return = urlunparse(url_return_parts)
         print('path: %s, url: %s' % (request.path, request.url))
         # just do here everything what you need
         if 'wsgi' in request.path:
-            url_return = urlparse(request.url)
-            url_return._replace(path='/app/welcome')
+            #url_return = urlparse(request.url)
+            #url_return._replace(path='/app/welcome')
             start_response('301 Redirect', [('Location', url_return),])
             return []
         else:
