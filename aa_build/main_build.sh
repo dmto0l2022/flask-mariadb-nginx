@@ -19,7 +19,10 @@ podman pod create \
 --gidmap 0:1:$gid \
 --gidmap $gid:0:1 \
 --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
---publish 8002:8002
+--publish 8002:8002 \
+--publish 8004:8004 \
+--publish 8004:8004 \
+--publish 8004:8004 \
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
