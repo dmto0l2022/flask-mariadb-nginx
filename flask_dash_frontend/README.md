@@ -9,3 +9,7 @@ https://github.com/RafaelMiquelino/dash-flask-login/blob/master/app.py
 
 https://newbedev.com/how-to-merge-flask-login-with-a-dash-application
 
+# Add Middleware
+
+https://pypi.org/project/flask-http-middleware/
+
