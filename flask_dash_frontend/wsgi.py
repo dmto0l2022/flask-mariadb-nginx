@@ -6,6 +6,7 @@ from werkzeug.wrappers import Request, Response, ResponseStream
 
 from werkzeug.debug import DebuggedApplication
 
+from werkzeug.utils import redirect
 
 from app.dashapps.interactive_table import app as app1
 from app.dashapps.basic_table import app as app2
@@ -25,6 +26,10 @@ class Middleware:
         request = Request(environ)
         print('path: %s, url: %s' % (request.path, request.url))
         # just do here everything what you need
+        if 'wsgi' in request.path:
+            url_return = request
+            url_return.path = '/app/welcome'
+            werkzeug.utils.redirect(url_return)
         return self.wsgi(environ, start_response)
 
 
