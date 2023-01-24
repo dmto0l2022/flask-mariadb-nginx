@@ -33,4 +33,4 @@ class Middleware:
         return self.app(environ, start_response)
 
 
-application = Middleware(application)
+##application = Middleware(application)
