@@ -8,7 +8,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from app import db
 
 auth_bp = Blueprint('auth_bp', __name__, url_prefix='/app/auth')
-
+'''
 @auth_bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')
@@ -19,28 +19,18 @@ def load_logged_in_user():
         g.user = db.execute(
             'SELECT * FROM user WHERE id = ?', (user_id,)
         ).fetchone()
+'''
 
 @auth_bp.route('/app/auth/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index'))        
-
-def login_required(view):
-    @functools.wraps(view)
-    def wrapped_view(**kwargs):
-        if g.user is None:
-            return redirect(url_for('auth.login'))
-
-        return view(**kwargs)
-
-    return wrapped_view  
+    return redirect(url_for('index'))         
   
 @auth_bp.route('/app/auth/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        db = get_db()
         error = None
 
         if not username:
@@ -69,7 +59,6 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        db = get_db()
         error = None
         user = db.execute(
             'SELECT * FROM user WHERE username = ?', (username,)
