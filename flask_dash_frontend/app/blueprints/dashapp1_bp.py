@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect
+from flask import Blueprint, render_template, redirect, request
 
 from flask_security import Security, SQLAlchemyUserDatastore, auth_required, hash_password
 
@@ -8,6 +8,26 @@ from flask_login import current_user
 
 dashapp1_bp = Blueprint('dashapp1_bp', __name__)
 
+def check_route_access():
+    if request.endpoint is None:
+        return redirect("/login")
+ 
+    func = app.view_functions[request.endpoint]
+    if (getattr(func, "is_public", False)):
+        return  # Access granted
+
+    # check if user is logged in (using session variable)
+    user = session.get("user", None)
+    if not user:
+        redirect("/login")
+    else:
+        return  # Access granted```
+
+def public_route(function):
+    function.is_public = True
+    return function
+
+@public_route
 @dashapp1_bp.route('/app/dashapp1')
 def dashapp1():
     return redirect('/wsgi_app1', code=302)
