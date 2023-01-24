@@ -12,6 +12,11 @@ dashapp1_bp = Blueprint('dashapp1_bp', __name__)
 def dashapp1():
     return redirect('/wsgi_app1', code=302)
 
+@dashapp1_bp.route('/wsgi_app2')
+@auth_required()
+def dashapp2_raw():
+    return redirect('/wsgi_app2', code=302)
+
 @dashapp1_bp.route('/app/dashapp2')
 @auth_required()
 def dashapp2():
