@@ -81,10 +81,10 @@ class SSLRedirect(object):
 '''
 
 application = DispatcherMiddleware(app, {
-    '/wsgi_app1': app1.server,
-    '/wsgi_app2': app2.server,
-    '/session_app': app3.server,
-    '/multipage': app4.server,
+    '/app/wsgi_app1': app1.server,
+    '/app/wsgi_app2': app2.server,
+    '/app/session_app': app3.server,
+    '/app/multipage': app4.server,
 })  
 
 application = Middleware(application)
