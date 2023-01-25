@@ -61,7 +61,7 @@ def setsession():
         #session['Username'] = current_user.username()
         #session['SessionID'] =  createsessionid()
         if current_user.is_authenticated:
-            #g.user = current_user.username
+            #g.user = current_user.get_id()
             session['Username'] = current_user.username
         return f"The session has been Set"
     except:
