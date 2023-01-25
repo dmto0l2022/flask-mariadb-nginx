@@ -33,7 +33,7 @@ def hello():
 def welcome():
     return render_template('welcome.html')
 
-'''
+
 @home_bp.route('/app/dash/')
 def homepage():
     return """
@@ -41,7 +41,7 @@ def homepage():
 
     <iframe src="http://0.0.0.0:8002/wsgi_app2" width="853" height="480" frameborder="0" allowfullscreen></iframe>
     """
-'''
+
 
 
 '''
