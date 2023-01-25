@@ -27,17 +27,20 @@ class Middleware:
         # not Flask request - from werkzeug.wrappers import Request
         request = Request(environ)
         url_return_parts = urlparse(request.url)
-        url_return_parts._replace(path='/app/welcome')
-        url_return = urlunparse(url_return_parts)
+        welcome_url_parts = url_return_parts._replace(path='/app/welcome')
+        url_return = urlunparse(welcome_url_parts)
         print(url_return)
         print('path: %s, url: %s' % (request.path, request.url))
         # just do here everything what you need
-        '''if 'wsgi' in request.path:
+        if 'wsgi' in request.path:
+            print('it contains wsgi')
+            print(url_return)
+            print('-----------')
             #url_return = urlparse(request.url)
             #url_return._replace(path='/app/welcome')
-            start_response('301 Redirect', [('Location', url_return),])
-            return []
-        else:'''
+            ##start_response('301 Redirect', [('Location', url_return),])
+            ##return []
+        ##else:'''
         return self.wsgi(environ, start_response)
 '''
 
