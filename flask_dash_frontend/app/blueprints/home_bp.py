@@ -32,7 +32,7 @@ def hello():
 @auth_required()
 def welcome():
     return render_template('welcome.html')
-
+'''
 @home_bp.route('/app/dash/')
 def dashit():
     urls = [
@@ -44,3 +44,4 @@ def dashit():
     iframe = random.choice(urls)
 
     return render_template('iframe.html', iframe=iframe)
+'''
