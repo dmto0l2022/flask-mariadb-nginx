@@ -38,10 +38,10 @@ class Middleware:
             print('-----------')
             #url_return = urlparse(request.url)
             #url_return._replace(path='/app/welcome')
-            ##start_response('301 Redirect', [('Location', url_return),])
-            ##return []
-        ##else:'''
-        return self.wsgi(environ, start_response)
+            start_response('301 Redirect', [('Location', url_return),])
+            return []
+        else:
+            return self.wsgi(environ, start_response)
 '''
 
 https://gist.github.com/devries/4a747a284e75a5d63f93
