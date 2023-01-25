@@ -29,15 +29,16 @@ class Middleware:
         url_return_parts = urlparse(request.url)
         url_return_parts._replace(path='/app/welcome')
         url_return = urlunparse(url_return_parts)
+        print(url_return)
         print('path: %s, url: %s' % (request.path, request.url))
         # just do here everything what you need
-        if 'wsgi' in request.path:
+        '''if 'wsgi' in request.path:
             #url_return = urlparse(request.url)
             #url_return._replace(path='/app/welcome')
             start_response('301 Redirect', [('Location', url_return),])
             return []
-        else:
-            return self.wsgi(environ, start_response)
+        else:'''
+        return self.wsgi(environ, start_response)
 '''
 
 https://gist.github.com/devries/4a747a284e75a5d63f93
