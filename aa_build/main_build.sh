@@ -29,14 +29,17 @@ podman pod create \
 cd /opt/dmtools/code/flask-mariadb-nginx/redis
 podman stop container_redis_1
 podman rm container_redis_1
+podman rmi redis_1
 
-podman pull docker.io/dmto0l2022/redis_1:latest
+podman build -f Dockerfile -t redis_1 .
+
+#podman pull docker.io/dmto0l2022/redis_1:latest
 
 podman run -dt \
 --name container_redis_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
-dmto0l2022/redis_1:latest
+localhost/redis_1:latest
 
 cd /opt/dmtools/code/flask-mariadb-nginx/mariadb
 podman rmi mariadb_1
