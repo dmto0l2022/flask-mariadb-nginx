@@ -1,5 +1,5 @@
 ## https://testdriven.io/blog/flask-sessions/
-from flask import Blueprint, render_template, Flask, render_template_string, request, session, redirect, url_for
+from flask import Blueprint, render_template, Flask, render_template_string, request, session, redirect, url_for, g
 from flask_restful import Api, Resource, url_for
 import datetime
 
@@ -57,9 +57,12 @@ def delete_email():
 @session_bp.route('/app/session/setsession')
 def setsession():
     try:
-        session['UserID'] = current_user.get_id()
-        session['Username'] = current_user.username()
-        session['SessionID'] =  createsessionid()
+        #session['UserID'] = current_user.get_id()
+        #session['Username'] = current_user.username()
+        #session['SessionID'] =  createsessionid()
+        if current_user.is_authenticated:
+            #g.user = current_user.username
+            session['Username'] = current_user.username
         return f"The session has been Set"
     except:
         return f"The session has NOT been Set"
@@ -68,9 +71,9 @@ def setsession():
 def getsession():
     if 'Username' in session:
         Username = session['Username']
-        UserID =  session['UserID']
-        SessionID = session['SessionID']
-        return f"Welcome {Username} your userid is {UserID} and sessionid {SessionID}"
+        #UserID =  session['UserID']
+        #SessionID = session['SessionID']
+        return f"Welcome {Username} " ## your userid is {UserID} and sessionid {SessionID}"
     else:
         return "Welcome Anonymous"
  
