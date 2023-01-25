@@ -12,12 +12,12 @@ def createsessionid():
     return sessionidnow
 
 
-@session_bp.route('/session', methods=['GET', 'POST'])
+@session_bp.route('/app/session', methods=['GET', 'POST'])
 def sessionroot():
     return 'session root'
 
 
-@session_bp.route('/session/set_email', methods=['GET', 'POST'])
+@session_bp.route('/app/session/set_email', methods=['GET', 'POST'])
 def set_email():
     if request.method == 'POST':
         # Save the form data to the session object
@@ -34,7 +34,7 @@ def set_email():
         """
 
 
-@session_bp.route('/session/get_email')
+@session_bp.route('/app/session/get_email')
 def get_email():
     return render_template_string("""
             {% if session['email'] %}
@@ -46,7 +46,7 @@ def get_email():
         """)
 
 
-@session_bp.route('/session/delete_email')
+@session_bp.route('/app/session/delete_email')
 def delete_email():
     # Clear the email stored in the session object
     session.pop('email', default=None)
