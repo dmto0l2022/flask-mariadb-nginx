@@ -6,6 +6,8 @@ from flask_security.models import fsqla_v3 as fsqla
 
 from flask_login import current_user
 
+import random
+
 home_bp = Blueprint('home_bp', __name__)
 
 @home_bp.route('/app/', methods=['GET', 'POST'])
@@ -32,5 +34,13 @@ def welcome():
     return render_template('welcome.html')
 
 @home_bp.route('/app/dash/')
-def appdash():
-    return render_template('dash1.html')
+def dashit():
+    urls = [
+        'http://www.w3schools.com',
+        'http://techcrunch.com/',
+        'https://www.fayerwayer.com/',
+    ]
+
+    iframe = random.choice(urls)
+
+    return render_template('iframe.html', iframe=iframe)
