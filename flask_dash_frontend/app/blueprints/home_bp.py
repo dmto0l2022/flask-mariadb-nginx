@@ -34,7 +34,7 @@ def welcome():
     return render_template('welcome.html')
 
 
-@app.route('/app/dash/')
+@home_bp.route('/app/dash/')
 def homepage():
     return """
     <h1>Hello world!</h1>
