@@ -38,6 +38,7 @@ podman build -f Dockerfile -t redis_1 .
 podman run -dt \
 --name container_redis_1 \
 --pod pod_main_backend \
+--volume /opt/dmtools/redis-data:/data \
 --user $uid:$gid \
 localhost/redis_1:latest
 
