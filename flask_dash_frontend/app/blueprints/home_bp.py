@@ -39,7 +39,7 @@ def homepage():
     return """
     <h1>Hello world!</h1>
 
-    <iframe src="http://0.0.0.0:8002/wsgi_app2" width="853" height="480" frameborder="0" allowfullscreen></iframe>
+    <iframe src="../wsgi_app2" width="853" height="480" frameborder="0" allowfullscreen></iframe>
     """
 
 
