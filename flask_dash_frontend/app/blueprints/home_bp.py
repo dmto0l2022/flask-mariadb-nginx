@@ -31,3 +31,6 @@ def hello():
 def welcome():
     return render_template('welcome.html')
 
+@home_bp.route('/app/dash/')
+def appdash():
+    return render_template('dash1.html')
