@@ -56,14 +56,18 @@ def delete_email():
 
 @session_bp.route('/app/session/setsession')
 def setsession():
-    session['Username'] = current_user
+    session['UserID'] = current_user.get_id()
+    session['Username'] = current_user.username()
+    session['SessionID'] =  createsessionid()
     return f"The session has been Set"
  
 @session_bp.route('/app/session/getsession')
 def getsession():
     if 'Username' in session:
         Username = session['Username']
-        return f"Welcome {Username}"
+        UserID =  session['UserID']
+        SessionID = session['SessionID']
+        return f"Welcome {Username} your userid is {UserID} and sessionid {SessionID}"
     else:
         return "Welcome Anonymous"
  
