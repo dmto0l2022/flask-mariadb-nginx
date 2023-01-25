@@ -3,6 +3,8 @@ from flask import Blueprint, render_template, Flask, render_template_string, req
 from flask_restful import Api, Resource, url_for
 import datetime
 
+from flask_login import current_user
+
 session_bp = Blueprint('session_bp', __name__)
 
 def createsessionid():
@@ -50,3 +52,22 @@ def delete_email():
     session.pop('email', default=None)
     session.pop('sessionid', default=None)
     return '<h1>Session deleted!</h1>'
+
+
+@session_bp.route('/app/session/setsession')
+def setsession():
+    session['Username'] = current_user
+    return f"The session has been Set"
+ 
+@session_bp.route('/app/session/getsession')
+def getsession():
+    if 'Username' in session:
+        Username = session['Username']
+        return f"Welcome {Username}"
+    else:
+        return "Welcome Anonymous"
+ 
+@session_bp.route('/app/session/popsession')
+def popsession():
+    session.pop('Username',None)
+    return "Session Deleted"
