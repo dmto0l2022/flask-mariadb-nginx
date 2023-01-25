@@ -87,6 +87,6 @@ application = DispatcherMiddleware(app, {
     '/multipage': app4.server,
 })  
 
-application.wsgi_app = Middleware(application.wsgi_app)
+application = Middleware(application)
 
 application = DebuggedApplication(application, True)
