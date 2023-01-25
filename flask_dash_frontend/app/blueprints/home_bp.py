@@ -32,6 +32,16 @@ def hello():
 @auth_required()
 def welcome():
     return render_template('welcome.html')
+
+
+@app.route('/app/dash/')
+def homepage():
+    return """
+    <h1>Hello world!</h1>
+
+    <iframe src="http://35.214.74.184:8002/wsg" width="853" height="480" frameborder="0" allowfullscreen></iframe>
+    """
+
 '''
 @home_bp.route('/app/dash/')
 def dashit():
