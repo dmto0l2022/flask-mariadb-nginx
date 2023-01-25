@@ -11,19 +11,19 @@ subgidSize=$(( $(podman info --format "{{ range \
 
 cd /opt/dmtools/code/flask-mariadb-nginx/redis
 podman stop container_redis_1
-#podman rmi image_redis
 
-#podman build -f Dockerfile -t image_redis_1 .
+#podman pull docker.io/dmto0l2022/redis_1:latest
 
-podman pull docker.io/dmto0l2022/redis_1:latest
+podman rmi redis_1
+podman build -f Dockerfile -t redis_1 .
 
 podman run -dt \
 --name container_redis_1 \
 --user $uid:$gid \
-dmto0l2022/redis_1:latest
+localhost/redis_1:latest
 
 cd /opt/dmtools/code/flask-mariadb-nginx/mariadb
-podman rmi image_mariadb_1
+podman rmi mariadb_1
 
 podman build \
 --build-arg=ENV_UID=${ENV_UID} \
@@ -34,7 +34,7 @@ podman build \
 --build-arg=ENV_MARIADB_PASSWORD=${ENV_MARIADB_PASSWORD} \
 --build-arg=ENV_MARIADB_ROOT_PASSWORD=${ENV_MARIADB_ROOT_PASSWORD} \
 --build-arg=ENV_MARIADB_DATABASE=${ENV_MARIADB_DATABASE} \
--t image_mariadb_1 .
+-t mariadb_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
@@ -42,8 +42,7 @@ podman run -dt \
 --name container_mariadb_backend \
 --volume /opt/dmtools/mysql:/var/lib/mysql:z \
 --user $uid:$gid \
-
-localhost/image_mariadb_1:latest
+localhost/mariadb_1:latest
 
 cd /opt/dmtools/code/flask-mariadb-nginx/flask_crud_api
 
