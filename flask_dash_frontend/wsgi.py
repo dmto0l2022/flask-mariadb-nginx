@@ -1,5 +1,7 @@
 from app import init_app
 
+from flask_security import current_user
+
 from urllib.parse import urlparse, urlunparse
 
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
