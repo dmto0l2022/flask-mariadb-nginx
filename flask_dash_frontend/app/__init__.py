@@ -12,6 +12,8 @@ from flask_security import Security, current_user, auth_required, hash_password,
 from flask_mailman import Mail
 from werkzeug.middleware.proxy_fix import ProxyFix
 
+from flask_login import LoginManager
+login_manager = LoginManager()
 
 # outside of app factory
 db = dbind.SQLAlchemy_bind()
@@ -93,7 +95,13 @@ def init_app():
          from . import mail, security
          # for example if the User model above was in a different module:
          # Setup Flask-Security
-
+         
+         login_manager.init_app(app)
+         
+         @login_manager.user_loader
+         def load_user(user_id):
+             return User.get(user_id)
+     
          db.init_app(app)
 
          user_datastore = SQLAlchemySessionUserDatastore(db.session, md.User, md.Role)
