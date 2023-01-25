@@ -56,10 +56,13 @@ def delete_email():
 
 @session_bp.route('/app/session/setsession')
 def setsession():
-    session['UserID'] = current_user.get_id()
-    session['Username'] = current_user.username()
-    session['SessionID'] =  createsessionid()
-    return f"The session has been Set"
+    try:
+        session['UserID'] = current_user.get_id()
+        session['Username'] = current_user.username()
+        session['SessionID'] =  createsessionid()
+        return f"The session has been Set"
+    except:
+        return f"The session has NOT been Set"
  
 @session_bp.route('/app/session/getsession')
 def getsession():
